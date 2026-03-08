@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigenergy Adapter</title>
+    <link rel="stylesheet" type="text/css" href="../../css/adapter.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+    <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../../js/translate.js"></script>
+    <script type="text/javascript" src="../../lib/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+    <script type="text/javascript" src="words.js"></script>
+    <style>
+        :root {
+            --primary: #c0392b;
+            --primary-dark: #922b21;
+            --primary-light: #e74c3c;
+            --accent: #f39c12;
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #dce1e7;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --error: #e74c3c;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .adapter-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .adapter-header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+
+        .adapter-header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .adapter-header p {
+            margin: 2px 0 0;
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            background: white;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            padding: 0 16px;
+            overflow-x: auto;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        .tab-btn {
+            padding: 14px 22px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover { color: var(--primary); }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn .tab-icon { font-size: 1.1rem; }
+
+        /* Content */
+        .tab-content { display: none; padding: 24px; max-width: 1100px; }
+        .tab-content.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 16px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title .icon { color: var(--primary); }
+
+        /* Form elements */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .form-row.single { grid-template-columns: 1fr; }
+        .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text);
+            background: white;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+        }
+
+        /* Toggle switch */
+        .toggle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .toggle-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .toggle-item:hover { border-color: var(--primary); background: #fff5f4; }
+
+        .toggle-item.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #fff5f4 0%, #fff 100%);
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-label .t-icon {
+            font-size: 1.5rem;
+        }
+
+        .toggle-label .t-text strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .toggle-label .t-text span {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+
+        /* iOS-style toggle */
+        .switch-wrap { position: relative; }
+
+        .switch-wrap input { opacity: 0; width: 0; height: 0; position: absolute; }
+
+        .slider-btn {
+            display: block;
+            width: 44px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: relative;
+        }
+
+        .slider-btn::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 18px; height: 18px;
+            background: white;
+            border-radius: 50%;
+            transition: left 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .switch-wrap input:checked + .slider-btn { background: var(--primary); }
+        .switch-wrap input:checked + .slider-btn::after { left: 23px; }
+
+        /* Connection Test Button */
+        .btn-test {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-test:hover { background: var(--primary-dark); }
+        .btn-test:disabled { background: #ccc; cursor: not-allowed; }
+
+        .test-result {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .test-result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .test-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .test-result.testing {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Stats checkboxes */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .stat-item:hover { border-color: var(--primary); background: #fff5f4; }
+
+        .stat-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .stat-item .stat-text strong {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
+        .stat-item .stat-text small {
+            color: var(--text-light);
+            font-size: 0.78rem;
+        }
+
+        /* Connection type tabs */
+        .conn-type-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .conn-type-btn {
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: var(--text-light);
+        }
+
+        .conn-type-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .conn-section { display: none; }
+        .conn-section.active { display: block; }
+
+        /* Info page */
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .info-section p, .info-section li {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .register-badge {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #1a5276;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.82rem;
+            margin: 2px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Address info row */
+        .addr-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .addr-row:last-child { border-bottom: none; }
+        .addr-label { font-size: 0.88rem; color: var(--text); }
+        .addr-value { font-family: monospace; color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .form-row.triple { grid-template-columns: 1fr; }
+            .toggle-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="adapter-header">
+    <img src="sigenergy.png" alt="Sigenergy">
+    <div>
+        <h1>Sigenergy</h1>
+        <p>Solar Energy System Monitor — Modbus V2.5</p>
+    </div>
+</div>
+
+<!-- Tab Navigation -->
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('components', this)">
+        <span class="tab-icon">⚡</span> Components
+    </button>
+    <button class="tab-btn" onclick="switchTab('connection', this)">
+        <span class="tab-icon">🔌</span> Connection
+    </button>
+    <button class="tab-btn" onclick="switchTab('statistics', this)">
+        <span class="tab-icon">📊</span> Statistics
+    </button>
+    <button class="tab-btn" onclick="switchTab('info', this)">
+        <span class="tab-icon">ℹ️</span> Info
+    </button>
+</div>
+
+<!-- Tab: Components -->
+<div id="tab-components" class="tab-content active">
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🏭</span> System Components</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 16px;">
+            Select which components are installed in your Sigenergy system.
+        </p>
+        <div class="toggle-grid">
+            <div class="toggle-item active" id="item-hasBattery">
+                <div class="toggle-label">
+                    <span class="t-icon">🔋</span>
+                    <div class="t-text">
+                        <strong>Battery / ESS</strong>
+                        <span>Energy Storage System</span>
+                    </div>
+                </div>
+                <label class="switch-wrap">
+                    <input type="checkbox" id="hasBattery" class="value" checked onchange="updateToggleStyle('hasBattery')">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+            <div class="toggle-item active" id="item-hasPv">
+                <div class="toggle-label">
+                    <span class="t-icon">☀️</span>
+                    <div class="t-text">
+                        <strong>PV Panels</strong>
+                        <span>Photovoltaic solar panels</span>
+                    </div>
+                </div>
+                <label class="switch-wrap">
+                    <input type="checkbox" id="hasPv" class="value" checked onchange="updateToggleStyle('hasPv')">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+            <div class="toggle-item" id="item-hasAcCharger">
+                <div class="toggle-label">
+                    <span class="t-icon">🔌</span>
+                    <div class="t-text">
+                        <strong>AC Charger (EVAC)</strong>
+                        <span>Sigen EVAC EV charging station</span>
+                    </div>
+                </div>
+                <label class="switch-wrap">
+                    <input type="checkbox" id="hasAcCharger" class="value" onchange="updateToggleStyle('hasAcCharger'); toggleAcCharger()">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+            <div class="toggle-item" id="item-hasDcCharger">
+                <div class="toggle-label">
+                    <span class="t-icon">⚡</span>
+                    <div class="t-text">
+                        <strong>DC Charger</strong>
+                        <span>DC fast charging (via inverter)</span>
+                    </div>
+                </div>
+                <label class="switch-wrap">
+                    <input type="checkbox" id="hasDcCharger" class="value" onchange="updateToggleStyle('hasDcCharger')">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">⚙️</span> Polling Settings</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Poll Interval (ms)</label>
+                <input type="number" id="pollInterval" class="value" min="5000" max="60000" step="1000" value="10000">
+            </div>
+            <div class="form-group">
+                <label>Connection Timeout (ms)</label>
+                <input type="number" id="timeout" class="value" min="1000" max="30000" step="1000" value="5000">
+            </div>
+        </div>
+    </div>
+
+    <div id="acChargerSettings" class="card" style="display:none;">
+        <h2 class="card-title"><span class="icon">🔌</span> AC Charger Settings</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>AC Charger Modbus ID</label>
+                <input type="number" id="acChargerId" class="value" min="1" max="246" value="2">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab: Connection -->
+<div id="tab-connection" class="tab-content">
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🌐</span> Connection Type</h2>
+        <div class="conn-type-tabs">
+            <button class="conn-type-btn active" id="btnTcp" onclick="switchConnType('tcp')">
+                🌐 TCP / Ethernet
+            </button>
+            <button class="conn-type-btn" id="btnSerial" onclick="switchConnType('serial')">
+                🔗 Serial / RS485
+            </button>
+        </div>
+        <input type="hidden" id="connectionType" class="value" value="tcp">
+
+        <!-- TCP Settings -->
+        <div id="tcpSettings" class="conn-section active">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Host / IP Address</label>
+                    <input type="text" id="tcpHost" class="value" placeholder="192.168.1.100" value="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label>Port</label>
+                    <input type="number" id="tcpPort" class="value" min="1" max="65535" value="502">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Plant Modbus ID (default: 247)</label>
+                    <input type="number" id="plantId" class="value" min="1" max="247" value="247">
+                </div>
+                <div class="form-group">
+                    <label>Inverter Modbus ID (default: 1)</label>
+                    <input type="number" id="inverterId" class="value" min="1" max="246" value="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Serial Settings -->
+        <div id="serialSettings" class="conn-section">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Serial Port</label>
+                    <input type="text" id="serialPort" class="value" placeholder="/dev/ttyUSB0" value="/dev/ttyUSB0">
+                </div>
+                <div class="form-group">
+                    <label>Baud Rate</label>
+                    <select id="serialBaudRate" class="value">
+                        <option value="9600" selected>9600 (default)</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="115200">115200</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row triple">
+                <div class="form-group">
+                    <label>Data Bits</label>
+                    <select id="serialDataBits" class="value">
+                        <option value="8" selected>8</option>
+                        <option value="7">7</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Parity</label>
+                    <select id="serialParity" class="value">
+                        <option value="none" selected>None</option>
+                        <option value="even">Even</option>
+                        <option value="odd">Odd</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Stop Bits</label>
+                    <select id="serialStopBits" class="value">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Plant Modbus ID (default: 247)</label>
+                    <input type="number" id="plantIdSerial" min="1" max="247" value="247">
+                </div>
+                <div class="form-group">
+                    <label>Inverter Modbus ID (default: 1)</label>
+                    <input type="number" id="inverterIdSerial" min="1" max="246" value="1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Test -->
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🧪</span> Connection Test</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 12px;">
+            Test the Modbus connection with the current settings. The adapter will attempt to read the plant system time register (30000).
+        </p>
+        <button class="btn-test" id="btnTest" onclick="testConnection()">
+            🔌 Test Connection
+        </button>
+        <div id="testResult" class="test-result"></div>
+    </div>
+</div>
+
+<!-- Tab: Statistics -->
+<div id="tab-statistics" class="tab-content">
+    <div class="card">
+        <h2 class="card-title"><span class="icon">📊</span> Statistical Calculations</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 16px;">
+            Select which additional statistics should be calculated and written as ioBroker states.
+            These values are derived from live measurements.
+        </p>
+
+        <div class="stats-grid">
+            <label class="stat-item">
+                <input type="checkbox" id="calcBatteryTimeToFull" class="value" checked>
+                <div class="stat-text">
+                    <strong>⏱ Time to full charge</strong>
+                    <small>How long until the battery reaches 100% at current charge rate</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcBatteryTimeRemaining" class="value" checked>
+                <div class="stat-text">
+                    <strong>⏳ Battery time remaining</strong>
+                    <small>How long the battery will last at current consumption</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcBatteryDailyFull" class="value" checked>
+                <div class="stat-text">
+                    <strong>📅 Daily charge completion time</strong>
+                    <small>Today: how long it took until the battery was fully charged</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcBatteryCoverageTime" class="value" checked>
+                <div class="stat-text">
+                    <strong>🏠 Battery coverage time today</strong>
+                    <small>How long today the battery covered the house consumption without grid</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcSelfConsumptionRate" class="value" checked>
+                <div class="stat-text">
+                    <strong>♻️ Self-consumption rate</strong>
+                    <small>Percentage of PV production used locally (not exported)</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcAutarkyRate" class="value" checked>
+                <div class="stat-text">
+                    <strong>🌍 Autarky rate</strong>
+                    <small>Percentage of house consumption covered by PV + battery</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcPvYield" class="value" checked>
+                <div class="stat-text">
+                    <strong>☀️ PV yield (15-min average)</strong>
+                    <small>Average PV power output over the last 15 minutes</small>
+                </div>
+            </label>
+            <label class="stat-item">
+                <input type="checkbox" id="calcGridFeedIn" class="value" checked>
+                <div class="stat-text">
+                    <strong>⚡ Grid feed-in tracking</strong>
+                    <small>Track daily grid export and import energy</small>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🏠</span> Derived Values</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem;">
+            The following values are always calculated and cannot be disabled:
+        </p>
+        <ul style="color: var(--text); font-size: 0.88rem; line-height: 2;">
+            <li><strong>House Power</strong> — Calculated: PV + Battery discharge − Grid export</li>
+            <li><strong>Today max/min SOC</strong> — Highest and lowest battery state of charge today</li>
+            <li><strong>Formatted durations</strong> — Human-readable strings (e.g. "2h 15m")</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Tab: Info -->
+<div id="tab-info" class="tab-content">
+    <div class="card">
+        <h2 class="card-title"><span class="icon">ℹ️</span> About this Adapter</h2>
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+            <img src="sigenergy.png" style="width:56px; border-radius:8px;">
+            <div>
+                <div style="font-size: 1rem; font-weight: 600;">ioBroker Sigenergy Adapter</div>
+                <div style="color: var(--text-light); font-size: 0.85rem;">Version 0.1.0</div>
+                <div style="margin-top: 4px;"><span class="version-badge">Modbus V2.5</span></div>
+            </div>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text); line-height: 1.6;">
+            This adapter enables integration of Sigenergy solar energy systems into ioBroker via
+            the Modbus TCP or RS485 RTU protocol. It supports reading all plant and inverter data
+            as defined in the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
+        </p>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">📡</span> Default Modbus Addresses</h2>
+        <div class="addr-row">
+            <span class="addr-label">🏭 Plant / Power Plant</span>
+            <span class="addr-value">247 (0xF7)</span>
+        </div>
+        <div class="addr-row">
+            <span class="addr-label">🔄 Plant Broadcast (no reply)</span>
+            <span class="addr-value">0</span>
+        </div>
+        <div class="addr-row">
+            <span class="addr-label">⚡ Hybrid Inverter</span>
+            <span class="addr-value">1</span>
+        </div>
+        <div class="addr-row">
+            <span class="addr-label">🔌 AC Charger (EVAC)</span>
+            <span class="addr-value">2</span>
+        </div>
+        <div class="addr-row">
+            <span class="addr-label">📡 Modbus TCP Port</span>
+            <span class="addr-value">502</span>
+        </div>
+        <div class="addr-row">
+            <span class="addr-label">🔗 RS485 Baud Rate</span>
+            <span class="addr-value">9600 bps</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">📋</span> Register Ranges</h2>
+        <div class="info-section">
+            <h3>Read-Only Registers (Input — FC 0x03)</h3>
+            <div>
+                <span class="register-badge">30000–30087</span> Plant running info (slave 247)<br>
+                <span class="register-badge">30500–31065</span> Hybrid inverter running info<br>
+                <span class="register-badge">31500–31508</span> DC Charger info<br>
+                <span class="register-badge">32000–32014</span> AC Charger running info
+            </div>
+        </div>
+        <div class="info-section">
+            <h3>Holding Registers (FC 0x04 / 0x06 / 0x10)</h3>
+            <div>
+                <span class="register-badge">40000–40044</span> Plant parameter setting (slave 0 or 247)<br>
+                <span class="register-badge">40500–40501</span> Inverter Start/Stop + Grid code<br>
+                <span class="register-badge">41000</span> DC Charger Start/Stop<br>
+                <span class="register-badge">41500–41507</span> Inverter EMS dispatch control<br>
+                <span class="register-badge">42000–42001</span> AC Charger control
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🔧</span> Supported Models</h2>
+        <div class="info-section">
+            <h3>Hybrid Inverter (Hybrid Inv.)</h3>
+            <p>SigenStor EC, Sigen Hybrid SP/TP/TPLV series, Sigen PV M1-HYA series, PG Controller series</p>
+        </div>
+        <div class="info-section">
+            <h3>AC Charger (EVAC)</h3>
+            <p>Sigen EVAC 7/11/22 kW series, PG EVAC series</p>
+        </div>
+        <div class="info-section">
+            <h3>PV Inverter (PV Inv.)</h3>
+            <p>Sigen PV Max SP/TP series, Sigen PV M1 series</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title"><span class="icon">⚠️</span> Notes & Tips</h2>
+        <ul style="font-size: 0.9rem; line-height: 1.9; color: var(--text);">
+            <li>Make sure the inverter is reachable via Ethernet or RS485 before configuring this adapter.</li>
+            <li>For TCP connections, the inverter acts as a <strong>Modbus TCP Server</strong> on port 502.</li>
+            <li>For RS485, connect only one device — it will proxy all other devices in the plant.</li>
+            <li>Minimum poll interval is 5000 ms. Sigenergy recommends ≥ 1000 ms between requests.</li>
+            <li>AC Charger (EVAC) requires a connected Hybrid Inverter — access is via the inverter's Modbus interface.</li>
+            <li>DC Charger registers are accessible via the inverter's Modbus slave address.</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// Tab switching
+// ============================================================
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+}
+
+// ============================================================
+// Visual helpers (no save-logic here)
+// ============================================================
+function updateToggleStyle(id) {
+    var cb   = document.getElementById(id);
+    var item = document.getElementById('item-' + id);
+    if (cb && item) item.classList.toggle('active', cb.checked);
+}
+
+function toggleAcCharger() {
+    var vis = document.getElementById('hasAcCharger').checked;
+    document.getElementById('acChargerSettings').style.display = vis ? 'block' : 'none';
+}
+
+function switchConnType(type) {
+    document.getElementById('connectionType').value = type;
+    document.querySelectorAll('.conn-type-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn' + (type === 'tcp' ? 'Tcp' : 'Serial')).classList.add('active');
+    document.querySelectorAll('.conn-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(type + 'Settings').classList.add('active');
+    // notify ioBroker that something changed
+    if (typeof M_onChange === 'function') M_onChange();
+}
+
+// Global reference to onChange (set by load)
+var M_onChange = null;
+
+// ============================================================
+// ioBroker standard load() — called by adapter-settings.js
+// ============================================================
+var _cb_onChange = null;
+
+function load(settings, onChange) {
+    if (!settings) { onChange(false); return; }
+
+    // Store onChange for other functions
+    var _onChange = onChange;
+    if (typeof _cb_onChange !== 'undefined') { _cb_onChange = onChange; }
+
+    // EXACT proven ioBroker standard pattern
+    $('.value').each(function() {
+        var $el = $(this);
+        var id  = $el.attr('id');
+        if (!id) return;
+        if ($el.attr('type') === 'checkbox') {
+            $el.prop('checked', !!settings[id])
+               .change(function() { onChange(); });
+        } else {
+            if (settings[id] !== undefined && settings[id] !== null) {
+                $el.val(settings[id]);
+            }
+            $el.change(function() { onChange(); });
+        }
+    });
+
+    // Update visuals
+    ['hasBattery','hasPv','hasAcCharger','hasDcCharger'].forEach(updateToggleStyle);
+    toggleAcCharger();
+
+    // Sync connection type UI
+    var ct = settings.connectionType || 'tcp';
+    $('#connectionType').val(ct);
+    $('.conn-type-btn').removeClass('active');
+    $('#btn' + (ct === 'tcp' ? 'Tcp' : 'Serial')).addClass('active');
+    $('.conn-section').removeClass('active');
+    $('#' + ct + 'Settings').addClass('active');
+
+    // Required: no unsaved changes yet
+    onChange(false);
+}
+
+// Internal: only update the TCP/Serial button UI, no onChange call
+function _syncConnTypeUI(type) {
+    document.querySelectorAll('.conn-type-btn').forEach(b => b.classList.remove('active'));
+    var btn = document.getElementById('btn' + (type === 'tcp' ? 'Tcp' : 'Serial'));
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.conn-section').forEach(s => s.classList.remove('active'));
+    var sec = document.getElementById(type + 'Settings');
+    if (sec) sec.classList.add('active');
+}
+
+// ============================================================
+// ioBroker standard save() — called by adapter-settings.js
+// ============================================================
+function save(callback) {
+    var obj = {};
+    // Collect all .value elements (standard ioBroker pattern)
+    $('.value').each(function() {
+        var $el = $(this);
+        var id  = $el.attr('id');
+        if (!id) return;
+        if ($el.attr('type') === 'checkbox') {
+            obj[id] = $el.prop('checked');
+        } else {
+            var val = $el.val();
+            // Numeric fields
+            if ($el.attr('type') === 'number' || ['tcpPort','plantId','inverterId','acChargerId','pollInterval','timeout','serialBaudRate','serialDataBits','serialStopBits'].indexOf(id) !== -1) {
+                obj[id] = parseInt(val, 10) || 0;
+            } else {
+                obj[id] = val;
+            }
+        }
+    });
+    callback(obj);
+}
+
+// ============================================================
+// Connection Test — sendTo requires messagebox:true in io-package.json
+// ============================================================
+function testConnection() {
+    var btn    = document.getElementById('btnTest');
+    var result = document.getElementById('testResult');
+    btn.disabled = true;
+    result.className    = 'test-result testing';
+    result.style.display = 'flex';
+    result.innerHTML    = '⏳ Testing connection...';
+
+    // Collect current settings
+    var config = {};
+    $('.value').each(function() {
+        var $el = $(this);
+        var id  = $el.attr('id');
+        if (!id) return;
+        if ($el.attr('type') === 'checkbox') {
+            config[id] = $el.prop('checked');
+        } else {
+            config[id] = $el.val();
+        }
+    });
+    config.tcpPort      = parseInt(config.tcpPort, 10)      || 502;
+    config.plantId      = parseInt(config.plantId, 10)      || 247;
+    config.inverterId   = parseInt(config.inverterId, 10)   || 1;
+    config.pollInterval = parseInt(config.pollInterval, 10) || 10000;
+    config.timeout      = parseInt(config.timeout, 10)      || 5000;
+
+    function handleResult(res) {
+        btn.disabled = false;
+        if (res && res.success) {
+            result.className = 'test-result success';
+            result.innerHTML = '✅ ' + res.message;
+        } else {
+            result.className = 'test-result error';
+            result.innerHTML = '❌ ' + (res && res.message ? res.message : 'Keine Antwort vom Adapter');
+        }
+    }
+
+    // sendTo is provided by adapter-settings.js
+    // namespace = "sigenergy.0" (injected by adapter-settings.js)
+    if (typeof sendTo === 'function' && typeof namespace !== 'undefined') {
+        sendTo(namespace, 'testConnection', config, handleResult);
+    } else if (typeof socket !== 'undefined' && socket.emit) {
+        socket.emit('sendTo', 'sigenergy.0', 'testConnection', config, handleResult);
+    } else {
+        handleResult({ success: false, message: 'Admin nicht verbunden.' });
+    }
+}
+</script>
+</body>
+</html>
