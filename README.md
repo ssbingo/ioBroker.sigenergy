@@ -153,6 +153,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.1.1 (2026-03-09)
+* (ioBroker Community) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
+
 ### 1.1.0 (2026-03-09)
 * (ioBroker Community) Migrated admin UI from legacy HTML to jsonConfig (Admin 5+)
 * (ioBroker Community) Removed index.html, index_m.html, words.js

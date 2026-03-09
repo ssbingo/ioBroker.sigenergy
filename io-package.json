@@ -1,21 +1,8 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "news": {
-      "1.1.0": {
-        "en": "Migrated admin UI to jsonConfig (Admin 5+), removed deprecated io-package.json fields",
-        "de": "Admin-UI auf jsonConfig (Admin 5+) migriert, veraltete io-package.json Felder entfernt",
-        "ru": "Миграция интерфейса администратора на jsonConfig (Admin 5+), удалены устаревшие поля io-package.json",
-        "pt": "Interface de administração migrada para jsonConfig (Admin 5+), campos obsoletos do io-package.json removidos",
-        "nl": "Admin UI gemigreerd naar jsonConfig (Admin 5+), verouderde io-package.json velden verwijderd",
-        "fr": "Interface d'administration migrée vers jsonConfig (Admin 5+), champs obsolètes io-package.json supprimés",
-        "it": "Interfaccia amministratore migrata a jsonConfig (Admin 5+), rimossi campi deprecati io-package.json",
-        "es": "Interfaz de administración migrada a jsonConfig (Admin 5+), campos obsoletos de io-package.json eliminados",
-        "pl": "Interfejs administratora przeniesiony do jsonConfig (Admin 5+), usunięto przestarzałe pola io-package.json",
-        "uk": "Інтерфейс адміністратора перенесено на jsonConfig (Admin 5+), видалено застарілі поля io-package.json",
-        "zh-cn": "管理界面迁移至jsonConfig (Admin 5+)，删除已弃用的io-package.json字段"
-      },
       "1.0.14": {
         "en": "Stable release: VIS-2 widgets moved to separate adapter, admin UI updated",
         "de": "Stable Release: VIS-2 Widgets in separaten Adapter ausgelagert, Admin-UI aktualisiert",
