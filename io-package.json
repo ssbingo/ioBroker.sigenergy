@@ -5,20 +5,56 @@
     "news": {
       "1.1.0": {
         "en": "Migrated admin UI to jsonConfig (Admin 5+), removed deprecated io-package.json fields",
-        "de": "Admin-UI auf jsonConfig (Admin 5+) migriert, veraltete io-package.json Felder entfernt"
+        "de": "Admin-UI auf jsonConfig (Admin 5+) migriert, veraltete io-package.json Felder entfernt",
+        "ru": "Миграция интерфейса администратора на jsonConfig (Admin 5+), удалены устаревшие поля io-package.json",
+        "pt": "Interface de administração migrada para jsonConfig (Admin 5+), campos obsoletos do io-package.json removidos",
+        "nl": "Admin UI gemigreerd naar jsonConfig (Admin 5+), verouderde io-package.json velden verwijderd",
+        "fr": "Interface d'administration migrée vers jsonConfig (Admin 5+), champs obsolètes io-package.json supprimés",
+        "it": "Interfaccia amministratore migrata a jsonConfig (Admin 5+), rimossi campi deprecati io-package.json",
+        "es": "Interfaz de administración migrada a jsonConfig (Admin 5+), campos obsoletos de io-package.json eliminados",
+        "pl": "Interfejs administratora przeniesiony do jsonConfig (Admin 5+), usunięto przestarzałe pola io-package.json",
+        "uk": "Інтерфейс адміністратора перенесено на jsonConfig (Admin 5+), видалено застарілі поля io-package.json",
+        "zh-cn": "管理界面迁移至jsonConfig (Admin 5+)，删除已弃用的io-package.json字段"
       },
       "1.0.14": {
         "en": "Stable release: VIS-2 widgets moved to separate adapter, admin UI updated",
-        "de": "Stable Release: VIS-2 Widgets in separaten Adapter ausgelagert, Admin-UI aktualisiert"
+        "de": "Stable Release: VIS-2 Widgets in separaten Adapter ausgelagert, Admin-UI aktualisiert",
+        "ru": "Стабильный выпуск: виджеты VIS-2 перенесены в отдельный адаптер, обновлён интерфейс администратора",
+        "pt": "Versão estável: widgets VIS-2 movidos para adaptador separado, interface de administração atualizada",
+        "nl": "Stabiele release: VIS-2 widgets verplaatst naar afzonderlijke adapter, admin UI bijgewerkt",
+        "fr": "Version stable : widgets VIS-2 déplacés vers un adaptateur séparé, interface d'administration mise à jour",
+        "it": "Rilascio stabile: widget VIS-2 spostati su adattatore separato, interfaccia amministratore aggiornata",
+        "es": "Versión estable: widgets VIS-2 movidos a adaptador separado, interfaz de administración actualizada",
+        "pl": "Stabilne wydanie: widżety VIS-2 przeniesione do oddzielnego adaptera, zaktualizowany interfejs administratora",
+        "uk": "Стабільний випуск: віджети VIS-2 перенесено до окремого адаптера, оновлено інтерфейс адміністратора",
+        "zh-cn": "稳定版本：VIS-2小部件移至独立适配器，管理界面已更新"
       }
     },
     "titleLang": {
       "en": "Sigenergy Solar System",
-      "de": "Sigenergy Solaranlage"
+      "de": "Sigenergy Solaranlage",
+      "ru": "Солнечная система Sigenergy",
+      "pt": "Sistema Solar Sigenergy",
+      "nl": "Sigenergy Zonne-energiesysteem",
+      "fr": "Système Solaire Sigenergy",
+      "it": "Sistema Solare Sigenergy",
+      "es": "Sistema Solar Sigenergy",
+      "pl": "System Słoneczny Sigenergy",
+      "uk": "Сонячна система Sigenergy",
+      "zh-cn": "Sigenergy 太阳能系统"
     },
     "desc": {
       "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU"
+      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
+      "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
+      "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
+      "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
+      "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
+      "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
+      "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
+      "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
+      "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
+      "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
     },
     "authors": [
       "ioBroker Community"
