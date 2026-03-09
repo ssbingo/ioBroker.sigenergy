@@ -825,9 +825,6 @@
 </div>
 
 <script>
-// ============================================================
-// Tab switching (visual only, no save interaction)
-// ============================================================
 function switchTab(name, btn) {
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -835,22 +832,15 @@ function switchTab(name, btn) {
     btn.classList.add('active');
 }
 
-// ============================================================
-// Connection type UI (visual only)
-// ============================================================
 function switchConnType(type) {
     $('#connectionType').val(type);
     $('.conn-type-btn').removeClass('active');
     $('#btn' + (type === 'tcp' ? 'Tcp' : 'Serial')).addClass('active');
     $('.conn-section').removeClass('active');
     $('#' + type + 'Settings').addClass('active');
-    // Signal a change to enable the Save button
     if (typeof _cb_onChange === 'function') { _cb_onChange(); }
 }
 
-// ============================================================
-// Toggle visuals (cosmetic)
-// ============================================================
 function updateToggleStyle(id) {
     var cb   = document.getElementById(id);
     var item = document.getElementById('item-' + id);
@@ -862,19 +852,12 @@ function toggleAcCharger() {
     $('#acChargerSettings').toggle(visible);
 }
 
-// ============================================================
-// ioBroker LOAD — called by adapter-settings.js
-// ============================================================
 var _cb_onChange = null;
 
 function load(settings, onChange) {
-    // Store onChange callback for other functions to call
     _cb_onChange = onChange;
-
     if (!settings) { onChange(false); return; }
 
-    // EXACT proven ioBroker standard pattern:
-    // Iterate all .value elements, read ID, set value, attach handler in one chain
     $('.value').each(function() {
         var $el = $(this);
         var id  = $el.attr('id');
@@ -890,11 +873,9 @@ function load(settings, onChange) {
         }
     });
 
-    // Update visual states from loaded values
     ['hasBattery','hasPv','hasAcCharger','hasDcCharger'].forEach(updateToggleStyle);
     toggleAcCharger();
 
-    // Sync connection type UI from hidden input
     var ct = settings.connectionType || 'tcp';
     $('#connectionType').val(ct);
     $('.conn-type-btn').removeClass('active');
@@ -902,10 +883,7 @@ function load(settings, onChange) {
     $('.conn-section').removeClass('active');
     $('#' + ct + 'Settings').addClass('active');
 
-    // REQUIRED: Mark as "no unsaved changes" — enables Save button on first change
     onChange(false);
-
-    // Load adapter version dynamically from ioBroker object store
     _loadAdapterVersion();
 }
 
@@ -923,7 +901,6 @@ function _loadAdapterVersion() {
 
     var objId = 'system.adapter.' + ns;
     try {
-        // Admin 7 @iobroker/socket-client: socket.getObject() returns Promise
         if (typeof socket !== 'undefined' && socket && typeof socket.getObject === 'function') {
             var p = socket.getObject(objId);
             if (p && typeof p.then === 'function') {
@@ -935,7 +912,6 @@ function _loadAdapterVersion() {
                 return;
             }
         }
-        // Admin 5/6: socket.emit('getObject', id, callback)
         if (typeof socket !== 'undefined' && socket && typeof socket.emit === 'function') {
             socket.emit('getObject', objId, function(err, obj) {
                 if (!err && obj && obj.common && obj.common.version) {
@@ -943,14 +919,9 @@ function _loadAdapterVersion() {
                 }
             });
         }
-    } catch(e) {
-        console.warn('[sigenergy] Could not load adapter version:', e.message);
-    }
+    } catch(e) {}
 }
 
-// ============================================================
-// ioBroker SAVE — called by adapter-settings.js when Save clicked
-// ============================================================
 function save(callback) {
     var obj = {};
     $('.value').each(function() {
@@ -964,25 +935,16 @@ function save(callback) {
         }
     });
 
-    // Convert numeric fields from string to number
     var numericFields = ['tcpPort','plantId','inverterId','acChargerId',
                          'pollInterval','timeout','serialBaudRate',
                          'serialDataBits','serialStopBits'];
     numericFields.forEach(function(f) {
-        if (obj[f] !== undefined) {
-            obj[f] = parseInt(obj[f], 10) || 0;
-        }
+        if (obj[f] !== undefined) { obj[f] = parseInt(obj[f], 10) || 0; }
     });
 
     callback(obj);
 }
 
-// ============================================================
-// Connection Test
-// Admin 7 uses Promise-based socket methods (@iobroker/socket-client).
-// sendTo() in Admin 7 returns a Promise; callback arg may be ignored.
-// We handle both callback style (Admin 5/6) and Promise style (Admin 7).
-// ============================================================
 function testConnection() {
     var $btn    = $('#btnTest');
     var $result = $('#testResult');
@@ -1013,7 +975,6 @@ function testConnection() {
         }
     }
 
-    // Resolve namespace — strip 'system.adapter.' prefix if present (Admin 7 may return full form)
     var ns = null;
     try { if (typeof namespace !== 'undefined' && namespace) ns = namespace; } catch(e) {}
     if (!ns) {
@@ -1022,23 +983,14 @@ function testConnection() {
             if (hm) ns = hm[1];
         } catch(e) {}
     }
-    if (!ns) {
-        try {
-            var pm = (window.location.search || '').match(/[?&]instance=(\d+)/);
-            if (pm) ns = 'sigenergy.' + pm[1];
-        } catch(e) {}
-    }
     if (!ns) ns = 'sigenergy.0';
     if (ns.indexOf('system.adapter.') === 0) ns = ns.slice('system.adapter.'.length);
 
-    console.log('[sigenergy] testConnection: namespace=' + ns);
-
-    // One-shot callback guard — prevents double-firing when both ack and Promise resolve
     var cbFired = false;
     var safetyTimer = setTimeout(function() {
         if (!cbFired) {
             cbFired = true;
-            showResult({ success: false, message: 'No response from adapter instance &quot;' + ns + '&quot;. Check that the instance is running.' });
+            showResult({ success: false, message: 'No response from adapter instance "' + ns + '". Check that the instance is running.' });
         }
     }, (config.timeout || 5000) + 10000);
 
@@ -1046,69 +998,35 @@ function testConnection() {
         if (cbFired) return;
         cbFired = true;
         clearTimeout(safetyTimer);
-        console.log('[sigenergy] testConnection result:', res);
         showResult(res);
     }
 
-    // ── Method 1: injected sendTo() ─────────────────────────────────────────
-    // Admin 5/6: sendTo(ns, cmd, data, callbackFn) — calls callbackFn with result
-    // Admin 7:   sendTo(ns, cmd, data) — may IGNORE callback arg, returns Promise
-    // We handle BOTH by checking the return value.
     if (typeof sendTo === 'function') {
         try {
-            console.log('[sigenergy] Trying sendTo() ...');
             var r = sendTo(ns, 'testConnection', config, done);
-            if (r && typeof r.then === 'function') {
-                // Promise-style (Admin 7): hook into the promise
-                console.log('[sigenergy] sendTo() returned Promise — hooking .then()');
-                r.then(done).catch(function(e) {
-                    done({ success: false, message: e && e.message ? e.message : String(e) });
-                });
-            }
-            // Whether callback or promise, we return. done() will fire when result arrives.
+            if (r && typeof r.then === 'function') { r.then(done).catch(function(e) { done({ success: false, message: String(e) }); }); }
             return;
-        } catch(e) {
-            console.error('[sigenergy] sendTo() threw:', e);
-        }
+        } catch(e) {}
     }
 
-    // ── Method 2: socket.sendTo() — Promise-based method on SocketClient ────
     var sock = null;
     try { if (typeof socket !== 'undefined') sock = socket; } catch(e) {}
     if (!sock) try { sock = window.socket; } catch(e) {}
 
     if (sock && typeof sock.sendTo === 'function') {
         try {
-            console.log('[sigenergy] Trying socket.sendTo() ...');
             var p = sock.sendTo(ns, 'testConnection', config, done);
-            if (p && typeof p.then === 'function') {
-                p.then(done).catch(function(e) {
-                    done({ success: false, message: e && e.message ? e.message : String(e) });
-                });
-            }
+            if (p && typeof p.then === 'function') { p.then(done).catch(function(e) { done({ success: false, message: String(e) }); }); }
             return;
-        } catch(e) {
-            console.warn('[sigenergy] socket.sendTo() failed:', e.message);
-        }
+        } catch(e) {}
     }
 
-    // ── Method 3: raw socket.emit with ack (Admin 5/6 socket.io style) ──────
     var rawSock = sock;
-    // Try to get underlying socket.io socket from wrapper (_socket / socket property)
-    if (sock) {
-        try { if (sock._socket && sock._socket.emit) rawSock = sock._socket; } catch(e) {}
-    }
+    if (sock) { try { if (sock._socket && sock._socket.emit) rawSock = sock._socket; } catch(e) {} }
     if (rawSock && typeof rawSock.emit === 'function') {
-        try {
-            console.log('[sigenergy] Trying socket.emit sendTo ...');
-            rawSock.emit('sendTo', ns, 'testConnection', config, done);
-            return;
-        } catch(e) {
-            console.warn('[sigenergy] socket.emit failed:', e.message);
-        }
+        try { rawSock.emit('sendTo', ns, 'testConnection', config, done); return; } catch(e) {}
     }
 
-    // ── No method worked ────────────────────────────────────────────────────
     clearTimeout(safetyTimer);
     showResult({ success: false, message: 'Admin socket not available. Try reloading the page.' });
 }

@@ -1,387 +1,351 @@
 {
   "type": "tabs",
   "items": {
-    "tab_components": {
+    "components": {
       "type": "panel",
       "label": "Components",
       "items": {
-        "panel_components": {
-          "type": "panel",
-          "label": "System Components",
-          "items": {
-            "hasBattery": {
-              "type": "checkbox",
-              "label": "Battery / ESS",
-              "help": "Energy Storage System",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "hasPv": {
-              "type": "checkbox",
-              "label": "PV Panels",
-              "help": "Photovoltaic solar panels",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "hasAcCharger": {
-              "type": "checkbox",
-              "label": "AC Charger (EVAC)",
-              "help": "Sigen EVAC EV charging station",
-              "default": false,
-              "sm": 12,
-              "md": 6
-            },
-            "hasDcCharger": {
-              "type": "checkbox",
-              "label": "DC Charger",
-              "help": "DC fast charging (via inverter)",
-              "default": false,
-              "sm": 12,
-              "md": 6
-            }
-          }
+        "_componentsHeader": {
+          "type": "staticText",
+          "text": "Select which components are installed in your Sigenergy system.",
+          "sm": 12
         },
-        "panel_ac_charger": {
-          "type": "panel",
-          "label": "AC Charger Settings",
+        "hasBattery": {
+          "type": "checkbox",
+          "label": "Battery / ESS",
+          "help": "Energy Storage System",
+          "default": true,
+          "sm": 12,
+          "md": 6,
+          "lg": 3
+        },
+        "hasPv": {
+          "type": "checkbox",
+          "label": "PV Panels",
+          "help": "Photovoltaic solar panels",
+          "default": true,
+          "sm": 12,
+          "md": 6,
+          "lg": 3
+        },
+        "hasAcCharger": {
+          "type": "checkbox",
+          "label": "AC Charger (EVAC)",
+          "help": "Sigen EVAC EV charging station",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "lg": 3
+        },
+        "hasDcCharger": {
+          "type": "checkbox",
+          "label": "DC Charger",
+          "help": "DC fast charging (via inverter)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "lg": 3
+        },
+        "_divider1": {
+          "type": "divider",
+          "sm": 12
+        },
+        "acChargerId": {
+          "type": "number",
+          "label": "AC Charger Modbus ID",
+          "help": "Modbus address of the EVAC charger",
+          "min": 1,
+          "max": 246,
+          "default": 2,
           "hidden": "!data.hasAcCharger",
-          "items": {
-            "acChargerId": {
-              "type": "number",
-              "label": "AC Charger Modbus ID",
-              "min": 1,
-              "max": 246,
-              "default": 2,
-              "sm": 12,
-              "md": 6
-            }
-          }
+          "sm": 12,
+          "md": 4
         },
-        "panel_polling": {
-          "type": "panel",
-          "label": "Polling Settings",
-          "items": {
-            "pollInterval": {
-              "type": "number",
-              "label": "Poll Interval (ms)",
-              "help": "How often to read registers from the device",
-              "min": 5000,
-              "max": 60000,
-              "step": 1000,
-              "default": 10000,
-              "sm": 12,
-              "md": 6
-            },
-            "timeout": {
-              "type": "number",
-              "label": "Connection Timeout (ms)",
-              "help": "Modbus request timeout",
-              "min": 1000,
-              "max": 30000,
-              "step": 1000,
-              "default": 5000,
-              "sm": 12,
-              "md": 6
-            }
-          }
+        "_divider2": {
+          "type": "divider",
+          "sm": 12
+        },
+        "pollInterval": {
+          "type": "number",
+          "label": "Poll Interval (ms)",
+          "help": "How often to read Modbus registers. Minimum: 5000 ms",
+          "min": 5000,
+          "max": 60000,
+          "step": 1000,
+          "default": 10000,
+          "sm": 12,
+          "md": 4
+        },
+        "timeout": {
+          "type": "number",
+          "label": "Connection Timeout (ms)",
+          "help": "Modbus request timeout before failure",
+          "min": 1000,
+          "max": 30000,
+          "step": 1000,
+          "default": 5000,
+          "sm": 12,
+          "md": 4
         }
       }
     },
-    "tab_connection": {
+    "connection": {
       "type": "panel",
       "label": "Connection",
       "items": {
-        "panel_conntype": {
-          "type": "panel",
+        "connectionType": {
+          "type": "select",
           "label": "Connection Type",
-          "items": {
-            "connectionType": {
-              "type": "select",
-              "label": "Connection Type",
-              "default": "tcp",
-              "options": [
-                {
-                  "value": "tcp",
-                  "label": "TCP / Ethernet"
-                },
-                {
-                  "value": "serial",
-                  "label": "Serial / RS485"
-                }
-              ],
-              "sm": 12,
-              "md": 6
+          "default": "tcp",
+          "options": [
+            {
+              "value": "tcp",
+              "label": "TCP / Ethernet"
+            },
+            {
+              "value": "serial",
+              "label": "Serial / RS485"
             }
-          }
+          ],
+          "sm": 12,
+          "md": 4
         },
-        "panel_tcp": {
-          "type": "panel",
-          "label": "TCP / Ethernet Settings",
+        "_divider_conn": {
+          "type": "divider",
+          "sm": 12
+        },
+        "tcpHost": {
+          "type": "text",
+          "label": "Host / IP Address",
+          "placeholder": "192.168.1.100",
+          "default": "192.168.1.100",
           "hidden": "data.connectionType !== 'tcp'",
-          "items": {
-            "tcpHost": {
-              "type": "text",
-              "label": "Host / IP Address",
-              "placeholder": "192.168.1.100",
-              "default": "192.168.1.100",
-              "sm": 12,
-              "md": 6
-            },
-            "tcpPort": {
-              "type": "number",
-              "label": "Port",
-              "min": 1,
-              "max": 65535,
-              "default": 502,
-              "sm": 12,
-              "md": 6
-            },
-            "plantId": {
-              "type": "number",
-              "label": "Plant Modbus ID",
-              "help": "Default: 247 (0xF7)",
-              "min": 1,
-              "max": 247,
-              "default": 247,
-              "sm": 12,
-              "md": 6
-            },
-            "inverterId": {
-              "type": "number",
-              "label": "Inverter Modbus ID",
-              "help": "Default: 1",
-              "min": 1,
-              "max": 246,
-              "default": 1,
-              "sm": 12,
-              "md": 6
-            }
-          }
+          "sm": 12,
+          "md": 5
         },
-        "panel_serial": {
-          "type": "panel",
-          "label": "Serial / RS485 Settings",
+        "tcpPort": {
+          "type": "number",
+          "label": "Port",
+          "min": 1,
+          "max": 65535,
+          "default": 502,
+          "hidden": "data.connectionType !== 'tcp'",
+          "sm": 12,
+          "md": 3
+        },
+        "plantId": {
+          "type": "number",
+          "label": "Plant Modbus ID",
+          "help": "Default: 247 (0xF7)",
+          "min": 1,
+          "max": 247,
+          "default": 247,
+          "sm": 12,
+          "md": 4
+        },
+        "inverterId": {
+          "type": "number",
+          "label": "Inverter Modbus ID",
+          "help": "Default: 1",
+          "min": 1,
+          "max": 246,
+          "default": 1,
+          "sm": 12,
+          "md": 4
+        },
+        "serialPort": {
+          "type": "text",
+          "label": "Serial Port",
+          "placeholder": "/dev/ttyUSB0",
+          "default": "/dev/ttyUSB0",
           "hidden": "data.connectionType !== 'serial'",
-          "items": {
-            "serialPort": {
-              "type": "text",
-              "label": "Serial Port",
-              "placeholder": "/dev/ttyUSB0",
-              "default": "/dev/ttyUSB0",
-              "sm": 12,
-              "md": 6
-            },
-            "serialBaudRate": {
-              "type": "select",
-              "label": "Baud Rate",
-              "default": 9600,
-              "options": [
-                {
-                  "value": 9600,
-                  "label": "9600 (default)"
-                },
-                {
-                  "value": 19200,
-                  "label": "19200"
-                },
-                {
-                  "value": 38400,
-                  "label": "38400"
-                },
-                {
-                  "value": 115200,
-                  "label": "115200"
-                }
-              ],
-              "sm": 12,
-              "md": 6
-            },
-            "serialDataBits": {
-              "type": "select",
-              "label": "Data Bits",
-              "default": 8,
-              "options": [
-                {
-                  "value": 8,
-                  "label": "8"
-                },
-                {
-                  "value": 7,
-                  "label": "7"
-                }
-              ],
-              "sm": 12,
-              "md": 4
-            },
-            "serialParity": {
-              "type": "select",
-              "label": "Parity",
-              "default": "none",
-              "options": [
-                {
-                  "value": "none",
-                  "label": "None"
-                },
-                {
-                  "value": "even",
-                  "label": "Even"
-                },
-                {
-                  "value": "odd",
-                  "label": "Odd"
-                }
-              ],
-              "sm": 12,
-              "md": 4
-            },
-            "serialStopBits": {
-              "type": "select",
-              "label": "Stop Bits",
-              "default": 1,
-              "options": [
-                {
-                  "value": 1,
-                  "label": "1"
-                },
-                {
-                  "value": 2,
-                  "label": "2"
-                }
-              ],
-              "sm": 12,
-              "md": 4
-            },
-            "plantId": {
-              "type": "number",
-              "label": "Plant Modbus ID",
-              "help": "Default: 247 (0xF7)",
-              "min": 1,
-              "max": 247,
-              "default": 247,
-              "sm": 12,
-              "md": 6
-            },
-            "inverterId": {
-              "type": "number",
-              "label": "Inverter Modbus ID",
-              "help": "Default: 1",
-              "min": 1,
-              "max": 246,
-              "default": 1,
-              "sm": 12,
-              "md": 6
-            }
-          }
+          "sm": 12,
+          "md": 4
         },
-        "panel_test": {
-          "type": "panel",
-          "label": "Connection Test",
-          "items": {
-            "test_btn": {
-              "type": "sendTo",
-              "label": "Test Connection",
-              "command": "testConnection",
-              "jsonData": true,
-              "copyToResult": "testResult",
-              "sm": 12
+        "serialBaudRate": {
+          "type": "select",
+          "label": "Baud Rate",
+          "default": 9600,
+          "hidden": "data.connectionType !== 'serial'",
+          "options": [
+            {
+              "value": 9600,
+              "label": "9600 (default)"
             },
-            "testResult": {
-              "type": "staticText",
-              "label": "",
-              "text": "",
-              "sm": 12
+            {
+              "value": 19200,
+              "label": "19200"
+            },
+            {
+              "value": 38400,
+              "label": "38400"
+            },
+            {
+              "value": 115200,
+              "label": "115200"
             }
-          }
+          ],
+          "sm": 12,
+          "md": 4
+        },
+        "serialDataBits": {
+          "type": "select",
+          "label": "Data Bits",
+          "default": 8,
+          "hidden": "data.connectionType !== 'serial'",
+          "options": [
+            {
+              "value": 8,
+              "label": "8"
+            },
+            {
+              "value": 7,
+              "label": "7"
+            }
+          ],
+          "sm": 12,
+          "md": 2
+        },
+        "serialParity": {
+          "type": "select",
+          "label": "Parity",
+          "default": "none",
+          "hidden": "data.connectionType !== 'serial'",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "even",
+              "label": "Even"
+            },
+            {
+              "value": "odd",
+              "label": "Odd"
+            }
+          ],
+          "sm": 12,
+          "md": 2
+        },
+        "serialStopBits": {
+          "type": "select",
+          "label": "Stop Bits",
+          "default": 1,
+          "hidden": "data.connectionType !== 'serial'",
+          "options": [
+            {
+              "value": 1,
+              "label": "1"
+            },
+            {
+              "value": 2,
+              "label": "2"
+            }
+          ],
+          "sm": 12,
+          "md": 2
+        },
+        "_divider_test": {
+          "type": "divider",
+          "sm": 12
+        },
+        "_testHeader": {
+          "type": "staticText",
+          "text": "Connection Test: sends the current settings to the adapter and attempts to read register 30000 (plant system time) via Modbus.",
+          "sm": 12
+        },
+        "test_btn": {
+          "type": "sendTo",
+          "label": "Test Connection",
+          "command": "testConnection",
+          "jsonData": true,
+          "sm": 12,
+          "md": 4
         }
       }
     },
-    "tab_statistics": {
+    "statistics": {
       "type": "panel",
       "label": "Statistics",
       "items": {
-        "panel_stats": {
-          "type": "panel",
-          "label": "Statistical Calculations",
-          "help": "Select which additional statistics should be calculated and written as ioBroker states. These values are derived from live measurements.",
-          "items": {
-            "calcBatteryTimeToFull": {
-              "type": "checkbox",
-              "label": "Time to full charge",
-              "help": "How long until the battery reaches 100% at current charge rate",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcBatteryTimeRemaining": {
-              "type": "checkbox",
-              "label": "Battery time remaining",
-              "help": "How long the battery will last at current consumption",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcBatteryDailyFull": {
-              "type": "checkbox",
-              "label": "Daily charge completion time",
-              "help": "Today: how long it took until the battery was fully charged",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcBatteryCoverageTime": {
-              "type": "checkbox",
-              "label": "Battery coverage time today",
-              "help": "How long today the battery covered the house consumption without grid",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcSelfConsumptionRate": {
-              "type": "checkbox",
-              "label": "Self-consumption rate",
-              "help": "Percentage of PV production used locally (not exported)",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcAutarkyRate": {
-              "type": "checkbox",
-              "label": "Autarky rate",
-              "help": "Percentage of house consumption covered by PV + battery",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcPvYield": {
-              "type": "checkbox",
-              "label": "PV yield (15-min average)",
-              "help": "Average PV power output over the last 15 minutes",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            },
-            "calcGridFeedIn": {
-              "type": "checkbox",
-              "label": "Grid feed-in tracking",
-              "help": "Track daily grid export and import energy",
-              "default": true,
-              "sm": 12,
-              "md": 6
-            }
-          }
+        "_statsHeader": {
+          "type": "staticText",
+          "text": "Select which additional statistics should be calculated and written as ioBroker states. These values are derived from live Modbus measurements.",
+          "sm": 12
         },
-        "panel_derived": {
-          "type": "panel",
-          "label": "Always-Calculated Values",
-          "items": {
-            "derived_info": {
-              "type": "staticText",
-              "text": "The following values are always calculated and cannot be disabled: House Power (PV + Battery discharge − Grid export), Today max/min SOC (highest/lowest battery state of charge today), Formatted durations (human-readable strings, e.g. \"2h 15m\").",
-              "sm": 12
-            }
-          }
+        "calcBatteryTimeToFull": {
+          "type": "checkbox",
+          "label": "Time to full charge",
+          "help": "How long until the battery reaches 100% at current charge rate",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcBatteryTimeRemaining": {
+          "type": "checkbox",
+          "label": "Battery time remaining",
+          "help": "How long the battery will last at current consumption",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcBatteryDailyFull": {
+          "type": "checkbox",
+          "label": "Daily charge completion time",
+          "help": "Today: how long it took until the battery was fully charged",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcBatteryCoverageTime": {
+          "type": "checkbox",
+          "label": "Battery coverage time today",
+          "help": "How long today the battery covered the house consumption without grid",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcSelfConsumptionRate": {
+          "type": "checkbox",
+          "label": "Self-consumption rate",
+          "help": "Percentage of PV production used locally (not exported)",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcAutarkyRate": {
+          "type": "checkbox",
+          "label": "Autarky rate",
+          "help": "Percentage of house consumption covered by PV + battery",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcPvYield": {
+          "type": "checkbox",
+          "label": "PV yield (15-min average)",
+          "help": "Average PV power output over the last 15 minutes",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "calcGridFeedIn": {
+          "type": "checkbox",
+          "label": "Grid feed-in tracking",
+          "help": "Track daily grid export and import energy",
+          "default": true,
+          "sm": 12,
+          "md": 6
+        },
+        "_divider_derived": {
+          "type": "divider",
+          "sm": 12
+        },
+        "_derivedInfo": {
+          "type": "staticText",
+          "text": "Always calculated (cannot be disabled): House Power (PV + Battery discharge − Grid export) · Today max/min SOC · Formatted durations (e.g. \"2h 15m\")",
+          "sm": 12
         }
       }
     }
