@@ -44,7 +44,7 @@
     "io-package.json"
   ],
   "engines": {
-    "node": ">= 20"
+    "node": ">= 20.0"
   },
   "scripts": {
     "start": "node node_modules/@iobroker/dev-server/build/main.js watch",
