@@ -4,17 +4,44 @@
     "version": "1.0.14",
     "news": {
       "1.0.14": {
-        "en": "Stable release v1.0.13: pure Modbus data adapter without VIS widgets",
-        "de": "Stabile Version v1.0.13: reiner Modbus-Datenadapter ohne VIS-Widgets"
+      	"en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "????????? ??????",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "????????? ??????",
+        "zh-cn": "????"
       }                              
     },
     "titleLang": {
-      "en": "Sigenergy Solar System",
-      "de": "Sigenergy Solaranlage"
+        "en": "Vis 2 Widgets Sigenergy",
+        "de": "Vis 2 Widgets Sigenergy",
+        "ru": "???????",
+        "pt": "Sigenergy Solar System",
+        "nl": "Sigenergy Solar System",
+        "fr": "Sigenergy Solar System",
+        "it": "Sigenergy Solar System",
+        "es": "Sigenergy Solar System",
+        "pl": "Sigenergy Solar System",
+        "uk": "???????",
+        "zh-cn": "Sigenergy Solar System"
     },
     "desc": {
-      "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU"
+        "en": "Sigenergy Solar System",
+        "de": "Sigenergy Solar System",
+        "ru": "??????? ??? Sigenergy",
+        "pt": "Sigenergy Solar System",
+        "nl": "Sigenergy Solar System",
+        "fr": "Sigenergy Solar System",
+        "it": "Sigenergy Solar System",
+        "es": "Sigenergy Solar System",
+        "pl": "Sigenergy Solar System",
+        "uk": "??????? ??? Sigenergy",
+        "zh-cn": "Sigenergy ???"
     },
     "authors": [
       "ioBroker Community"
