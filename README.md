@@ -128,6 +128,8 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.0.8 (2026-03-09)
+* (ssbingo) npmjs
 ### 1.0.7 (2026-03-09)
 * (ssbingo) npmjs
 ### 1.0.3 (2026-03-09)
