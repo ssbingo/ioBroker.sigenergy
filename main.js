@@ -57,6 +57,23 @@ class Sigenergy extends utils.Adapter {
         this.log.info("Sigenergy adapter starting...");
         this.setState("info.connection", false, true);
 
+        // Migration: remove visWidgets from adapter object if present from older versions.
+        // ioBroker merges io-package.json on upgrade but does NOT delete removed keys,
+        // so vis-2 would still show the widget group even though it was moved to
+        // the separate ioBroker.sigenergy-widgets adapter.
+        try {
+            const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+            if (adapterObj && adapterObj.common && adapterObj.common.visWidgets) {
+                this.log.info("Migration: removing legacy visWidgets from adapter object");
+                delete adapterObj.common.visWidgets;
+                delete adapterObj.common.restartAdapters;
+                await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
+                this.log.info("Migration complete: visWidgets removed");
+            }
+        } catch (e) {
+            this.log.warn(`Migration warning (visWidgets cleanup): ${e.message}`);
+        }
+
         // Create Modbus connection
         this.modbus = new ModbusConnection(this.config, {
             debug: (msg) => this.log.debug(msg),

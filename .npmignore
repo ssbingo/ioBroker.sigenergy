@@ -1,0 +1,6 @@
+test/
+.github/
+.eslintrc*
+eslint.config*
+*.test.js
+*.spec.js

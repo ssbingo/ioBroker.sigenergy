@@ -1,0 +1,327 @@
+{
+  "type": "tabs",
+  "items": {
+
+    "tab_components": {
+      "type": "tab",
+      "label": "Components",
+      "items": {
+        "panel_components": {
+          "type": "panel",
+          "label": "System Components",
+          "items": {
+            "hasBattery": {
+              "type": "checkbox",
+              "label": "Battery / ESS",
+              "help": "Energy Storage System",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "hasPv": {
+              "type": "checkbox",
+              "label": "PV Panels",
+              "help": "Photovoltaic solar panels",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "hasAcCharger": {
+              "type": "checkbox",
+              "label": "AC Charger (EVAC)",
+              "help": "Sigen EVAC EV charging station",
+              "default": false,
+              "sm": 12, "md": 6
+            },
+            "hasDcCharger": {
+              "type": "checkbox",
+              "label": "DC Charger",
+              "help": "DC fast charging (via inverter)",
+              "default": false,
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_ac_charger": {
+          "type": "panel",
+          "label": "AC Charger Settings",
+          "hidden": "!data.hasAcCharger",
+          "items": {
+            "acChargerId": {
+              "type": "number",
+              "label": "AC Charger Modbus ID",
+              "min": 1,
+              "max": 246,
+              "default": 2,
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_polling": {
+          "type": "panel",
+          "label": "Polling Settings",
+          "items": {
+            "pollInterval": {
+              "type": "number",
+              "label": "Poll Interval (ms)",
+              "help": "How often to read registers from the device",
+              "min": 5000,
+              "max": 60000,
+              "step": 1000,
+              "default": 10000,
+              "sm": 12, "md": 6
+            },
+            "timeout": {
+              "type": "number",
+              "label": "Connection Timeout (ms)",
+              "help": "Modbus request timeout",
+              "min": 1000,
+              "max": 30000,
+              "step": 1000,
+              "default": 5000,
+              "sm": 12, "md": 6
+            }
+          }
+        }
+      }
+    },
+
+    "tab_connection": {
+      "type": "tab",
+      "label": "Connection",
+      "items": {
+        "panel_conntype": {
+          "type": "panel",
+          "label": "Connection Type",
+          "items": {
+            "connectionType": {
+              "type": "select",
+              "label": "Connection Type",
+              "default": "tcp",
+              "options": [
+                { "value": "tcp",    "label": "TCP / Ethernet" },
+                { "value": "serial", "label": "Serial / RS485" }
+              ],
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_tcp": {
+          "type": "panel",
+          "label": "TCP / Ethernet Settings",
+          "hidden": "data.connectionType !== 'tcp'",
+          "items": {
+            "tcpHost": {
+              "type": "text",
+              "label": "Host / IP Address",
+              "placeholder": "192.168.1.100",
+              "default": "192.168.1.100",
+              "sm": 12, "md": 6
+            },
+            "tcpPort": {
+              "type": "number",
+              "label": "Port",
+              "min": 1,
+              "max": 65535,
+              "default": 502,
+              "sm": 12, "md": 6
+            },
+            "plantId": {
+              "type": "number",
+              "label": "Plant Modbus ID",
+              "help": "Default: 247 (0xF7)",
+              "min": 1,
+              "max": 247,
+              "default": 247,
+              "sm": 12, "md": 6
+            },
+            "inverterId": {
+              "type": "number",
+              "label": "Inverter Modbus ID",
+              "help": "Default: 1",
+              "min": 1,
+              "max": 246,
+              "default": 1,
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_serial": {
+          "type": "panel",
+          "label": "Serial / RS485 Settings",
+          "hidden": "data.connectionType !== 'serial'",
+          "items": {
+            "serialPort": {
+              "type": "text",
+              "label": "Serial Port",
+              "placeholder": "/dev/ttyUSB0",
+              "default": "/dev/ttyUSB0",
+              "sm": 12, "md": 6
+            },
+            "serialBaudRate": {
+              "type": "select",
+              "label": "Baud Rate",
+              "default": 9600,
+              "options": [
+                { "value": 9600,   "label": "9600 (default)" },
+                { "value": 19200,  "label": "19200" },
+                { "value": 38400,  "label": "38400" },
+                { "value": 115200, "label": "115200" }
+              ],
+              "sm": 12, "md": 6
+            },
+            "serialDataBits": {
+              "type": "select",
+              "label": "Data Bits",
+              "default": 8,
+              "options": [
+                { "value": 8, "label": "8" },
+                { "value": 7, "label": "7" }
+              ],
+              "sm": 12, "md": 4
+            },
+            "serialParity": {
+              "type": "select",
+              "label": "Parity",
+              "default": "none",
+              "options": [
+                { "value": "none", "label": "None" },
+                { "value": "even", "label": "Even" },
+                { "value": "odd",  "label": "Odd" }
+              ],
+              "sm": 12, "md": 4
+            },
+            "serialStopBits": {
+              "type": "select",
+              "label": "Stop Bits",
+              "default": 1,
+              "options": [
+                { "value": 1, "label": "1" },
+                { "value": 2, "label": "2" }
+              ],
+              "sm": 12, "md": 4
+            },
+            "plantId": {
+              "type": "number",
+              "label": "Plant Modbus ID",
+              "help": "Default: 247 (0xF7)",
+              "min": 1,
+              "max": 247,
+              "default": 247,
+              "sm": 12, "md": 6
+            },
+            "inverterId": {
+              "type": "number",
+              "label": "Inverter Modbus ID",
+              "help": "Default: 1",
+              "min": 1,
+              "max": 246,
+              "default": 1,
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_test": {
+          "type": "panel",
+          "label": "Connection Test",
+          "items": {
+            "test_btn": {
+              "type": "sendTo",
+              "label": "Test Connection",
+              "command": "testConnection",
+              "jsonData": true,
+              "copyToResult": "testResult",
+              "sm": 12
+            },
+            "testResult": {
+              "type": "staticText",
+              "label": "",
+              "text": "",
+              "sm": 12
+            }
+          }
+        }
+      }
+    },
+
+    "tab_statistics": {
+      "type": "tab",
+      "label": "Statistics",
+      "items": {
+        "panel_stats": {
+          "type": "panel",
+          "label": "Statistical Calculations",
+          "help": "Select which additional statistics should be calculated and written as ioBroker states. These values are derived from live measurements.",
+          "items": {
+            "calcBatteryTimeToFull": {
+              "type": "checkbox",
+              "label": "Time to full charge",
+              "help": "How long until the battery reaches 100% at current charge rate",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcBatteryTimeRemaining": {
+              "type": "checkbox",
+              "label": "Battery time remaining",
+              "help": "How long the battery will last at current consumption",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcBatteryDailyFull": {
+              "type": "checkbox",
+              "label": "Daily charge completion time",
+              "help": "Today: how long it took until the battery was fully charged",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcBatteryCoverageTime": {
+              "type": "checkbox",
+              "label": "Battery coverage time today",
+              "help": "How long today the battery covered the house consumption without grid",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcSelfConsumptionRate": {
+              "type": "checkbox",
+              "label": "Self-consumption rate",
+              "help": "Percentage of PV production used locally (not exported)",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcAutarkyRate": {
+              "type": "checkbox",
+              "label": "Autarky rate",
+              "help": "Percentage of house consumption covered by PV + battery",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcPvYield": {
+              "type": "checkbox",
+              "label": "PV yield (15-min average)",
+              "help": "Average PV power output over the last 15 minutes",
+              "default": true,
+              "sm": 12, "md": 6
+            },
+            "calcGridFeedIn": {
+              "type": "checkbox",
+              "label": "Grid feed-in tracking",
+              "help": "Track daily grid export and import energy",
+              "default": true,
+              "sm": 12, "md": 6
+            }
+          }
+        },
+        "panel_derived": {
+          "type": "panel",
+          "label": "Always-Calculated Values",
+          "items": {
+            "derived_info": {
+              "type": "staticText",
+              "text": "The following values are always calculated and cannot be disabled: House Power (PV + Battery discharge − Grid export), Today max/min SOC (highest/lowest battery state of charge today), Formatted durations (human-readable strings, e.g. \"2h 15m\").",
+              "sm": 12
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
