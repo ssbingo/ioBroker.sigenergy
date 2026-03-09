@@ -128,14 +128,11 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.0.3 (2026-03-09)
+* (ssbingo) README.md edit
+### 1.0.2 (2026-03-09)
+* (ssbingo) io-package.json edit
 ### 1.0.1 (2026-03-08)
 * (ioBroker Community) Stable release — reiner Modbus-Datenadapter ohne VIS-Widgets
 
-### 0.2.18 (2026-03-07)
-* (ssbingo) Fix Repository-URL auf https://github.com/ssbingo/ioBroker.sigenergy.git
-* (ssbingo) Doppeltes common.license entfernt (licenseInformation bereits vorhanden)
-* (ssbingo) io-package.json Schema korrigiert: connectionType, dataSource, js-controller/admin Abhängigkeiten
-* (ssbingo) @iobroker/adapter-core auf ^3.3.2, @iobroker/testing auf ^5.2.2 aktualisiert
 
-### 0.1.0 (2026-03-01)
-* (ioBroker Community) Erste Veröffentlichung — Modbus TCP/RTU Support für Sigenergy Anlagen
