@@ -2,17 +2,22 @@
 'use strict';
 
 systemDictionary = {
-    "sigenergy adapter settings": {
+    "Sigenergy adapter settings": {
         "en": "Sigenergy adapter settings",
         "de": "Sigenergy Adapter-Einstellungen",
-        "ru": "????????? ???????? Sigenergy",
-        "pt": "Configura��es do adaptador Sigenergy",
+        "ru": "Настройки адаптера Sigenergy",
+        "pt": "Configurações do adaptador Sigenergy",
         "nl": "Sigenergy adapterinstellingen",
-        "fr": "Param�tres de l'adaptateur Sigenergy",
+        "fr": "Paramètres de l'adaptateur Sigenergy",
         "it": "Impostazioni dell'adattatore Sigenergy",
         "es": "Ajustes del adaptador Sigenergy",
         "pl": "Ustawienia adaptera Sigenergy",
-        "uk": "???????????? ???????? Sigenergy",
-        "zh-cn": "Sigenergy ?????"
+        "uk": "Налаштування адаптера Sigenergy",
+        "zh-cn": "Sigenergy 适配器设置"
+    },
+    "IP Address": {
+        "en": "IP Address",
+        "de": "IP-Adresse",
+        "ru": "IP-адрес"
     }
 };
