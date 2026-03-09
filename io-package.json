@@ -3,9 +3,13 @@
     "name": "sigenergy",
     "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Migrated admin UI to jsonConfig (Admin 5+), removed deprecated io-package.json fields",
+        "de": "Admin-UI auf jsonConfig (Admin 5+) migriert, veraltete io-package.json Felder entfernt"
+      },
       "1.0.14": {
-        "en": "Stable release: migrated admin UI to jsonConfig, extracted VIS-2 widgets to separate adapter",
-        "de": "Stable Release: Admin-UI auf jsonConfig migriert, VIS-2 Widgets in separaten Adapter ausgelagert"
+        "en": "Stable release: VIS-2 widgets moved to separate adapter, admin UI updated",
+        "de": "Stable Release: VIS-2 Widgets in separaten Adapter ausgelagert, Admin-UI aktualisiert"
       }
     },
     "titleLang": {
