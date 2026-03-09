@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "Fixed adapter-checker errors and warnings; migrated admin UI to jsonConfig (Admin 5+); added i18n support for 11 languages",
+        "de": "Adapter-Checker Fehler und Warnungen behoben; Admin-UI auf jsonConfig (Admin 5+) migriert; i18n-Unterstützung für 11 Sprachen hinzugefügt",
+        "ru": "Исправлены ошибки и предупреждения adapter-checker; интерфейс администратора перенесён на jsonConfig; добавлена поддержка i18n для 11 языков",
+        "pt": "Erros e avisos do adapter-checker corrigidos; interface de administração migrada para jsonConfig; suporte i18n adicionado para 11 idiomas",
+        "nl": "Adapter-checker fouten en waarschuwingen opgelost; admin UI gemigreerd naar jsonConfig; i18n-ondersteuning toegevoegd voor 11 talen",
+        "fr": "Erreurs et avertissements de l'adapter-checker corrigés; interface d'administration migrée vers jsonConfig; support i18n ajouté pour 11 langues",
+        "it": "Corretti errori e avvisi dell'adapter-checker; interfaccia amministratore migrata a jsonConfig; aggiunto supporto i18n per 11 lingue",
+        "es": "Corregidos errores y advertencias del adapter-checker; interfaz de administración migrada a jsonConfig; soporte i18n añadido para 11 idiomas",
+        "pl": "Naprawiono błędy i ostrzeżenia adapter-checker; interfejs administratora przeniesiony do jsonConfig; dodano obsługę i18n dla 11 języków",
+        "uk": "Виправлено помилки та попередження adapter-checker; інтерфейс адміністратора перенесено на jsonConfig; додано підтримку i18n для 11 мов",
+        "zh-cn": "修复adapter-checker错误和警告；管理界面迁移至jsonConfig；新增11种语言的i18n支持"
+      },
       "1.0.14": {
         "en": "Stable release: VIS-2 widgets moved to separate adapter, admin UI updated",
         "de": "Stable Release: VIS-2 Widgets in separaten Adapter ausgelagert, Admin-UI aktualisiert",
