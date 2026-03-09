@@ -46,7 +46,7 @@
         "en": "Sigenergy",
         "de": "Sigenergy"
       },
-      "link": "%web_protocol%://%ip%:%web_port%/adapter/sigenergy/index.html",
+      "link": "%web_protocol%://%ip%:%web_port%/adapter/sigenergy/index.html"
     },
     "supportCustoms": false,
     "schedule": "",
