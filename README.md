@@ -50,14 +50,6 @@ Supports the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
 2. Search for "sigenergy"
 3. Install
 
-### Manual / dev-server
-```bash
-cd /home/ssternitzke
-cp -r ioBroker.sigenergy /opt/iobroker/node_modules/iobroker.sigenergy
-cd /opt/iobroker
-npm install iobroker.sigenergy
-```
-
 ---
 
 ## Configuration
