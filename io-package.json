@@ -3,69 +3,13 @@
     "name": "sigenergy",
     "version": "1.1.0",
     "news": {
-      "0.4.11": {
-        "en": "Extracted VIS-2 widgets into separate ioBroker.sigenergy-widgets adapter",
-        "de": "VIS-2 Widgets in separaten ioBroker.sigenergy-widgets Adapter ausgelagert"
-      },
-      "0.4.10": {
-        "en": "Fix VIS-1 liveview in vis-2: rewrite EJS templates to read vis.states[oid+'.val'] directly. vis-2 skips all VIS-1 widget JS files, so vis.binds was never defined. data-vis-type=val causes vis-2 to re-render template on OID change.",
-        "de": "Fix VIS-1 Liveview in vis-2: EJS-Templates lesen vis.states[oid+'.val'] direkt. vis-2 überspringt alle VIS-1 Widget-JS-Dateien, daher war vis.binds nie definiert. data-vis-type=val bewirkt Neu-Rendering bei OID-Änderung."
-      },
-      "0.4.9": {
-        "en": "Fix vis-2 liveview: components list must match getWidgetInfo() IDs (tpl-prefixed). Vis-2 uses components to decide whether to load the bundle — mismatch caused bundle to never load.",
-        "de": "Fix vis-2 Liveview: components-Liste muss mit getWidgetInfo()-IDs übereinstimmen (tpl-Präfix). Vis-2 nutzt components um zu entscheiden ob das Bundle geladen wird — Abweichung verhinderte das Laden."
-      },
-      "0.4.8": {
-        "en": "Fix vis-2 liveview: add window.visWidgets self-registration on module load. vis-2 liveview calls import() but not init() — reads window.visWidgets instead. Editor keeps bundlerType:module + init()/get() path.",
-        "de": "Fix vis-2 Liveview: window.visWidgets Self-Registrierung beim Laden. vis-2 Liveview ruft import() aber kein init() auf — liest stattdessen window.visWidgets. Editor behält bundlerType:module + init()/get()."
-      },
-      "0.4.7": {
-        "en": "Fix vis-2 liveview: removed bundlerType:module, now registers via window.visWidgets (script-tag mode); vis-2 liveview reads this global directly",
-        "de": "Fix vis-2 Liveview: bundlerType:module entfernt, Registrierung jetzt über window.visWidgets (Script-Tag-Modus); vis-2 Liveview liest dieses Global direkt"
-      },
-      "0.4.6": {
-        "en": "Fix vis-2 liveview: resolve VisRxWidget base class from shareScope (Module Federation) instead of polling window.visRxWidget which is only available in editor",
-        "de": "Fix vis-2 Liveview: VisRxWidget-Basisklasse aus shareScope auflösen (Module Federation) statt window.visRxWidget zu pollen, das nur im Editor verfügbar ist"
-      },
-      "0.4.5": {
-        "en": "Fix vis-2 liveview: get() now waits for window.visRxWidget before creating widget classes; without it classes had no render() and were rejected by vis-2 runtime",
-        "de": "Fix vis-2 Liveview: get() wartet jetzt auf window.visRxWidget vor der Klassen-Erzeugung; ohne render() wurden Klassen vom Laufzeitsystem abgelehnt"
-      },
-      "0.4.4": {
-        "en": "Fix VIS-1 editor: removed non-standard <%== %> EJS syntax; moved all HTML into JS createXxx functions (standard VIS-1 pattern)",
-        "de": "Fix VIS-1 Editor: nicht-standard <%== %> EJS-Syntax entfernt; gesamtes HTML in JS createXxx-Funktionen (Standard VIS-1 Muster)"
-      },
-      "0.4.3": {
-        "en": "Fix: remove DOCTYPE from widget HTML fragment (caused Quirks mode warning in vis-2)",
-        "de": "Fix: DOCTYPE aus Widget-HTML-Fragment entfernt (verursachte Quirks-Modus-Warnung in vis-2)"
-      },
-      "0.4.2": {
-        "en": "Fix VIS-1 widgets: correct vis.states access, add $div.data binding pattern for proper cleanup",
-        "de": "Fix VIS-1 Widgets: korrekter vis.states-Zugriff, $div.data-Bindungsmuster für sauberes Cleanup"
-      },
-      "0.4.1": {
-        "en": "Stable release: VIS-2 widgets working — correct palette group, React from shareScope, clean module federation interface",
-        "de": "Stabile Version: VIS-2 Widgets funktionieren — korrekte Palette-Gruppe, React aus shareScope, sauberes Module-Federation-Interface"
-      },
-      "0.3.1": {
-        "en": "Fix VIS-2 widget labels ([object Object] resolved), update dependencies",
-        "de": "VIS-2 Widget-Labels korrigiert ([object Object] behoben), Abhängigkeiten aktualisiert"
-      },
-      "0.2.18": {
-        "en": "Fix io-package.json schema: add licenseInformation, connectionType, dataSource, dependencies",
-        "de": "io-package.json Schema korrigiert: licenseInformation, connectionType, dataSource, Abhängigkeiten hinzugefügt"
-      },
-      "0.1.0": {
-        "en": "Initial release",
-        "de": "Erste Veröffentlichung"
-      },
-      "1.0.1": {
-        "en": "Stable release v1.0.1: VIS-2 widgets moved to separate ioBroker.sigenergy-widgets adapter",
-        "de": "Stable Release v1.0.1: VIS-2 Widgets in separaten ioBroker.sigenergy-widgets Adapter ausgelagert"
-      },
       "1.1.0": {
         "en": "Migrated admin UI to jsonConfig (Admin 5+)",
         "de": "Admin-UI auf jsonConfig (Admin 5+) migriert"
+      },
+      "1.0.14": {
+        "en": "Stable release: migrated admin UI to jsonConfig, extracted VIS-2 widgets to separate adapter",
+        "de": "Stable Release: Admin-UI auf jsonConfig migriert, VIS-2 Widgets in separaten Adapter ausgelagert"
       }
     },
     "title": "Sigenergy",

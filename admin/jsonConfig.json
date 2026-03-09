@@ -1,9 +1,8 @@
 {
   "type": "tabs",
   "items": {
-
     "tab_components": {
-      "type": "tab",
+      "type": "panel",
       "label": "Components",
       "items": {
         "panel_components": {
@@ -15,28 +14,32 @@
               "label": "Battery / ESS",
               "help": "Energy Storage System",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "hasPv": {
               "type": "checkbox",
               "label": "PV Panels",
               "help": "Photovoltaic solar panels",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "hasAcCharger": {
               "type": "checkbox",
               "label": "AC Charger (EVAC)",
               "help": "Sigen EVAC EV charging station",
               "default": false,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "hasDcCharger": {
               "type": "checkbox",
               "label": "DC Charger",
               "help": "DC fast charging (via inverter)",
               "default": false,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -51,7 +54,8 @@
               "min": 1,
               "max": 246,
               "default": 2,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -67,7 +71,8 @@
               "max": 60000,
               "step": 1000,
               "default": 10000,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "timeout": {
               "type": "number",
@@ -77,15 +82,15 @@
               "max": 30000,
               "step": 1000,
               "default": 5000,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         }
       }
     },
-
     "tab_connection": {
-      "type": "tab",
+      "type": "panel",
       "label": "Connection",
       "items": {
         "panel_conntype": {
@@ -97,10 +102,17 @@
               "label": "Connection Type",
               "default": "tcp",
               "options": [
-                { "value": "tcp",    "label": "TCP / Ethernet" },
-                { "value": "serial", "label": "Serial / RS485" }
+                {
+                  "value": "tcp",
+                  "label": "TCP / Ethernet"
+                },
+                {
+                  "value": "serial",
+                  "label": "Serial / RS485"
+                }
               ],
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -114,7 +126,8 @@
               "label": "Host / IP Address",
               "placeholder": "192.168.1.100",
               "default": "192.168.1.100",
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "tcpPort": {
               "type": "number",
@@ -122,7 +135,8 @@
               "min": 1,
               "max": 65535,
               "default": 502,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "plantId": {
               "type": "number",
@@ -131,7 +145,8 @@
               "min": 1,
               "max": 247,
               "default": 247,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "inverterId": {
               "type": "number",
@@ -140,7 +155,8 @@
               "min": 1,
               "max": 246,
               "default": 1,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -154,50 +170,88 @@
               "label": "Serial Port",
               "placeholder": "/dev/ttyUSB0",
               "default": "/dev/ttyUSB0",
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "serialBaudRate": {
               "type": "select",
               "label": "Baud Rate",
               "default": 9600,
               "options": [
-                { "value": 9600,   "label": "9600 (default)" },
-                { "value": 19200,  "label": "19200" },
-                { "value": 38400,  "label": "38400" },
-                { "value": 115200, "label": "115200" }
+                {
+                  "value": 9600,
+                  "label": "9600 (default)"
+                },
+                {
+                  "value": 19200,
+                  "label": "19200"
+                },
+                {
+                  "value": 38400,
+                  "label": "38400"
+                },
+                {
+                  "value": 115200,
+                  "label": "115200"
+                }
               ],
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "serialDataBits": {
               "type": "select",
               "label": "Data Bits",
               "default": 8,
               "options": [
-                { "value": 8, "label": "8" },
-                { "value": 7, "label": "7" }
+                {
+                  "value": 8,
+                  "label": "8"
+                },
+                {
+                  "value": 7,
+                  "label": "7"
+                }
               ],
-              "sm": 12, "md": 4
+              "sm": 12,
+              "md": 4
             },
             "serialParity": {
               "type": "select",
               "label": "Parity",
               "default": "none",
               "options": [
-                { "value": "none", "label": "None" },
-                { "value": "even", "label": "Even" },
-                { "value": "odd",  "label": "Odd" }
+                {
+                  "value": "none",
+                  "label": "None"
+                },
+                {
+                  "value": "even",
+                  "label": "Even"
+                },
+                {
+                  "value": "odd",
+                  "label": "Odd"
+                }
               ],
-              "sm": 12, "md": 4
+              "sm": 12,
+              "md": 4
             },
             "serialStopBits": {
               "type": "select",
               "label": "Stop Bits",
               "default": 1,
               "options": [
-                { "value": 1, "label": "1" },
-                { "value": 2, "label": "2" }
+                {
+                  "value": 1,
+                  "label": "1"
+                },
+                {
+                  "value": 2,
+                  "label": "2"
+                }
               ],
-              "sm": 12, "md": 4
+              "sm": 12,
+              "md": 4
             },
             "plantId": {
               "type": "number",
@@ -206,7 +260,8 @@
               "min": 1,
               "max": 247,
               "default": 247,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "inverterId": {
               "type": "number",
@@ -215,7 +270,8 @@
               "min": 1,
               "max": 246,
               "default": 1,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -241,9 +297,8 @@
         }
       }
     },
-
     "tab_statistics": {
-      "type": "tab",
+      "type": "panel",
       "label": "Statistics",
       "items": {
         "panel_stats": {
@@ -256,56 +311,64 @@
               "label": "Time to full charge",
               "help": "How long until the battery reaches 100% at current charge rate",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcBatteryTimeRemaining": {
               "type": "checkbox",
               "label": "Battery time remaining",
               "help": "How long the battery will last at current consumption",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcBatteryDailyFull": {
               "type": "checkbox",
               "label": "Daily charge completion time",
               "help": "Today: how long it took until the battery was fully charged",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcBatteryCoverageTime": {
               "type": "checkbox",
               "label": "Battery coverage time today",
               "help": "How long today the battery covered the house consumption without grid",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcSelfConsumptionRate": {
               "type": "checkbox",
               "label": "Self-consumption rate",
               "help": "Percentage of PV production used locally (not exported)",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcAutarkyRate": {
               "type": "checkbox",
               "label": "Autarky rate",
               "help": "Percentage of house consumption covered by PV + battery",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcPvYield": {
               "type": "checkbox",
               "label": "PV yield (15-min average)",
               "help": "Average PV power output over the last 15 minutes",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             },
             "calcGridFeedIn": {
               "type": "checkbox",
               "label": "Grid feed-in tracking",
               "help": "Track daily grid export and import energy",
               "default": true,
-              "sm": 12, "md": 6
+              "sm": 12,
+              "md": 6
             }
           }
         },
@@ -322,6 +385,5 @@
         }
       }
     }
-
   }
 }
