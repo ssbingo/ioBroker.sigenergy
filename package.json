@@ -27,6 +27,7 @@
     "modbus-serial": "^8.0.23"
   },
   "devDependencies": {
+    "@alcalzone/release-script": "^5.1.1",
     "@eslint/js": "^9.10.0",
     "@iobroker/dev-server": "^0.8.0",
     "@iobroker/testing": "^5.2.2",
@@ -48,7 +49,8 @@
     "watch": "node node_modules/@iobroker/dev-server/build/main.js watch",
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/ssbingo/ioBroker.sigenergy/issues"
