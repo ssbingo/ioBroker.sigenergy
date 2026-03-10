@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "news": {
-      "1.1.2": {
+      "1.1.3": {
         "en": "Fixed adapter-checker errors and warnings; migrated admin UI to jsonConfig (Admin 5+); added i18n support for 11 languages",
         "de": "Adapter-Checker Fehler und Warnungen behoben; Admin-UI auf jsonConfig (Admin 5+) migriert; i18n-Unterstützung für 11 Sprachen hinzugefügt",
         "ru": "Исправлены ошибки и предупреждения adapter-checker; интерфейс администратора перенесён на jsonConfig; добавлена поддержка i18n для 11 языков",
