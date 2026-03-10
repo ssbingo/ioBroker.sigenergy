@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "news": {
+      "1.1.5": {
+        "en": "Updated .releaseconfig.json: added manual-review plugin, removed before_commit hook",
+        "de": ".releaseconfig.json aktualisiert: manual-review Plugin hinzugefügt, before_commit Hook entfernt",
+        "ru": "Обновлён .releaseconfig.json: добавлен плагин manual-review, удалён хук before_commit",
+        "pt": ".releaseconfig.json atualizado: plugin manual-review adicionado, hook before_commit removido",
+        "nl": ".releaseconfig.json bijgewerkt: manual-review plugin toegevoegd, before_commit hook verwijderd",
+        "fr": ".releaseconfig.json mis à jour: plugin manual-review ajouté, hook before_commit supprimé",
+        "it": ".releaseconfig.json aggiornato: aggiunto plugin manual-review, rimosso hook before_commit",
+        "es": ".releaseconfig.json actualizado: plugin manual-review añadido, hook before_commit eliminado",
+        "pl": "Zaktualizowano .releaseconfig.json: dodano wtyczkę manual-review, usunięto hook before_commit",
+        "uk": "Оновлено .releaseconfig.json: додано плагін manual-review, видалено хук before_commit",
+        "zh-cn": "更新.releaseconfig.json：添加manual-review插件，删除before_commit钩子"
+      },
       "1.1.4": {
         "en": "Updated README: corrected VIS widget adapter name and link, added missing widget descriptions",
         "de": "README aktualisiert: VIS-Widget-Adaptername und Link korrigiert, fehlende Widget-Beschreibungen ergänzt",

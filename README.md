@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.1.5 (2026-03-10)
+* (ssbingo) Updated .releaseconfig.json: added manual-review plugin, removed before_commit hook
+
 ### 1.1.4 (2026-03-10)
 * (ssbingo) Updated README: corrected VIS widget adapter name and link, added missing widget descriptions
 
