@@ -53,7 +53,8 @@
     "watch": "node node_modules/@iobroker/dev-server/build/main.js watch",
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/ssbingo/ioBroker.sigenergy/issues"

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "news": {
+      "1.1.6": {
+        "en": "Added release script to package.json",
+        "de": "Release-Script zu package.json hinzugefügt",
+        "ru": "Добавлен скрипт release в package.json",
+        "pt": "Script de release adicionado ao package.json",
+        "nl": "Release script toegevoegd aan package.json",
+        "fr": "Script de release ajouté dans package.json",
+        "it": "Script di release aggiunto a package.json",
+        "es": "Script de release añadido a package.json",
+        "pl": "Dodano skrypt release do package.json",
+        "uk": "Додано скрипт release до package.json",
+        "zh-cn": "在package.json中添加release脚本"
+      },
       "1.1.5": {
         "en": "Updated .releaseconfig.json: added manual-review plugin, removed before_commit hook",
         "de": ".releaseconfig.json aktualisiert: manual-review Plugin hinzugefügt, before_commit Hook entfernt",
