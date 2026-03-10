@@ -51,14 +51,6 @@ Supports the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
 2. Search for "sigenergy"
 3. Install
 
-### Manual / dev-server
-```bash
-cd /home/ssternitzke
-cp -r ioBroker.sigenergy /opt/iobroker/node_modules/iobroker.sigenergy
-cd /opt/iobroker
-npm install iobroker.sigenergy
-```
-
 ---
 
 ## Configuration
@@ -123,6 +115,8 @@ Choose which statistical values to calculate:
 
 ## VIS Widgets
 
+> **Note:** All 7 widgets are provided by the separate [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy) adapter. Install it alongside this adapter to use the widgets in VIS-2.
+
 ### Energy Flow Widget
 Shows animated energy flow between PV → Battery ↔ Grid → House.
 
@@ -134,6 +128,15 @@ Live reading of all four power flows.
 
 ### Statistics Widget
 Today's autarky, self-consumption, SOC min/max, battery coverage time.
+
+### Inverter Widget
+Live inverter data: PV power, grid frequency, phase voltages, temperature.
+
+### AC Charger Widget (EVAC)
+Status and power readings for the Sigen EVAC charging station.
+
+### DC Charger Widget
+Status and power readings for the DC charger.
 
 ---
 
@@ -153,57 +156,61 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.1.4 (2026-03-10)
+* (ssbingo) Updated README: corrected VIS widget adapter name and link, added missing widget descriptions
+
 ### 1.1.3 (2026-03-09)
-* (ioBroker Community) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
-### 1.1.2 (2026-03-09)
-* (ioBroker Community) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
+* (ssbingo) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
+
+### 1.1.2 (2026-03-10)
+* (ssbingo) Fixed missing responsive size attributes in jsonConfig
+
 ### 1.1.1 (2026-03-09)
-* (ioBroker Community) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
+* (ssbingo) Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)
 
 ### 1.1.0 (2026-03-09)
-* (ioBroker Community) Migrated admin UI from legacy HTML to jsonConfig (Admin 5+)
-* (ioBroker Community) Removed index.html, index_m.html, words.js
+* (ssbingo) Migrated admin UI from legacy HTML to jsonConfig (Admin 5+)
+* (ssbingo) Removed index.html, index_m.html, words.js
 
 ### 1.0.1 (2026-03-08)
-* (ioBroker Community) Stable release: VIS-2 widgets moved to separate ioBroker.sigenergy-widgets adapter
-* (ioBroker Community) Removed visWidgets and restartAdapters from io-package.json
+* (ssbingo) Stable release: VIS-2 widgets moved to separate ioBroker.sigenergy-widgets adapter
+* (ssbingo) Removed visWidgets and restartAdapters from io-package.json
 
 ### 0.4.11 (2026-03-08)
-* (ioBroker Community) Extracted VIS-2 widgets into separate ioBroker.sigenergy-widgets adapter
+* (ssbingo) Extracted VIS-2 widgets into separate ioBroker.sigenergy-widgets adapter
 
 ### 0.4.10 (2026-03-08)
-* (ioBroker Community) Fix VIS-1 liveview in vis-2: rewrite EJS templates to read vis.states[oid+'.val'] directly
+* (ssbingo) Fix VIS-1 liveview in vis-2: rewrite EJS templates to read vis.states[oid+'.val'] directly
 
 ### 0.4.9 (2026-03-08)
-* (ioBroker Community) Fix vis-2 liveview: components list must match getWidgetInfo() IDs (tpl-prefixed)
+* (ssbingo) Fix vis-2 liveview: components list must match getWidgetInfo() IDs (tpl-prefixed)
 
 ### 0.4.8 (2026-03-08)
-* (ioBroker Community) Fix vis-2 liveview: add window.visWidgets self-registration on module load
+* (ssbingo) Fix vis-2 liveview: add window.visWidgets self-registration on module load
 
 ### 0.4.7 (2026-03-08)
-* (ioBroker Community) Fix vis-2 liveview: removed bundlerType:module, now registers via window.visWidgets
+* (ssbingo) Fix vis-2 liveview: removed bundlerType:module, now registers via window.visWidgets
 
 ### 0.4.6 (2026-03-08)
-* (ioBroker Community) Fix vis-2 liveview: resolve VisRxWidget base class from shareScope (Module Federation)
+* (ssbingo) Fix vis-2 liveview: resolve VisRxWidget base class from shareScope (Module Federation)
 
 ### 0.4.5 (2026-03-08)
-* (ioBroker Community) Fix vis-2 liveview: get() now waits for window.visRxWidget before creating widget classes
+* (ssbingo) Fix vis-2 liveview: get() now waits for window.visRxWidget before creating widget classes
 
 ### 0.4.4 (2026-03-08)
-* (ioBroker Community) Fix VIS-1 editor: removed non-standard EJS syntax; moved HTML into JS createXxx functions
+* (ssbingo) Fix VIS-1 editor: removed non-standard EJS syntax; moved HTML into JS createXxx functions
 
 ### 0.4.3 (2026-03-08)
-* (ioBroker Community) Fix: remove DOCTYPE from widget HTML fragment
+* (ssbingo) Fix: remove DOCTYPE from widget HTML fragment
 
 ### 0.4.2 (2026-03-08)
-* (ioBroker Community) Fix VIS-1 widgets: correct vis.states access, add $div.data binding pattern
+* (ssbingo) Fix VIS-1 widgets: correct vis.states access, add $div.data binding pattern
 
 ### 0.4.1 (2026-03-08)
-* (ioBroker Community) Stable release: VIS-2 widgets working — correct palette group, React from shareScope
+* (ssbingo) Stable release: VIS-2 widgets working — correct palette group, React from shareScope
 
 ### 0.3.2 (2026-03-07)
-- Fixed: vis-2 widgets not appearing after adapter installation (`restartAdapters: ["vis-2"]` added)
-
+* (ssbingo) Fixed: vis-2 widgets not appearing after adapter installation (`restartAdapters: ["vis-2"]` added)
 
 ### 0.3.1 (2026-03-07)
 * (ssbingo) Version bump to 0.3.1
@@ -217,29 +224,29 @@ MIT License — Copyright (c) 2025 ioBroker Community
 * (ssbingo) Update @iobroker/adapter-core to ^3.3.2, @iobroker/testing to ^5.2.2
 
 ### 0.2.17 (2026-03-07)
-* (ioBroker Community) Fix VIS-2 widget labels: use string translation keys instead of objects to prevent [object Object] in palette
-* (ioBroker Community) Add translations module (get('./translations')) for proper i18n support
-* (ioBroker Community) Fix io-package.json: add licenseInformation, connectionType, dataSource, js-controller/admin dependencies
-* (ioBroker Community) Update adapter-core to ^3.3.2, @iobroker/testing to ^5.2.2
+* (ssbingo) Fix VIS-2 widget labels: use string translation keys instead of objects to prevent [object Object] in palette
+* (ssbingo) Add translations module (get('./translations')) for proper i18n support
+* (ssbingo) Fix io-package.json: add licenseInformation, connectionType, dataSource, js-controller/admin dependencies
+* (ssbingo) Update adapter-core to ^3.3.2, @iobroker/testing to ^5.2.2
 
 ### 0.2.16 (2026-03-06)
-* (ioBroker Community) VIS-2 Module Federation container interface: ES module with init()/get() exports
-* (ioBroker Community) Switch to bundlerType: module for VIS-2 widget loading
+* (ssbingo) VIS-2 Module Federation container interface: ES module with init()/get() exports
+* (ssbingo) Switch to bundlerType: module for VIS-2 widget loading
 
 ### 0.2.15 (2026-03-06)
-* (ioBroker Community) Fix VIS-2 widget registration; classes properly inherit VisRxWidget
+* (ssbingo) Fix VIS-2 widget registration; classes properly inherit VisRxWidget
 
 ### 0.2.14 (2026-03-06)
-* (ioBroker Community) Fix VIS-2 widget palette: named export matches io-package.json key
+* (ssbingo) Fix VIS-2 widget palette: named export matches io-package.json key
 
 ### 0.2.9 (2026-03-05)
-* (ioBroker Community) Fix VIS-2 widget loading: bundlerType=module for ES module dynamic import
+* (ssbingo) Fix VIS-2 widget loading: bundlerType=module for ES module dynamic import
 
 ### 0.2.7 (2026-03-05)
-* (ioBroker Community) Fix VIS-1 widgets: OID attributes must start with "oid" for state auto-subscription
+* (ssbingo) Fix VIS-1 widgets: OID attributes must start with "oid" for state auto-subscription
 
 ### 0.2.0 (2026-03-04)
-* (ioBroker Community) Fixed VIS-1/VIS-2 widget registration; fixed DEP0060 deprecation
+* (ssbingo) Fixed VIS-1/VIS-2 widget registration; fixed DEP0060 deprecation
 
 ### 0.1.0 (2026-03-01)
-* (ioBroker Community) Initial release — Modbus TCP/RTU support for Sigenergy systems
+* (ssbingo) Initial release — Modbus TCP/RTU support for Sigenergy systems

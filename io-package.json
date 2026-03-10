@@ -1,9 +1,48 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "news": {
+      "1.1.4": {
+        "en": "Updated README: corrected VIS widget adapter name and link, added missing widget descriptions",
+        "de": "README aktualisiert: VIS-Widget-Adaptername und Link korrigiert, fehlende Widget-Beschreibungen ergänzt",
+        "ru": "Обновлён README: исправлено название адаптера виджетов VIS и ссылка, добавлены недостающие описания виджетов",
+        "pt": "README atualizado: nome do adaptador de widgets VIS e link corrigidos, descrições de widgets em falta adicionadas",
+        "nl": "README bijgewerkt: VIS-widget adapternaam en link gecorrigeerd, ontbrekende widgetbeschrijvingen toegevoegd",
+        "fr": "README mis à jour: nom de l'adaptateur de widgets VIS et lien corrigés, descriptions de widgets manquantes ajoutées",
+        "it": "README aggiornato: nome adattatore widget VIS e link corretti, descrizioni widget mancanti aggiunte",
+        "es": "README actualizado: nombre del adaptador de widgets VIS y enlace corregidos, descripciones de widgets faltantes añadidas",
+        "pl": "Zaktualizowano README: poprawiono nazwę adaptera widgetów VIS i link, dodano brakujące opisy widgetów",
+        "uk": "Оновлено README: виправлено назву адаптера віджетів VIS та посилання, додано відсутні описи віджетів",
+        "zh-cn": "更新README：更正VIS小部件适配器名称和链接，添加缺少的小部件说明"
+      },
       "1.1.3": {
+        "en": "Fixed adapter-checker warnings and errors (news cleanup, deprecated fields)",
+        "de": "Adapter-Checker Warnungen und Fehler behoben (News-Bereinigung, veraltete Felder)",
+        "ru": "Исправлены предупреждения и ошибки adapter-checker (очистка новостей, устаревшие поля)",
+        "pt": "Avisos e erros do adapter-checker corrigidos (limpeza de notícias, campos obsoletos)",
+        "nl": "Adapter-checker waarschuwingen en fouten opgelost (nieuws opschonen, verouderde velden)",
+        "fr": "Avertissements et erreurs de l'adapter-checker corrigés (nettoyage des news, champs obsolètes)",
+        "it": "Corretti avvisi ed errori dell'adapter-checker (pulizia news, campi deprecati)",
+        "es": "Corregidos avisos y errores del adapter-checker (limpieza de noticias, campos obsoletos)",
+        "pl": "Naprawiono ostrzeżenia i błędy adapter-checker (czyszczenie aktualności, przestarzałe pola)",
+        "uk": "Виправлено попередження та помилки adapter-checker (очищення новин, застарілі поля)",
+        "zh-cn": "修复adapter-checker警告和错误（新闻清理、已弃用字段）"
+      },
+      "1.1.2": {
+        "en": "Fixed missing responsive size attributes in jsonConfig; added full i18n support",
+        "de": "Fehlende responsive Größenattribute in jsonConfig behoben; vollständige i18n-Unterstützung hinzugefügt",
+        "ru": "Исправлены отсутствующие атрибуты размера в jsonConfig; добавлена полная поддержка i18n",
+        "pt": "Atributos de tamanho responsivo ausentes no jsonConfig corrigidos; suporte i18n completo adicionado",
+        "nl": "Ontbrekende responsieve grootteattributen in jsonConfig opgelost; volledige i18n-ondersteuning toegevoegd",
+        "fr": "Attributs de taille responsive manquants dans jsonConfig corrigés; support i18n complet ajouté",
+        "it": "Corretti attributi di dimensione responsive mancanti in jsonConfig; aggiunto supporto i18n completo",
+        "es": "Corregidos atributos de tamaño responsive faltantes en jsonConfig; soporte i18n completo añadido",
+        "pl": "Naprawiono brakujące atrybuty rozmiaru responsive w jsonConfig; dodano pełną obsługę i18n",
+        "uk": "Виправлено відсутні атрибути розміру в jsonConfig; додано повну підтримку i18n",
+        "zh-cn": "修复jsonConfig中缺少的响应式尺寸属性；添加完整i18n支持"
+      },
+      "1.1.1": {
         "en": "Fixed adapter-checker errors and warnings; migrated admin UI to jsonConfig (Admin 5+); added i18n support for 11 languages",
         "de": "Adapter-Checker Fehler und Warnungen behoben; Admin-UI auf jsonConfig (Admin 5+) migriert; i18n-Unterstützung für 11 Sprachen hinzugefügt",
         "ru": "Исправлены ошибки и предупреждения adapter-checker; интерфейс администратора перенесён на jsonConfig; добавлена поддержка i18n для 11 языков",
