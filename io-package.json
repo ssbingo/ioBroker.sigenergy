@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "news": {
-      "1.2.1": {
+      "1.2.2": {
         "en": "fixes",
         "de": "Fehlerbehebungen",
         "ru": "Исправления",

@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.2.2 (2026-03-11)
+* (ssbingo) fixes
+
 ### 1.2.1 (2026-03-11)
 * (ssbingo) fixes
 
