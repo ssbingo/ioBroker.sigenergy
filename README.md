@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.1.8 (2026-03-11)
+* (ssbingo) Corrected author information in package.json; cleaned up news entries in io-package.json
+
 ### 1.1.7 (2026-03-11)
 * (ssbingo) Improved logging: added debug/info/warn/error messages for connection lifecycle, poll cycles, register reads and adapter shutdown
 
