@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.1.8",
+    "version": "1.2.0",
     "news": {
-      "1.1.8": {
-        "en": "Corrected author information in package.json; cleaned up news entries in io-package.json",
-        "de": "Autoreninformationen in package.json korrigiert; News-Einträge in io-package.json bereinigt",
-        "ru": "Исправлена информация об авторе в package.json; очищены записи новостей в io-package.json",
-        "pt": "Informações do autor corrigidas em package.json; entradas de notícias limpas em io-package.json",
-        "nl": "Auteursinformatie gecorrigeerd in package.json; nieuwsvermeldingen opgeschoond in io-package.json",
-        "fr": "Informations auteur corrigées dans package.json; entrées de news nettoyées dans io-package.json",
-        "it": "Informazioni autore corrette in package.json; voci news ripulite in io-package.json",
-        "es": "Información del autor corregida en package.json; entradas de noticias limpiadas en io-package.json",
-        "pl": "Poprawiono informacje o autorze w package.json; wyczyszczono wpisy aktualności w io-package.json",
-        "uk": "Виправлено інформацію про автора в package.json; очищено записи новин в io-package.json",
-        "zh-cn": "更正package.json中的作者信息；清理io-package.json中的新闻条目"
+      "1.2.0": {
+        "en": "Updated StatisticsCalculator: re-added battery time estimations, daily charge time and battery coverage tracking",
+        "de": "StatisticsCalculator aktualisiert: Batterie-Zeitschätzungen, tägliche Ladezeit und Batterie-Abdeckungsverfolgung wieder hinzugefügt",
+        "ru": "Обновлён StatisticsCalculator: восстановлены оценки времени батареи, ежедневное время заряда и отслеживание покрытия батарей",
+        "pt": "StatisticsCalculator atualizado: re-adicionadas estimativas de tempo de bateria, tempo de carga diário e rastreamento de cobertura de bateria",
+        "nl": "StatisticsCalculator bijgewerkt: batterij-tijdschattingen, dagelijkse oplaadtijd en batterijdekking-tracking teruggevoegd",
+        "fr": "StatisticsCalculator mis à jour: ré-ajout des estimations de temps de batterie, temps de charge journalier et suivi de la couverture batterie",
+        "it": "StatisticsCalculator aggiornato: reinserite stime del tempo della batteria, tempo di ricarica giornaliero e monitoraggio della copertura della batteria",
+        "es": "StatisticsCalculator actualizado: re-añadidas estimaciones de tiempo de batería, tiempo de carga diario y seguimiento de cobertura de batería",
+        "pl": "Zaktualizowano StatisticsCalculator: przywrócono szacowanie czasu baterii, dzienny czas ładowania i śledzenie pokrycia baterii",
+        "uk": "Оновлено StatisticsCalculator: відновлено оцінку часу батареї, щоденний час заряджання та відстеження покриття батареї",
+        "zh-cn": "更新StatisticsCalculator：重新添加电池时间估算、每日充电时间和电池覆盖跟踪"
       }
     },
     "titleLang": {

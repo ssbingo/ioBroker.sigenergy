@@ -156,6 +156,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.2.0 (2026-03-11)
+* (ssbingo) Updated StatisticsCalculator: re-added battery time estimations, daily charge time and battery coverage tracking
+
+### 1.1.9 (2026-03-11)
+* (ssbingo) Replaced StatisticsCalculator with improved version: smoothed house power, corrected autarky and self-consumption formulas
+
 ### 1.1.8 (2026-03-11)
 * (ssbingo) Corrected author information in package.json; cleaned up news entries in io-package.json
 

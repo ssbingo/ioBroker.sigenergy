@@ -386,12 +386,6 @@ class Sigenergy extends utils.Adapter {
                 await this.setStateAsync(id, { val, ack: true });
             }
         }
-
-        // Formatted durations as strings
-        await this.setStateAsync("statistics.batteryTimeToFullFormatted",
-            { val: StatisticsCalculator.formatDuration(statsValues.batteryTimeToFull), ack: true });
-        await this.setStateAsync("statistics.batteryTimeRemainingFormatted",
-            { val: StatisticsCalculator.formatDuration(statsValues.batteryTimeRemaining), ack: true });
     }
 
     /**
@@ -485,17 +479,15 @@ class Sigenergy extends utils.Adapter {
 
     async _createStatisticsStates() {
         const statsStates = [
-            { id: "statistics.batteryTimeToFull",          name: "Time until battery is fully charged", type: "number", unit: "min",  role: "value" },
-            { id: "statistics.batteryTimeToFullFormatted", name: "Time until fully charged (formatted)", type: "string", unit: "",    role: "text" },
-            { id: "statistics.batteryTimeRemaining",       name: "Battery time remaining at current load", type: "number", unit: "min", role: "value" },
-            { id: "statistics.batteryTimeRemainingFormatted", name: "Battery time remaining (formatted)", type: "string", unit: "",   role: "text" },
-            { id: "statistics.batteryDailyChargeTime",     name: "Today: minutes until battery was full", type: "number", unit: "min", role: "value" },
-            { id: "statistics.batteryCoverageToday",       name: "Today: minutes battery covered consumption", type: "number", unit: "min", role: "value" },
-            { id: "statistics.selfConsumptionRate",        name: "Self-consumption rate", type: "number", unit: "%", role: "value.efficiency" },
-            { id: "statistics.autarkyRate",                name: "Autarky rate", type: "number", unit: "%", role: "value.efficiency" },
-            { id: "statistics.housePower",                 name: "Calculated house consumption", type: "number", unit: "kW", role: "value.power" },
-            { id: "statistics.dayMaxSoc",                  name: "Today maximum SOC", type: "number", unit: "%", role: "value.battery" },
-            { id: "statistics.dayMinSoc",                  name: "Today minimum SOC", type: "number", unit: "%", role: "value.battery" },
+            { id: "statistics.batteryTimeToFull",      name: "Time until battery is fully charged",       type: "number", unit: "min", role: "value" },
+            { id: "statistics.batteryTimeRemaining",   name: "Battery time remaining at current load",    type: "number", unit: "min", role: "value" },
+            { id: "statistics.batteryDailyChargeTime", name: "Today: minutes until battery was full",     type: "number", unit: "min", role: "value" },
+            { id: "statistics.batteryCoverageToday",   name: "Today: minutes battery covered consumption",type: "number", unit: "min", role: "value" },
+            { id: "statistics.selfConsumptionRate",    name: "Self-consumption rate",                     type: "number", unit: "%",   role: "value.efficiency" },
+            { id: "statistics.autarkyRate",            name: "Autarky rate",                             type: "number", unit: "%",   role: "value.efficiency" },
+            { id: "statistics.housePower",             name: "Calculated house consumption",             type: "number", unit: "kW",  role: "value.power" },
+            { id: "statistics.dayMaxSoc",              name: "Today maximum SOC",                        type: "number", unit: "%",   role: "value.battery" },
+            { id: "statistics.dayMinSoc",              name: "Today minimum SOC",                        type: "number", unit: "%",   role: "value.battery" },
         ];
 
         for (const s of statsStates) {
