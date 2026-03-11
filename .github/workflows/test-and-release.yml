@@ -68,7 +68,7 @@ jobs:
 #          # Then uncomment and customize the following block:
 #          sentry: true
 #          sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
-#          sentry-project: "iobroker-vis-2-widgets-sigenergy"
-#          sentry-version-prefix: "iobroker.vis-2-widgets-sigenergy"
+#          sentry-project: "iobroker-sigenergy"
+#          sentry-version-prefix: "iobroker.sigenergy"
 #          # If your sentry project is linked to a GitHub repository, you can enable the following option
 #          # sentry-github-integration: true
