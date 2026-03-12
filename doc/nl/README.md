@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.2.5 (2026-03-12)
+* (ssbingo) Bugfixes
+
 ### 1.2.4 (2026-03-12)
 * (ssbingo) Meertalige documentatie toegevoegd aan README.md
 
