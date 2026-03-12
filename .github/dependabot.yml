@@ -13,9 +13,8 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: monthly
-      time: "00:05"
-      timezone: Europe/Berlin
+      interval: "0 5 3 * *"
     open-pull-requests-limit: 5
     assignees:
       - ssbingo
+ 
