@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "news": {
-      "1.2.2": {
-        "en": "fixes",
-        "de": "Fehlerbehebungen",
-        "ru": "Исправления",
-        "pt": "Correções",
-        "nl": "Bugfixes",
-        "fr": "Corrections",
-        "it": "Correzioni",
-        "es": "Correcciones",
-        "pl": "Poprawki",
-        "uk": "Виправлення",
-        "zh-cn": "修复"
+      "1.2.3": {
+        "en": "fixes for AdapterCheck",
+        "de": "Fehlerbehebungen für AdapterCheck",
+        "ru": "Исправления для AdapterCheck",
+        "pt": "Correções para AdapterCheck",
+        "nl": "Bugfixes voor AdapterCheck",
+        "fr": "Corrections pour AdapterCheck",
+        "it": "Correzioni per AdapterCheck",
+        "es": "Correcciones para AdapterCheck",
+        "pl": "Poprawki dla AdapterCheck",
+        "uk": "Виправлення для AdapterCheck",
+        "zh-cn": "AdapterCheck修复"
       }
     },
     "titleLang": {

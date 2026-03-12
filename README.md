@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.2.3 (2026-03-12)
+* (ssbingo) fixes for AdapterCheck
+
 ### 1.2.2 (2026-03-11)
 * (ssbingo) fixes
 
