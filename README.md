@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.2.4 (2026-03-12)
+* (ssbingo) Added multilingual documentation to README.md
+
 ### 1.2.3 (2026-03-12)
 * (ssbingo) fixes for AdapterCheck
 
@@ -277,3 +280,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 
 ### 0.1.0 (2026-03-01)
 * (ssbingo) Initial release — Modbus TCP/RTU support for Sigenergy systems
+
+---
+
+## Documentation
+
+- 🇩🇪 [Deutsche Dokumentation](doc/de/README.md)
+- 🇷🇺 [Документация на русском](doc/ru/README.md)
+- 🇳🇱 [Nederlandse documentatie](doc/nl/README.md)
+- 🇫🇷 [Documentation française](doc/fr/README.md)

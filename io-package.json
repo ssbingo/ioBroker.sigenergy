@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "news": {
-      "1.2.3": {
-        "en": "fixes for AdapterCheck",
-        "de": "Fehlerbehebungen für AdapterCheck",
-        "ru": "Исправления для AdapterCheck",
-        "pt": "Correções para AdapterCheck",
-        "nl": "Bugfixes voor AdapterCheck",
-        "fr": "Corrections pour AdapterCheck",
-        "it": "Correzioni per AdapterCheck",
-        "es": "Correcciones para AdapterCheck",
-        "pl": "Poprawki dla AdapterCheck",
-        "uk": "Виправлення для AdapterCheck",
-        "zh-cn": "AdapterCheck修复"
+      "1.2.4": {
+        "en": "Added multilingual documentation to README.md",
+        "de": "Einfügen Dokumentation in README.md - mehrsprachig",
+        "ru": "Добавлена многоязычная документация в README.md",
+        "pt": "Documentação multilingue adicionada ao README.md",
+        "nl": "Meertalige documentatie toegevoegd aan README.md",
+        "fr": "Ajout de la documentation multilingue dans README.md",
+        "it": "Aggiunta documentazione multilingue in README.md",
+        "es": "Documentación multilingüe añadida a README.md",
+        "pl": "Dodano wielojęzyczną dokumentację do README.md",
+        "uk": "Додано багатомовну документацію до README.md",
+        "zh-cn": "在README.md中添加多语言文档"
       }
     },
     "titleLang": {
