@@ -589,11 +589,8 @@ class Sigenergy extends utils.Adapter {
 				result = await Promise.race([
 					testModbus.testConnection(),
 					new Promise((_, reject) =>
-						setTimeout(
-							() => reject(new Error('Test timed out — no response from device')),
-							hardTimeout,
-						),
-					),
+					setTimeout(() => reject(new Error('Test timed out — no response from device')), hardTimeout),
+				),
 				]);
 			} catch (e) {
 				result = { success: false, message: e.message };
@@ -624,7 +621,7 @@ class Sigenergy extends utils.Adapter {
 				value: p.path,
 				label: `${p.path}${p.manufacturer ? ` (${p.manufacturer})` : ''}`,
 			}));
-		} catch (_e) {
+		} catch {
 			return [];
 		}
 	}

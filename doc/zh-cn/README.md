@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.14 (2026-03-13)
+* 修复最后两个 lint 错误
+
 ### 1.3.13 (2026-03-13)
 * 修复所有 ESLint/Prettier 错误：JSDoc、格式、未使用的导入
 

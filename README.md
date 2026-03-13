@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.14 (2026-03-13)
+* Fix last two lint errors: collapse setTimeout in testConnection, use bare catch in _getSerialPorts
+
 ### 1.3.13 (2026-03-13)
 * Fix all ESLint/Prettier errors: add JSDoc to all methods, fix formatting, remove unused imports
 

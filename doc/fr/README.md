@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.14 (2026-03-13)
+* Correction des deux dernières erreurs de lint
+
 ### 1.3.13 (2026-03-13)
 * Tous les erreurs ESLint/Prettier corrigées: JSDoc, formatage, imports inutilisés
 
