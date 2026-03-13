@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.11 (2026-03-13)
+* 修复 Prettier：在 registers.js 中添加缺失的尾随逗号
+
 ### 1.3.10 (2026-03-13)
 * 修复 Prettier：将寄存器内联对象展开为多行格式
 

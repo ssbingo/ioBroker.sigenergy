@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.11 (2026-03-13)
+* Fix Prettier: add missing trailing commas in registers.js constant objects
+
 ### 1.3.10 (2026-03-13)
 * Fix Prettier: expand inline register objects to multi-line format
 

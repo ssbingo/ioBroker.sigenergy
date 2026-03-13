@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.11 (2026-03-13)
+* Fix Prettier: virgole finali mancanti in registers.js
+
 ### 1.3.10 (2026-03-13)
 * Fix Prettier: oggetti registro espansi in formato multilinea
 

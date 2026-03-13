@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.11 (2026-03-13)
+* Naprawa Prettier: brakujące przecinki końcowe w registers.js
+
 ### 1.3.10 (2026-03-13)
 * Naprawa Prettier: obiekty rejestru rozwinięte do formatu wieloliniowego
 
