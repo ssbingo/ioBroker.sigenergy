@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.3.4",
+    "version": "1.3.5",
     "news": {
-      "1.3.4": {
-        "en": "Fix CI: add mocha to devDependencies so test:package script can run",
-        "de": "CI-Fix: mocha zu devDependencies hinzugefügt, damit das test:package-Skript ausgeführt werden kann",
-        "ru": "Исправление CI: добавлен mocha в devDependencies для работы скрипта test:package",
-        "pt": "Correção CI: mocha adicionado às devDependencies para que o script test:package possa ser executado",
-        "nl": "CI-fix: mocha toegevoegd aan devDependencies zodat het test:package-script kan worden uitgevoerd",
-        "fr": "Correction CI : mocha ajouté aux devDependencies pour permettre l'exécution du script test:package",
-        "it": "Fix CI: mocha aggiunto alle devDependencies per consentire l'esecuzione dello script test:package",
-        "es": "Fix CI: mocha añadido a devDependencies para que el script test:package pueda ejecutarse",
-        "pl": "Poprawka CI: dodano mocha do devDependencies, aby skrypt test:package mógł działać",
-        "uk": "Виправлення CI: додано mocha до devDependencies для запуску скрипта test:package",
-        "zh-cn": "CI修复：将mocha添加到devDependencies以便test:package脚本可以运行"
+      "1.3.5": {
+        "en": "Fix CI: use explicit mocha binary path to avoid PATH resolution issues with npm ci",
+        "de": "CI-Fix: expliziten mocha-Binärpfad verwenden, um PATH-Auflösungsprobleme mit npm ci zu vermeiden",
+        "ru": "Исправление CI: использование явного пути к бинарному файлу mocha во избежание проблем с разрешением PATH при npm ci",
+        "pt": "Correção CI: usar caminho explícito do binário mocha para evitar problemas de resolução de PATH com npm ci",
+        "nl": "CI-fix: expliciet mocha-binair pad gebruiken om PATH-resolutieproblemen met npm ci te vermijden",
+        "fr": "Correction CI : utilisation du chemin binaire explicite de mocha pour éviter les problèmes de résolution PATH avec npm ci",
+        "it": "Fix CI: utilizzare il percorso binario esplicito di mocha per evitare problemi di risoluzione PATH con npm ci",
+        "es": "Fix CI: usar ruta binaria explícita de mocha para evitar problemas de resolución PATH con npm ci",
+        "pl": "Poprawka CI: użycie jawnej ścieżki binarnej mocha, aby uniknąć problemów z rozwiązywaniem PATH przy npm ci",
+        "uk": "Виправлення CI: використання явного шляху до бінарного файлу mocha для уникнення проблем із PATH при npm ci",
+        "zh-cn": "CI修复：使用mocha的显式二进制路径以避免npm ci的PATH解析问题"
       }
     },
     "titleLang": {

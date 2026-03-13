@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.5 (2026-03-13)
+* (ssbingo) Fix CI: usar ruta binaria explícita de mocha para evitar problemas de resolución PATH con npm ci
+
 ### 1.3.4 (2026-03-13)
 * (ssbingo) Fix CI: mocha añadido a devDependencies para que el script test:package pueda ejecutarse
 
