@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.3.12 (2026-03-13)
+* Виправлення регресії curly у modbus.js, statistics.js, main.js
+
 ### 1.3.11 (2026-03-13)
 * Виправлення Prettier: відсутні кінцеві коми в registers.js
 

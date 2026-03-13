@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.12 (2026-03-13)
+* Correction régression curly dans modbus.js, statistics.js, main.js
+
 ### 1.3.11 (2026-03-13)
 * Correction Prettier: virgules finales manquantes dans registers.js
 

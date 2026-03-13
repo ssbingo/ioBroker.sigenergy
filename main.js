@@ -320,8 +320,8 @@ class Sigenergy extends utils.Adapter {
 				}
 			}
 		}
-		if (currentGroup) groups.push(currentGroup) {
-			;
+		if (currentGroup) {
+			groups.push(currentGroup);
 		}
 		return groups;
 	}

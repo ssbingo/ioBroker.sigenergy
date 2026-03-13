@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.12 (2026-03-13)
+* 修复 curly 规则回归：modbus.js、statistics.js、main.js
+
 ### 1.3.11 (2026-03-13)
 * 修复 Prettier：在 registers.js 中添加缺失的尾随逗号
 

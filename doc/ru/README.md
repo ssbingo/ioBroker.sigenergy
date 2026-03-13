@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.12 (2026-03-13)
+* Исправлена регрессия curly в modbus.js, statistics.js, main.js
+
 ### 1.3.11 (2026-03-13)
 * Prettier-Fix: fehlende abschließende Kommas in registers.js ergänzt
 
