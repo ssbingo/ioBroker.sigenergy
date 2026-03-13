@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.3.15",
+        "version": "1.3.16",
         "news": {
-            "1.3.15": {
-                "en": "Fix indentation of setTimeout in testConnection Promise",
-                "de": "Einr\u00fcckung von setTimeout in testConnection Promise korrigiert",
-                "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u043e\u0442\u0441\u0442\u0443\u043f setTimeout \u0432 Promise testConnection",
-                "pt": "Corrigida indenta\u00e7\u00e3o do setTimeout no Promise testConnection",
-                "nl": "Inspringing van setTimeout in testConnection Promise gecorrigeerd",
-                "fr": "Correction de l'indentation du setTimeout dans la Promise testConnection",
-                "it": "Corretta indentazione del setTimeout nella Promise testConnection",
-                "es": "Corregida indentaci\u00f3n del setTimeout en la Promise testConnection",
-                "pl": "Poprawiono wci\u0119cie setTimeout w Promise testConnection",
-                "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u0432\u0456\u0434\u0441\u0442\u0443\u043f setTimeout \u0443 Promise testConnection",
-                "zh-cn": "\u4fee\u590d testConnection Promise \u4e2d setTimeout \u7684\u7f29\u8fdb"
+            "1.3.16": {
+                "en": "Restore mocha devDependency and fix test:package script",
+                "de": "Mocha devDependency wiederhergestellt und test:package-Skript korrigiert",
+                "ru": "\u0412\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0430 \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u044c mocha \u0438 \u0438\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u0441\u043a\u0440\u0438\u043f\u0442 test:package",
+                "pt": "Restaurada depend\u00eancia mocha e corrigido script test:package",
+                "nl": "Mocha devDependency hersteld en test:package script gecorrigeerd",
+                "fr": "Restauration de la d\u00e9pendance mocha et correction du script test:package",
+                "it": "Ripristinata dipendenza mocha e corretto script test:package",
+                "es": "Restaurada dependencia mocha y corregido script test:package",
+                "pl": "Przywr\u00f3cono zale\u017cno\u015b\u0107 mocha i naprawiono skrypt test:package",
+                "uk": "\u0412\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043e \u0437\u0430\u043b\u0435\u0436\u043d\u0456\u0441\u0442\u044c mocha \u0442\u0430 \u0432\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u0441\u043a\u0440\u0438\u043f\u0442 test:package",
+                "zh-cn": "\u6062\u590d mocha \u5f00\u53d1\u4f9d\u8d56\u5e76\u4fee\u590d test:package \u811a\u672c"
             }
         },
         "titleLang": {

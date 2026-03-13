@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.16 (2026-03-13)
+* Восстановлена зависимость mocha, исправлен скрипт test:package
+
 ### 1.3.15 (2026-03-13)
 * Исправлен отступ setTimeout в testConnection
 

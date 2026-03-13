@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.16 (2026-03-13)
+* 恢复 mocha 开发依赖，修复 test:package 脚本
+
 ### 1.3.15 (2026-03-13)
 * 修复 testConnection 中 setTimeout 的缩进
 

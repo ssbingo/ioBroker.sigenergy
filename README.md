@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.16 (2026-03-13)
+* Restore mocha devDependency and fix test:package script
+
 ### 1.3.15 (2026-03-13)
 * Fix indentation of setTimeout in testConnection Promise
 
