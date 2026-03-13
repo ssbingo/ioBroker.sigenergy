@@ -1,154 +1,152 @@
 {
-  "common": {
-    "name": "sigenergy",
-    "version": "1.3.5",
-    "news": {
-      "1.3.5": {
-        "en": "Fix CI: use explicit mocha binary path to avoid PATH resolution issues with npm ci",
-        "de": "CI-Fix: expliziten mocha-Binärpfad verwenden, um PATH-Auflösungsprobleme mit npm ci zu vermeiden",
-        "ru": "Исправление CI: использование явного пути к бинарному файлу mocha во избежание проблем с разрешением PATH при npm ci",
-        "pt": "Correção CI: usar caminho explícito do binário mocha para evitar problemas de resolução de PATH com npm ci",
-        "nl": "CI-fix: expliciet mocha-binair pad gebruiken om PATH-resolutieproblemen met npm ci te vermijden",
-        "fr": "Correction CI : utilisation du chemin binaire explicite de mocha pour éviter les problèmes de résolution PATH avec npm ci",
-        "it": "Fix CI: utilizzare il percorso binario esplicito di mocha per evitare problemi di risoluzione PATH con npm ci",
-        "es": "Fix CI: usar ruta binaria explícita de mocha para evitar problemas de resolución PATH con npm ci",
-        "pl": "Poprawka CI: użycie jawnej ścieżki binarnej mocha, aby uniknąć problemów z rozwiązywaniem PATH przy npm ci",
-        "uk": "Виправлення CI: використання явного шляху до бінарного файлу mocha для уникнення проблем із PATH при npm ci",
-        "zh-cn": "CI修复：使用mocha的显式二进制路径以避免npm ci的PATH解析问题"
-      }
+    "common": {
+        "name": "sigenergy",
+        "version": "1.3.7",
+        "news": {
+            "1.3.7": {
+                "en": "Remove redundant mocha devDependency (included in @iobroker/testing)",
+                "de": "Redundante mocha devDependency entfernt (in @iobroker/testing enthalten)",
+                "ru": "\u0423\u0434\u0430\u043b\u0435\u043d\u0430 \u0438\u0437\u0431\u044b\u0442\u043e\u0447\u043d\u0430\u044f \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u044c mocha (\u0432\u0445\u043e\u0434\u0438\u0442 \u0432 @iobroker/testing)",
+                "pt": "Removida depend\u00eancia mocha redundante (inclu\u00edda em @iobroker/testing)",
+                "nl": "Overbodige mocha devDependency verwijderd (inbegrepen in @iobroker/testing)",
+                "fr": "Suppression de la d\u00e9pendance mocha redondante (incluse dans @iobroker/testing)",
+                "it": "Rimossa dipendenza mocha ridondante (inclusa in @iobroker/testing)",
+                "es": "Eliminada dependencia mocha redundante (incluida en @iobroker/testing)",
+                "pl": "Usuni\u0119to redundantn\u0105 zale\u017cno\u015b\u0107 mocha (zawart\u0105 w @iobroker/testing)"
+            }
+        },
+        "titleLang": {
+            "en": "Sigenergy Solar System",
+            "de": "Sigenergy Solaranlage",
+            "ru": "\u0421\u043e\u043b\u043d\u0435\u0447\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 Sigenergy",
+            "pt": "Sistema Solar Sigenergy",
+            "nl": "Sigenergy Zonne-energiesysteem",
+            "fr": "Syst\u00e8me Solaire Sigenergy",
+            "it": "Sistema Solare Sigenergy",
+            "es": "Sistema Solar Sigenergy",
+            "pl": "System S\u0142oneczny Sigenergy",
+            "uk": "\u0421\u043e\u043d\u044f\u0447\u043d\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u0430 Sigenergy",
+            "zh-cn": "Sigenergy \u592a\u9633\u80fd\u7cfb\u7edf"
+        },
+        "desc": {
+            "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
+            "de": "Adapter f\u00fcr Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladeger\u00e4t) via Modbus TCP/RTU",
+            "ru": "\u0410\u0434\u0430\u043f\u0442\u0435\u0440 \u0434\u043b\u044f \u0441\u043e\u043b\u043d\u0435\u0447\u043d\u044b\u0445 \u0441\u0438\u0441\u0442\u0435\u043c Sigenergy (\u0433\u0438\u0431\u0440\u0438\u0434\u043d\u044b\u0439 \u0438\u043d\u0432\u0435\u0440\u0442\u043e\u0440, \u0430\u043a\u043a\u0443\u043c\u0443\u043b\u044f\u0442\u043e\u0440, \u0437\u0430\u0440\u044f\u0434\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e AC/DC) \u0447\u0435\u0440\u0435\u0437 Modbus TCP/RTU",
+            "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor H\u00edbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
+            "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
+            "fr": "Adaptateur pour les syst\u00e8mes d'\u00e9nergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
+            "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
+            "es": "Adaptador para sistemas de energ\u00eda solar Sigenergy (inversor h\u00edbrido, bater\u00eda, cargador AC/DC) a trav\u00e9s de Modbus TCP/RTU",
+            "pl": "Adapter dla system\u00f3w energii s\u0142onecznej Sigenergy (falownik hybrydowy, akumulator, \u0142adowarka AC/DC) przez Modbus TCP/RTU",
+            "uk": "\u0410\u0434\u0430\u043f\u0442\u0435\u0440 \u0434\u043b\u044f \u0441\u043e\u043d\u044f\u0447\u043d\u0438\u0445 \u0435\u043d\u0435\u0440\u0433\u0435\u0442\u0438\u0447\u043d\u0438\u0445 \u0441\u0438\u0441\u0442\u0435\u043c Sigenergy (\u0433\u0456\u0431\u0440\u0438\u0434\u043d\u0438\u0439 \u0456\u043d\u0432\u0435\u0440\u0442\u043e\u0440, \u0430\u043a\u0443\u043c\u0443\u043b\u044f\u0442\u043e\u0440, \u0437\u0430\u0440\u044f\u0434\u043d\u0438\u0439 \u043f\u0440\u0438\u0441\u0442\u0440\u0456\u0439 AC/DC) \u0447\u0435\u0440\u0435\u0437 Modbus TCP/RTU",
+            "zh-cn": "\u901a\u8fc7Modbus TCP/RTU\u8fde\u63a5Sigenergy\u592a\u9633\u80fd\u7cfb\u7edf\uff08\u6df7\u5408\u9006\u53d8\u5668\u3001\u7535\u6c60\u3001AC/DC\u5145\u7535\u5668\uff09\u7684\u9002\u914d\u5668"
+        },
+        "authors": [
+            "ioBroker Community"
+        ],
+        "keywords": [
+            "sigenergy",
+            "solar",
+            "modbus",
+            "energy",
+            "inverter",
+            "battery",
+            "pv"
+        ],
+        "platform": "Javascript/Node.js",
+        "icon": "sigenergy.png",
+        "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
+        "enabled": true,
+        "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "energy",
+        "compact": true,
+        "adminUI": {
+            "config": "json"
+        },
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "Sigenergy",
+                "de": "Sigenergy"
+            },
+            "link": "%web_protocol%://%ip%:%web_port%/adapter/sigenergy/index.html"
+        },
+        "supportCustoms": false,
+        "schedule": "",
+        "subscribable": false,
+        "supportedMessages": {
+            "custom": true
+        },
+        "tier": 2,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=7.6.20"
+            }
+        ],
+        "licenseInformation": {
+            "license": "MIT",
+            "type": "free"
+        }
     },
-    "titleLang": {
-      "en": "Sigenergy Solar System",
-      "de": "Sigenergy Solaranlage",
-      "ru": "Солнечная система Sigenergy",
-      "pt": "Sistema Solar Sigenergy",
-      "nl": "Sigenergy Zonne-energiesysteem",
-      "fr": "Système Solaire Sigenergy",
-      "it": "Sistema Solare Sigenergy",
-      "es": "Sistema Solar Sigenergy",
-      "pl": "System Słoneczny Sigenergy",
-      "uk": "Сонячна система Sigenergy",
-      "zh-cn": "Sigenergy 太阳能系统"
+    "native": {
+        "connectionType": "tcp",
+        "tcpHost": "192.168.1.100",
+        "tcpPort": 502,
+        "serialPort": "/dev/ttyUSB0",
+        "serialBaudRate": 9600,
+        "serialDataBits": 8,
+        "serialParity": "none",
+        "serialStopBits": 1,
+        "plantId": 247,
+        "inverterId": 1,
+        "acChargerId": 2,
+        "dcChargerId": 3,
+        "pollInterval": 10000,
+        "timeout": 5000,
+        "hasAcCharger": false,
+        "hasDcCharger": false,
+        "hasBattery": true,
+        "hasPv": true,
+        "calcBatteryTimeToFull": true,
+        "calcBatteryTimeRemaining": true,
+        "calcBatteryDailyFull": true,
+        "calcBatteryCoverageTime": true,
+        "calcSelfConsumptionRate": true,
+        "calcAutarkyRate": true,
+        "calcPvYield": true,
+        "calcGridFeedIn": true
     },
-    "desc": {
-      "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
-      "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
-      "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
-      "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
-      "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
-      "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
-      "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
-      "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
-      "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
-      "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
-    },
-    "authors": [
-      "ioBroker Community"
-    ],
-    "keywords": [
-      "sigenergy",
-      "solar",
-      "modbus",
-      "energy",
-      "inverter",
-      "battery",
-      "pv"
-    ],
-    "platform": "Javascript/Node.js",
-    "icon": "sigenergy.png",
-    "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
-    "enabled": true,
-    "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "energy",
-    "compact": true,
-    "adminUI": {
-      "config": "json"
-    },
-    "adminTab": {
-      "singleton": true,
-      "name": {
-        "en": "Sigenergy",
-        "de": "Sigenergy"
-      },
-      "link": "%web_protocol%://%ip%:%web_port%/adapter/sigenergy/index.html"
-    },
-    "supportCustoms": false,
-    "schedule": "",
-    "subscribable": false,
-    "supportedMessages": {
-      "custom": true
-    },
-    "tier": 2,
-    "connectionType": "local",
-    "dataSource": "poll",
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=7.6.20"
-      }
-    ],
-    "licenseInformation": {
-      "license": "MIT",
-      "type": "free"
-    }
-  },
-  "native": {
-    "connectionType": "tcp",
-    "tcpHost": "192.168.1.100",
-    "tcpPort": 502,
-    "serialPort": "/dev/ttyUSB0",
-    "serialBaudRate": 9600,
-    "serialDataBits": 8,
-    "serialParity": "none",
-    "serialStopBits": 1,
-    "plantId": 247,
-    "inverterId": 1,
-    "acChargerId": 2,
-    "dcChargerId": 3,
-    "pollInterval": 10000,
-    "timeout": 5000,
-    "hasAcCharger": false,
-    "hasDcCharger": false,
-    "hasBattery": true,
-    "hasPv": true,
-    "calcBatteryTimeToFull": true,
-    "calcBatteryTimeRemaining": true,
-    "calcBatteryDailyFull": true,
-    "calcBatteryCoverageTime": true,
-    "calcSelfConsumptionRate": true,
-    "calcAutarkyRate": true,
-    "calcPvYield": true,
-    "calcGridFeedIn": true
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "name": "Connection status",
-        "type": "boolean",
-        "role": "indicator.connected",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    }
-  ]
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "name": "Connection status",
+                "type": "boolean",
+                "role": "indicator.connected",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }

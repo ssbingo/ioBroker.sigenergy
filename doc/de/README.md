@@ -156,6 +156,12 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.7 (2026-03-13)
+* Redundante mocha devDependency entfernt (in @iobroker/testing enthalten)
+
+### 1.3.6 (2026-03-13)
+* Prettier/ESLint-Formatierung behoben: Tabs, einfache Anführungszeichen, geschweifte Klammern
+
 ### 1.3.5 (2026-03-13)
 * (ssbingo) CI-Fix: expliziten mocha-Binärpfad verwenden, um PATH-Auflösungsprobleme mit npm ci zu vermeiden
 

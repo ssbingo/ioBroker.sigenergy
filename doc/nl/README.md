@@ -156,6 +156,12 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.7 (2026-03-13)
+* Overbodige mocha devDependency verwijderd
+
+### 1.3.6 (2026-03-13)
+* Prettier/ESLint-opmaak gecorrigeerd
+
 ### 1.3.5 (2026-03-13)
 * (ssbingo) CI-fix: expliciet mocha-binair pad gebruiken om PATH-resolutieproblemen met npm ci te vermijden
 

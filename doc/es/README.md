@@ -156,6 +156,12 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.7 (2026-03-13)
+* Eliminada dependencia mocha redundante
+
+### 1.3.6 (2026-03-13)
+* Corrección del formateo Prettier/ESLint
+
 ### 1.3.5 (2026-03-13)
 * (ssbingo) Fix CI: usar ruta binaria explícita de mocha para evitar problemas de resolución PATH con npm ci
 

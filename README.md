@@ -156,6 +156,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.7 (2026-03-13)
+* Remove redundant mocha devDependency (included in @iobroker/testing)
+
+### 1.3.6 (2026-03-13)
+* Fix Prettier/ESLint formatting: use tabs, single quotes, curly braces
+
 ### 1.3.5 (2026-03-13)
 * (ssbingo) Fix CI: use explicit mocha binary path to avoid PATH resolution issues with npm ci
 

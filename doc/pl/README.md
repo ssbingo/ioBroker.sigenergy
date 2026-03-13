@@ -156,6 +156,12 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.7 (2026-03-13)
+* Usunięto redundantną zależność mocha
+
+### 1.3.6 (2026-03-13)
+* Naprawiono formatowanie Prettier/ESLint
+
 ### 1.3.5 (2026-03-13)
 * (ssbingo) Poprawka CI: użycie jawnej ścieżki binarnej mocha, aby uniknąć problemów z rozwiązywaniem PATH przy npm ci
 
