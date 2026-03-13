@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.17 (2026-03-13)
+* Mocha aus devDependencies entfernt (in @iobroker/testing enthalten)
+
 ### 1.3.16 (2026-03-13)
 * Mocha devDependency wiederhergestellt, test:package-Skript korrigiert
 

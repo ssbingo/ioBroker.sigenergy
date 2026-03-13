@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.17 (2026-03-13)
+* 从 devDependencies 中删除 mocha
+
 ### 1.3.16 (2026-03-13)
 * 恢复 mocha 开发依赖，修复 test:package 脚本
 
