@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.3.9",
+        "version": "1.3.10",
         "news": {
-            "1.3.9": {
-                "en": "Added documentation in README.md - multilingual (uk, zh-cn)",
-                "de": "Einf\u00fcgen Dokumentation in README.md - mehrsprachig",
-                "ru": "\u0414\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0430 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f \u0432 README.md \u2014 \u043c\u043d\u043e\u0433\u043e\u044f\u0437\u044b\u0447\u043d\u0430\u044f",
-                "pt": "Adicionada documenta\u00e7\u00e3o no README.md - multil\u00edngue",
-                "nl": "Documentatie toegevoegd in README.md - meertalig",
-                "fr": "Ajout de la documentation dans README.md - multilingue",
-                "it": "Aggiunta documentazione in README.md - multilingue",
-                "es": "A\u00f1adida documentaci\u00f3n en README.md - multiling\u00fce",
-                "pl": "Dodano dokumentacj\u0119 w README.md - wieloj\u0119zyczna",
-                "uk": "\u0414\u043e\u0434\u0430\u043d\u043e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0456\u044e \u0443 README.md \u2014 \u0431\u0430\u0433\u0430\u0442\u043e\u043c\u043e\u0432\u043d\u0430",
-                "zh-cn": "\u5728 README.md \u4e2d\u6dfb\u52a0\u6587\u6863 \u2014 \u591a\u8bed\u8a00"
+            "1.3.10": {
+                "en": "Fix Prettier: expand inline register objects to multi-line format",
+                "de": "Prettier-Fix: Inline-Register-Objekte auf mehrzeiliges Format expandiert",
+                "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 Prettier: \u043e\u0431\u044a\u0435\u043a\u0442\u044b \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u043e\u0432 \u0440\u0430\u0437\u0432\u0451\u0440\u043d\u0443\u0442\u044b \u0432 \u043c\u043d\u043e\u0433\u043e\u0441\u0442\u0440\u043e\u0447\u043d\u044b\u0439 \u0444\u043e\u0440\u043c\u0430\u0442",
+                "pt": "Corre\u00e7\u00e3o Prettier: objetos de registo expandidos para formato multilinha",
+                "nl": "Prettier-fix: inline registerobjecten uitgebreid naar meerdere regels",
+                "fr": "Correction Prettier: objets de registre d\u00e9velopp\u00e9s en format multiligne",
+                "it": "Fix Prettier: oggetti registro espansi in formato multilinea",
+                "es": "Correcci\u00f3n Prettier: objetos de registro expandidos a formato multil\u00ednea",
+                "pl": "Naprawa Prettier: obiekty rejestru rozwini\u0119te do formatu wieloliniowego",
+                "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043d\u044f Prettier: \u043e\u0431'\u0454\u043a\u0442\u0438 \u0440\u0435\u0433\u0456\u0441\u0442\u0440\u0456\u0432 \u0440\u043e\u0437\u0433\u043e\u0440\u043d\u0443\u0442\u043e \u0443 \u0431\u0430\u0433\u0430\u0442\u043e\u0440\u044f\u0434\u043a\u043e\u0432\u0438\u0439 \u0444\u043e\u0440\u043c\u0430\u0442",
+                "zh-cn": "\u4fee\u590d Prettier\uff1a\u5c06\u5bc4\u5b58\u5668\u5185\u8054\u5bf9\u8c61\u5c55\u5f00\u4e3a\u591a\u884c\u683c\u5f0f"
             }
         },
         "titleLang": {

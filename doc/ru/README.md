@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.10 (2026-03-13)
+* Prettier-Fix: Register-Objekte auf mehrzeiliges Format expandiert
+
 ### 1.3.9 (2026-03-13)
 * Добавлена документация в README.md — многоязычная
 

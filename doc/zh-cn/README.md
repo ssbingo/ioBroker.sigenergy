@@ -25,8 +25,8 @@
 
 ## 支持的硬件
 
-| 类别           | 型号 |
-|--------------|------|
+| 类别 | 型号 |
+|------|------|
 | **混合逆变器** | SigenStor EC SP/TP、Sigen Hybrid SP/TP/TPLV、Sigen PV M1-HYA、PG Controller |
 | **光伏逆变器** | Sigen PV Max SP/TP、Sigen PV M1 |
 | **EVAC（交流）** | Sigen EVAC 7/11/22 kW、PG EVAC |
@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.10 (2026-03-13)
+* 修复 Prettier：将寄存器内联对象展开为多行格式
+
 ### 1.3.9 (2026-03-13)
 * 在 README.md 中添加文档 — 多语言
 

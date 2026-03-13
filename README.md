@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.10 (2026-03-13)
+* Fix Prettier: expand inline register objects to multi-line format
+
 ### 1.3.9 (2026-03-13)
 * Added documentation in README.md - multilingual
 

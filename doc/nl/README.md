@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.10 (2026-03-13)
+* Prettier-fix: inline registerobjecten uitgebreid naar meerdere regels
+
 ### 1.3.9 (2026-03-13)
 * Documentatie toegevoegd in README.md - meertalig
 

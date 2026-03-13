@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.10 (2026-03-13)
+* Corrección Prettier: objetos de registro expandidos a formato multilínea
+
 ### 1.3.9 (2026-03-13)
 * Añadida documentación en README.md - multilingüe
 
