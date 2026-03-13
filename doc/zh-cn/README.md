@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.13 (2026-03-13)
+* 修复所有 ESLint/Prettier 错误：JSDoc、格式、未使用的导入
+
 ### 1.3.12 (2026-03-13)
 * 修复 curly 规则回归：modbus.js、statistics.js、main.js
 

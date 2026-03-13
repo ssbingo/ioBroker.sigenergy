@@ -25,12 +25,11 @@ const {
 	INVERTER_READ_REGISTERS,
 	DC_CHARGER_READ_REGISTERS,
 	AC_CHARGER_READ_REGISTERS,
-	RUNNING_STATES,
 } = require('./lib/registers');
 
 class Sigenergy extends utils.Adapter {
 	/**
-	 * @param {Partial<utils.AdapterOptions>} [options]
+	 * @param {Partial<utils.AdapterOptions>} [options] - Adapter options
 	 */
 	constructor(options) {
 		super({
@@ -55,18 +54,19 @@ class Sigenergy extends utils.Adapter {
 	 */
 	async onReady() {
 		this.log.info(`Sigenergy adapter v${this.pack ? this.pack.version : '?'} starting...`);
-		this.log.debug(`Config: connectionType=${this.config.connectionType}, ` +
-			`host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
-			`plantId=${this.config.plantId}, inverterId=${this.config.inverterId}, ` +
-			`pollInterval=${this.config.pollInterval}ms, timeout=${this.config.timeout}ms`);
-		this.log.debug(`Components: battery=${this.config.hasBattery}, pv=${this.config.hasPv}, ` +
-			`acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}`);
+		this.log.debug(
+			`Config: connectionType=${this.config.connectionType}, ` +
+				`host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
+				`plantId=${this.config.plantId}, inverterId=${this.config.inverterId}, ` +
+				`pollInterval=${this.config.pollInterval}ms, timeout=${this.config.timeout}ms`,
+		);
+		this.log.debug(
+			`Components: battery=${this.config.hasBattery}, pv=${this.config.hasPv}, ` +
+				`acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}`,
+		);
 		this.setState('info.connection', false, true);
 
 		// Migration: remove visWidgets from adapter object if present from older versions.
-		// ioBroker merges io-package.json on upgrade but does NOT delete removed keys,
-		// so vis-2 would still show the widget group even though it was moved to
-		// the separate ioBroker.sigenergy-widgets adapter.
 		try {
 			const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
 			if (adapterObj && adapterObj.common && adapterObj.common.visWidgets) {
@@ -99,9 +99,10 @@ class Sigenergy extends utils.Adapter {
 	 * Connect and start the polling loop
 	 */
 	async _connectAndPoll() {
-		const target = this.config.connectionType === 'serial'
-			? this.config.serialPort
-			: `${this.config.tcpHost}:${this.config.tcpPort}`;
+		const target =
+			this.config.connectionType === 'serial'
+				? this.config.serialPort
+				: `${this.config.tcpHost}:${this.config.tcpPort}`;
 		this.log.info(`Connecting to ${this.config.connectionType === 'serial' ? 'serial' : 'TCP'} ${target}...`);
 		const connected = await this.modbus.connect();
 		if (connected) {
@@ -111,7 +112,6 @@ class Sigenergy extends utils.Adapter {
 		} else {
 			this.log.warn(`Connection to ${target} failed — retrying in 30 seconds`);
 			this.setState('info.connection', false, true);
-			// Retry in 30 seconds
 			this._pollTimer = setTimeout(() => {
 				this._connectAndPoll();
 			}, 30000);
@@ -141,7 +141,6 @@ class Sigenergy extends utils.Adapter {
 			this.setState('info.connection', false, true);
 			clearInterval(this._pollTimer);
 			this._pollTimer = null;
-			// Reconnect
 			setTimeout(() => this._connectAndPoll(), 5000);
 			return;
 		}
@@ -150,23 +149,16 @@ class Sigenergy extends utils.Adapter {
 		const pollStart = Date.now();
 
 		try {
-			// Read plant data (slave 247)
 			await this._readPlant();
-
-			// Read inverter data (slave = inverterId)
 			await this._readInverter();
 
-			// Read AC Charger if enabled
 			if (this.config.hasAcCharger) {
 				await this._readAcCharger();
 			}
-
-			// Read DC Charger registers (part of inverter slave)
 			if (this.config.hasDcCharger) {
 				await this._readDcCharger();
 			}
 
-			// Calculate statistics
 			await this._updateStatistics();
 
 			this.setState('info.connection', true, true);
@@ -183,21 +175,17 @@ class Sigenergy extends utils.Adapter {
 	 */
 	async _readPlant() {
 		const plantId = this.config.plantId || 247;
-		const batchSize = 120; // Max registers per read
-
-		// Build optimized read groups
+		const batchSize = 120;
 		const groups = this._buildReadGroups(PLANT_READ_REGISTERS, batchSize);
-		this.log.debug(`Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${PLANT_READ_REGISTERS.length} registers`);
+		this.log.debug(
+			`Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${PLANT_READ_REGISTERS.length} registers`,
+		);
 
 		for (const group of groups) {
 			try {
-				const raw = await this.modbus.readInputRegisters(
-					plantId,
-					group.startAddr,
-					group.totalQty
-				);
+				const raw = await this.modbus.readInputRegisters(plantId, group.startAddr, group.totalQty);
 				await this._processReadGroup(group, raw, 'plant');
-				await this._sleep(100); // Small delay between batches
+				await this._sleep(100);
 			} catch (err) {
 				this.log.warn(`Plant register read error at ${group.startAddr}: ${err.message}`);
 			}
@@ -210,17 +198,14 @@ class Sigenergy extends utils.Adapter {
 	async _readInverter() {
 		const inverterId = this.config.inverterId || 1;
 		const batchSize = 60;
-
 		const groups = this._buildReadGroups(INVERTER_READ_REGISTERS, batchSize);
-		this.log.debug(`Reading inverter (slaveId=${inverterId}): ${groups.length} group(s), ${INVERTER_READ_REGISTERS.length} registers`);
+		this.log.debug(
+			`Reading inverter (slaveId=${inverterId}): ${groups.length} group(s), ${INVERTER_READ_REGISTERS.length} registers`,
+		);
 
 		for (const group of groups) {
 			try {
-				const raw = await this.modbus.readInputRegisters(
-					inverterId,
-					group.startAddr,
-					group.totalQty
-				);
+				const raw = await this.modbus.readInputRegisters(inverterId, group.startAddr, group.totalQty);
 				await this._processReadGroup(group, raw, 'inverter');
 				await this._sleep(100);
 			} catch (err) {
@@ -240,11 +225,7 @@ class Sigenergy extends utils.Adapter {
 
 		for (const group of groups) {
 			try {
-				const raw = await this.modbus.readInputRegisters(
-					acChargerId,
-					group.startAddr,
-					group.totalQty
-				);
+				const raw = await this.modbus.readInputRegisters(acChargerId, group.startAddr, group.totalQty);
 				await this._processReadGroup(group, raw, 'acCharger');
 				await this._sleep(100);
 			} catch (err) {
@@ -264,11 +245,7 @@ class Sigenergy extends utils.Adapter {
 
 		for (const group of groups) {
 			try {
-				const raw = await this.modbus.readInputRegisters(
-					inverterId,
-					group.startAddr,
-					group.totalQty
-				);
+				const raw = await this.modbus.readInputRegisters(inverterId, group.startAddr, group.totalQty);
 				await this._processReadGroup(group, raw, 'dcCharger');
 				await this._sleep(100);
 			} catch (err) {
@@ -279,14 +256,16 @@ class Sigenergy extends utils.Adapter {
 
 	/**
 	 * Build optimized sequential read groups
-	 * Groups consecutive registers to minimize read requests
+	 *
+	 * @param {object[]} registers - Register definitions
+	 * @param {number} maxQty - Maximum registers per group
+	 * @returns {object[]} Grouped register batches
 	 */
 	_buildReadGroups(registers, maxQty) {
 		if (!registers || registers.length === 0) {
 			return [];
 		}
 
-		// Sort by address
 		const sorted = [...registers].sort((a, b) => a.addr - b.addr);
 		const groups = [];
 		let currentGroup = null;
@@ -302,13 +281,9 @@ class Sigenergy extends utils.Adapter {
 				const expectedNext = currentGroup.startAddr + currentGroup.totalQty;
 				const gap = reg.addr - expectedNext;
 
-				// Allow small gaps (up to 4 registers) within a group
 				if (gap >= 0 && gap <= 4 && currentGroup.totalQty + gap + reg.qty <= maxQty) {
 					const offset = reg.addr - currentGroup.startAddr;
-					currentGroup.totalQty = Math.max(
-						currentGroup.totalQty,
-						offset + reg.qty
-					);
+					currentGroup.totalQty = Math.max(currentGroup.totalQty, offset + reg.qty);
 					currentGroup.registers.push({ ...reg, offset });
 				} else {
 					groups.push(currentGroup);
@@ -328,8 +303,12 @@ class Sigenergy extends utils.Adapter {
 
 	/**
 	 * Process a read group and set states
+	 *
+	 * @param {object} group - Read group with registers and offsets
+	 * @param {number[]} rawData - Raw register data from Modbus
+	 * @param {string} _section - Section name (plant/inverter/etc.)
 	 */
-	async _processReadGroup(group, rawData, section) {
+	async _processReadGroup(group, rawData, _section) {
 		for (const reg of group.registers) {
 			try {
 				const slice = rawData.slice(reg.offset, reg.offset + reg.qty);
@@ -341,8 +320,6 @@ class Sigenergy extends utils.Adapter {
 				const stateId = reg.name;
 
 				await this.setStateAsync(stateId, { val: value, ack: true });
-
-				// Store in current data for statistics
 				this._storeCurrentData(reg.name, value);
 			} catch (e) {
 				this.log.debug(`Error processing register ${reg.name}: ${e.message}`);
@@ -352,6 +329,9 @@ class Sigenergy extends utils.Adapter {
 
 	/**
 	 * Store key values for statistics calculation
+	 *
+	 * @param {string} name - State name
+	 * @param {number} value - State value
 	 */
 	_storeCurrentData(name, value) {
 		const map = {
@@ -374,17 +354,16 @@ class Sigenergy extends utils.Adapter {
 		this.stats.update(this._currentData);
 		const statsValues = this.stats.getStats(this._currentData, this.config);
 
-		// Write statistics states
 		const mapping = {
-			'statistics.batteryTimeToFull':      statsValues.batteryTimeToFull,
-			'statistics.batteryTimeRemaining':   statsValues.batteryTimeRemaining,
+			'statistics.batteryTimeToFull': statsValues.batteryTimeToFull,
+			'statistics.batteryTimeRemaining': statsValues.batteryTimeRemaining,
 			'statistics.batteryDailyChargeTime': statsValues.batteryDailyChargeTime,
-			'statistics.batteryCoverageToday':   statsValues.batteryCoverageToday,
-			'statistics.selfConsumptionRate':    statsValues.selfConsumptionRate,
-			'statistics.autarkyRate':            statsValues.autarkyRate,
-			'statistics.housePower':             statsValues.housePower,
-			'statistics.dayMaxSoc':              statsValues.dayMaxSoc,
-			'statistics.dayMinSoc':              statsValues.dayMinSoc,
+			'statistics.batteryCoverageToday': statsValues.batteryCoverageToday,
+			'statistics.selfConsumptionRate': statsValues.selfConsumptionRate,
+			'statistics.autarkyRate': statsValues.autarkyRate,
+			'statistics.housePower': statsValues.housePower,
+			'statistics.dayMaxSoc': statsValues.dayMaxSoc,
+			'statistics.dayMinSoc': statsValues.dayMinSoc,
 		};
 
 		for (const [id, val] of Object.entries(mapping)) {
@@ -404,18 +383,12 @@ class Sigenergy extends utils.Adapter {
 		this._objectsCreated = true;
 		this.log.debug('Creating ioBroker objects...');
 
-		// Plant channel
 		await this._createChannel('plant', 'Power Plant Data');
 		await this._createChannel('plant.control', 'Plant Control');
-
-		// Inverter channel
 		await this._createChannel('inverter', 'Hybrid Inverter');
 		await this._createChannel('inverter.control', 'Inverter Control');
-
-		// Statistics channel
 		await this._createChannel('statistics', 'Calculated Statistics');
 
-		// Create states from register definitions
 		for (const reg of PLANT_READ_REGISTERS) {
 			await this._createStateFromRegister(reg);
 		}
@@ -423,7 +396,6 @@ class Sigenergy extends utils.Adapter {
 			await this._createStateFromRegister(reg);
 		}
 
-		// AC Charger
 		if (this.config.hasAcCharger) {
 			this.log.debug('Creating AC charger objects');
 			await this._createChannel('acCharger', 'AC Charger');
@@ -433,7 +405,6 @@ class Sigenergy extends utils.Adapter {
 			}
 		}
 
-		// DC Charger
 		if (this.config.hasDcCharger) {
 			this.log.debug('Creating DC charger objects');
 			await this._createChannel('dcCharger', 'DC Charger');
@@ -442,11 +413,16 @@ class Sigenergy extends utils.Adapter {
 			}
 		}
 
-		// Statistics states
 		await this._createStatisticsStates();
 		this.log.debug('All ioBroker objects created successfully');
 	}
 
+	/**
+	 * Create a channel object
+	 *
+	 * @param {string} id - Channel ID
+	 * @param {string} name - Channel display name
+	 */
 	async _createChannel(id, name) {
 		await this.setObjectNotExistsAsync(id, {
 			type: 'channel',
@@ -455,6 +431,11 @@ class Sigenergy extends utils.Adapter {
 		});
 	}
 
+	/**
+	 * Create a state from a register definition
+	 *
+	 * @param {object} reg - Register definition
+	 */
 	async _createStateFromRegister(reg) {
 		let type = 'number';
 		let role = reg.role || 'value';
@@ -463,8 +444,6 @@ class Sigenergy extends utils.Adapter {
 			type = 'string';
 			role = reg.role || 'text';
 		} else {
-			if (reg.type === 'U16' && reg.gain === null) {
-		}
 			type = 'number';
 		}
 
@@ -487,17 +466,74 @@ class Sigenergy extends utils.Adapter {
 		});
 	}
 
+	/**
+	 * Create statistics state objects
+	 */
 	async _createStatisticsStates() {
 		const statsStates = [
-			{ id: 'statistics.batteryTimeToFull',      name: 'Time until battery is fully charged',       type: 'number', unit: 'min', role: 'value' },
-			{ id: 'statistics.batteryTimeRemaining',   name: 'Battery time remaining at current load',    type: 'number', unit: 'min', role: 'value' },
-			{ id: 'statistics.batteryDailyChargeTime', name: 'Today: minutes until battery was full',     type: 'number', unit: 'min', role: 'value' },
-			{ id: 'statistics.batteryCoverageToday',   name: 'Today: minutes battery covered consumption',type: 'number', unit: 'min', role: 'value' },
-			{ id: 'statistics.selfConsumptionRate',    name: 'Self-consumption rate',                     type: 'number', unit: '%',   role: 'value.efficiency' },
-			{ id: 'statistics.autarkyRate',            name: 'Autarky rate',                             type: 'number', unit: '%',   role: 'value.efficiency' },
-			{ id: 'statistics.housePower',             name: 'Calculated house consumption',             type: 'number', unit: 'kW',  role: 'value.power' },
-			{ id: 'statistics.dayMaxSoc',              name: 'Today maximum SOC',                        type: 'number', unit: '%',   role: 'value.battery' },
-			{ id: 'statistics.dayMinSoc',              name: 'Today minimum SOC',                        type: 'number', unit: '%',   role: 'value.battery' },
+			{
+				id: 'statistics.batteryTimeToFull',
+				name: 'Time until battery is fully charged',
+				type: 'number',
+				unit: 'min',
+				role: 'value',
+			},
+			{
+				id: 'statistics.batteryTimeRemaining',
+				name: 'Battery time remaining at current load',
+				type: 'number',
+				unit: 'min',
+				role: 'value',
+			},
+			{
+				id: 'statistics.batteryDailyChargeTime',
+				name: 'Today: minutes until battery was full',
+				type: 'number',
+				unit: 'min',
+				role: 'value',
+			},
+			{
+				id: 'statistics.batteryCoverageToday',
+				name: 'Today: minutes battery covered consumption',
+				type: 'number',
+				unit: 'min',
+				role: 'value',
+			},
+			{
+				id: 'statistics.selfConsumptionRate',
+				name: 'Self-consumption rate',
+				type: 'number',
+				unit: '%',
+				role: 'value.efficiency',
+			},
+			{
+				id: 'statistics.autarkyRate',
+				name: 'Autarky rate',
+				type: 'number',
+				unit: '%',
+				role: 'value.efficiency',
+			},
+			{
+				id: 'statistics.housePower',
+				name: 'Calculated house consumption',
+				type: 'number',
+				unit: 'kW',
+				role: 'value.power',
+			},
+			{
+				id: 'statistics.dayMaxSoc',
+				name: 'Today maximum SOC',
+				type: 'number',
+				unit: '%',
+				role: 'value.battery',
+			},
+			{
+				id: 'statistics.dayMinSoc',
+				name: 'Today minimum SOC',
+				type: 'number',
+				unit: '%',
+				role: 'value.battery',
+			},
 		];
 
 		for (const s of statsStates) {
@@ -518,17 +554,21 @@ class Sigenergy extends utils.Adapter {
 
 	/**
 	 * Handle state changes (for writable states)
+	 *
+	 * @param {string} id - State ID
+	 * @param {object} state - New state value
 	 */
 	onStateChange(id, state) {
 		if (!state || state.ack) {
 			return;
 		}
 		this.log.debug(`State change received: ${id} = ${JSON.stringify(state.val)}`);
-		// TODO: Handle write commands
 	}
 
 	/**
 	 * Handle messages from admin (connection test, etc.)
+	 *
+	 * @param {object} obj - Message object
 	 */
 	async onMessage(obj) {
 		if (!obj || !obj.command) {
@@ -549,14 +589,16 @@ class Sigenergy extends utils.Adapter {
 				result = await Promise.race([
 					testModbus.testConnection(),
 					new Promise((_, reject) =>
-						setTimeout(() => reject(new Error('Test timed out — no response from device')), hardTimeout)
-					)
+						setTimeout(
+							() => reject(new Error('Test timed out — no response from device')),
+							hardTimeout,
+						),
+					),
 				]);
 			} catch (e) {
 				result = { success: false, message: e.message };
 			}
 			this.log.info(`[testConnection] result: success=${result.success}, msg='${result.message}'`);
-			// Always send result back — don't guard on obj.callback (0 is falsy but valid)
 			this.sendTo(obj.from, obj.command, result, obj.callback);
 			return;
 		}
@@ -569,18 +611,28 @@ class Sigenergy extends utils.Adapter {
 		}
 	}
 
+	/**
+	 * Get available serial ports
+	 *
+	 * @returns {Promise<object[]>} List of port objects
+	 */
 	async _getSerialPorts() {
 		try {
 			const { SerialPort } = require('serialport');
 			const ports = await SerialPort.list();
-			return ports.map(p => ({ value: p.path, label: `${p.path}${p.manufacturer ? ` (${p.manufacturer})` : ''}`  }));
-		} catch (e) {
+			return ports.map(p => ({
+				value: p.path,
+				label: `${p.path}${p.manufacturer ? ` (${p.manufacturer})` : ''}`,
+			}));
+		} catch (_e) {
 			return [];
 		}
 	}
 
 	/**
 	 * Adapter shutdown
+	 *
+	 * @param {Function} callback - Completion callback
 	 */
 	async onUnload(callback) {
 		try {
@@ -603,6 +655,12 @@ class Sigenergy extends utils.Adapter {
 		callback();
 	}
 
+	/**
+	 * Sleep for given milliseconds
+	 *
+	 * @param {number} ms - Milliseconds to sleep
+	 * @returns {Promise<void>}
+	 */
 	_sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}

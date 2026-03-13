@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.13 (2026-03-13)
+* Tous les erreurs ESLint/Prettier corrigées: JSDoc, formatage, imports inutilisés
+
 ### 1.3.12 (2026-03-13)
 * Correction régression curly dans modbus.js, statistics.js, main.js
 
