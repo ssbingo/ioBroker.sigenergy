@@ -156,6 +156,12 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.3 (2026-03-13)
+* (ssbingo) Doppelten @param JSDoc-Hinweis durch fehlendes schließendes Tag in modbus.js behoben
+
+### 1.3.2 (2026-03-13)
+* (ssbingo) Code-Qualitätskorrekturen: unbenutzte Variablen entfernt, JSDoc-Dokumentation vervollständigt, lexikalische Deklaration im switch-case korrigiert
+
 ### 1.3.0 (2026-03-13)
 * (ssbingo) Dokumentation mehrsprachig angepasst
 
