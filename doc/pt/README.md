@@ -156,6 +156,12 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.9 (2026-03-13)
+* Adicionada documentação no README.md - multilíngue
+
+### 1.3.8 (2026-03-13)
+* Adicionadas traduções uk/zh-cn em io-package.json
+
 ### 1.3.7 (2026-03-13)
 * Removida dependência mocha redundante
 
@@ -210,3 +216,5 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 - 🇮🇹 [Documentazione italiana](../it/README.md)
 - 🇪🇸 [Documentación en español](../es/README.md)
 - 🇵🇱 [Dokumentacja polska](../pl/README.md)
+- 🇺🇦 [Документація українською](../uk/README.md)
+- 🇨🇳 [简体中文文档](../zh-cn/README.md)
