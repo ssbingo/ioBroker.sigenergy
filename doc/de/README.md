@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.0 (2026-03-13)
+* (ssbingo) Dokumentation mehrsprachig angepasst
+
 ### 1.2.5 (2026-03-12)
 * (ssbingo) Fehlerbehebungen
 
@@ -220,6 +223,11 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ## Dokumentation
 
 - 🇬🇧 [English documentation](../../README.md)
+- 🇩🇪 [Deutsche Dokumentation](../de/README.md)
 - 🇷🇺 [Документация на русском](../ru/README.md)
 - 🇳🇱 [Nederlandse documentatie](../nl/README.md)
 - 🇫🇷 [Documentation française](../fr/README.md)
+- 🇮🇹 [Documentazione italiana](../it/README.md)
+- 🇪🇸 [Documentación en español](../es/README.md)
+- 🇵🇱 [Dokumentacja polska](../pl/README.md)
+- 🇵🇹 [Documentação portuguesa](../pt/README.md)

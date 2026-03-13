@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "news": {
-      "1.2.5": {
-        "en": "fixes",
-        "de": "Fehlerbehebungen",
-        "ru": "Исправления",
-        "pt": "Correções",
-        "nl": "Bugfixes",
-        "fr": "Corrections",
-        "it": "Correzioni",
-        "es": "Correcciones",
-        "pl": "Poprawki",
-        "uk": "Виправлення",
-        "zh-cn": "修复"
+      "1.3.0": {
+        "en": "Multilingual documentation updated",
+        "de": "Dokumentation mehrsprachig angepasst",
+        "ru": "Многоязычная документация обновлена",
+        "pt": "Documentação multilingue atualizada",
+        "nl": "Meertalige documentatie bijgewerkt",
+        "fr": "Documentation multilingue mise à jour",
+        "it": "Documentazione multilingue aggiornata",
+        "es": "Documentación multilingüe actualizada",
+        "pl": "Wielojęzyczna dokumentacja zaktualizowana",
+        "uk": "Багатомовна документація оновлена",
+        "zh-cn": "多语言文档已更新"
       }
     },
     "titleLang": {

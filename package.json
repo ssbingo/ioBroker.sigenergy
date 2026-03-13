@@ -54,7 +54,6 @@
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package",
     "lint": "eslint .",
-    "test:package": "mocha test/package.js",
     "release": "release-script"
   },
   "bugs": {

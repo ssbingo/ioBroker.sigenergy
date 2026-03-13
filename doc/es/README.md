@@ -1,0 +1,194 @@
+# ioBroker Sigenergy Adaptador
+
+[![NPM version](https://img.shields.io/npm/v/iobroker.sigenergy.svg)](https://www.npmjs.com/package/iobroker.sigenergy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Adaptador para sistemas de energía solar Sigenergy a través de Modbus TCP/RTU**
+
+Compatible con el protocolo Sigenergy Modbus V2.5 (publicado el 2025-02-19).
+
+---
+
+## Funcionalidades
+
+- 📡 **Modbus TCP** (Ethernet / WLAN / fibra óptica / 4G) — puerto 502
+- 🔗 **Modbus RTU** (RS485 serie)
+- ⚡ **Soporte completo de registros** — todos los registros de instalación e inversor según la especificación V2.5
+- 🔋 **Estadísticas de batería** — tiempo hasta carga completa, tiempo restante, cobertura diaria
+- ☀️ **Estadísticas PV** — tasa de autoconsumo, tasa de autarquía
+- 🔌 **Cargador AC** (Sigen EVAC) — opcional
+- ⚡ **Cargador DC** — opcional
+- 📊 **Valores calculados** — estadísticas derivadas actualizadas en cada ciclo de sondeo
+- 🖥️ **Widgets VIS** — flujo de energía, estado de batería, paneles de estadísticas
+
+---
+
+## Hardware compatible
+
+| Categoría        | Modelos |
+|-----------------|---------|
+| **Inversor híbrido** | SigenStor EC SP/TP, Sigen Hybrid SP/TP/TPLV, Sigen PV M1-HYA, PG Controller |
+| **Inversor PV** | Sigen PV Max SP/TP, Sigen PV M1 |
+| **EVAC (AC)**   | Sigen EVAC 7/11/22 kW, PG EVAC |
+
+---
+
+## Direcciones Modbus predeterminadas
+
+| Dispositivo | Dirección |
+|------------|-----------|
+| Instalación (lectura/escritura) | **247** |
+| Difusión instalación (escritura, sin respuesta) | **0** |
+| Inversor | **1** |
+| Cargador AC (EVAC) | **2** |
+
+---
+
+## Instalación
+
+### A través de ioBroker Admin (recomendado)
+1. Abrir ioBroker Admin → Adaptadores
+2. Buscar «sigenergy»
+3. Instalar
+
+---
+
+## Configuración
+
+### Pestaña Conexión
+- **Tipo de conexión**: TCP (Ethernet) o Serie (RS485)
+- **Host TCP**: Dirección IP del inversor
+- **Puerto TCP**: 502 (predeterminado)
+- **ID Modbus instalación**: 247 (predeterminado)
+- **ID Modbus inversor**: 1 (predeterminado)
+
+### Pestaña Componentes
+Seleccionar los dispositivos instalados:
+- Batería / ESS
+- Paneles PV
+- Cargador AC (EVAC)
+- Cargador DC
+
+### Pestaña Estadísticas
+Elegir los valores estadísticos a calcular:
+- Tiempo hasta carga completa de la batería
+- Tiempo restante de la batería
+- Tiempo de carga diario
+- Tiempo de cobertura de la batería
+- Tasa de autoconsumo
+- Tasa de autarquía
+
+---
+
+## Objetos de datos
+
+### Instalación (`plant.*`)
+| Estado | Descripción | Unidad |
+|--------|-------------|--------|
+| `plant.gridActivePower` | Potencia red (>0 importación, <0 exportación) | kW |
+| `plant.pvPower` | Generación PV | kW |
+| `plant.essPower` | Potencia batería (<0 descarga) | kW |
+| `plant.essSoc` | Estado de carga de la batería | % |
+| `plant.activePower` | Potencia activa total instalación | kW |
+| `plant.runningState` | Estado instalación (0=Espera, 1=Activo...) | - |
+
+### Inversor (`inverter.*`)
+| Estado | Descripción | Unidad |
+|--------|-------------|--------|
+| `inverter.pvPower` | Potencia PV en el inversor | kW |
+| `inverter.essBatterySoc` | SOC batería | % |
+| `inverter.essBatterySoh` | SOH batería | % |
+| `inverter.essBatteryTemperature` | Temperatura batería | °C |
+| `inverter.phaseAVoltage` | Tensión fase A | V |
+| `inverter.gridFrequency` | Frecuencia de red | Hz |
+
+### Estadísticas (`statistics.*`)
+| Estado | Descripción | Unidad |
+|--------|-------------|--------|
+| `statistics.batteryTimeToFull` | Minutos hasta batería llena | min |
+| `statistics.batteryTimeRemaining` | Tiempo restante de batería | min |
+| `statistics.selfConsumptionRate` | Tasa de autoconsumo | % |
+| `statistics.autarkyRate` | Tasa de autarquía | % |
+| `statistics.housePower` | Consumo doméstico calculado | kW |
+
+---
+
+## Widgets VIS
+
+> **Nota:** Los 7 widgets son proporcionados por el adaptador separado [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy). Instálelo junto con este adaptador para usar los widgets en VIS-2.
+
+### Widget flujo de energía
+Muestra el flujo de energía animado entre PV → Batería ↔ Red → Casa.
+
+### Widget estado de batería
+Muestra la barra SOC, el distintivo SOH, el tiempo hasta carga/descarga completa, la potencia actual.
+
+### Widget resumen de potencia
+Lectura en tiempo real de los cuatro flujos de potencia.
+
+### Widget estadísticas
+Autarquía de hoy, autoconsumo, SOC mín/máx, tiempo de cobertura de batería.
+
+### Widget inversor
+Datos del inversor en tiempo real: potencia PV, frecuencia de red, tensiones de fase, temperatura.
+
+### Widget cargador AC (EVAC)
+Estado y mediciones de potencia de la estación de carga Sigen EVAC.
+
+### Widget cargador DC
+Estado y mediciones de potencia del cargador DC.
+
+---
+
+## Protocolo de comunicación
+
+- Modbus TCP: modo TCP, full duplex, puerto 502 (esclavo)
+- Modbus RTU: half duplex, 9600 bps, 8N1
+- Intervalo de sondeo mínimo: 1000 ms (1 segundo) según la especificación Sigenergy
+- Tiempo de espera: 1000 ms según la especificación Sigenergy
+
+---
+
+## Licencia
+
+Licencia MIT — Copyright (c) 2025 ioBroker Community
+
+---
+
+## Changelog
+### 1.3.0 (2026-03-13)
+* (ssbingo) Documentación multilingüe actualizada
+
+### 1.2.5 (2026-03-12)
+* (ssbingo) Correcciones
+
+### 1.2.4 (2026-03-12)
+* (ssbingo) Documentación multilingüe añadida a README.md
+
+### 1.2.3 (2026-03-12)
+* (ssbingo) Correcciones para AdapterCheck
+
+### 1.2.0 (2026-03-11)
+* (ssbingo) StatisticsCalculator actualizado: re-añadidas estimaciones de tiempo de batería, tiempo de carga diario y seguimiento de cobertura de batería
+
+### 1.1.7 (2026-03-11)
+* (ssbingo) Logging mejorado: mensajes debug/info/warn/error para conexión, ciclos de polling, lecturas de registros y parada del adaptador
+
+### 1.1.0 (2026-03-09)
+* (ssbingo) Interfaz de administración migrada de HTML legacy a jsonConfig (Admin 5+)
+
+### 0.1.0 (2026-03-01)
+* (ssbingo) Primera versión — soporte Modbus TCP/RTU para sistemas Sigenergy
+
+---
+
+## Documentación
+
+- 🇬🇧 [English documentation](../../README.md)
+- 🇩🇪 [Deutsche Dokumentation](../de/README.md)
+- 🇷🇺 [Документация на русском](../ru/README.md)
+- 🇳🇱 [Nederlandse documentatie](../nl/README.md)
+- 🇫🇷 [Documentation française](../fr/README.md)
+- 🇮🇹 [Documentazione italiana](../it/README.md)
+- 🇵🇱 [Dokumentacja polska](../pl/README.md)
+- 🇵🇹 [Documentação portuguesa](../pt/README.md)
