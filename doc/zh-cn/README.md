@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.15 (2026-03-13)
+* 修复 testConnection 中 setTimeout 的缩进
+
 ### 1.3.14 (2026-03-13)
 * 修复最后两个 lint 错误
 

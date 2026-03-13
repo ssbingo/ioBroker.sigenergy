@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.3.14",
+        "version": "1.3.15",
         "news": {
-            "1.3.14": {
-                "en": "Fix last two lint errors: collapse setTimeout, use bare catch",
-                "de": "Letzte zwei Lint-Fehler behoben: setTimeout komprimiert, catch ohne Binding",
-                "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u044b \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 \u0434\u0432\u0430 lint-\u043e\u0448\u0438\u0431\u043a\u0438",
-                "pt": "Corrigidos os dois \u00faltimos erros de lint",
-                "nl": "Laatste twee lint-fouten opgelost",
-                "fr": "Correction des deux derni\u00e8res erreurs de lint",
-                "it": "Corretti gli ultimi due errori lint",
-                "es": "Corregidos los dos \u00faltimos errores de lint",
-                "pl": "Naprawiono ostatnie dwa b\u0142\u0119dy lint",
-                "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u043e\u0441\u0442\u0430\u043d\u043d\u0456 \u0434\u0432\u0430 lint-\u043f\u043e\u043c\u0438\u043b\u043a\u0438",
-                "zh-cn": "\u4fee\u590d\u6700\u540e\u4e24\u4e2a lint \u9519\u8bef"
+            "1.3.15": {
+                "en": "Fix indentation of setTimeout in testConnection Promise",
+                "de": "Einr\u00fcckung von setTimeout in testConnection Promise korrigiert",
+                "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u043e\u0442\u0441\u0442\u0443\u043f setTimeout \u0432 Promise testConnection",
+                "pt": "Corrigida indenta\u00e7\u00e3o do setTimeout no Promise testConnection",
+                "nl": "Inspringing van setTimeout in testConnection Promise gecorrigeerd",
+                "fr": "Correction de l'indentation du setTimeout dans la Promise testConnection",
+                "it": "Corretta indentazione del setTimeout nella Promise testConnection",
+                "es": "Corregida indentaci\u00f3n del setTimeout en la Promise testConnection",
+                "pl": "Poprawiono wci\u0119cie setTimeout w Promise testConnection",
+                "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u0432\u0456\u0434\u0441\u0442\u0443\u043f setTimeout \u0443 Promise testConnection",
+                "zh-cn": "\u4fee\u590d testConnection Promise \u4e2d setTimeout \u7684\u7f29\u8fdb"
             }
         },
         "titleLang": {

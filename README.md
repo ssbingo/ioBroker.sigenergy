@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.15 (2026-03-13)
+* Fix indentation of setTimeout in testConnection Promise
+
 ### 1.3.14 (2026-03-13)
 * Fix last two lint errors: collapse setTimeout in testConnection, use bare catch in _getSerialPorts
 

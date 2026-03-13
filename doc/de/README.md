@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.15 (2026-03-13)
+* Einrückung von setTimeout in testConnection korrigiert
+
 ### 1.3.14 (2026-03-13)
 * Letzte zwei Lint-Fehler behoben
 
