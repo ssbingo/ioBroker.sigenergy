@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "news": {
-      "1.3.3": {
-        "en": "Fix duplicate @param JSDoc warning caused by missing closing tag in modbus.js",
-        "de": "Doppelten @param JSDoc-Hinweis durch fehlendes schließendes Tag in modbus.js behoben",
-        "ru": "Исправлено дублирующее предупреждение @param JSDoc из-за отсутствующего закрывающего тега в modbus.js",
-        "pt": "Corrigido aviso JSDoc @param duplicado causado por tag de fechamento ausente em modbus.js",
-        "nl": "Dubbele @param JSDoc-waarschuwing verholpen door ontbrekend sluitend label in modbus.js",
-        "fr": "Correction de l'avertissement JSDoc @param en double causé par une balise fermante manquante dans modbus.js",
-        "it": "Corretto avviso JSDoc @param duplicato causato da tag di chiusura mancante in modbus.js",
-        "es": "Corregida advertencia JSDoc @param duplicada causada por etiqueta de cierre faltante en modbus.js",
-        "pl": "Poprawiono zduplikowane ostrzeżenie JSDoc @param spowodowane brakującym tagiem zamykającym w modbus.js",
-        "uk": "Виправлено дубльоване попередження JSDoc @param через відсутній закриваючий тег у modbus.js",
-        "zh-cn": "修复modbus.js中因缺少闭合标签导致的重复@param JSDoc警告"
+      "1.3.4": {
+        "en": "Fix CI: add mocha to devDependencies so test:package script can run",
+        "de": "CI-Fix: mocha zu devDependencies hinzugefügt, damit das test:package-Skript ausgeführt werden kann",
+        "ru": "Исправление CI: добавлен mocha в devDependencies для работы скрипта test:package",
+        "pt": "Correção CI: mocha adicionado às devDependencies para que o script test:package possa ser executado",
+        "nl": "CI-fix: mocha toegevoegd aan devDependencies zodat het test:package-script kan worden uitgevoerd",
+        "fr": "Correction CI : mocha ajouté aux devDependencies pour permettre l'exécution du script test:package",
+        "it": "Fix CI: mocha aggiunto alle devDependencies per consentire l'esecuzione dello script test:package",
+        "es": "Fix CI: mocha añadido a devDependencies para que el script test:package pueda ejecutarse",
+        "pl": "Poprawka CI: dodano mocha do devDependencies, aby skrypt test:package mógł działać",
+        "uk": "Виправлення CI: додано mocha до devDependencies для запуску скрипта test:package",
+        "zh-cn": "CI修复：将mocha添加到devDependencies以便test:package脚本可以运行"
       }
     },
     "titleLang": {

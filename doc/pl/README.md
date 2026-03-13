@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.3.4 (2026-03-13)
+* (ssbingo) Poprawka CI: dodano mocha do devDependencies, aby skrypt test:package mógł działać
+
 ### 1.3.3 (2026-03-13)
 * (ssbingo) Poprawiono zduplikowane ostrzeżenie JSDoc @param spowodowane brakującym tagiem zamykającym w modbus.js
 
