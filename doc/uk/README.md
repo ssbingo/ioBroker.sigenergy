@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.3.18 (2026-03-14)
+* Оновлено eslint 10.0.3, @eslint/js 10.0.1, serialport 13.0.0
+
 ### 1.3.17 (2026-03-13)
 * Mocha видалено з devDependencies
 

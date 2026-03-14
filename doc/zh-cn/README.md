@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.3.18 (2026-03-14)
+* 升级 eslint 10.0.3、@eslint/js 10.0.1、serialport 13.0.0
+
 ### 1.3.17 (2026-03-13)
 * 从 devDependencies 中删除 mocha
 
