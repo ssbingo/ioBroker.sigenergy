@@ -156,9 +156,12 @@
 ---
 
 ## Changelog
+<<<<<<< HEAD
 ### 1.3.19 (2026-03-14)
 * Відкат eslint/@eslint/js до 9.x; serialport оновлено до 13.0.0
 
+=======
+>>>>>>> 7386bdc0143b77f883d57ad177396d7b0e757bdc
 ### 1.3.18 (2026-03-14)
 * Оновлено eslint 10.0.3, @eslint/js 10.0.1, serialport 13.0.0
 
