@@ -156,12 +156,12 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
-<<<<<<< HEAD
+### 1.4.0 (2026-03-14)
+* Korrekturen / Bereinigung
+
 ### 1.3.19 (2026-03-14)
 * eslint/@eslint/js auf 9.x zurückgesetzt; serialport auf 13.0.0 aktualisiert
 
-=======
->>>>>>> 7386bdc0143b77f883d57ad177396d7b0e757bdc
 ### 1.3.18 (2026-03-14)
 * eslint 10.0.3, @eslint/js 10.0.1, serialport 13.0.0 aktualisiert
 

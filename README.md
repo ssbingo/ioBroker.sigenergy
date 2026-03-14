@@ -156,12 +156,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
-<<<<<<< HEAD
+### 1.4.0 (2026-03-14)
+* Fixes / Cleaning
+
 ### 1.3.19 (2026-03-14)
 * Revert eslint/@eslint/js to 9.x (peer conflict with @iobroker/eslint-config@2.2.0); bump serialport to 13.0.0
 
-=======
->>>>>>> 7386bdc0143b77f883d57ad177396d7b0e757bdc
 ### 1.3.18 (2026-03-14)
 * Bump eslint to 10.0.3, @eslint/js to 10.0.1, serialport to 13.0.0
 
