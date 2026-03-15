@@ -3,15 +3,22 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: "0 5 3 * *"
+      interval: "weekly"
+      day: "sunday"
+      time: "00:05"
+      timezone: Europe/Berlin
     open-pull-requests-limit: 15
     assignees:
       - ssbingo
     versioning-strategy: increase
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "0 5 3 * *"
+      interval: "weekly"
+      day: "sunday"
+      time: "00:05"
+      timezone: Europe/Berlin
     open-pull-requests-limit: 15
     assignees:
       - ssbingo
