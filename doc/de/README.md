@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.3 (2026-03-16)
+* Scan-Fortschritt: alle CSS-Variablen-abhaengigen Elemente durch eine immer sichtbare Log-Box mit hartcodierten Farben ersetzt; jeder Chunk-Callback aktualisiert Text sofort
+
 ### 1.6.2 (2026-03-16)
 * Scan: bewaehrten Chunked-sendTo-Ansatz wiederhergestellt (3 IDs pro Aufruf); duale Fortschrittsanzeige: direktes Text-Update pro Chunk + getState-Polling aus info.scanProgress
 

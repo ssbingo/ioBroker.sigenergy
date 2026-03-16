@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.6.2",
+        "version": "1.6.3",
         "news": {
+            "1.6.3": {
+                "en": "Fix scan progress display: replace all CSS-variable-dependent elements with a single always-visible log box using hardcoded colors; each chunk callback updates text immediately",
+                "de": "Scan-Fortschritt: alle CSS-Variablen-abhaengigen Elemente durch eine immer sichtbare Log-Box mit hartcodierten Farben ersetzt; jeder Chunk-Callback aktualisiert Text sofort",
+                "ru": "Прогресс сканирования: все элементы с CSS-переменными заменены постоянно видимым логом с жёсткими цветами",
+                "pt": "Progresso scan: todos elementos dependentes de CSS-vars substituidos por caixa de log sempre visivel com cores fixas",
+                "nl": "Scan voortgang: alle CSS-var-afhankelijke elementen vervangen door altijd zichtbare logbox met vaste kleuren",
+                "fr": "Progression scan: tous les elements CSS-var remplacés par une boite de log toujours visible avec couleurs fixes",
+                "it": "Avanzamento scan: tutti gli elementi CSS-var sostituiti da una log box sempre visibile con colori fissi",
+                "es": "Progreso scan: todos los elementos CSS-var reemplazados por caja de log siempre visible con colores fijos",
+                "pl": "Postep skanowania: wszystkie elementy CSS-var zastapione zawsze widoczna skrzynka logu ze stalymi kolorami",
+                "uk": "Прогрес сканування: усi CSS-var елементи замiнено постiйно видимим лог-боксом з фiксованими кольорами",
+                "zh-cn": "修复扫描进度显示：将所有CSS变量依赖元素替换为使用硬编码颜色的始终可见日志框"
+            },
             "1.6.2": {
                 "en": "Fix scan: restore proven chunked sendTo approach (3 IDs per call); add dual progress display: direct text update per chunk + getState polling from info.scanProgress state",
                 "de": "Scan: bewaehrten Chunked-sendTo-Ansatz wiederhergestellt (3 IDs pro Aufruf); duale Fortschrittsanzeige: direktes Text-Update pro Chunk + getState-Polling aus info.scanProgress",

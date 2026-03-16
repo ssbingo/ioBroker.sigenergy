@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.3 (2026-03-16)
+* Fix scan progress display: replace all CSS-variable-dependent elements with a single always-visible log box using hardcoded colors; each chunk callback updates text immediately
+
 ### 1.6.2 (2026-03-16)
 * Fix scan: restore proven chunked sendTo approach (3 IDs per call); add dual progress display: direct text update per chunk + getState polling from info.scanProgress state
 

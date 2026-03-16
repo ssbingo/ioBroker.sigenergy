@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.3 (2026-03-16)
+* Progreso scan: todos los elementos CSS-var reemplazados por caja de log siempre visible con colores fijos
+
 ### 1.6.2 (2026-03-16)
 * Scan: chunked sendTo (3 IDs por llamada) restaurado; progreso doble: texto por chunk + getState de info.scanProgress
 

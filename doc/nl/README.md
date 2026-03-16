@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.3 (2026-03-16)
+* Scan voortgang: alle CSS-var-afhankelijke elementen vervangen door altijd zichtbare logbox met vaste kleuren
+
 ### 1.6.2 (2026-03-16)
 * Scan: bewezen chunked sendTo hersteld (3 IDs per aanroep); dubbele voortgang: tekst per chunk + getState van info.scanProgress
 
