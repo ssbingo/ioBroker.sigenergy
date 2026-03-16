@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.3",
+        "version": "1.7.4",
         "news": {
+            "1.7.4": {
+                "en": "Fix translations: replace i18n:true file-based lookup with inline multilingual label objects in jsonConfig.json and sigenmicro-tab.json; guaranteed to work in all Admin 7 contexts",
+                "de": "Übersetzungen repariert: i18n:true dateibasierte Suche durch inline-mehrsprachige Label-Objekte in jsonConfig.json und sigenmicro-tab.json ersetzt; funktioniert in allen Admin-7-Kontexten",
+                "ru": "Исправлены переводы: i18n:true заменён встроенными многоязычными объектами label в jsonConfig.json и sigenmicro-tab.json",
+                "pt": "Traduções corrigidas: i18n:true substituído por objetos label multilíngues inline em jsonConfig.json e sigenmicro-tab.json",
+                "nl": "Vertalingen gecorrigeerd: i18n:true vervangen door inline meertalige label-objecten in jsonConfig.json en sigenmicro-tab.json",
+                "fr": "Traductions corrigées: i18n:true remplacé par des objets label multilingues inline dans jsonConfig.json et sigenmicro-tab.json",
+                "it": "Traduzioni corrette: i18n:true sostituito da oggetti label multilingui inline in jsonConfig.json e sigenmicro-tab.json",
+                "es": "Traducciones corregidas: i18n:true reemplazado por objetos label multilingüe inline en jsonConfig.json y sigenmicro-tab.json",
+                "pl": "Poprawiono tłumaczenia: i18n:true zastąpiony obiektami label wielojęzycznymi inline w jsonConfig.json i sigenmicro-tab.json",
+                "uk": "Виправлено переклади: i18n:true замiнено вбудованими багатомовними об'єктами label у jsonConfig.json та sigenmicro-tab.json",
+                "zh-cn": "修复翻译：将jsonConfig.json和sigenmicro-tab.json中的i18n:true文件查找替换为内联多语言label对象"
+            },
             "1.7.3": {
                 "en": "Fix i18n in sigenmicro-tab.json: change type from panel to tabs so that i18n:true is respected by Admin 7; panel type ignores i18n, only tabs type activates translation lookup",
                 "de": "i18n in sigenmicro-tab.json repariert: Typ von panel auf tabs geändert, damit Admin 7 i18n:true berücksichtigt; panel-Typ ignoriert i18n, nur tabs-Typ aktiviert die Übersetzungsauflösung",

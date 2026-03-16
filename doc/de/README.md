@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.4 (2026-03-16)
+* Übersetzungen repariert: i18n:true dateibasierte Suche durch inline-mehrsprachige Label-Objekte in jsonConfig.json und sigenmicro-tab.json ersetzt; funktioniert in allen Admin-7-Kontexten
+
 ### 1.7.3 (2026-03-16)
 * i18n in sigenmicro-tab.json repariert: Typ von panel auf tabs geändert, damit Admin 7 i18n:true berücksichtigt; panel-Typ ignoriert i18n, nur tabs-Typ aktiviert die Übersetzungsauflösung
 

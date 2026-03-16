@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.4 (2026-03-16)
+* Traduzioni corrette: i18n:true sostituito da oggetti label multilingui inline in jsonConfig.json e sigenmicro-tab.json
+
 ### 1.7.3 (2026-03-16)
 * i18n in sigenmicro-tab.json corretta: tipo cambiato da panel a tabs affinché Admin 7 rispetti i18n:true
 

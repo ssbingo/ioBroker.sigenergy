@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.4 (2026-03-16)
+* Fix translations: replace i18n:true file-based lookup with inline multilingual label objects in jsonConfig.json and sigenmicro-tab.json; guaranteed to work in all Admin 7 contexts
+
 ### 1.7.3 (2026-03-16)
 * Fix i18n in sigenmicro-tab.json: change type from panel to tabs so that i18n:true is respected by Admin 7; panel type ignores i18n, only tabs type activates translation lookup
 

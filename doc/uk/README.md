@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.7.4 (2026-03-16)
+* Виправлено переклади: i18n:true замiнено вбудованими багатомовними об'єктами label у jsonConfig.json та sigenmicro-tab.json
+
 ### 1.7.3 (2026-03-16)
 * Виправлено i18n в sigenmicro-tab.json: тип змiнено з panel на tabs, щоб Admin 7 враховував i18n:true
 
