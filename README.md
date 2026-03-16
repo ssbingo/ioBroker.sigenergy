@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* Fix SigenMicro scan tab: progress bar now visible; reserved IDs (Plant/Inverter/Charger) shown and auto-skipped; "no devices found" message always displayed
+
 ### 1.5.1 (2026-03-16)
 * Add SigenMicro scan button directly in the jsonConfig admin tab; scan auto-saves discovered devices and shows a result summary
 

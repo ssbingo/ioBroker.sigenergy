@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* Karta SigenMicro: pasek postępu widoczny; zarezerwowane ID wyświetlane i pomijane; komunikat gdy brak znalezionych urządzeń
+
 ### 1.5.1 (2026-03-16)
 * Przycisk skanowania SigenMicro dodany bezpośrednio do zakładki jsonConfig; znalezione urządzenia są zapisywane automatycznie
 

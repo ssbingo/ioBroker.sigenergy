@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* Onglet SigenMicro: barre de progression visible; IDs réservés affichés et ignorés; message affiché quand aucun dispositif trouvé
+
 ### 1.5.1 (2026-03-16)
 * Bouton de scan SigenMicro ajouté directement dans l'onglet jsonConfig; les appareils trouvés sont enregistrés automatiquement
 

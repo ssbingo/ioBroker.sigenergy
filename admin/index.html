@@ -484,6 +484,7 @@
             border: 1px solid var(--border);
             border-radius: 10px;
         }
+        .scan-progress-panel.visible { display: flex !important; }
         .scan-progress-header {
             display: flex;
             justify-content: space-between;
@@ -536,9 +537,34 @@
             align-items: center;
             gap: 10px;
         }
-        .scan-result-msg.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: flex; }
-        .scan-result-msg.error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: flex; }
-        .scan-result-msg.info    { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; display: flex; }
+        .scan-result-msg.visible         { display: flex !important; }
+        .scan-result-msg.success         { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .scan-result-msg.error           { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .scan-result-msg.info            { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+        /* Reserved-ID badge strip */
+        .reserved-ids-note {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+        .reserved-id-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffc107;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
 
         /* Device table */
         .device-table-wrap { margin-top: 16px; overflow-x: auto; }
@@ -921,15 +947,21 @@
             Slave IDs already occupied by Plant, Inverter, or Charger are skipped automatically.
         </p>
 
-        <div class="form-row" style="max-width: 400px; margin-bottom: 24px;">
+        <div class="form-row" style="max-width: 400px; margin-bottom: 8px;">
             <div class="form-group">
                 <label>First Modbus ID</label>
-                <input type="number" id="sigenMicroScanFrom" class="value" min="1" max="246" value="10">
+                <input type="number" id="sigenMicroScanFrom" class="value" min="1" max="246" value="10"
+                       oninput="updateReservedIdsNote()">
             </div>
             <div class="form-group">
                 <label>Last Modbus ID</label>
-                <input type="number" id="sigenMicroScanTo" class="value" min="1" max="246" value="30">
+                <input type="number" id="sigenMicroScanTo" class="value" min="1" max="246" value="30"
+                       oninput="updateReservedIdsNote()">
             </div>
+        </div>
+
+        <!-- Reserved-ID info — populated by updateReservedIdsNote() -->
+        <div class="reserved-ids-note" id="reservedIdsNote" style="margin-bottom: 20px;">
         </div>
 
         <!-- Prominent scan button -->
@@ -1148,6 +1180,56 @@ var _microDevices = []; // current device list in UI
 
 var _scanAborted = false;
 
+/* Returns the Set of Modbus IDs already occupied by Plant/Inverter/Chargers */
+function _getReservedIds() {
+    var ids = new Set();
+    ids.add(parseInt($('#plantId').val(), 10) || 247);
+    ids.add(parseInt($('#inverterId').val(), 10) || 1);
+    if ($('#hasAcCharger').prop('checked')) {
+        ids.add(parseInt($('#acChargerId').val(), 10) || 2);
+    }
+    if ($('#hasDcCharger').prop('checked')) {
+        ids.add(parseInt($('#dcChargerId').val(), 10) || 3);
+    }
+    return ids;
+}
+
+/* Renders the "Reserved IDs" info strip below the range inputs */
+function updateReservedIdsNote() {
+    var reserved = _getReservedIds();
+    var from = parseInt($('#sigenMicroScanFrom').val(), 10) || 0;
+    var to   = parseInt($('#sigenMicroScanTo').val(),   10) || 0;
+
+    // Which reserved IDs fall inside the scan range?
+    var inside = [];
+    reserved.forEach(function(id) {
+        if (id >= from && id <= to) inside.push(id);
+    });
+    inside.sort(function(a,b){ return a - b; });
+
+    var $note = $('#reservedIdsNote');
+    if (reserved.size === 0) { $note.empty(); return; }
+
+    var badges = Array.from(reserved).sort(function(a,b){return a-b;}).map(function(id) {
+        var inRange = inside.indexOf(id) !== -1;
+        var label = id === (parseInt($('#plantId').val(),10)||247) ? 'Plant' :
+                    id === (parseInt($('#inverterId').val(),10)||1)  ? 'Inverter' :
+                    ($('#hasAcCharger').prop('checked') && id === (parseInt($('#acChargerId').val(),10)||2)) ? 'AC Charger' :
+                    ($('#hasDcCharger').prop('checked') && id === (parseInt($('#dcChargerId').val(),10)||3)) ? 'DC Charger' :
+                    'Reserved';
+        var style = inRange
+            ? 'background:#fff3cd;color:#856404;border:1px solid #ffc107;'
+            : 'background:#e9ecef;color:#6c757d;border:1px solid #ced4da;';
+        return '<span class="reserved-id-badge" style="' + style + '">⚠ ID ' + id + ' (' + label + ')</span>';
+    }).join('');
+
+    var warn = inside.length > 0
+        ? ' — <strong>' + inside.length + ' reserved ID' + (inside.length>1?'s':'') + ' in range will be skipped automatically</strong>'
+        : ' — none overlap with selected range';
+
+    $note.html('<span>Reserved IDs:</span> ' + badges + '<span style="margin-left:4px;">' + warn + '</span>');
+}
+
 function startSigenMicroScan() {
     var from = parseInt($('#sigenMicroScanFrom').val(), 10) || 10;
     var to   = parseInt($('#sigenMicroScanTo').val(),   10) || 30;
@@ -1157,25 +1239,32 @@ function startSigenMicroScan() {
         return;
     }
 
-    var CHUNK_SIZE  = 5;                        // IDs per request
-    var totalIds    = to - from + 1;
-    var allFound    = [];
-    var scannedIds  = 0;
-    _scanAborted    = false;
+    var reserved  = _getReservedIds();
+    var CHUNK_SIZE = 5;
+    var totalIds   = to - from + 1;
+    var allFound   = [];
+    var scannedIds = 0;
+    _scanAborted   = false;
 
     // UI: scanning state
     var $btn = $('#btnScan');
     $btn.prop('disabled', true).addClass('scanning');
     $btn.find('.scan-btn-text').text('Scanning…');
     $('#btnSaveMicro').prop('disabled', true);
-    $('#scanResultMsg').hide();
+
+    // Hide result message cleanly (remove class AND inline style)
+    $('#scanResultMsg').removeClass('visible success error info').removeAttr('style');
     $('#scanStatusText').text('');
     $('#scanFoundLive').text('0');
+
+    // Show progress panel via class (avoids jQuery inline-style conflicts)
     $('#scanProgressBar').css('width', '0%');
     $('#scanProgressPct').text('0%');
-    $('#scanProgressPanel').css('display', 'flex');
+    $('#scanProgressPanel').addClass('visible');
     $('#scanProgressLabel').text('Scanning IDs ' + from + '–' + to + ' …');
-    $('#scanProgressDetail').text('Connecting to Modbus …');
+
+    var skipList = Array.from(reserved).sort(function(a,b){return a-b;}).join(', ');
+    $('#scanProgressDetail').text(skipList ? 'Skipping reserved IDs: ' + skipList : 'Connecting to Modbus…');
 
     // Build chunk list
     var chunks = [];
@@ -1200,13 +1289,13 @@ function startSigenMicroScan() {
             }
 
             scannedIds += (chunk.to - chunk.from + 1);
-            var pct = Math.round((scannedIds / totalIds) * 100);
+            var pct = Math.min(99, Math.round((scannedIds / totalIds) * 100));
             $('#scanProgressBar').css('width', pct + '%');
             $('#scanProgressPct').text(pct + '%');
-            $('#scanProgressLabel').text('Scanning … (' + scannedIds + ' / ' + totalIds + ' IDs)');
+            $('#scanProgressLabel').text('Scanning … (' + scannedIds + ' / ' + totalIds + ' IDs done)');
 
-            // Brief pause so the UI can repaint, then continue
-            setTimeout(function() { processChunk(idx + 1); }, 80);
+            // Yield to browser paint, then continue
+            setTimeout(function() { processChunk(idx + 1); }, 60);
         });
     }
 
@@ -1219,8 +1308,8 @@ function _scanDone(found, success) {
     $btn.find('.scan-btn-text').text('Start Scan');
 
     if (!success) {
-        $('#scanProgressPanel').css('display', 'none');
-        _showScanMsg('error', '❌ Scan aborted or failed. Check adapter log for details.');
+        $('#scanProgressPanel').removeClass('visible');
+        _showScanMsg('error', '❌ Scan aborted or failed. Check the adapter log for details.');
         return;
     }
 
@@ -1234,16 +1323,17 @@ function _scanDone(found, success) {
     $('#scanProgressBar').css('width', '100%');
     $('#scanProgressPct').text('100%');
     $('#scanProgressLabel').text('Scan complete');
-    $('#scanProgressDetail').text('All IDs scanned successfully.');
+    $('#scanProgressDetail').text('All IDs probed successfully.');
 
     _microDevices = found;
     _renderDeviceTable(_microDevices);
 
     var n = found.length;
-    var msg = n > 0
-        ? '✅ Scan complete — ' + n + ' SigenMicro device' + (n !== 1 ? 's' : '') + ' found.'
-        : '🔍 Scan complete — no SigenMicro devices found in the scanned range.';
-    _showScanMsg(n > 0 ? 'success' : 'info', msg);
+    if (n > 0) {
+        _showScanMsg('success', '✅ Scan complete — ' + n + ' SigenMicro device' + (n !== 1 ? 's' : '') + ' found. Enable the devices you want to poll, then click <strong>Save selection</strong>.');
+    } else {
+        _showScanMsg('info', '🔍 Scan complete — no SigenMicro devices were found in the scanned range (IDs ' + $('#sigenMicroScanFrom').val() + '–' + $('#sigenMicroScanTo').val() + '). Verify the ID range and that Modbus is reachable.');
+    }
     $('#btnSaveMicro').prop('disabled', n === 0);
     $('#deviceCountBadge').text(n + ' device' + (n !== 1 ? 's' : '') + ' found');
 }
@@ -1310,9 +1400,11 @@ function saveSigenMicroDevices() {
 
 function _showScanMsg(type, html) {
     var $el = $('#scanResultMsg');
-    $el.removeClass('success error info').addClass(type).html(html);
-    // display:flex set via CSS class; plain show() overrides that with display:block
-    $el[0].style.display = 'flex';
+    // Remove any inline style set by prior .hide() calls, then toggle via classes only
+    $el.removeAttr('style')
+       .removeClass('visible success error info')
+       .addClass('visible ' + type)
+       .html(html);
 }
 
 function _esc(s) {
@@ -1371,6 +1463,7 @@ function load(settings, onChange) {
     ['hasBattery','hasPv','hasAcCharger','hasDcCharger','hasSigenMicro'].forEach(updateToggleStyle);
     toggleAcCharger();
     toggleSigenMicroTab();
+    updateReservedIdsNote();
 
     // Restore known device list from config so it shows without re-scanning
     try {

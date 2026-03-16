@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* Tab SigenMicro: barra di avanzamento visibile; ID riservati mostrati e saltati; messaggio se nessun dispositivo trovato
+
 ### 1.5.1 (2026-03-16)
 * Pulsante di scansione SigenMicro aggiunto direttamente nella scheda jsonConfig; i dispositivi trovati vengono salvati automaticamente
 

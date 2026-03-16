@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.1",
+        "version": "1.5.2",
         "news": {
+            "1.5.2": {
+                "en": "Fix SigenMicro scan tab: progress bar now visible; reserved IDs (Plant/Inverter/Charger) shown and auto-skipped; \"no devices found\" message always displayed",
+                "de": "SigenMicro Scan-Tab: Fortschrittsbalken sichtbar; reservierte IDs (Anlage/WR/Lader) werden angezeigt und automatisch übersprungen; Meldung bei keinen gefundenen Geräten",
+                "ru": "Вкладка SigenMicro: исправлен прогресс-бар; зарезервированные ID отображаются и пропускаются; добавлено сообщение при отсутствии устройств",
+                "pt": "Aba SigenMicro: barra de progresso corrigida; IDs reservados exibidos e ignorados; mensagem exibida quando nenhum dispositivo é encontrado",
+                "nl": "SigenMicro tab: voortgangsbalk zichtbaar; gereserveerde IDs worden getoond en overgeslagen; melding als geen apparaten gevonden",
+                "fr": "Onglet SigenMicro: barre de progression visible; IDs réservés affichés et ignorés; message affiché quand aucun dispositif trouvé",
+                "it": "Tab SigenMicro: barra di avanzamento visibile; ID riservati mostrati e saltati; messaggio se nessun dispositivo trovato",
+                "es": "Pestaña SigenMicro: barra de progreso visible; IDs reservados mostrados y omitidos; mensaje cuando no se encuentran dispositivos",
+                "pl": "Karta SigenMicro: pasek postępu widoczny; zarezerwowane ID wyświetlane i pomijane; komunikat gdy brak znalezionych urządzeń",
+                "uk": "Вкладка SigenMicro: прогрес-бар виправлено; зарезервовані ID відображаються і пропускаються; повідомлення при відсутності пристроїв",
+                "zh-cn": "SigenMicro标签页修复：进度条现在可见；保留ID（电站/逆变器/充电器）显示并自动跳过；未找到设备时显示提示信息"
+            },
             "1.5.1": {
                 "en": "Add SigenMicro scan button directly in the jsonConfig admin tab; scan auto-saves discovered devices and shows a result summary",
                 "de": "Scan-Button direkt im Admin-Tab (jsonConfig) ergänzt; Scan speichert gefundene Geräte automatisch und zeigt eine Ergebniszusammenfassung",

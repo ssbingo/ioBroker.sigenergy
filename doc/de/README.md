@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* SigenMicro Scan-Tab: Fortschrittsbalken sichtbar; reservierte IDs (Anlage/WR/Lader) werden angezeigt und automatisch übersprungen; Meldung bei keinen gefundenen Geräten
+
 ### 1.5.1 (2026-03-16)
 * Scan-Button direkt im Admin-Tab (jsonConfig) ergänzt; Scan speichert gefundene Geräte automatisch und zeigt eine Ergebniszusammenfassung
 

@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.2 (2026-03-16)
+* SigenMicro tab: voortgangsbalk zichtbaar; gereserveerde IDs worden getoond en overgeslagen; melding als geen apparaten gevonden
+
 ### 1.5.1 (2026-03-16)
 * Scan-knop voor SigenMicro direct toegevoegd aan de jsonConfig-tab; gevonden apparaten worden automatisch opgeslagen
 
