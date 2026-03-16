@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.0 (2026-03-16)
+* iframe HTML zastapiony natywna karta jsonConfig; type:state pokazuje postep w czasie rzeczywistym bez JS
+
 ### 1.6.3 (2026-03-16)
 * Postep skanowania: wszystkie elementy CSS-var zastapione zawsze widoczna skrzynka logu ze stalymi kolorami
 

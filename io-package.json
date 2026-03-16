@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.6.3",
+        "version": "1.7.0",
         "news": {
+            "1.7.0": {
+                "en": "Replace HTML adminTab iframe with native jsonConfig tab (sigenmicro-tab.json); use type:state to show live scan progress (info.scanProgress state) directly in admin 7 React UI without any custom JavaScript",
+                "de": "HTML-adminTab-iframe durch nativen jsonConfig-Tab ersetzt (sigenmicro-tab.json); type:state zeigt live Scan-Fortschritt (info.scanProgress) direkt in Admin-7-React-UI ohne eigenes JavaScript",
+                "ru": "HTML-iframe заменён нативным jsonConfig-вкладкой; type:state показывает прогресс сканирования (info.scanProgress) в реальном времени",
+                "pt": "iframe HTML substituido por aba jsonConfig nativa; type:state mostra progresso em tempo real sem JavaScript",
+                "nl": "HTML-iframe vervangen door native jsonConfig-tab; type:state toont live scanvoortgang zonder custom JS",
+                "fr": "iframe HTML remplace par onglet jsonConfig natif; type:state montre la progression en temps reel sans JS",
+                "it": "iframe HTML sostituito da tab jsonConfig nativo; type:state mostra avanzamento in tempo reale senza JS",
+                "es": "iframe HTML reemplazado por pestaña jsonConfig nativa; type:state muestra progreso en tiempo real sin JS",
+                "pl": "iframe HTML zastapiony natywna karta jsonConfig; type:state pokazuje postep w czasie rzeczywistym bez JS",
+                "uk": "HTML-iframe замiнено нативною jsonConfig-вкладкою; type:state показує прогрес в реальному часi без JS",
+                "zh-cn": "将HTML adminTab iframe替换为原生jsonConfig标签页；type:state直接在Admin 7 React UI中显示实时扫描进度"
+            },
             "1.6.3": {
                 "en": "Fix scan progress display: replace all CSS-variable-dependent elements with a single always-visible log box using hardcoded colors; each chunk callback updates text immediately",
                 "de": "Scan-Fortschritt: alle CSS-Variablen-abhaengigen Elemente durch eine immer sichtbare Log-Box mit hartcodierten Farben ersetzt; jeder Chunk-Callback aktualisiert Text sofort",
@@ -226,10 +239,10 @@
         "adminTab": {
             "singleton": true,
             "name": {
-                "en": "Sigenergy",
-                "de": "Sigenergy"
+                "en": "SigenMicro",
+                "de": "SigenMicro"
             },
-            "link": "%web_protocol%://%ip%:%web_port%/adapter/sigenergy/index.html"
+            "link": "sigenmicro-tab.json"
         },
         "supportCustoms": false,
         "schedule": "",

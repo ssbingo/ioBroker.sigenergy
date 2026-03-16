@@ -427,6 +427,43 @@
           "md": 6,
           "lg": 5,
           "xl": 4
+        },
+        "_divider_progress": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_progressLabel": {
+          "type": "staticText",
+          "text": "Live scan progress (updates while scan is running):",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_scanProgress": {
+          "type": "state",
+          "label": "Progress",
+          "oid": "info.scanProgress",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_scanStatus": {
+          "type": "state",
+          "label": "Status",
+          "oid": "info.scanStatus",
+          "sm": 12,
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         }
       }
     },

@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.0 (2026-03-16)
+* Replace HTML adminTab iframe with native jsonConfig tab (sigenmicro-tab.json); use type:state to show live scan progress (info.scanProgress state) directly in admin 7 React UI without any custom JavaScript
+
 ### 1.6.3 (2026-03-16)
 * Fix scan progress display: replace all CSS-variable-dependent elements with a single always-visible log box using hardcoded colors; each chunk callback updates text immediately
 

@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.0 (2026-03-16)
+* 将HTML adminTab iframe替换为原生jsonConfig标签页；type:state直接在Admin 7 React UI中显示实时扫描进度
+
 ### 1.6.3 (2026-03-16)
 * 修复扫描进度显示：将所有CSS变量依赖元素替换为使用硬编码颜色的始终可见日志框
 

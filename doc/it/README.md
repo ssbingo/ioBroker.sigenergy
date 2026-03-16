@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.0 (2026-03-16)
+* iframe HTML sostituito da tab jsonConfig nativo; type:state mostra avanzamento in tempo reale senza JS
+
 ### 1.6.3 (2026-03-16)
 * Avanzamento scan: tutti gli elementi CSS-var sostituiti da una log box sempre visibile con colori fissi
 

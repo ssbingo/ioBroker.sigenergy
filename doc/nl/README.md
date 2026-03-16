@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.0 (2026-03-16)
+* HTML-iframe vervangen door native jsonConfig-tab; type:state toont live scanvoortgang zonder custom JS
+
 ### 1.6.3 (2026-03-16)
 * Scan voortgang: alle CSS-var-afhankelijke elementen vervangen door altijd zichtbare logbox met vaste kleuren
 
