@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.5 (2026-03-16)
+* Correzione scan SigenMicro: riutilizzo connessione Modbus; pausa polling; avvio doppio corretto
+
 ### 1.5.4 (2026-03-16)
 * Avanzamento SigenMicro: classi CSS sostituite da element.style.display; timeout sonda 1000ms; dimensione chunk 3
 

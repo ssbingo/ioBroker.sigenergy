@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.4",
+        "version": "1.5.5",
         "news": {
+            "1.5.5": {
+                "en": "Fix SigenMicro scan (root causes): reuse existing Modbus connection instead of opening a second TCP socket (device allows only one); pause polling during scan; fix duplicate scan start",
+                "de": "SigenMicro Scan Grundursachen behoben: bestehende Modbus-Verbindung wiederverwenden statt zweite TCP-Verbindung (Geraet erlaubt nur eine); Polling pausieren; doppelten Scan-Start behoben",
+                "ru": "Исправление сканирования SigenMicro: повторное использование соединения Modbus вместо второго TCP; пауза опроса во время сканирования; исправлен двойной запуск",
+                "pt": "Correcao do scan SigenMicro: reutilizar conexao Modbus existente; pausar polling; corrigido inicio duplicado",
+                "nl": "SigenMicro scan hersteld: bestaande Modbus-verbinding hergebruiken; polling pauzeren; dubbele scanstart gecorrigeerd",
+                "fr": "Correction scan SigenMicro: reutiliser la connexion Modbus existante; pause du polling; demarrage double corrige",
+                "it": "Correzione scan SigenMicro: riutilizzo connessione Modbus; pausa polling; avvio doppio corretto",
+                "es": "Correcion scan SigenMicro: reutilizar conexion Modbus existente; pausar polling; inicio duplicado corregido",
+                "pl": "Naprawa skanowania SigenMicro: ponowne uzycie polaczenia Modbus; pauza pollingu; poprawiony podwojny start",
+                "uk": "Виправлення сканування SigenMicro: повторне використання Modbus зединання; пауза опитування; виправлено подвiйний запуск",
+                "zh-cn": "修复SigenMicro扫描根本原因：复用现有Modbus连接；扫描期间暂停轮询；修复重复扫描启动"
+            },
             "1.5.4": {
                 "en": "Fix SigenMicro scan progress visibility: replace all CSS-class show/hide with direct element.style.display; reduce probe timeout to 1000ms; chunk size 3 for frequent bar updates",
                 "de": "SigenMicro Scan-Fortschritt: CSS-Klassen durch direktes element.style.display ersetzt; Probe-Timeout auf 1000ms reduziert; Chunk-Groesse 3 fuer haeufige Fortschrittsupdates",

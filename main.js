@@ -697,18 +697,22 @@ class Sigenergy extends utils.Adapter {
 			return;
 		}
 
-		const msg = obj.message || {};
-
-		// Accept range from both sources:
-		//   admin/index.html  → { scanFrom, scanTo }
-		//   jsonConfig sendTo → full native config object with { sigenMicroScanFrom, sigenMicroScanTo }
+		const msg  = obj.message || {};
 		const from = Math.max(1,   parseInt(msg.scanFrom  ?? msg.sigenMicroScanFrom,  10) || this.config.sigenMicroScanFrom || 10);
 		const to   = Math.min(246, parseInt(msg.scanTo    ?? msg.sigenMicroScanTo,    10) || this.config.sigenMicroScanTo   || 30);
-
-		// Detect call origin: jsonConfig sends the entire native config object (has tcpHost etc.)
 		const fromJsonConfig = (msg.tcpHost !== undefined || msg.connectionType !== undefined);
 
-		this.log.info(`[scanSigenMicro] Starting scan, range ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`);
+		this.log.info(`[scanSigenMicro] Starting scan ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`);
+
+		// ── Pause polling so the scan can reuse the existing Modbus connection ──
+		// Most Sigenergy devices accept only ONE simultaneous TCP connection on port 502.
+		// Opening a second connection while polling is active causes the scan to fail silently.
+		const wasPolling = !!this._pollTimer;
+		if (wasPolling) {
+			this.log.info('[scanSigenMicro] Pausing poll timer for scan duration');
+			clearInterval(this._pollTimer);
+			this._pollTimer = null;
+		}
 
 		const scanner = new SigenMicroScanner(this.config, {
 			debug: m => this.log.debug(m),
@@ -718,9 +722,9 @@ class Sigenergy extends utils.Adapter {
 		});
 
 		try {
-			const found = await scanner.scan(from, to);
+			// Pass the existing connected Modbus connection so no second TCP socket is opened
+			const found = await scanner.scan(from, to, this.modbus);
 			const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
-
 			const merged = found.map(dev => {
 				const prev = existing.find(e => e.slaveId === dev.slaveId);
 				return { ...dev, active: prev ? !!prev.active : false };
@@ -728,7 +732,6 @@ class Sigenergy extends utils.Adapter {
 
 			this.log.info(`[scanSigenMicro] Done: ${merged.length} device(s) found`);
 
-			// When called from jsonConfig: auto-save device list and return a human-readable message
 			if (fromJsonConfig) {
 				this._sigenMicroDevices = merged;
 				try {
@@ -740,27 +743,21 @@ class Sigenergy extends utils.Adapter {
 				} catch (saveErr) {
 					this.log.warn(`[scanSigenMicro] Could not auto-save: ${saveErr.message}`);
 				}
-				let message;
-				if (merged.length === 0) {
-					message = `No SigenMicro devices found in range ${from}–${to}. Check Modbus connection and ID range.`;
-				} else {
-					const list = merged.map(d => `${d.model || 'SigenMicro'} (ID ${d.slaveId})`).join(', ');
-					message = `Found ${merged.length} device(s): ${list}. Use the SigenMicro admin tab to enable/disable individual devices.`;
-				}
-				if (obj.callback) {
-					this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
-				}
-				return;
-			}
-
-			// When called from admin/index.html: return full device list for the live UI
-			if (obj.callback) {
-				this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
+				const message = merged.length === 0
+					? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
+					: `Found ${merged.length} device(s): ${merged.map(d => `${d.model} (ID ${d.slaveId})`).join(', ')}. Use the SigenMicro admin tab to enable/disable devices.`;
+				if (obj.callback) this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
+			} else {
+				if (obj.callback) this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
 			}
 		} catch (err) {
 			this.log.error(`[scanSigenMicro] Error: ${err.message}`);
-			if (obj.callback) {
-				this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
+			if (obj.callback) this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
+		} finally {
+			// Always resume polling after scan
+			if (wasPolling) {
+				this.log.info('[scanSigenMicro] Resuming poll timer after scan');
+				this._startPolling();
 			}
 		}
 	}

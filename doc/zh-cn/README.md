@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.5.5 (2026-03-16)
+* 修复SigenMicro扫描根本原因：复用现有Modbus连接；扫描期间暂停轮询；修复重复扫描启动
+
 ### 1.5.4 (2026-03-16)
 * SigenMicro扫描进度：CSS类替换为element.style.display；探测超时1000ms；块大小3
 

@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.5 (2026-03-16)
+* Fix SigenMicro scan (root causes): reuse existing Modbus connection instead of opening a second TCP socket (device allows only one); pause polling during scan; fix duplicate scan start
+
 ### 1.5.4 (2026-03-16)
 * Fix SigenMicro scan progress visibility: replace all CSS-class show/hide with direct element.style.display; reduce probe timeout to 1000ms; chunk size 3 for frequent bar updates
 
