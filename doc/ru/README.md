@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* Видимость прогресса SigenMicro: CSS-классы заменены на element.style.display; таймаут зонда 1000мс; размер чанка 3
+
 ### 1.5.3 (2026-03-16)
 * Исправлен прогресс сканирования SigenMicro: CSS max-height переход + анимация shimmer; requestAnimationFrame для надёжной перерисовки
 

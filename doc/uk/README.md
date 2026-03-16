@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* Прогрес SigenMicro: CSS-класи замiнено на element.style.display; таймаут зонда 1000мс; розмiр chunk 3
+
 ### 1.5.3 (2026-03-16)
 * Виправлення прогресу сканування SigenMicro: CSS max-height перехід + shimmer анімація; requestAnimationFrame для надійного перемалювання
 

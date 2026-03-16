@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* SigenMicro voortgang: CSS-klassen vervangen door element.style.display; probe timeout 1000ms; chunk grootte 3
+
 ### 1.5.3 (2026-03-16)
 * SigenMicro scan voortgang: CSS max-height transitie + shimmer animatie (geen display:none conflicten); requestAnimationFrame voor betrouwbare hertekening
 

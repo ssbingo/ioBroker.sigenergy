@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* SigenMicro Scan-Fortschritt: CSS-Klassen durch direktes element.style.display ersetzt; Probe-Timeout auf 1000ms reduziert; Chunk-Groesse 3 fuer haeufige Fortschrittsupdates
+
 ### 1.5.3 (2026-03-16)
 * SigenMicro Scan-Fortschritt: max-height CSS-Übergang + Shimmer-Animation statt display:none; requestAnimationFrame für zuverlässiges Neu-Zeichnen zwischen Chunks
 

@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.5.4 (2026-03-16)
+* SigenMicro扫描进度：CSS类替换为element.style.display；探测超时1000ms；块大小3
+
 ### 1.5.3 (2026-03-16)
 * 修复SigenMicro扫描进度：使用CSS max-height过渡+shimmer动画（无display:none冲突）；requestAnimationFrame确保可靠重绘
 

@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* Progreso SigenMicro: clases CSS reemplazadas por element.style.display; timeout sonda 1000ms; tamano chunk 3
+
 ### 1.5.3 (2026-03-16)
 * Corrección progreso scan SigenMicro: transición CSS max-height + animación shimmer; requestAnimationFrame para repintado confiable
 

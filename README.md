@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.4 (2026-03-16)
+* Fix SigenMicro scan progress visibility: replace all CSS-class show/hide with direct element.style.display; reduce probe timeout to 1000ms; chunk size 3 for frequent bar updates
+
 ### 1.5.3 (2026-03-16)
 * Fix SigenMicro scan progress: use max-height CSS transition + shimmer animation (no display:none conflicts); use requestAnimationFrame for reliable repaint between chunks
 

@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.3",
+        "version": "1.5.4",
         "news": {
+            "1.5.4": {
+                "en": "Fix SigenMicro scan progress visibility: replace all CSS-class show/hide with direct element.style.display; reduce probe timeout to 1000ms; chunk size 3 for frequent bar updates",
+                "de": "SigenMicro Scan-Fortschritt: CSS-Klassen durch direktes element.style.display ersetzt; Probe-Timeout auf 1000ms reduziert; Chunk-Groesse 3 fuer haeufige Fortschrittsupdates",
+                "ru": "Видимость прогресса SigenMicro: CSS-классы заменены на element.style.display; таймаут зонда 1000мс; размер чанка 3",
+                "pt": "Progresso SigenMicro: classes CSS substituidas por element.style.display; timeout de sonda 1000ms; tamanho de chunk 3",
+                "nl": "SigenMicro voortgang: CSS-klassen vervangen door element.style.display; probe timeout 1000ms; chunk grootte 3",
+                "fr": "Progression SigenMicro: classes CSS remplacees par element.style.display; timeout sonde 1000ms; taille chunk 3",
+                "it": "Avanzamento SigenMicro: classi CSS sostituite da element.style.display; timeout sonda 1000ms; dimensione chunk 3",
+                "es": "Progreso SigenMicro: clases CSS reemplazadas por element.style.display; timeout sonda 1000ms; tamano chunk 3",
+                "pl": "Postep SigenMicro: klasy CSS zastapione przez element.style.display; timeout sondy 1000ms; rozmiar chunk 3",
+                "uk": "Прогрес SigenMicro: CSS-класи замiнено на element.style.display; таймаут зонда 1000мс; розмiр chunk 3",
+                "zh-cn": "SigenMicro扫描进度：CSS类替换为element.style.display；探测超时1000ms；块大小3"
+            },
             "1.5.3": {
                 "en": "Fix SigenMicro scan progress: use max-height CSS transition + shimmer animation (no display:none conflicts); use requestAnimationFrame for reliable repaint between chunks",
                 "de": "SigenMicro Scan-Fortschritt: max-height CSS-Übergang + Shimmer-Animation statt display:none; requestAnimationFrame für zuverlässiges Neu-Zeichnen zwischen Chunks",
