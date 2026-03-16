@@ -156,6 +156,9 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.0 (2026-03-16)
+* Aba SigenMicro: botão de varredura destacado, barra de progresso em tempo real com intervalo de ID e contagem de dispositivos
+
 ### 1.4.1 (2026-03-16)
 * Suporte SigenMicro: varredura Modbus, descoberta de dispositivos, ativação individual, aba dedicada
 

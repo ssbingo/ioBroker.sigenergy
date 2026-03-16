@@ -428,71 +428,117 @@
         .btn-scan {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
+            box-shadow: 0 3px 10px rgba(192,57,43,0.3);
+            letter-spacing: 0.3px;
         }
-        .btn-scan:hover  { background: var(--primary-dark); }
-        .btn-scan:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-scan:hover   { background: var(--primary-dark); box-shadow: 0 4px 14px rgba(192,57,43,0.4); transform: translateY(-1px); }
+        .btn-scan:active  { transform: translateY(0); box-shadow: 0 2px 6px rgba(192,57,43,0.3); }
+        .btn-scan:disabled { background: #bbb; cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn-scan .scan-spinner {
+            display: none;
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        .btn-scan.scanning .scan-spinner { display: inline-block; }
+        .btn-scan.scanning .scan-icon    { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         .btn-save-micro {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 12px 28px;
             background: var(--success);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            margin-left: 10px;
         }
         .btn-save-micro:hover    { background: #1e8449; }
         .btn-save-micro:disabled { background: #ccc; cursor: not-allowed; }
 
-        .scan-progress {
-            margin-top: 12px;
+        .scan-progress-panel {
             display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: #fafafa;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .scan-progress-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
+        }
+        .scan-progress-label {
             font-size: 0.88rem;
-            color: var(--text-light);
+            font-weight: 500;
+            color: var(--text);
+        }
+        .scan-progress-pct {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 38px;
+            text-align: right;
         }
         .progress-bar-wrap {
-            flex: 1;
-            height: 6px;
+            width: 100%;
+            height: 10px;
             background: var(--border);
-            border-radius: 3px;
+            border-radius: 5px;
             overflow: hidden;
         }
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: var(--primary);
-            border-radius: 3px;
-            transition: width 0.3s;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            border-radius: 5px;
+            transition: width 0.35s ease;
+        }
+        .scan-progress-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        .scan-found-live {
+            font-weight: 600;
+            color: var(--success);
         }
 
         .scan-result-msg {
-            margin-top: 10px;
-            padding: 10px 14px;
+            margin-top: 14px;
+            padding: 12px 16px;
             border-radius: 8px;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
+            font-weight: 500;
             display: none;
+            align-items: center;
+            gap: 10px;
         }
-        .scan-result-msg.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .scan-result-msg.error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .scan-result-msg.info    { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .scan-result-msg.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: flex; }
+        .scan-result-msg.error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: flex; }
+        .scan-result-msg.info    { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; display: flex; }
 
         /* Device table */
         .device-table-wrap { margin-top: 16px; overflow-x: auto; }
@@ -866,14 +912,16 @@
 
 <!-- Tab: SigenMicro Scanner -->
 <div id="tab-sigenmicro" class="tab-content">
+
+    <!-- Card 1: Scan configuration + button -->
     <div class="card">
-        <h2 class="card-title"><span class="icon">🔆</span> SigenMicro Device Scan</h2>
-        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 16px;">
-            Scan the Modbus bus for SigenMicro micro-inverters. Each found device can be individually
-            enabled for polling. The scan range is set in the adapter configuration (Components tab).
+        <h2 class="card-title"><span class="icon">🔆</span> SigenMicro — Scan Configuration</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 20px;">
+            Define the Modbus slave-ID range to search for SigenMicro micro-inverters.
+            Slave IDs already occupied by Plant, Inverter, or Charger are skipped automatically.
         </p>
 
-        <div class="form-row triple" style="align-items: flex-end;">
+        <div class="form-row" style="max-width: 400px; margin-bottom: 24px;">
             <div class="form-group">
                 <label>First Modbus ID</label>
                 <input type="number" id="sigenMicroScanFrom" class="value" min="1" max="246" value="10">
@@ -882,29 +930,43 @@
                 <label>Last Modbus ID</label>
                 <input type="number" id="sigenMicroScanTo" class="value" min="1" max="246" value="30">
             </div>
-            <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px; padding-bottom: 2px;">
-                <button class="btn-scan" id="btnScan" onclick="startSigenMicroScan()">
-                    🔍 Start Scan
-                </button>
-                <button class="btn-save-micro" id="btnSaveMicro" onclick="saveSigenMicroDevices()" disabled>
-                    💾 Save selection
-                </button>
-            </div>
         </div>
 
-        <div class="scan-progress" id="scanProgress">
-            <span id="scanProgressLabel">Scanning…</span>
+        <!-- Prominent scan button -->
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <button class="btn-scan" id="btnScan" onclick="startSigenMicroScan()">
+                <span class="scan-icon">🔍</span>
+                <span class="scan-btn-text">Start Scan</span>
+                <span class="scan-spinner"></span>
+            </button>
+            <button class="btn-save-micro" id="btnSaveMicro" onclick="saveSigenMicroDevices()" disabled>
+                💾 Save selection
+            </button>
+            <span id="scanStatusText" style="font-size:0.85rem; color:var(--text-light);"></span>
+        </div>
+
+        <!-- Progress panel (hidden until scan starts) -->
+        <div class="scan-progress-panel" id="scanProgressPanel">
+            <div class="scan-progress-header">
+                <span class="scan-progress-label" id="scanProgressLabel">Preparing scan…</span>
+                <span class="scan-progress-pct" id="scanProgressPct">0%</span>
+            </div>
             <div class="progress-bar-wrap">
                 <div class="progress-bar-fill" id="scanProgressBar"></div>
             </div>
-            <span id="scanProgressPct">0%</span>
+            <div class="scan-progress-sub">
+                <span id="scanProgressDetail">Connecting to Modbus…</span>
+                <span>Devices found: <span class="scan-found-live" id="scanFoundLive">0</span></span>
+            </div>
         </div>
 
         <div class="scan-result-msg" id="scanResultMsg"></div>
     </div>
 
+    <!-- Card 2: Device list -->
     <div class="card" id="deviceListCard">
-        <h2 class="card-title"><span class="icon">📋</span> Discovered Devices
+        <h2 class="card-title">
+            <span class="icon">📋</span> Discovered Devices
             <span id="deviceCountBadge" style="margin-left:auto; font-size:0.8rem; font-weight:400;
                   background: var(--border); padding: 2px 10px; border-radius: 12px; color: var(--text-light);">
                 No scan run yet
@@ -1084,39 +1146,106 @@ function toggleSigenMicroTab() {
 /* ── SigenMicro scan ──────────────────────────────────── */
 var _microDevices = []; // current device list in UI
 
+var _scanAborted = false;
+
 function startSigenMicroScan() {
     var from = parseInt($('#sigenMicroScanFrom').val(), 10) || 10;
     var to   = parseInt($('#sigenMicroScanTo').val(),   10) || 30;
+
     if (from < 1 || to > 246 || from > to) {
-        _showScanMsg('error', 'Invalid scan range. First ID must be ≤ last ID (1–246).');
+        _showScanMsg('error', '❌ Invalid scan range. First ID must be 1–246 and ≤ last ID.');
         return;
     }
 
-    $('#btnScan').prop('disabled', true);
+    var CHUNK_SIZE  = 5;                        // IDs per request
+    var totalIds    = to - from + 1;
+    var allFound    = [];
+    var scannedIds  = 0;
+    _scanAborted    = false;
+
+    // UI: scanning state
+    var $btn = $('#btnScan');
+    $btn.prop('disabled', true).addClass('scanning');
+    $btn.find('.scan-btn-text').text('Scanning…');
     $('#btnSaveMicro').prop('disabled', true);
-    $('#scanProgress').css('display', 'flex');
-    $('#scanProgressBar').css('width', '5%');
+    $('#scanResultMsg').hide();
+    $('#scanStatusText').text('');
+    $('#scanFoundLive').text('0');
+    $('#scanProgressBar').css('width', '0%');
     $('#scanProgressPct').text('0%');
-    $('#scanProgressLabel').text('Connecting…');
-    _showScanMsg('info', '⏳ Scanning IDs ' + from + '–' + to + '…');
+    $('#scanProgressPanel').css('display', 'flex');
+    $('#scanProgressLabel').text('Scanning IDs ' + from + '–' + to + ' …');
+    $('#scanProgressDetail').text('Connecting to Modbus …');
 
-    _sendToAdapter('scanSigenMicro', { scanFrom: from, scanTo: to }, function(res) {
-        $('#btnScan').prop('disabled', false);
-        $('#scanProgress').css('display', 'none');
+    // Build chunk list
+    var chunks = [];
+    for (var start = from; start <= to; start += CHUNK_SIZE) {
+        chunks.push({ from: start, to: Math.min(start + CHUNK_SIZE - 1, to) });
+    }
 
-        if (!res || !res.success) {
-            _showScanMsg('error', '❌ Scan failed: ' + (res && res.message ? res.message : 'Unknown error'));
+    function processChunk(idx) {
+        if (_scanAborted || idx >= chunks.length) {
+            _scanDone(allFound, !_scanAborted);
             return;
         }
+        var chunk = chunks[idx];
+        $('#scanProgressDetail').text('Probing IDs ' + chunk.from + '–' + chunk.to + ' …');
 
-        _microDevices = res.devices || [];
-        _renderDeviceTable(_microDevices);
+        _sendToAdapter('scanSigenMicro', { scanFrom: chunk.from, scanTo: chunk.to }, function(res) {
+            if (_scanAborted) { _scanDone(allFound, false); return; }
 
-        var n = _microDevices.length;
-        _showScanMsg('success', '✅ Scan complete — ' + n + ' device' + (n !== 1 ? 's' : '') + ' found.');
-        $('#btnSaveMicro').prop('disabled', n === 0);
-        $('#deviceCountBadge').text(n + ' device' + (n !== 1 ? 's' : '') + ' found');
+            if (res && res.success && res.devices) {
+                allFound = allFound.concat(res.devices);
+                $('#scanFoundLive').text(allFound.length);
+            }
+
+            scannedIds += (chunk.to - chunk.from + 1);
+            var pct = Math.round((scannedIds / totalIds) * 100);
+            $('#scanProgressBar').css('width', pct + '%');
+            $('#scanProgressPct').text(pct + '%');
+            $('#scanProgressLabel').text('Scanning … (' + scannedIds + ' / ' + totalIds + ' IDs)');
+
+            // Brief pause so the UI can repaint, then continue
+            setTimeout(function() { processChunk(idx + 1); }, 80);
+        });
+    }
+
+    processChunk(0);
+}
+
+function _scanDone(found, success) {
+    var $btn = $('#btnScan');
+    $btn.prop('disabled', false).removeClass('scanning');
+    $btn.find('.scan-btn-text').text('Start Scan');
+
+    if (!success) {
+        $('#scanProgressPanel').css('display', 'none');
+        _showScanMsg('error', '❌ Scan aborted or failed. Check adapter log for details.');
+        return;
+    }
+
+    // Merge with existing activation flags
+    found = found.map(function(dev) {
+        var prev = _microDevices.find(function(e) { return e.slaveId === dev.slaveId; });
+        return Object.assign({}, dev, { active: prev ? !!prev.active : false });
     });
+
+    // Final progress bar at 100%
+    $('#scanProgressBar').css('width', '100%');
+    $('#scanProgressPct').text('100%');
+    $('#scanProgressLabel').text('Scan complete');
+    $('#scanProgressDetail').text('All IDs scanned successfully.');
+
+    _microDevices = found;
+    _renderDeviceTable(_microDevices);
+
+    var n = found.length;
+    var msg = n > 0
+        ? '✅ Scan complete — ' + n + ' SigenMicro device' + (n !== 1 ? 's' : '') + ' found.'
+        : '🔍 Scan complete — no SigenMicro devices found in the scanned range.';
+    _showScanMsg(n > 0 ? 'success' : 'info', msg);
+    $('#btnSaveMicro').prop('disabled', n === 0);
+    $('#deviceCountBadge').text(n + ' device' + (n !== 1 ? 's' : '') + ' found');
 }
 
 function _renderDeviceTable(devices) {
@@ -1181,7 +1310,9 @@ function saveSigenMicroDevices() {
 
 function _showScanMsg(type, html) {
     var $el = $('#scanResultMsg');
-    $el.removeClass('success error info').addClass(type).html(html).show();
+    $el.removeClass('success error info').addClass(type).html(html);
+    // display:flex set via CSS class; plain show() overrides that with display:block
+    $el[0].style.display = 'flex';
 }
 
 function _esc(s) {
