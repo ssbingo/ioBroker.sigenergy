@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.7 (2026-03-16)
+* Alle ESLint-Fehler behoben: Leerzeichen in Tabs umgewandelt (prettier), geschweifte Klammern nach if-Bedingungen, unbenutzte Variablen, leere catch-Blöcke, JSDoc aktualisiert
+
 ### 1.7.6 (2026-03-16)
 * W5022 behoben: words.js geleert (jsonConfig-Adapter dürfen systemDictionary nicht verwenden); i18n-Dateien von LANG/translations.json zu flachem LANG.json migriert
 

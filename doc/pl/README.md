@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.7 (2026-03-16)
+* Naprawiono wszystkie błędy ESLint: spacje na tabulacje, nawiasy klamrowe po if, nieużywane zmienne, puste bloki catch, JSDoc
+
 ### 1.7.6 (2026-03-16)
 * Naprawiono W5022: words.js wyczyszczony; pliki i18n zmigrowane do plaskiego LANG.json
 

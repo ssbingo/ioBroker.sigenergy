@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.7 (2026-03-16)
+* 修复所有ESLint错误：空格转制表符，if后添加大括号，修复未使用变量，修复空catch块，更新JSDoc
+
 ### 1.7.6 (2026-03-16)
 * 修复W5022：清空words.js；将i18n文件从LANG/translations.json迁移到扁平LANG.json格式
 

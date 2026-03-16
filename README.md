@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.7 (2026-03-16)
+* Fix all ESLint errors: convert spaces to tabs (prettier), add curly braces after if conditions, fix unused variables, fix empty catch blocks, update JSDoc
+
 ### 1.7.6 (2026-03-16)
 * Fix W5022: empty words.js (jsonConfig adapters must not use systemDictionary); migrate i18n files from LANG/translations.json to flat LANG.json (preferred by adapter-dev)
 

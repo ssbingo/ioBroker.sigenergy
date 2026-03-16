@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.6",
+        "version": "1.7.7",
         "news": {
-            "1.7.6": {
-                "en": "Fix W5022: empty words.js (jsonConfig adapters must not use systemDictionary); migrate i18n files from LANG/translations.json to flat LANG.json (preferred by adapter-dev)",
-                "de": "W5022 behoben: words.js geleert (jsonConfig-Adapter dürfen systemDictionary nicht verwenden); i18n-Dateien von LANG/translations.json zu flachem LANG.json migriert",
-                "ru": "Исправлен W5022: words.js очищен; i18n-файлы перенесены в плоский формат LANG.json",
-                "pt": "W5022 corrigido: words.js esvaziado; arquivos i18n migrados para LANG.json plano",
-                "nl": "W5022 opgelost: words.js geleegd; i18n-bestanden gemigreerd naar plat LANG.json",
-                "fr": "W5022 corrigé: words.js vidé; fichiers i18n migrés vers LANG.json plat",
-                "it": "W5022 corretto: words.js svuotato; file i18n migrati al formato LANG.json piatto",
-                "es": "W5022 corregido: words.js vaciado; archivos i18n migrados a LANG.json plano",
-                "pl": "Naprawiono W5022: words.js wyczyszczony; pliki i18n zmigrowane do plaskiego LANG.json",
-                "uk": "Виправлено W5022: words.js очищено; файли i18n перенесено у плоский формат LANG.json",
-                "zh-cn": "修复W5022：清空words.js；将i18n文件从LANG/translations.json迁移到扁平LANG.json格式"
+            "1.7.7": {
+                "en": "Fix all ESLint errors: convert spaces to tabs (prettier), add curly braces after if conditions, fix unused variables, fix empty catch blocks, update JSDoc",
+                "de": "Alle ESLint-Fehler behoben: Leerzeichen in Tabs umgewandelt (prettier), geschweifte Klammern nach if-Bedingungen, unbenutzte Variablen, leere catch-Blöcke, JSDoc aktualisiert",
+                "ru": "Исправлены все ошибки ESLint: пробелы заменены табами, добавлены фигурные скобки после if, исправлены неиспользуемые переменные и пустые блоки catch",
+                "pt": "Corrigidos todos os erros ESLint: espaços convertidos em tabs, chaves após if, variáveis não usadas, blocos catch vazios, JSDoc",
+                "nl": "Alle ESLint-fouten gecorrigeerd: spaties naar tabs, accolades na if, ongebruikte variabelen, lege catch-blokken, JSDoc",
+                "fr": "Correction de toutes les erreurs ESLint: espaces en tabulations, accolades après if, variables inutilisées, blocs catch vides, JSDoc",
+                "it": "Corretti tutti gli errori ESLint: spazi in tab, parentesi graffe dopo if, variabili inutilizzate, blocchi catch vuoti, JSDoc",
+                "es": "Corregidos todos los errores ESLint: espacios a tabulaciones, llaves después de if, variables no usadas, bloques catch vacíos, JSDoc",
+                "pl": "Naprawiono wszystkie błędy ESLint: spacje na tabulacje, nawiasy klamrowe po if, nieużywane zmienne, puste bloki catch, JSDoc",
+                "uk": "Виправлено всi помилки ESLint: пробiли замiнено табуляцiями, дужки пiсля if, невикористанi змiннi, порожнi блоки catch, JSDoc",
+                "zh-cn": "修复所有ESLint错误：空格转制表符，if后添加大括号，修复未使用变量，修复空catch块，更新JSDoc"
             }
         },
         "titleLang": {

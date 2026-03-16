@@ -74,8 +74,8 @@ class Sigenergy extends utils.Adapter {
 		// Load persisted SigenMicro device list from config
 		try {
 			const raw = this.config.sigenMicroDevices;
-			this._sigenMicroDevices = (raw && typeof raw === 'string') ? JSON.parse(raw) : (Array.isArray(raw) ? raw : []);
-		} catch (_) {
+			this._sigenMicroDevices = raw && typeof raw === 'string' ? JSON.parse(raw) : Array.isArray(raw) ? raw : [];
+		} catch {
 			this._sigenMicroDevices = [];
 		}
 		const activeCount = this._sigenMicroDevices.filter(d => d.active).length;
@@ -279,7 +279,9 @@ class Sigenergy extends utils.Adapter {
 	 */
 	async _readSigenMicroDevices() {
 		const activeDevices = this._sigenMicroDevices.filter(d => d.active);
-		if (activeDevices.length === 0) return;
+		if (activeDevices.length === 0) {
+			return;
+		}
 		this.log.debug(`Reading ${activeDevices.length} active SigenMicro device(s)`);
 
 		for (const device of activeDevices) {
@@ -520,7 +522,9 @@ class Sigenergy extends utils.Adapter {
 	 */
 	async _createSigenMicroObjects() {
 		const activeDevices = this._sigenMicroDevices.filter(d => d.active);
-		if (activeDevices.length === 0) return;
+		if (activeDevices.length === 0) {
+			return;
+		}
 
 		this.log.debug(`Creating objects for ${activeDevices.length} active SigenMicro device(s)`);
 		await this._createChannel('sigenmicro', 'SigenMicro Micro-Inverters');
@@ -698,11 +702,13 @@ class Sigenergy extends utils.Adapter {
 		}
 
 		const msg  = obj.message || {};
-		const from = Math.max(1,   parseInt(msg.scanFrom  ?? msg.sigenMicroScanFrom,  10) || this.config.sigenMicroScanFrom || 10);
-		const to   = Math.min(246, parseInt(msg.scanTo    ?? msg.sigenMicroScanTo,    10) || this.config.sigenMicroScanTo   || 30);
-		const fromJsonConfig = (msg.tcpHost !== undefined || msg.connectionType !== undefined);
+		const from = Math.max(1, parseInt(msg.scanFrom ?? msg.sigenMicroScanFrom, 10) || this.config.sigenMicroScanFrom || 10);
+		const to = Math.min(246, parseInt(msg.scanTo ?? msg.sigenMicroScanTo, 10) || this.config.sigenMicroScanTo   || 30);
+		const fromJsonConfig = msg.tcpHost !== undefined || msg.connectionType !== undefined;
 
-		this.log.info(`[scanSigenMicro] Starting scan ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`);
+		this.log.info(
+			`[scanSigenMicro] Starting scan ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`,
+		);
 
 		// ── Pause polling so the scan can reuse the existing Modbus connection ──
 		// Most Sigenergy devices accept only ONE simultaneous TCP connection on port 502.
@@ -723,10 +729,12 @@ class Sigenergy extends utils.Adapter {
 
 		try {
 			// Progress callback: writes to info.scanProgress state so admin UI can subscribe
-			const progressCb = async (text, pct) => {
+			const progressCb = async text => {
 				try {
 					await this.setStateAsync('info.scanProgress', { val: text, ack: true });
-				} catch (_) { /* non-critical */ }
+				} catch {
+					/* non-critical */
+				}
 			};
 
 			await this.setStateAsync('info.scanStatus', { val: 'scanning', ack: true });
@@ -756,14 +764,24 @@ class Sigenergy extends utils.Adapter {
 				const message = merged.length === 0
 					? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
 					: `Found ${merged.length} device(s): ${merged.map(d => `${d.model} (ID ${d.slaveId})`).join(', ')}. Use the SigenMicro admin tab to enable/disable devices.`;
-				if (obj.callback) this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
+				if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
+			}
 			} else {
-				if (obj.callback) this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
+				if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
+			}
 			}
 		} catch (err) {
 			this.log.error(`[scanSigenMicro] Error: ${err.message}`);
-			try { await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true }); } catch (_) {}
-			if (obj.callback) this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
+			try {
+				await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true });
+			} catch {
+				// ignore
+			}
+			if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
+			}
 		} finally {
 			if (wasPolling) {
 				this.log.info('[scanSigenMicro] Resuming poll timer after scan');
