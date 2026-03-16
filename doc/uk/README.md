@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.6.2 (2026-03-16)
+* Сканування: вiдновлено chunked sendTo (3 ID на виклик); подвiйний прогрес: текст на чанк + getState з info.scanProgress
+
 ### 1.6.1 (2026-03-16)
 * Прогрес сканування: subscribeState замiнено setInterval+getState (500мс); таймер 2с на ID
 

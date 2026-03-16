@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.2 (2026-03-16)
+* Scan: bewaehrten Chunked-sendTo-Ansatz wiederhergestellt (3 IDs pro Aufruf); duale Fortschrittsanzeige: direktes Text-Update pro Chunk + getState-Polling aus info.scanProgress
+
 ### 1.6.1 (2026-03-16)
 * Scan-Fortschritt: subscribeState durch setInterval+getState-Polling (500ms) ersetzt; Safety-Timer auf 2s pro ID erweitert; eigener _sendToAdapterRaw umgeht altes 30s-Limit
 

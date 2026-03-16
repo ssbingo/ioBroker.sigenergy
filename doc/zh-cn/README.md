@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.6.2 (2026-03-16)
+* 扫描：恢复经过验证的分块sendTo方式（每次3个ID）；双重进度：每块直接文本更新+从info.scanProgress轮询getState
+
 ### 1.6.1 (2026-03-16)
 * 修复扫描进度：用setInterval+getState轮询替代subscribeState；安全计时器改为每ID 2秒
 

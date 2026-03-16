@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.6.1",
+        "version": "1.6.2",
         "news": {
+            "1.6.2": {
+                "en": "Fix scan: restore proven chunked sendTo approach (3 IDs per call); add dual progress display: direct text update per chunk + getState polling from info.scanProgress state",
+                "de": "Scan: bewaehrten Chunked-sendTo-Ansatz wiederhergestellt (3 IDs pro Aufruf); duale Fortschrittsanzeige: direktes Text-Update pro Chunk + getState-Polling aus info.scanProgress",
+                "ru": "Сканирование: восстановлен chunked sendTo (3 ID за вызов); двойной прогресс: текст на чанк + getState из info.scanProgress",
+                "pt": "Scan: restaurado chunked sendTo (3 IDs por chamada); progresso duplo: texto por chunk + getState de info.scanProgress",
+                "nl": "Scan: bewezen chunked sendTo hersteld (3 IDs per aanroep); dubbele voortgang: tekst per chunk + getState van info.scanProgress",
+                "fr": "Scan: chunked sendTo (3 IDs par appel) restaure; progression double: texte par chunk + getState de info.scanProgress",
+                "it": "Scan: chunked sendTo (3 ID per chiamata) ripristinato; progresso doppio: testo per chunk + getState da info.scanProgress",
+                "es": "Scan: chunked sendTo (3 IDs por llamada) restaurado; progreso doble: texto por chunk + getState de info.scanProgress",
+                "pl": "Scan: przywrocono chunked sendTo (3 ID na wywolanie); podwojny postep: tekst na chunk + getState z info.scanProgress",
+                "uk": "Сканування: вiдновлено chunked sendTo (3 ID на виклик); подвiйний прогрес: текст на чанк + getState з info.scanProgress",
+                "zh-cn": "扫描：恢复经过验证的分块sendTo方式（每次3个ID）；双重进度：每块直接文本更新+从info.scanProgress轮询getState"
+            },
             "1.6.1": {
                 "en": "Fix scan progress: replace unreliable subscribeState with setInterval+getState polling (500ms); extend safety timer to 2s per ID; dedicated _sendToAdapterRaw bypasses old 30s limit",
                 "de": "Scan-Fortschritt: subscribeState durch setInterval+getState-Polling (500ms) ersetzt; Safety-Timer auf 2s pro ID erweitert; eigener _sendToAdapterRaw umgeht altes 30s-Limit",

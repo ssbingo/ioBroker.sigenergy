@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.2 (2026-03-16)
+* Сканирование: восстановлен chunked sendTo (3 ID за вызов); двойной прогресс: текст на чанк + getState из info.scanProgress
+
 ### 1.6.1 (2026-03-16)
 * Прогресс сканирования: subscribeState заменен на setInterval+getState (500мс); таймер безопасности 2с на ID
 

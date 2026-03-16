@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.2 (2026-03-16)
+* Scan: chunked sendTo (3 ID per chiamata) ripristinato; progresso doppio: testo per chunk + getState da info.scanProgress
+
 ### 1.6.1 (2026-03-16)
 * Avanzamento scan: subscribeState sostituito da setInterval+getState (500ms); timer sicurezza 2s per ID
 
