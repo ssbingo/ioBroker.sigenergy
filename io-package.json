@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.6",
+        "version": "1.6.0",
         "news": {
+            "1.6.0": {
+                "en": "Fix scan progress display: use ioBroker state subscription (info.scanProgress) instead of sendTo chunks; adapter writes progress per ID, admin page subscribes via socket.subscribeState for real-time updates",
+                "de": "Scan-Fortschritt: ioBroker State-Subscription (info.scanProgress) statt sendTo-Chunks; Adapter schreibt Fortschritt pro ID, Admin-Seite abonniert via socket.subscribeState fuer Echtzeit-Updates",
+                "ru": "Исправлен прогресс сканирования: State-подписка (info.scanProgress) вместо sendTo-чанков; адаптер пишет прогресс на каждый ID",
+                "pt": "Progresso de scan: State subscription (info.scanProgress) em vez de sendTo chunks; adaptador escreve progresso por ID",
+                "nl": "Scan voortgang: State subscription (info.scanProgress) i.p.v. sendTo chunks; adapter schrijft voortgang per ID",
+                "fr": "Progression scan: State subscription (info.scanProgress) au lieu de sendTo chunks; adaptateur ecrit la progression par ID",
+                "it": "Avanzamento scan: State subscription (info.scanProgress) invece di sendTo chunks; adattatore scrive avanzamento per ID",
+                "es": "Progreso scan: State subscription (info.scanProgress) en lugar de sendTo chunks; adaptador escribe progreso por ID",
+                "pl": "Postep skanowania: State subscription (info.scanProgress) zamiast sendTo chunks; adapter pisze postep na ID",
+                "uk": "Прогрес сканування: State subscription (info.scanProgress) замiсть sendTo chunks; адаптер пише прогрес на ID",
+                "zh-cn": "修复扫描进度：使用State订阅(info.scanProgress)代替sendTo分块；适配器逐ID写入进度，管理页面通过socket.subscribeState实时更新"
+            },
             "1.5.6": {
                 "en": "Replace invisible progress bar with plain text status line showing percentage and current ID range",
                 "de": "Unsichtbaren Fortschrittsbalken durch einfache Textanzeige mit Prozent und aktuellem ID-Bereich ersetzt",
@@ -255,6 +268,32 @@
                 "read": true,
                 "write": false,
                 "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.scanProgress",
+            "type": "state",
+            "common": {
+                "name": "SigenMicro scan progress",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.scanStatus",
+            "type": "state",
+            "common": {
+                "name": "SigenMicro scan status",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false,
+                "def": "idle"
             },
             "native": {}
         }

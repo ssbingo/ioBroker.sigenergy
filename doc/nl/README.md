@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.0 (2026-03-16)
+* Scan voortgang: State subscription (info.scanProgress) i.p.v. sendTo chunks; adapter schrijft voortgang per ID
+
 ### 1.5.6 (2026-03-16)
 * Onzichtbare voortgangsbalk vervangen door tekstregel met percentage en ID-bereik
 

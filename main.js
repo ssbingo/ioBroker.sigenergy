@@ -722,14 +722,24 @@ class Sigenergy extends utils.Adapter {
 		});
 
 		try {
-			// Pass the existing connected Modbus connection so no second TCP socket is opened
-			const found = await scanner.scan(from, to, this.modbus);
+			// Progress callback: writes to info.scanProgress state so admin UI can subscribe
+			const progressCb = async (text, pct) => {
+				try {
+					await this.setStateAsync('info.scanProgress', { val: text, ack: true });
+				} catch (_) { /* non-critical */ }
+			};
+
+			await this.setStateAsync('info.scanStatus', { val: 'scanning', ack: true });
+			await this.setStateAsync('info.scanProgress', { val: `Starting scan IDs ${from}–${to}…`, ack: true });
+
+			const found = await scanner.scan(from, to, this.modbus, progressCb);
 			const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
 			const merged = found.map(dev => {
 				const prev = existing.find(e => e.slaveId === dev.slaveId);
 				return { ...dev, active: prev ? !!prev.active : false };
 			});
 
+			await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true });
 			this.log.info(`[scanSigenMicro] Done: ${merged.length} device(s) found`);
 
 			if (fromJsonConfig) {
@@ -752,9 +762,9 @@ class Sigenergy extends utils.Adapter {
 			}
 		} catch (err) {
 			this.log.error(`[scanSigenMicro] Error: ${err.message}`);
+			try { await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true }); } catch (_) {}
 			if (obj.callback) this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
 		} finally {
-			// Always resume polling after scan
 			if (wasPolling) {
 				this.log.info('[scanSigenMicro] Resuming poll timer after scan');
 				this._startPolling();

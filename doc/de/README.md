@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.0 (2026-03-16)
+* Scan-Fortschritt: ioBroker State-Subscription (info.scanProgress) statt sendTo-Chunks; Adapter schreibt Fortschritt pro ID, Admin-Seite abonniert via socket.subscribeState fuer Echtzeit-Updates
+
 ### 1.5.6 (2026-03-16)
 * Unsichtbaren Fortschrittsbalken durch einfache Textanzeige mit Prozent und aktuellem ID-Bereich ersetzt
 

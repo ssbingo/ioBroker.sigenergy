@@ -1180,11 +1180,36 @@ function startSigenMicroScan() {
     var scannedIds = 0;
     _scanAborted   = false;
 
-    // ── Status text line — always visible, no show/hide needed ──────────────
+    // ── ioBroker-native progress: subscribe to info.scanProgress state ────────
+    // sendTo() is request/response (one answer only — no mid-scan updates).
+    // The correct approach: adapter writes progress to a state each step;
+    // admin page subscribes and displays it in real time via socket.subscribeState.
+
     var _statusLine = document.getElementById('scanStatusLine');
     var _msgEl      = document.getElementById('scanResultMsg');
     var _btn        = document.getElementById('btnScan');
+    var _ns         = _getAdapterNs();       // e.g. "sigenergy.0"
+    var _progressId = _ns + '.info.scanProgress';
 
+    // Subscribe to progress state before starting scan
+    if (socket && typeof socket.subscribeState === 'function') {
+        socket.subscribeState(_progressId, function(id, state) {
+            if (state && state.val) {
+                _statusLine.style.color = 'var(--text)';
+                _statusLine.textContent = state.val;
+            }
+        });
+    } else if (socket && typeof socket.emit === 'function') {
+        socket.emit('subscribe', _progressId);
+        socket.on('stateChange', function(id, state) {
+            if (id === _progressId && state && state.val) {
+                _statusLine.style.color = 'var(--text)';
+                _statusLine.textContent = state.val;
+            }
+        });
+    }
+
+    // Update UI
     _btn.disabled = true;
     _btn.classList.add('scanning');
     _btn.querySelector('.scan-btn-text').textContent = 'Scanning...';
@@ -1196,76 +1221,69 @@ function startSigenMicroScan() {
     _msgEl.textContent = '';
 
     var skipArr = Array.from(reserved).sort(function(a,b){ return a-b; });
-    var skipTxt = skipArr.length ? ' (skipping IDs: ' + skipArr.join(', ') + ')' : '';
-    _statusLine.textContent = 'Starting scan' + skipTxt + '...';
+    _statusLine.style.color = 'var(--text-light)';
+    _statusLine.textContent = 'Starting scan' +
+        (skipArr.length ? ' (skipping IDs: ' + skipArr.join(', ') + ')' : '') + '...';
 
-    var CHUNK = 3;
-    var chunks = [];
-    for (var cs = from; cs <= to; cs += CHUNK) {
-        chunks.push({ from: cs, to: Math.min(cs + CHUNK - 1, to) });
-    }
-    var totalChunks = chunks.length;
+    // Single sendTo — adapter runs full scan and returns result when done
+    _sendToAdapter('scanSigenMicro', { scanFrom: from, scanTo: to }, function(res) {
+        _scanDone(res && res.devices ? res.devices : (res && res.success === false ? null : []), res);
+    });
 
-    function processChunk(idx) {
-        if (_scanAborted || idx >= chunks.length) {
-            _scanDone(allFound, !_scanAborted);
-            return;
-        }
-        var chunk = chunks[idx];
-        var pct   = Math.round((idx / totalChunks) * 100);
-        _statusLine.style.color = 'var(--text)';
-        _statusLine.textContent = pct + '% — probing IDs ' + chunk.from + '–' + chunk.to + '...';
-
-        _sendToAdapter('scanSigenMicro', { scanFrom: chunk.from, scanTo: chunk.to }, function(res) {
-            if (_scanAborted) { _scanDone(allFound, false); return; }
-
-            if (res && res.success && res.devices && res.devices.length) {
-                allFound = allFound.concat(res.devices);
-            }
-
-            scannedIds += (chunk.to - chunk.from + 1);
-            setTimeout(function() { processChunk(idx + 1); }, 0);
-        });
-    }
-
-    processChunk(0);
+    // No processChunk needed — progress comes via state subscription above
 }
 
-function _scanDone(found, success) {
-    var btn  = document.getElementById('btnScan');
-    var stat = document.getElementById('scanStatusLine');
+function _scanDone(devices, res) {
+    var btn    = document.getElementById('btnScan');
+    var stat   = document.getElementById('scanStatusLine');
+    var ns     = _getAdapterNs();
+
+    // Unsubscribe from progress state
+    var progressId = ns + '.info.scanProgress';
+    try {
+        if (socket && typeof socket.unsubscribeState === 'function') {
+            socket.unsubscribeState(progressId);
+        } else if (socket && typeof socket.emit === 'function') {
+            socket.emit('unsubscribe', progressId);
+        }
+    } catch (_) {}
 
     btn.disabled = false;
     btn.classList.remove('scanning');
     btn.querySelector('.scan-btn-text').textContent = 'Start Scan';
 
-    if (!success) {
+    // Error case
+    if (!res || res.success === false) {
         stat.style.color = 'var(--error, #c0392b)';
-        stat.textContent = 'Scan failed. Check the adapter log for details.';
+        stat.textContent = 'Scan failed: ' + (res && res.message ? res.message : 'unknown error');
+        _showScanMsg('error', 'Scan failed. Check the adapter log for details.');
         return;
     }
 
-    found = found.map(function(dev) {
+    // No devices array at all → empty
+    if (!devices) devices = [];
+
+    var found = devices.map(function(dev) {
         var prev = _microDevices.find(function(e) { return e.slaveId === dev.slaveId; });
         return Object.assign({}, dev, { active: prev ? !!prev.active : false });
     });
 
-    stat.style.color = 'var(--success, #27ae60)';
-    var fromV = document.getElementById('sigenMicroScanFrom').value;
-    var toV   = document.getElementById('sigenMicroScanTo').value;
-
     _microDevices = found;
     _renderDeviceTable(_microDevices);
 
-    var n = found.length;
+    var n      = found.length;
+    var fromV  = document.getElementById('sigenMicroScanFrom').value;
+    var toV    = document.getElementById('sigenMicroScanTo').value;
+
     if (n > 0) {
+        stat.style.color = 'var(--success, #27ae60)';
         stat.textContent = '100% — Scan complete: ' + n + ' device' + (n !== 1 ? 's' : '') + ' found.';
         _showScanMsg('success',
             'Scan complete: ' + n + ' SigenMicro device' + (n !== 1 ? 's' : '') +
             ' found. Enable the devices you want to poll, then click Save selection.');
     } else {
         stat.style.color = 'var(--text-light)';
-        stat.textContent = '100% — Scan complete: no SigenMicro devices found in range ' + fromV + '–' + toV + '.';
+        stat.textContent = '100% — Scan complete: no devices found in range ' + fromV + '–' + toV + '.';
         _showScanMsg('info',
             'Scan complete: no SigenMicro devices found in range ' + fromV + '–' + toV +
             '. Verify the Modbus connection and ID range, then scan again.');

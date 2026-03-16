@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.6.0 (2026-03-16)
+* 修复扫描进度：使用State订阅(info.scanProgress)代替sendTo分块；适配器逐ID写入进度，管理页面通过socket.subscribeState实时更新
+
 ### 1.5.6 (2026-03-16)
 * 将不可见进度条替换为显示百分比和当前ID范围的纯文本状态行
 

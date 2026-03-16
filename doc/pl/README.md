@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.0 (2026-03-16)
+* Postep skanowania: State subscription (info.scanProgress) zamiast sendTo chunks; adapter pisze postep na ID
+
 ### 1.5.6 (2026-03-16)
 * Niewidoczny pasek postepu zastapiony linia tekstowa z procentem i zakresem ID
 

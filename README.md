@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.0 (2026-03-16)
+* Fix scan progress display: use ioBroker state subscription (info.scanProgress) instead of sendTo chunks; adapter writes progress per ID, admin page subscribes via socket.subscribeState for real-time updates
+
 ### 1.5.6 (2026-03-16)
 * Replace invisible progress bar with plain text status line showing percentage and current ID range
 

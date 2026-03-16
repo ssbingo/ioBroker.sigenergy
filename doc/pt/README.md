@@ -156,6 +156,9 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.0 (2026-03-16)
+* Progresso de scan: State subscription (info.scanProgress) em vez de sendTo chunks; adaptador escreve progresso por ID
+
 ### 1.5.6 (2026-03-16)
 * Barra de progresso invisivel substituida por linha de texto com percentual e intervalo de ID
 
