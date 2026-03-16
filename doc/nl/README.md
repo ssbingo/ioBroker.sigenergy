@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.3 (2026-03-16)
+* SigenMicro scan voortgang: CSS max-height transitie + shimmer animatie (geen display:none conflicten); requestAnimationFrame voor betrouwbare hertekening
+
 ### 1.5.2 (2026-03-16)
 * SigenMicro tab: voortgangsbalk zichtbaar; gereserveerde IDs worden getoond en overgeslagen; melding als geen apparaten gevonden
 

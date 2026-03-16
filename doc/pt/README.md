@@ -156,6 +156,9 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.3 (2026-03-16)
+* Corrige progresso de scan SigenMicro: transição CSS max-height + animação shimmer; requestAnimationFrame para repintura confiável
+
 ### 1.5.2 (2026-03-16)
 * Aba SigenMicro: barra de progresso corrigida; IDs reservados exibidos e ignorados; mensagem exibida quando nenhum dispositivo é encontrado
 

@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.3 (2026-03-16)
+* SigenMicro Scan-Fortschritt: max-height CSS-Übergang + Shimmer-Animation statt display:none; requestAnimationFrame für zuverlässiges Neu-Zeichnen zwischen Chunks
+
 ### 1.5.2 (2026-03-16)
 * SigenMicro Scan-Tab: Fortschrittsbalken sichtbar; reservierte IDs (Anlage/WR/Lader) werden angezeigt und automatisch übersprungen; Meldung bei keinen gefundenen Geräten
 

@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.2",
+        "version": "1.5.3",
         "news": {
+            "1.5.3": {
+                "en": "Fix SigenMicro scan progress: use max-height CSS transition + shimmer animation (no display:none conflicts); use requestAnimationFrame for reliable repaint between chunks",
+                "de": "SigenMicro Scan-Fortschritt: max-height CSS-Übergang + Shimmer-Animation statt display:none; requestAnimationFrame für zuverlässiges Neu-Zeichnen zwischen Chunks",
+                "ru": "Исправлен прогресс сканирования SigenMicro: CSS max-height переход + анимация shimmer; requestAnimationFrame для надёжной перерисовки",
+                "pt": "Corrige progresso de scan SigenMicro: transição CSS max-height + animação shimmer; requestAnimationFrame para repintura confiável",
+                "nl": "SigenMicro scan voortgang: CSS max-height transitie + shimmer animatie (geen display:none conflicten); requestAnimationFrame voor betrouwbare hertekening",
+                "fr": "Correction de la progression du scan SigenMicro: transition CSS max-height + animation shimmer; requestAnimationFrame pour un redessin fiable",
+                "it": "Correzione avanzamento scan SigenMicro: transizione CSS max-height + animazione shimmer; requestAnimationFrame per ridisegno affidabile",
+                "es": "Corrección progreso scan SigenMicro: transición CSS max-height + animación shimmer; requestAnimationFrame para repintado confiable",
+                "pl": "Naprawa postępu skanowania SigenMicro: przejście CSS max-height + animacja shimmer; requestAnimationFrame dla niezawodnego odświeżania",
+                "uk": "Виправлення прогресу сканування SigenMicro: CSS max-height перехід + shimmer анімація; requestAnimationFrame для надійного перемалювання",
+                "zh-cn": "修复SigenMicro扫描进度：使用CSS max-height过渡+shimmer动画（无display:none冲突）；requestAnimationFrame确保可靠重绘"
+            },
             "1.5.2": {
                 "en": "Fix SigenMicro scan tab: progress bar now visible; reserved IDs (Plant/Inverter/Charger) shown and auto-skipped; \"no devices found\" message always displayed",
                 "de": "SigenMicro Scan-Tab: Fortschrittsbalken sichtbar; reservierte IDs (Anlage/WR/Lader) werden angezeigt und automatisch übersprungen; Meldung bei keinen gefundenen Geräten",

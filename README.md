@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.3 (2026-03-16)
+* Fix SigenMicro scan progress: use max-height CSS transition + shimmer animation (no display:none conflicts); use requestAnimationFrame for reliable repaint between chunks
+
 ### 1.5.2 (2026-03-16)
 * Fix SigenMicro scan tab: progress bar now visible; reserved IDs (Plant/Inverter/Charger) shown and auto-skipped; "no devices found" message always displayed
 
