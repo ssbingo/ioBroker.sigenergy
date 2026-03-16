@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.4.1 (2026-03-16)
+* SigenMicro ondersteuning: Modbus-scan, apparaatdetectie, per apparaat in-/uitschakelen, eigen beheertab
+
 ### 1.4.0 (2026-03-14)
 * Fixes / Opschoning
 

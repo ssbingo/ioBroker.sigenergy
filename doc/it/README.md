@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.4.1 (2026-03-16)
+* Supporto SigenMicro: scansione Modbus, rilevamento dispositivi, attivazione per dispositivo, scheda dedicata
+
 ### 1.4.0 (2026-03-14)
 * Correzioni / Pulizia
 

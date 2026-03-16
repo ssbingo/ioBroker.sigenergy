@@ -1,47 +1,60 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.4.0",
+        "version": "1.4.1",
         "news": {
+            "1.4.1": {
+                "en": "Add SigenMicro micro-inverter support: Modbus scan, device discovery, per-device enable/disable, dedicated admin tab",
+                "de": "SigenMicro Mikro-Wechselrichter: Modbus-Scan, Geräteerkennung, geräteweise Aktivierung, eigener Admin-Tab",
+                "ru": "Поддержка SigenMicro: сканирование Modbus, обнаружение устройств, индивидуальное включение, отдельная вкладка",
+                "pt": "Suporte SigenMicro: varredura Modbus, descoberta de dispositivos, ativação individual, aba dedicada",
+                "nl": "SigenMicro ondersteuning: Modbus-scan, apparaatdetectie, per apparaat in-/uitschakelen, eigen beheertab",
+                "fr": "Support SigenMicro: scan Modbus, découverte des appareils, activation individuelle, onglet dédié",
+                "it": "Supporto SigenMicro: scansione Modbus, rilevamento dispositivi, attivazione per dispositivo, scheda dedicata",
+                "es": "Soporte SigenMicro: escaneo Modbus, detección de dispositivos, activación individual, pestaña dedicada",
+                "pl": "Obsługa SigenMicro: skanowanie Modbus, wykrywanie urządzeń, włączanie per urządzenie, dedykowana karta",
+                "uk": "Підтримка SigenMicro: сканування Modbus, виявлення пристроїв, індивідуальне вмикання, окрема вкладка",
+                "zh-cn": "支持SigenMicro微型逆变器：Modbus扫描、设备发现、按设备启用/禁用、专用管理标签页"
+            },
             "1.4.0": {
                 "en": "Fixes / Cleaning",
                 "de": "Korrekturen / Bereinigung",
-                "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f / \u041e\u0447\u0438\u0441\u0442\u043a\u0430",
-                "pt": "Corre\u00e7\u00f5es / Limpeza",
+                "ru": "Исправления / Очистка",
+                "pt": "Correções / Limpeza",
                 "nl": "Fixes / Opschoning",
                 "fr": "Corrections / Nettoyage",
                 "it": "Correzioni / Pulizia",
                 "es": "Correcciones / Limpieza",
                 "pl": "Poprawki / Czyszczenie",
-                "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043d\u044f / \u041e\u0447\u0438\u0449\u0435\u043d\u043d\u044f",
-                "zh-cn": "\u4fee\u590d / \u6e05\u7406"
+                "uk": "Виправлення / Очищення",
+                "zh-cn": "修复 / 清理"
             }
         },
         "titleLang": {
             "en": "Sigenergy Solar System",
             "de": "Sigenergy Solaranlage",
-            "ru": "\u0421\u043e\u043b\u043d\u0435\u0447\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 Sigenergy",
+            "ru": "Солнечная система Sigenergy",
             "pt": "Sistema Solar Sigenergy",
             "nl": "Sigenergy Zonne-energiesysteem",
-            "fr": "Syst\u00e8me Solaire Sigenergy",
+            "fr": "Système Solaire Sigenergy",
             "it": "Sistema Solare Sigenergy",
             "es": "Sistema Solar Sigenergy",
-            "pl": "System S\u0142oneczny Sigenergy",
-            "uk": "\u0421\u043e\u043d\u044f\u0447\u043d\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u0430 Sigenergy",
-            "zh-cn": "Sigenergy \u592a\u9633\u80fd\u7cfb\u7edf"
+            "pl": "System Słoneczny Sigenergy",
+            "uk": "Сонячна система Sigenergy",
+            "zh-cn": "Sigenergy 太阳能系统"
         },
         "desc": {
             "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-            "de": "Adapter f\u00fcr Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladeger\u00e4t) via Modbus TCP/RTU",
-            "ru": "\u0410\u0434\u0430\u043f\u0442\u0435\u0440 \u0434\u043b\u044f \u0441\u043e\u043b\u043d\u0435\u0447\u043d\u044b\u0445 \u0441\u0438\u0441\u0442\u0435\u043c Sigenergy (\u0433\u0438\u0431\u0440\u0438\u0434\u043d\u044b\u0439 \u0438\u043d\u0432\u0435\u0440\u0442\u043e\u0440, \u0430\u043a\u043a\u0443\u043c\u0443\u043b\u044f\u0442\u043e\u0440, \u0437\u0430\u0440\u044f\u0434\u043d\u043e\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e AC/DC) \u0447\u0435\u0440\u0435\u0437 Modbus TCP/RTU",
-            "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor H\u00edbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
+            "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
+            "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
+            "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
             "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
-            "fr": "Adaptateur pour les syst\u00e8mes d'\u00e9nergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
+            "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
             "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
-            "es": "Adaptador para sistemas de energ\u00eda solar Sigenergy (inversor h\u00edbrido, bater\u00eda, cargador AC/DC) a trav\u00e9s de Modbus TCP/RTU",
-            "pl": "Adapter dla system\u00f3w energii s\u0142onecznej Sigenergy (falownik hybrydowy, akumulator, \u0142adowarka AC/DC) przez Modbus TCP/RTU",
-            "uk": "\u0410\u0434\u0430\u043f\u0442\u0435\u0440 \u0434\u043b\u044f \u0441\u043e\u043d\u044f\u0447\u043d\u0438\u0445 \u0435\u043d\u0435\u0440\u0433\u0435\u0442\u0438\u0447\u043d\u0438\u0445 \u0441\u0438\u0441\u0442\u0435\u043c Sigenergy (\u0433\u0456\u0431\u0440\u0438\u0434\u043d\u0438\u0439 \u0456\u043d\u0432\u0435\u0440\u0442\u043e\u0440, \u0430\u043a\u0443\u043c\u0443\u043b\u044f\u0442\u043e\u0440, \u0437\u0430\u0440\u044f\u0434\u043d\u0438\u0439 \u043f\u0440\u0438\u0441\u0442\u0440\u0456\u0439 AC/DC) \u0447\u0435\u0440\u0435\u0437 Modbus TCP/RTU",
-            "zh-cn": "\u901a\u8fc7Modbus TCP/RTU\u8fde\u63a5Sigenergy\u592a\u9633\u80fd\u7cfb\u7edf\uff08\u6df7\u5408\u9006\u53d8\u5668\u3001\u7535\u6c60\u3001AC/DC\u5145\u7535\u5668\uff09\u7684\u9002\u914d\u5668"
+            "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
+            "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
+            "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
+            "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
         },
         "authors": [
             "ioBroker Community"
@@ -125,7 +138,11 @@
         "calcSelfConsumptionRate": true,
         "calcAutarkyRate": true,
         "calcPvYield": true,
-        "calcGridFeedIn": true
+        "calcGridFeedIn": true,
+        "hasSigenMicro": false,
+        "sigenMicroScanFrom": 10,
+        "sigenMicroScanTo": 30,
+        "sigenMicroDevices": "[]"
     },
     "objects": [],
     "instanceObjects": [

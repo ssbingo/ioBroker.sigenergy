@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.4.1 (2026-03-16)
+* Add SigenMicro micro-inverter support: Modbus scan, device discovery, per-device enable/disable, dedicated admin tab
+
 ### 1.4.0 (2026-03-14)
 * Fixes / Cleaning
 

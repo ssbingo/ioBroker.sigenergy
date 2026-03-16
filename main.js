@@ -26,6 +26,8 @@ const {
 	DC_CHARGER_READ_REGISTERS,
 	AC_CHARGER_READ_REGISTERS,
 } = require('./lib/registers');
+const SigenMicroScanner = require('./lib/scanner');
+const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
 
 class Sigenergy extends utils.Adapter {
 	/**
@@ -42,6 +44,8 @@ class Sigenergy extends utils.Adapter {
 		this._pollTimer = null;
 		this._currentData = {};
 		this._objectsCreated = false;
+		/** @type {Array<{slaveId:number,model:string,serial:string,active:boolean}>} */
+		this._sigenMicroDevices = [];
 
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
@@ -62,9 +66,22 @@ class Sigenergy extends utils.Adapter {
 		);
 		this.log.debug(
 			`Components: battery=${this.config.hasBattery}, pv=${this.config.hasPv}, ` +
-				`acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}`,
+				`acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}, ` +
+				`sigenMicro=${this.config.hasSigenMicro}`,
 		);
 		this.setState('info.connection', false, true);
+
+		// Load persisted SigenMicro device list from config
+		try {
+			const raw = this.config.sigenMicroDevices;
+			this._sigenMicroDevices = (raw && typeof raw === 'string') ? JSON.parse(raw) : (Array.isArray(raw) ? raw : []);
+		} catch (_) {
+			this._sigenMicroDevices = [];
+		}
+		const activeCount = this._sigenMicroDevices.filter(d => d.active).length;
+		if (this.config.hasSigenMicro) {
+			this.log.info(`SigenMicro enabled: ${this._sigenMicroDevices.length} device(s) configured, ${activeCount} active`);
+		}
 
 		// Migration: remove visWidgets from adapter object if present from older versions.
 		try {
@@ -158,6 +175,9 @@ class Sigenergy extends utils.Adapter {
 			if (this.config.hasDcCharger) {
 				await this._readDcCharger();
 			}
+			if (this.config.hasSigenMicro) {
+				await this._readSigenMicroDevices();
+			}
 
 			await this._updateStatistics();
 
@@ -250,6 +270,31 @@ class Sigenergy extends utils.Adapter {
 				await this._sleep(100);
 			} catch (err) {
 				this.log.warn(`DC Charger register read error: ${err.message}`);
+			}
+		}
+	}
+
+	/**
+	 * Read all active SigenMicro devices
+	 */
+	async _readSigenMicroDevices() {
+		const activeDevices = this._sigenMicroDevices.filter(d => d.active);
+		if (activeDevices.length === 0) return;
+		this.log.debug(`Reading ${activeDevices.length} active SigenMicro device(s)`);
+
+		for (const device of activeDevices) {
+			const registers = getRegistersForDevice(device.slaveId);
+			const batchSize = 30;
+			const groups = this._buildReadGroups(registers, batchSize);
+
+			for (const group of groups) {
+				try {
+					const raw = await this.modbus.readInputRegisters(device.slaveId, group.startAddr, group.totalQty);
+					await this._processReadGroup(group, raw, `sigenmicro.${device.slaveId}`);
+					await this._sleep(100);
+				} catch (err) {
+					this.log.warn(`SigenMicro ID ${device.slaveId} read error at ${group.startAddr}: ${err.message}`);
+				}
 			}
 		}
 	}
@@ -413,6 +458,10 @@ class Sigenergy extends utils.Adapter {
 			}
 		}
 
+		if (this.config.hasSigenMicro) {
+			await this._createSigenMicroObjects();
+		}
+
 		await this._createStatisticsStates();
 		this.log.debug('All ioBroker objects created successfully');
 	}
@@ -464,6 +513,26 @@ class Sigenergy extends utils.Adapter {
 				gain: reg.gain,
 			},
 		});
+	}
+
+	/**
+	 * Create ioBroker objects for all active SigenMicro devices
+	 */
+	async _createSigenMicroObjects() {
+		const activeDevices = this._sigenMicroDevices.filter(d => d.active);
+		if (activeDevices.length === 0) return;
+
+		this.log.debug(`Creating objects for ${activeDevices.length} active SigenMicro device(s)`);
+		await this._createChannel('sigenmicro', 'SigenMicro Micro-Inverters');
+
+		for (const device of activeDevices) {
+			const channelId = `sigenmicro.${device.slaveId}`;
+			await this._createChannel(channelId, device.model || `SigenMicro ID ${device.slaveId}`);
+			const registers = getRegistersForDevice(device.slaveId);
+			for (const reg of registers) {
+				await this._createStateFromRegister(reg);
+			}
+		}
 	}
 
 	/**
@@ -604,6 +673,95 @@ class Sigenergy extends utils.Adapter {
 			const ports = await this._getSerialPorts();
 			if (obj.callback) {
 				this.sendTo(obj.from, obj.command, ports, obj.callback);
+			}
+		}
+
+		if (obj.command === 'scanSigenMicro') {
+			await this._handleScanSigenMicro(obj);
+		}
+
+		if (obj.command === 'saveSigenMicroDevices') {
+			await this._handleSaveSigenMicroDevices(obj);
+		}
+	}
+
+	/**
+	 * Handle scanSigenMicro message from Admin tab
+	 * Runs a Modbus scan and returns the found device list.
+	 *
+	 * @param {object} obj - ioBroker message object
+	 */
+	async _handleScanSigenMicro(obj) {
+		if (!this.config.hasSigenMicro) {
+			this.sendTo(obj.from, obj.command, { success: false, message: 'SigenMicro is not enabled in adapter configuration.' }, obj.callback);
+			return;
+		}
+
+		const msg     = obj.message || {};
+		const from    = Math.max(1,   parseInt(msg.scanFrom, 10) || this.config.sigenMicroScanFrom || 10);
+		const to      = Math.min(246, parseInt(msg.scanTo,   10) || this.config.sigenMicroScanTo   || 30);
+
+		this.log.info(`[scanSigenMicro] Starting scan, range ${from}–${to}`);
+
+		const scanner = new SigenMicroScanner(this.config, {
+			debug: m => this.log.debug(m),
+			info:  m => this.log.info(m),
+			warn:  m => this.log.warn(m),
+			error: m => this.log.error(m),
+		});
+
+		try {
+			// Merge found devices with existing activation state
+			const found = await scanner.scan(from, to);
+			const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
+
+			const merged = found.map(dev => {
+				const prev = existing.find(e => e.slaveId === dev.slaveId);
+				return { ...dev, active: prev ? !!prev.active : false };
+			});
+
+			this.log.info(`[scanSigenMicro] Done: ${merged.length} device(s) found`);
+			if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
+			}
+		} catch (err) {
+			this.log.error(`[scanSigenMicro] Error: ${err.message}`);
+			if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
+			}
+		}
+	}
+
+	/**
+	 * Handle saveSigenMicroDevices message from Admin tab.
+	 * Persists the updated device list (with active flags) into the adapter config.
+	 *
+	 * @param {object} obj - ioBroker message object
+	 */
+	async _handleSaveSigenMicroDevices(obj) {
+		const devices = (obj.message && Array.isArray(obj.message.devices)) ? obj.message.devices : [];
+		this._sigenMicroDevices = devices;
+
+		try {
+			// Persist into adapter native config
+			const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+			if (adapterObj) {
+				adapterObj.native.sigenMicroDevices = JSON.stringify(devices);
+				await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
+			}
+
+			// Re-create objects for newly activated devices
+			this._objectsCreated = false;
+			await this._createObjects();
+
+			this.log.info(`[saveSigenMicroDevices] Saved ${devices.length} device(s), ${devices.filter(d => d.active).length} active`);
+			if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: true }, obj.callback);
+			}
+		} catch (err) {
+			this.log.error(`[saveSigenMicroDevices] Error: ${err.message}`);
+			if (obj.callback) {
+				this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
 			}
 		}
 	}

@@ -421,6 +421,128 @@
             .toggle-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+
+        /* ── SigenMicro scanner ── */
+        .micro-tab-hidden { display: none !important; }
+
+        .btn-scan {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-scan:hover  { background: var(--primary-dark); }
+        .btn-scan:disabled { background: #ccc; cursor: not-allowed; }
+
+        .btn-save-micro {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        .btn-save-micro:hover    { background: #1e8449; }
+        .btn-save-micro:disabled { background: #ccc; cursor: not-allowed; }
+
+        .scan-progress {
+            margin-top: 12px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.88rem;
+            color: var(--text-light);
+        }
+        .progress-bar-wrap {
+            flex: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .scan-result-msg {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            display: none;
+        }
+        .scan-result-msg.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .scan-result-msg.error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .scan-result-msg.info    { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+        /* Device table */
+        .device-table-wrap { margin-top: 16px; overflow-x: auto; }
+        .device-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+        .device-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: #f5f5f5;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+        }
+        .device-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            color: var(--text);
+        }
+        .device-table tr:last-child td { border-bottom: none; }
+        .device-table tr:hover td { background: #fafafa; }
+        .device-table tr.row-active td { background: #fff8f7; }
+        .slave-id-badge {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #1a5276;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .device-table input[type="checkbox"] {
+            width: 18px; height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .no-devices-msg {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+        .no-devices-msg .nd-icon { font-size: 2.5rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -444,6 +566,9 @@
     </button>
     <button class="tab-btn" onclick="switchTab('statistics', this)">
         <span class="tab-icon">📊</span> Statistics
+    </button>
+    <button class="tab-btn micro-tab-hidden" id="tab-btn-sigenmicro" onclick="switchTab('sigenmicro', this)">
+        <span class="tab-icon">🔆</span> SigenMicro
     </button>
     <button class="tab-btn" onclick="switchTab('info', this)">
         <span class="tab-icon">ℹ️</span> Info
@@ -507,6 +632,20 @@
                 </div>
                 <label class="switch-wrap">
                     <input type="checkbox" id="hasDcCharger" class="value" onchange="updateToggleStyle('hasDcCharger')">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+            <div class="toggle-item" id="item-hasSigenMicro">
+                <div class="toggle-label">
+                    <span class="t-icon">🔆</span>
+                    <div class="t-text">
+                        <strong>SigenMicro</strong>
+                        <span>Micro-inverter (MLPE) devices</span>
+                    </div>
+                </div>
+                <label class="switch-wrap">
+                    <input type="checkbox" id="hasSigenMicro" class="value"
+                           onchange="updateToggleStyle('hasSigenMicro'); toggleSigenMicroTab()">
                     <span class="slider-btn"></span>
                 </label>
             </div>
@@ -725,6 +864,63 @@
     </div>
 </div>
 
+<!-- Tab: SigenMicro Scanner -->
+<div id="tab-sigenmicro" class="tab-content">
+    <div class="card">
+        <h2 class="card-title"><span class="icon">🔆</span> SigenMicro Device Scan</h2>
+        <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 16px;">
+            Scan the Modbus bus for SigenMicro micro-inverters. Each found device can be individually
+            enabled for polling. The scan range is set in the adapter configuration (Components tab).
+        </p>
+
+        <div class="form-row triple" style="align-items: flex-end;">
+            <div class="form-group">
+                <label>First Modbus ID</label>
+                <input type="number" id="sigenMicroScanFrom" class="value" min="1" max="246" value="10">
+            </div>
+            <div class="form-group">
+                <label>Last Modbus ID</label>
+                <input type="number" id="sigenMicroScanTo" class="value" min="1" max="246" value="30">
+            </div>
+            <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px; padding-bottom: 2px;">
+                <button class="btn-scan" id="btnScan" onclick="startSigenMicroScan()">
+                    🔍 Start Scan
+                </button>
+                <button class="btn-save-micro" id="btnSaveMicro" onclick="saveSigenMicroDevices()" disabled>
+                    💾 Save selection
+                </button>
+            </div>
+        </div>
+
+        <div class="scan-progress" id="scanProgress">
+            <span id="scanProgressLabel">Scanning…</span>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="scanProgressBar"></div>
+            </div>
+            <span id="scanProgressPct">0%</span>
+        </div>
+
+        <div class="scan-result-msg" id="scanResultMsg"></div>
+    </div>
+
+    <div class="card" id="deviceListCard">
+        <h2 class="card-title"><span class="icon">📋</span> Discovered Devices
+            <span id="deviceCountBadge" style="margin-left:auto; font-size:0.8rem; font-weight:400;
+                  background: var(--border); padding: 2px 10px; border-radius: 12px; color: var(--text-light);">
+                No scan run yet
+            </span>
+        </h2>
+
+        <div id="deviceListContainer">
+            <div class="no-devices-msg">
+                <div class="nd-icon">📡</div>
+                <div>No scan has been run yet.<br>
+                    Set the slave-ID range above and click <strong>Start Scan</strong>.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Tab: Info -->
 <div id="tab-info" class="tab-content">
     <div class="card">
@@ -825,6 +1021,174 @@
 </div>
 
 <script>
+/* ── helpers ─────────────────────────────────────────── */
+function _getAdapterNs() {
+    var ns = null;
+    try { if (typeof namespace !== 'undefined' && namespace) ns = namespace; } catch(e) {}
+    if (!ns) {
+        try {
+            var hm = window.location.hash.match(/system\.adapter\.(sigenergy\.\d+)/);
+            if (hm) ns = hm[1];
+        } catch(e) {}
+    }
+    if (!ns) ns = 'sigenergy.0';
+    if (ns.indexOf('system.adapter.') === 0) ns = ns.slice('system.adapter.'.length);
+    return ns;
+}
+
+function _sendToAdapter(command, data, cb) {
+    var ns = _getAdapterNs();
+    var cbFired = false;
+    var safetyTimer = setTimeout(function() {
+        if (!cbFired) { cbFired = true; cb({ success: false, message: 'Adapter did not respond. Is the instance running?' }); }
+    }, 30000);
+    function done(res) {
+        if (cbFired) return;
+        cbFired = true;
+        clearTimeout(safetyTimer);
+        cb(res || { success: false, message: 'Empty response' });
+    }
+    if (typeof sendTo === 'function') {
+        try { var r = sendTo(ns, command, data, done); if (r && r.then) { r.then(done).catch(function(e){ done({success:false,message:String(e)}); }); } return; } catch(e) {}
+    }
+    var sock = null;
+    try { if (typeof socket !== 'undefined') sock = socket; } catch(e) {}
+    if (!sock) try { sock = window.socket; } catch(e) {}
+    if (sock && typeof sock.sendTo === 'function') {
+        try { var p = sock.sendTo(ns, command, data, done); if (p && p.then) { p.then(done).catch(function(e){ done({success:false,message:String(e)}); }); } return; } catch(e) {}
+    }
+    if (sock) { try { if (sock._socket && sock._socket.emit) sock = sock._socket; } catch(e) {} }
+    if (sock && typeof sock.emit === 'function') {
+        try { sock.emit('sendTo', ns, command, data, done); return; } catch(e) {}
+    }
+    clearTimeout(safetyTimer);
+    cb({ success: false, message: 'Admin socket not available. Try reloading the page.' });
+}
+
+/* ── SigenMicro tab visibility ────────────────────────── */
+function toggleSigenMicroTab() {
+    var enabled = $('#hasSigenMicro').prop('checked');
+    var $btn = $('#tab-btn-sigenmicro');
+    if (enabled) {
+        $btn.removeClass('micro-tab-hidden');
+    } else {
+        $btn.addClass('micro-tab-hidden');
+        // If currently on the sigenmicro tab → jump back to components
+        if ($('#tab-sigenmicro').hasClass('active')) {
+            var $compBtn = $('.tab-btn').first();
+            switchTab('components', $compBtn[0]);
+        }
+    }
+}
+
+/* ── SigenMicro scan ──────────────────────────────────── */
+var _microDevices = []; // current device list in UI
+
+function startSigenMicroScan() {
+    var from = parseInt($('#sigenMicroScanFrom').val(), 10) || 10;
+    var to   = parseInt($('#sigenMicroScanTo').val(),   10) || 30;
+    if (from < 1 || to > 246 || from > to) {
+        _showScanMsg('error', 'Invalid scan range. First ID must be ≤ last ID (1–246).');
+        return;
+    }
+
+    $('#btnScan').prop('disabled', true);
+    $('#btnSaveMicro').prop('disabled', true);
+    $('#scanProgress').css('display', 'flex');
+    $('#scanProgressBar').css('width', '5%');
+    $('#scanProgressPct').text('0%');
+    $('#scanProgressLabel').text('Connecting…');
+    _showScanMsg('info', '⏳ Scanning IDs ' + from + '–' + to + '…');
+
+    _sendToAdapter('scanSigenMicro', { scanFrom: from, scanTo: to }, function(res) {
+        $('#btnScan').prop('disabled', false);
+        $('#scanProgress').css('display', 'none');
+
+        if (!res || !res.success) {
+            _showScanMsg('error', '❌ Scan failed: ' + (res && res.message ? res.message : 'Unknown error'));
+            return;
+        }
+
+        _microDevices = res.devices || [];
+        _renderDeviceTable(_microDevices);
+
+        var n = _microDevices.length;
+        _showScanMsg('success', '✅ Scan complete — ' + n + ' device' + (n !== 1 ? 's' : '') + ' found.');
+        $('#btnSaveMicro').prop('disabled', n === 0);
+        $('#deviceCountBadge').text(n + ' device' + (n !== 1 ? 's' : '') + ' found');
+    });
+}
+
+function _renderDeviceTable(devices) {
+    var $container = $('#deviceListContainer');
+    if (!devices || devices.length === 0) {
+        $container.html('<div class="no-devices-msg"><div class="nd-icon">🔍</div>' +
+            '<div>No SigenMicro devices found in the scanned range.<br>' +
+            'Check the ID range and make sure Modbus is reachable.</div></div>');
+        return;
+    }
+
+    var rows = devices.map(function(dev, idx) {
+        var checked = dev.active ? 'checked' : '';
+        var rowClass = dev.active ? 'row-active' : '';
+        return '<tr class="' + rowClass + '" id="micro-row-' + idx + '">' +
+            '<td><span class="slave-id-badge">' + dev.slaveId + '</span></td>' +
+            '<td>' + _esc(dev.model || '—') + '</td>' +
+            '<td style="font-family:monospace; font-size:0.82rem;">' + _esc(dev.serial || '—') + '</td>' +
+            '<td style="text-align:center;">' +
+                '<input type="checkbox" ' + checked + ' ' +
+                    'onchange="toggleMicroDevice(' + idx + ', this.checked)">' +
+            '</td>' +
+        '</tr>';
+    }).join('');
+
+    $container.html(
+        '<div class="device-table-wrap">' +
+        '<table class="device-table">' +
+        '<thead><tr>' +
+            '<th>Slave ID</th>' +
+            '<th>Model</th>' +
+            '<th>Serial number</th>' +
+            '<th style="text-align:center;">Enable polling</th>' +
+        '</tr></thead>' +
+        '<tbody>' + rows + '</tbody>' +
+        '</table></div>'
+    );
+}
+
+function toggleMicroDevice(idx, active) {
+    if (_microDevices[idx]) {
+        _microDevices[idx].active = active;
+        var $row = $('#micro-row-' + idx);
+        $row.toggleClass('row-active', active);
+    }
+}
+
+function saveSigenMicroDevices() {
+    $('#btnSaveMicro').prop('disabled', true);
+    _showScanMsg('info', '⏳ Saving device selection…');
+
+    _sendToAdapter('saveSigenMicroDevices', { devices: _microDevices }, function(res) {
+        $('#btnSaveMicro').prop('disabled', false);
+        if (res && res.success) {
+            var active = _microDevices.filter(function(d){ return d.active; }).length;
+            _showScanMsg('success', '✅ Saved. ' + active + ' device' + (active !== 1 ? 's' : '') + ' enabled for polling. Adapter objects created.');
+        } else {
+            _showScanMsg('error', '❌ Save failed: ' + (res && res.message ? res.message : 'Unknown error'));
+        }
+    });
+}
+
+function _showScanMsg(type, html) {
+    var $el = $('#scanResultMsg');
+    $el.removeClass('success error info').addClass(type).html(html).show();
+}
+
+function _esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── Existing functions ───────────────────────────────── */
 function switchTab(name, btn) {
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -873,8 +1237,21 @@ function load(settings, onChange) {
         }
     });
 
-    ['hasBattery','hasPv','hasAcCharger','hasDcCharger'].forEach(updateToggleStyle);
+    ['hasBattery','hasPv','hasAcCharger','hasDcCharger','hasSigenMicro'].forEach(updateToggleStyle);
     toggleAcCharger();
+    toggleSigenMicroTab();
+
+    // Restore known device list from config so it shows without re-scanning
+    try {
+        var raw = settings.sigenMicroDevices;
+        _microDevices = (raw && typeof raw === 'string') ? JSON.parse(raw) : (Array.isArray(raw) ? raw : []);
+        if (_microDevices.length > 0) {
+            _renderDeviceTable(_microDevices);
+            var active = _microDevices.filter(function(d){ return d.active; }).length;
+            $('#deviceCountBadge').text(_microDevices.length + ' device(s) · ' + active + ' active');
+            $('#btnSaveMicro').prop('disabled', false);
+        }
+    } catch(_) { _microDevices = []; }
 
     var ct = settings.connectionType || 'tcp';
     $('#connectionType').val(ct);
@@ -888,17 +1265,7 @@ function load(settings, onChange) {
 }
 
 function _loadAdapterVersion() {
-    var ns = null;
-    try { if (typeof namespace !== 'undefined' && namespace) ns = namespace; } catch(e) {}
-    if (!ns) {
-        try {
-            var hashMatch = window.location.hash.match(/system\.adapter\.(sigenergy\.\d+)/);
-            if (hashMatch) ns = hashMatch[1];
-        } catch(e) {}
-    }
-    if (!ns) ns = 'sigenergy.0';
-    if (ns.indexOf('system.adapter.') === 0) ns = ns.slice('system.adapter.'.length);
-
+    var ns = _getAdapterNs();
     var objId = 'system.adapter.' + ns;
     try {
         if (typeof socket !== 'undefined' && socket && typeof socket.getObject === 'function') {
@@ -937,10 +1304,14 @@ function save(callback) {
 
     var numericFields = ['tcpPort','plantId','inverterId','acChargerId',
                          'pollInterval','timeout','serialBaudRate',
-                         'serialDataBits','serialStopBits'];
+                         'serialDataBits','serialStopBits',
+                         'sigenMicroScanFrom','sigenMicroScanTo'];
     numericFields.forEach(function(f) {
         if (obj[f] !== undefined) { obj[f] = parseInt(obj[f], 10) || 0; }
     });
+
+    // Persist current device list (with active flags) via the regular save path
+    obj.sigenMicroDevices = JSON.stringify(_microDevices);
 
     callback(obj);
 }
@@ -975,60 +1346,7 @@ function testConnection() {
         }
     }
 
-    var ns = null;
-    try { if (typeof namespace !== 'undefined' && namespace) ns = namespace; } catch(e) {}
-    if (!ns) {
-        try {
-            var hm = window.location.hash.match(/system\.adapter\.(sigenergy\.\d+)/);
-            if (hm) ns = hm[1];
-        } catch(e) {}
-    }
-    if (!ns) ns = 'sigenergy.0';
-    if (ns.indexOf('system.adapter.') === 0) ns = ns.slice('system.adapter.'.length);
-
-    var cbFired = false;
-    var safetyTimer = setTimeout(function() {
-        if (!cbFired) {
-            cbFired = true;
-            showResult({ success: false, message: 'No response from adapter instance "' + ns + '". Check that the instance is running.' });
-        }
-    }, (config.timeout || 5000) + 10000);
-
-    function done(res) {
-        if (cbFired) return;
-        cbFired = true;
-        clearTimeout(safetyTimer);
-        showResult(res);
-    }
-
-    if (typeof sendTo === 'function') {
-        try {
-            var r = sendTo(ns, 'testConnection', config, done);
-            if (r && typeof r.then === 'function') { r.then(done).catch(function(e) { done({ success: false, message: String(e) }); }); }
-            return;
-        } catch(e) {}
-    }
-
-    var sock = null;
-    try { if (typeof socket !== 'undefined') sock = socket; } catch(e) {}
-    if (!sock) try { sock = window.socket; } catch(e) {}
-
-    if (sock && typeof sock.sendTo === 'function') {
-        try {
-            var p = sock.sendTo(ns, 'testConnection', config, done);
-            if (p && typeof p.then === 'function') { p.then(done).catch(function(e) { done({ success: false, message: String(e) }); }); }
-            return;
-        } catch(e) {}
-    }
-
-    var rawSock = sock;
-    if (sock) { try { if (sock._socket && sock._socket.emit) rawSock = sock._socket; } catch(e) {} }
-    if (rawSock && typeof rawSock.emit === 'function') {
-        try { rawSock.emit('sendTo', ns, 'testConnection', config, done); return; } catch(e) {}
-    }
-
-    clearTimeout(safetyTimer);
-    showResult({ success: false, message: 'Admin socket not available. Try reloading the page.' });
+    _sendToAdapter('testConnection', config, showResult);
 }
 </script>
 </body>

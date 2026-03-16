@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.4.1 (2026-03-16)
+* SigenMicro Mikro-Wechselrichter: Modbus-Scan, Geräteerkennung, geräteweise Aktivierung, eigener Admin-Tab
+
 ### 1.4.0 (2026-03-14)
 * Korrekturen / Bereinigung
 

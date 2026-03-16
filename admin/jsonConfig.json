@@ -58,6 +58,17 @@
           "xs": 12,
           "xl": 3
         },
+        "hasSigenMicro": {
+          "type": "checkbox",
+          "label": "SigenMicro Micro-Inverter",
+          "help": "Sigenergy SigenMicro module-level power electronics (MLPE). Activates the SigenMicro scan & configuration tab.",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xs": 12,
+          "xl": 3
+        },
         "_divider1": {
           "type": "divider",
           "sm": 12,
@@ -336,6 +347,73 @@
           "xs": 12,
           "lg": 4,
           "xl": 4
+        }
+      }
+    },
+    "sigenmicro": {
+      "type": "panel",
+      "label": "SigenMicro",
+      "hidden": "!data.hasSigenMicro",
+      "items": {
+        "_microHeader": {
+          "type": "staticText",
+          "text": "Configure the Modbus slave-ID range to scan for SigenMicro micro-inverters. After scanning, enable each discovered device individually. The adapter polls all enabled devices in every cycle.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_divider_micro1": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "sigenMicroScanFrom": {
+          "type": "number",
+          "label": "Scan — first Modbus ID",
+          "help": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
+          "min": 1,
+          "max": 246,
+          "default": 10,
+          "sm": 12,
+          "md": 3,
+          "xs": 12,
+          "lg": 3,
+          "xl": 3
+        },
+        "sigenMicroScanTo": {
+          "type": "number",
+          "label": "Scan — last Modbus ID",
+          "help": "Highest slave address to probe during the SigenMicro device scan (1–246)",
+          "min": 1,
+          "max": 246,
+          "default": 30,
+          "sm": 12,
+          "md": 3,
+          "xs": 12,
+          "lg": 3,
+          "xl": 3
+        },
+        "_divider_micro2": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_scanNote": {
+          "type": "staticText",
+          "text": "Use the SigenMicro tab in the adapter admin page to run the scan and manage discovered devices. The device list and individual enable/disable selections are stored automatically.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     },
