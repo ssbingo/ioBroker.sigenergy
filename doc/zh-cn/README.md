@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.2 (2026-03-16)
+* 添加test/unit和test/integration目录及基础测试；修复CI错误"No test files found"
+
 ### 1.8.1 (2026-03-16)
 * 在package.json中添加test:unit和test:integration脚本
 

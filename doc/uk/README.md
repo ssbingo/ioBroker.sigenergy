@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.8.2 (2026-03-16)
+* Створено каталоги test/unit та test/integration; виправлено помилку CI
+
 ### 1.8.1 (2026-03-16)
 * Додано скрипти test:unit та test:integration до package.json
 

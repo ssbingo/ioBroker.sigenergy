@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.1",
+        "version": "1.8.2",
         "news": {
-            "1.8.1": {
-                "en": "Add test:unit and test:integration scripts to package.json",
-                "de": "test:unit und test:integration Scripts in package.json ergänzt",
-                "ru": "Добавлены скрипты test:unit и test:integration в package.json",
-                "pt": "Scripts test:unit e test:integration adicionados ao package.json",
-                "nl": "Scripts test:unit en test:integration toegevoegd aan package.json",
-                "fr": "Scripts test:unit et test:integration ajoutés dans package.json",
-                "it": "Script test:unit e test:integration aggiunti a package.json",
-                "es": "Scripts test:unit e test:integration añadidos a package.json",
-                "pl": "Skrypty test:unit i test:integration dodane do package.json",
-                "uk": "Додано скрипти test:unit та test:integration до package.json",
-                "zh-cn": "在package.json中添加test:unit和test:integration脚本"
+            "1.8.2": {
+                "en": "Add test/unit and test/integration directories with basic tests; fixes CI error \"No test files found\"",
+                "de": "Verzeichnisse test/unit und test/integration mit Basis-Tests angelegt; behebt CI-Fehler \"No test files found\"",
+                "ru": "Добавлены каталоги test/unit и test/integration с базовыми тестами; исправлена ошибка CI",
+                "pt": "Diretórios test/unit e test/integration criados; corrige erro CI \"No test files found\"",
+                "nl": "Mappen test/unit en test/integration aangemaakt; CI-fout opgelost",
+                "fr": "Répertoires test/unit et test/integration créés; corrige erreur CI",
+                "it": "Directory test/unit e test/integration create; corregge errore CI",
+                "es": "Directorios test/unit e test/integration creados; corrige error CI",
+                "pl": "Katalogi test/unit i test/integration utworzone; naprawia błąd CI",
+                "uk": "Створено каталоги test/unit та test/integration; виправлено помилку CI",
+                "zh-cn": "添加test/unit和test/integration目录及基础测试；修复CI错误\"No test files found\""
             }
         },
         "titleLang": {

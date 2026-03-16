@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.2 (2026-03-16)
+* Добавлены каталоги test/unit и test/integration с базовыми тестами; исправлена ошибка CI
+
 ### 1.8.1 (2026-03-16)
 * Добавлены скрипты test:unit и test:integration в package.json
 

@@ -156,6 +156,9 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.2 (2026-03-16)
+* Diretórios test/unit e test/integration criados; corrige erro CI "No test files found"
+
 ### 1.8.1 (2026-03-16)
 * Scripts test:unit e test:integration adicionados ao package.json
 
