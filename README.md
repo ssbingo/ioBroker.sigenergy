@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.1 (2026-03-16)
+* Add i18n translations for all SigenMicro admin texts (21 new keys in 11 languages); set i18n:true in sigenmicro-tab.json
+
 ### 1.7.0 (2026-03-16)
 * Replace HTML adminTab iframe with native jsonConfig tab (sigenmicro-tab.json); use type:state to show live scan progress (info.scanProgress state) directly in admin 7 React UI without any custom JavaScript
 

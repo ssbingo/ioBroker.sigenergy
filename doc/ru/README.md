@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.1 (2026-03-16)
+* Добавлены i18n-переводы для всех текстов SigenMicro (21 новый ключ в 11 языках)
+
 ### 1.7.0 (2026-03-16)
 * HTML-iframe заменён нативным jsonConfig-вкладкой; type:state показывает прогресс сканирования (info.scanProgress) в реальном времени
 

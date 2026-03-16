@@ -1,37 +1,63 @@
 {
     "type": "panel",
-    "i18n": false,
+    "i18n": true,
     "items": {
         "_header": {
             "type": "header",
             "size": 4,
             "text": "SigenMicro — Device Scanner",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_desc": {
             "type": "staticText",
             "text": "Scan the Modbus bus for SigenMicro micro-inverters. The scan uses the existing Modbus connection and pauses polling temporarily. IDs used by Plant, Inverter, and Chargers are skipped automatically.",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_divider1": {
             "type": "divider",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "sigenMicroScanFrom": {
             "type": "number",
             "label": "Scan — first Modbus ID",
-            "min": 1, "max": 246,
-            "sm": 12, "xs": 12, "md": 3, "lg": 3, "xl": 3
+            "min": 1,
+            "max": 246,
+            "sm": 12,
+            "xs": 12,
+            "md": 3,
+            "lg": 3,
+            "xl": 3
         },
         "sigenMicroScanTo": {
             "type": "number",
             "label": "Scan — last Modbus ID",
-            "min": 1, "max": 246,
-            "sm": 12, "xs": 12, "md": 3, "lg": 3, "xl": 3
+            "min": 1,
+            "max": 246,
+            "sm": 12,
+            "xs": 12,
+            "md": 3,
+            "lg": 3,
+            "xl": 3
         },
         "_divider2": {
             "type": "divider",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "scan_btn": {
             "type": "sendTo",
@@ -41,37 +67,65 @@
             "variant": "contained",
             "color": "primary",
             "icon": "search",
-            "sm": 12, "xs": 12, "md": 4, "lg": 3, "xl": 3
+            "sm": 12,
+            "xs": 12,
+            "md": 4,
+            "lg": 3,
+            "xl": 3
         },
         "_divider3": {
             "type": "divider",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_progressTitle": {
             "type": "staticText",
             "text": "Scan progress (live — updates automatically during scan):",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_scanProgress": {
             "type": "state",
             "label": "Current step",
             "oid": "info.scanProgress",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_scanStatus": {
             "type": "state",
             "label": "Status",
             "oid": "info.scanStatus",
-            "sm": 12, "xs": 12, "md": 6, "lg": 4, "xl": 4
+            "sm": 12,
+            "xs": 12,
+            "md": 6,
+            "lg": 4,
+            "xl": 4
         },
         "_divider4": {
             "type": "divider",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_devicesTitle": {
             "type": "staticText",
             "text": "Found devices (stored after scan — use the adapter config to enable/disable individual devices):",
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "sigenMicroDevices": {
             "type": "text",
@@ -80,7 +134,11 @@
             "minRows": 4,
             "validateJson": true,
             "allowEmpty": true,
-            "sm": 12, "xs": 12, "md": 12, "lg": 12, "xl": 12
+            "sm": 12,
+            "xs": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         }
     }
 }

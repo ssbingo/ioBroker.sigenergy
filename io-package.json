@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.0",
+        "version": "1.7.1",
         "news": {
+            "1.7.1": {
+                "en": "Add i18n translations for all SigenMicro admin texts (21 new keys in 11 languages); set i18n:true in sigenmicro-tab.json",
+                "de": "i18n-Übersetzungen für alle SigenMicro-Admin-Texte ergänzt (21 neue Schlüssel in 11 Sprachen); i18n:true in sigenmicro-tab.json gesetzt",
+                "ru": "Добавлены i18n-переводы для всех текстов SigenMicro (21 новый ключ в 11 языках)",
+                "pt": "Traduções i18n para todos os textos SigenMicro (21 novas chaves em 11 idiomas)",
+                "nl": "i18n-vertalingen toegevoegd voor alle SigenMicro-beheerteksten (21 nieuwe sleutels)",
+                "fr": "Traductions i18n pour tous les textes SigenMicro (21 nouvelles clés en 11 langues)",
+                "it": "Traduzioni i18n per tutti i testi SigenMicro (21 nuove chiavi in 11 lingue)",
+                "es": "Traducciones i18n para todos los textos SigenMicro (21 nuevas claves en 11 idiomas)",
+                "pl": "Tłumaczenia i18n dla wszystkich tekstów SigenMicro (21 nowych kluczy w 11 językach)",
+                "uk": "Додано i18n-переклади для всiх текстiв SigenMicro (21 новий ключ у 11 мовах)",
+                "zh-cn": "为所有SigenMicro管理文本添加i18n翻译（11种语言21个新键）"
+            },
             "1.7.0": {
                 "en": "Replace HTML adminTab iframe with native jsonConfig tab (sigenmicro-tab.json); use type:state to show live scan progress (info.scanProgress state) directly in admin 7 React UI without any custom JavaScript",
                 "de": "HTML-adminTab-iframe durch nativen jsonConfig-Tab ersetzt (sigenmicro-tab.json); type:state zeigt live Scan-Fortschritt (info.scanProgress) direkt in Admin-7-React-UI ohne eigenes JavaScript",

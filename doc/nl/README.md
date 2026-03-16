@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.1 (2026-03-16)
+* i18n-vertalingen toegevoegd voor alle SigenMicro-beheerteksten (21 nieuwe sleutels)
+
 ### 1.7.0 (2026-03-16)
 * HTML-iframe vervangen door native jsonConfig-tab; type:state toont live scanvoortgang zonder custom JS
 

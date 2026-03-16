@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.1 (2026-03-16)
+* Tłumaczenia i18n dla wszystkich tekstów SigenMicro (21 nowych kluczy w 11 językach)
+
 ### 1.7.0 (2026-03-16)
 * iframe HTML zastapiony natywna karta jsonConfig; type:state pokazuje postep w czasie rzeczywistym bez JS
 

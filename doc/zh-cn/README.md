@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.1 (2026-03-16)
+* 为所有SigenMicro管理文本添加i18n翻译（11种语言21个新键）
+
 ### 1.7.0 (2026-03-16)
 * 将HTML adminTab iframe替换为原生jsonConfig标签页；type:state直接在Admin 7 React UI中显示实时扫描进度
 

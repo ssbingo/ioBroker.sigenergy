@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.1 (2026-03-16)
+* i18n-Übersetzungen für alle SigenMicro-Admin-Texte ergänzt (21 neue Schlüssel in 11 Sprachen); i18n:true in sigenmicro-tab.json gesetzt
+
 ### 1.7.0 (2026-03-16)
 * HTML-adminTab-iframe durch nativen jsonConfig-Tab ersetzt (sigenmicro-tab.json); type:state zeigt live Scan-Fortschritt (info.scanProgress) direkt in Admin-7-React-UI ohne eigenes JavaScript
 
