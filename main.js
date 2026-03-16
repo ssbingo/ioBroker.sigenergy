@@ -44,7 +44,6 @@ class Sigenergy extends utils.Adapter {
 		this._pollTimer = null;
 		this._currentData = {};
 		this._objectsCreated = false;
-		/** @type {Array<{slaveId:number,model:string,serial:string,active:boolean}>} */
 		this._sigenMicroDevices = [];
 
 		this.on('ready', this.onReady.bind(this));
@@ -709,7 +708,7 @@ class Sigenergy extends utils.Adapter {
 			return;
 		}
 
-		const msg  = obj.message || {};
+		const msg = obj.message || {};
 		const from = Math.max(
 			1,
 			parseInt(msg.scanFrom ?? msg.sigenMicroScanFrom, 10) || this.config.sigenMicroScanFrom || 10,
@@ -775,11 +774,12 @@ class Sigenergy extends utils.Adapter {
 				} catch (saveErr) {
 					this.log.warn(`[scanSigenMicro] Could not auto-save: ${saveErr.message}`);
 				}
-				const message = merged.length === 0
-					? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
-					: `Found ${merged.length} device(s): ${merged
-							.map((d) => `${d.model} (ID ${d.slaveId})`)
-							.join(', ')}. Use the SigenMicro admin tab to enable/disable devices.`;
+				const deviceList = merged.map((d) => `${d.model} (ID ${d.slaveId})`).join(', ');
+				const message =
+					merged.length === 0
+						? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
+						: `Found ${merged.length} device(s): ${deviceList}.` +
+							` Use the SigenMicro admin tab to enable/disable devices.`;
 				if (obj.callback) {
 					this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
 				}
@@ -813,7 +813,7 @@ class Sigenergy extends utils.Adapter {
 	 * @param {object} obj - ioBroker message object
 	 */
 	async _handleSaveSigenMicroDevices(obj) {
-		const devices = (obj.message && Array.isArray(obj.message.devices)) ? obj.message.devices : [];
+		const devices = obj.message && Array.isArray(obj.message.devices) ? obj.message.devices : [];
 		this._sigenMicroDevices = devices;
 
 		try {

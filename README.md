@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.0 (2026-03-16)
+* Fix all remaining lint errors: sigenMicroRegisters qty tab indent, statistics.js arrow parens, main.js ternary line breaks and @type comment; zero lint errors
+
 ### 1.7.9 (2026-03-16)
 * Fix all remaining prettier/eslint errors: wrap lines >120 chars, fix arrow parens in all files, ensure zero lint errors
 

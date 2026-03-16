@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.0 (2026-03-16)
+* Wszystkie pozostałe błędy lint naprawione: wcięcie qty, nawiasy arrow, podziały trójkowe
+
 ### 1.7.9 (2026-03-16)
 * Wszystkie pozostałe błędy prettier/eslint naprawione: linie >120 znaków, nawiasy arrow
 

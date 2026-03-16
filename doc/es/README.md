@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.0 (2026-03-16)
+* Todos los errores lint restantes corregidos: sangría qty, paréntesis arrow, saltos ternarios
+
 ### 1.7.9 (2026-03-16)
 * Todos los errores prettier/eslint restantes corregidos: líneas >120 chars, paréntesis arrow
 

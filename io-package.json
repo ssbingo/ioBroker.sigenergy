@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.9",
+        "version": "1.8.0",
         "news": {
-            "1.7.9": {
-                "en": "Fix all remaining prettier/eslint errors: wrap lines >120 chars, fix arrow parens in all files, ensure zero lint errors",
-                "de": "Alle verbleibenden prettier/eslint-Fehler behoben: Zeilenumbruch bei >120 Zeichen, Pfeil-Klammern in allen Dateien",
-                "ru": "Все оставшиеся ошибки prettier/eslint исправлены: перенос строк >120 символов, скобки стрелочных функций",
-                "pt": "Todos os erros prettier/eslint restantes corrigidos: linhas >120 chars, parênteses arrow",
-                "nl": "Alle resterende prettier/eslint-fouten gecorrigeerd: regels >120 tekens, arrow-haakjes",
-                "fr": "Toutes les erreurs prettier/eslint restantes corrigées: lignes >120 chars, parenthèses arrow",
-                "it": "Tutti gli errori prettier/eslint restanti corretti: righe >120 chars, parentesi arrow",
-                "es": "Todos los errores prettier/eslint restantes corregidos: líneas >120 chars, paréntesis arrow",
-                "pl": "Wszystkie pozostałe błędy prettier/eslint naprawione: linie >120 znaków, nawiasy arrow",
-                "uk": "Всi помилки prettier/eslint виправленi: рядки >120 символiв, дужки стрiлочних функцiй",
-                "zh-cn": "修复所有剩余prettier/eslint错误：换行超120字符，所有文件中的箭头函数括号"
+            "1.8.0": {
+                "en": "Fix all remaining lint errors: sigenMicroRegisters qty tab indent, statistics.js arrow parens, main.js ternary line breaks and @type comment; zero lint errors",
+                "de": "Alle verbleibenden Lint-Fehler behoben: sigenMicroRegisters qty-Einrückung, statistics.js Pfeil-Klammern, main.js Ternary-Zeilenumbrüche und @type-Kommentar",
+                "ru": "Все оставшиеся ошибки lint исправлены: отступы qty, скобки arrow, переносы тернарных выражений",
+                "pt": "Todos os erros lint restantes corrigidos: recuo qty, parênteses arrow, quebras ternárias",
+                "nl": "Alle resterende lint-fouten gecorrigeerd: qty-inspringing, arrow-haakjes, ternaire regelafbreking",
+                "fr": "Toutes les erreurs lint restantes corrigées: indentation qty, parenthèses arrow, sauts ternaires",
+                "it": "Tutti gli errori lint restanti corretti: indentazione qty, parentesi arrow, interruzioni ternarie",
+                "es": "Todos los errores lint restantes corregidos: sangría qty, paréntesis arrow, saltos ternarios",
+                "pl": "Wszystkie pozostałe błędy lint naprawione: wcięcie qty, nawiasy arrow, podziały trójkowe",
+                "uk": "Всi помилки lint виправленi: відступ qty, дужки стрiлочних функцiй, переноси тернарних виразiв",
+                "zh-cn": "修复所有剩余lint错误：qty缩进，arrow括号，三元表达式换行，@type注释"
             }
         },
         "titleLang": {

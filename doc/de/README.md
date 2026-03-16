@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.0 (2026-03-16)
+* Alle verbleibenden Lint-Fehler behoben: sigenMicroRegisters qty-Einrückung, statistics.js Pfeil-Klammern, main.js Ternary-Zeilenumbrüche und @type-Kommentar
+
 ### 1.7.9 (2026-03-16)
 * Alle verbleibenden prettier/eslint-Fehler behoben: Zeilenumbruch bei >120 Zeichen, Pfeil-Klammern in allen Dateien
 

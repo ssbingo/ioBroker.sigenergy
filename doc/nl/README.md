@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.0 (2026-03-16)
+* Alle resterende lint-fouten gecorrigeerd: qty-inspringing, arrow-haakjes, ternaire regelafbreking
+
 ### 1.7.9 (2026-03-16)
 * Alle resterende prettier/eslint-fouten gecorrigeerd: regels >120 tekens, arrow-haakjes
 
