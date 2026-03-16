@@ -156,6 +156,15 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.9 (2026-03-16)
+* Tutti gli errori prettier/eslint restanti corretti: righe >120 chars, parentesi arrow
+
+### 1.7.8 (2026-03-16)
+* Errori ESLint rimanenti corretti: parentesi arrow, interruzioni di riga, formattazione sendTo, globals mocha
+
+### 1.7.8 (2026-03-16)
+* Corretti errori ESLint rimanenti: parentesi su arrow function a un parametro; eslint.config.mjs formattato; globals mocha; prettier.config.mjs
+
 ### 1.7.7 (2026-03-16)
 * Corretti tutti gli errori ESLint: spazi in tab, parentesi graffe dopo if, variabili inutilizzate, blocchi catch vuoti, JSDoc
 

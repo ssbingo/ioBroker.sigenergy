@@ -156,6 +156,15 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.9 (2026-03-16)
+* Alle resterende prettier/eslint-fouten gecorrigeerd: regels >120 tekens, arrow-haakjes
+
+### 1.7.8 (2026-03-16)
+* Resterende ESLint-fouten gecorrigeerd: arrow-haakjes, regelafbreking, sendTo-opmaak, mocha-globals
+
+### 1.7.8 (2026-03-16)
+* Resterende ESLint-fouten gecorrigeerd: haakjes om arrow-functies met één param; eslint.config.mjs opgemaakt; mocha globals; prettier.config.mjs
+
 ### 1.7.7 (2026-03-16)
 * Alle ESLint-fouten gecorrigeerd: spaties naar tabs, accolades na if, ongebruikte variabelen, lege catch-blokken, JSDoc
 

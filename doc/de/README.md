@@ -156,6 +156,15 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.9 (2026-03-16)
+* Alle verbleibenden prettier/eslint-Fehler behoben: Zeilenumbruch bei >120 Zeichen, Pfeil-Klammern in allen Dateien
+
+### 1.7.8 (2026-03-16)
+* Verbleibende ESLint-Fehler behoben: Pfeilfunktions-Klammern, Zeilenumbrüche in langen Strings, sendTo-Formatierung, Mocha-Globals für Testdateien, JSDoc-Ausrichtung
+
+### 1.7.8 (2026-03-16)
+* Verbleibende ESLint-Fehler behoben: Klammern um alle einparametrigen Pfeilfunktionen; eslint.config.mjs formatiert; Mocha-Globals für Testdateien; prettier.config.mjs ergänzt
+
 ### 1.7.7 (2026-03-16)
 * Alle ESLint-Fehler behoben: Leerzeichen in Tabs umgewandelt (prettier), geschweifte Klammern nach if-Bedingungen, unbenutzte Variablen, leere catch-Blöcke, JSDoc aktualisiert
 

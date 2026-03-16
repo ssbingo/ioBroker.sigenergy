@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.7",
+        "version": "1.7.9",
         "news": {
-            "1.7.7": {
-                "en": "Fix all ESLint errors: convert spaces to tabs (prettier), add curly braces after if conditions, fix unused variables, fix empty catch blocks, update JSDoc",
-                "de": "Alle ESLint-Fehler behoben: Leerzeichen in Tabs umgewandelt (prettier), geschweifte Klammern nach if-Bedingungen, unbenutzte Variablen, leere catch-Blöcke, JSDoc aktualisiert",
-                "ru": "Исправлены все ошибки ESLint: пробелы заменены табами, добавлены фигурные скобки после if, исправлены неиспользуемые переменные и пустые блоки catch",
-                "pt": "Corrigidos todos os erros ESLint: espaços convertidos em tabs, chaves após if, variáveis não usadas, blocos catch vazios, JSDoc",
-                "nl": "Alle ESLint-fouten gecorrigeerd: spaties naar tabs, accolades na if, ongebruikte variabelen, lege catch-blokken, JSDoc",
-                "fr": "Correction de toutes les erreurs ESLint: espaces en tabulations, accolades après if, variables inutilisées, blocs catch vides, JSDoc",
-                "it": "Corretti tutti gli errori ESLint: spazi in tab, parentesi graffe dopo if, variabili inutilizzate, blocchi catch vuoti, JSDoc",
-                "es": "Corregidos todos los errores ESLint: espacios a tabulaciones, llaves después de if, variables no usadas, bloques catch vacíos, JSDoc",
-                "pl": "Naprawiono wszystkie błędy ESLint: spacje na tabulacje, nawiasy klamrowe po if, nieużywane zmienne, puste bloki catch, JSDoc",
-                "uk": "Виправлено всi помилки ESLint: пробiли замiнено табуляцiями, дужки пiсля if, невикористанi змiннi, порожнi блоки catch, JSDoc",
-                "zh-cn": "修复所有ESLint错误：空格转制表符，if后添加大括号，修复未使用变量，修复空catch块，更新JSDoc"
+            "1.7.9": {
+                "en": "Fix all remaining prettier/eslint errors: wrap lines >120 chars, fix arrow parens in all files, ensure zero lint errors",
+                "de": "Alle verbleibenden prettier/eslint-Fehler behoben: Zeilenumbruch bei >120 Zeichen, Pfeil-Klammern in allen Dateien",
+                "ru": "Все оставшиеся ошибки prettier/eslint исправлены: перенос строк >120 символов, скобки стрелочных функций",
+                "pt": "Todos os erros prettier/eslint restantes corrigidos: linhas >120 chars, parênteses arrow",
+                "nl": "Alle resterende prettier/eslint-fouten gecorrigeerd: regels >120 tekens, arrow-haakjes",
+                "fr": "Toutes les erreurs prettier/eslint restantes corrigées: lignes >120 chars, parenthèses arrow",
+                "it": "Tutti gli errori prettier/eslint restanti corretti: righe >120 chars, parentesi arrow",
+                "es": "Todos los errores prettier/eslint restantes corregidos: líneas >120 chars, paréntesis arrow",
+                "pl": "Wszystkie pozostałe błędy prettier/eslint naprawione: linie >120 znaków, nawiasy arrow",
+                "uk": "Всi помилки prettier/eslint виправленi: рядки >120 символiв, дужки стрiлочних функцiй",
+                "zh-cn": "修复所有剩余prettier/eslint错误：换行超120字符，所有文件中的箭头函数括号"
             }
         },
         "titleLang": {

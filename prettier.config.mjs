@@ -1,8 +1,8 @@
-// iobroker prettier configuration file
-import prettierConfig from '@iobroker/eslint-config/prettier.config.mjs';
-
 export default {
-	...prettierConfig,
 	useTabs: true,
+	tabWidth: 4,
 	singleQuote: true,
+	printWidth: 120,
+	trailingComma: 'all',
+	arrowParens: 'always',
 };

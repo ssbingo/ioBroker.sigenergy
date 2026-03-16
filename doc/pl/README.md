@@ -156,6 +156,15 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.9 (2026-03-16)
+* Wszystkie pozostałe błędy prettier/eslint naprawione: linie >120 znaków, nawiasy arrow
+
+### 1.7.8 (2026-03-16)
+* Pozostałe błędy ESLint naprawione: nawiasy arrow, podziały wierszy, formatowanie sendTo, globals mocha
+
+### 1.7.8 (2026-03-16)
+* Naprawiono pozostałe błędy ESLint: nawiasy dla arrow functions z jednym param; formatowanie eslint.config.mjs; globals mocha; prettier.config.mjs
+
 ### 1.7.7 (2026-03-16)
 * Naprawiono wszystkie błędy ESLint: spacje na tabulacje, nawiasy klamrowe po if, nieużywane zmienne, puste bloki catch, JSDoc
 

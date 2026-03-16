@@ -156,6 +156,15 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.9 (2026-03-16)
+* Fix all remaining prettier/eslint errors: wrap lines >120 chars, fix arrow parens in all files, ensure zero lint errors
+
+### 1.7.8 (2026-03-16)
+* Fix remaining ESLint errors: arrow function parens, long string line breaks, sendTo call formatting, mocha globals in test files, JSDoc alignment, remove .prettierrc conflict
+
+### 1.7.8 (2026-03-16)
+* Fix remaining ESLint errors: add parens to all single-param arrow functions; fix eslint.config.mjs formatting; add mocha globals for test files; add prettier.config.mjs
+
 ### 1.7.7 (2026-03-16)
 * Fix all ESLint errors: convert spaces to tabs (prettier), add curly braces after if conditions, fix unused variables, fix empty catch blocks, update JSDoc
 

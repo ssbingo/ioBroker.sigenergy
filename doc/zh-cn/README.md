@@ -156,6 +156,15 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.9 (2026-03-16)
+* 修复所有剩余prettier/eslint错误：换行超120字符，所有文件中的箭头函数括号
+
+### 1.7.8 (2026-03-16)
+* 修复剩余ESLint错误：箭头函数括号，长字符串换行，sendTo格式，mocha全局变量，JSDoc对齐
+
+### 1.7.8 (2026-03-16)
+* 修复剩余ESLint错误：为单参数箭头函数添加括号；格式化eslint.config.mjs；添加mocha全局变量和prettier.config.mjs
+
 ### 1.7.7 (2026-03-16)
 * 修复所有ESLint错误：空格转制表符，if后添加大括号，修复未使用变量，修复空catch块，更新JSDoc
 
