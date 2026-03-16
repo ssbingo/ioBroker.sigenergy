@@ -156,6 +156,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.3 (2026-03-16)
+* Fix i18n in sigenmicro-tab.json: change type from panel to tabs so that i18n:true is respected by Admin 7; panel type ignores i18n, only tabs type activates translation lookup
+
+### 1.7.2 (2026-03-16)
+* Fix language detection: rebuild words.js with all 97 i18n keys (11 languages); add class=translate to all UI strings in admin/index.html; call translateAll() on load
+
 ### 1.7.1 (2026-03-16)
 * Add i18n translations for all SigenMicro admin texts (21 new keys in 11 languages); set i18n:true in sigenmicro-tab.json
 

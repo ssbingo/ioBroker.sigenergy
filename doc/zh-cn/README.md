@@ -156,6 +156,12 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.3 (2026-03-16)
+* 修复sigenmicro-tab.json中的i18n：将类型从panel改为tabs，使Admin 7遵守i18n:true
+
+### 1.7.2 (2026-03-16)
+* 修复语言检测：用97个i18n键（11种语言）重建words.js；向所有UI字符串添加class=translate
+
 ### 1.7.1 (2026-03-16)
 * 为所有SigenMicro管理文本添加i18n翻译（11种语言21个新键）
 

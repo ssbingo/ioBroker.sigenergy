@@ -156,6 +156,12 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.3 (2026-03-16)
+* i18n in sigenmicro-tab.json corretta: tipo cambiato da panel a tabs affinché Admin 7 rispetti i18n:true
+
+### 1.7.2 (2026-03-16)
+* Rilevamento lingua corretto: words.js ricostruito con 97 chiavi i18n; class=translate aggiunto
+
 ### 1.7.1 (2026-03-16)
 * Traduzioni i18n per tutti i testi SigenMicro (21 nuove chiavi in 11 lingue)
 

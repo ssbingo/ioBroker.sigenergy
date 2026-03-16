@@ -1,8 +1,34 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.1",
+        "version": "1.7.3",
         "news": {
+            "1.7.3": {
+                "en": "Fix i18n in sigenmicro-tab.json: change type from panel to tabs so that i18n:true is respected by Admin 7; panel type ignores i18n, only tabs type activates translation lookup",
+                "de": "i18n in sigenmicro-tab.json repariert: Typ von panel auf tabs geändert, damit Admin 7 i18n:true berücksichtigt; panel-Typ ignoriert i18n, nur tabs-Typ aktiviert die Übersetzungsauflösung",
+                "ru": "Исправлена i18n в sigenmicro-tab.json: тип изменён с panel на tabs, чтобы Admin 7 учитывал i18n:true",
+                "pt": "i18n em sigenmicro-tab.json corrigida: tipo alterado de panel para tabs para que Admin 7 respeite i18n:true",
+                "nl": "i18n in sigenmicro-tab.json gecorrigeerd: type gewijzigd van panel naar tabs zodat Admin 7 i18n:true respecteert",
+                "fr": "i18n dans sigenmicro-tab.json corrigée: type changé de panel en tabs pour qu Admin 7 respecte i18n:true",
+                "it": "i18n in sigenmicro-tab.json corretta: tipo cambiato da panel a tabs affinché Admin 7 rispetti i18n:true",
+                "es": "i18n en sigenmicro-tab.json corregida: tipo cambiado de panel a tabs para que Admin 7 respete i18n:true",
+                "pl": "i18n w sigenmicro-tab.json naprawiona: typ zmieniony z panel na tabs aby Admin 7 przestrzegał i18n:true",
+                "uk": "Виправлено i18n в sigenmicro-tab.json: тип змiнено з panel на tabs, щоб Admin 7 враховував i18n:true",
+                "zh-cn": "修复sigenmicro-tab.json中的i18n：将类型从panel改为tabs，使Admin 7遵守i18n:true"
+            },
+            "1.7.2": {
+                "en": "Fix language detection: rebuild words.js with all 97 i18n keys (11 languages); add class=translate to all UI strings in admin/index.html; call translateAll() on load",
+                "de": "Spracherkennung behoben: words.js mit allen 97 i18n-Schlüsseln (11 Sprachen) neu erstellt; class=translate zu allen UI-Texten in admin/index.html; translateAll() beim Laden",
+                "ru": "Исправлено определение языка: words.js пересоздан (97 ключей, 11 языков); class=translate добавлен к элементам UI",
+                "pt": "Detecção de idioma corrigida: words.js recriado com 97 chaves i18n; class=translate adicionado",
+                "nl": "Taaldetectie gecorrigeerd: words.js herbouwd met 97 i18n-sleutels; class=translate toegevoegd",
+                "fr": "Détection de langue corrigée: words.js reconstruit avec 97 clés i18n; class=translate ajouté",
+                "it": "Rilevamento lingua corretto: words.js ricostruito con 97 chiavi i18n; class=translate aggiunto",
+                "es": "Detección de idioma corregida: words.js reconstruido con 97 claves i18n; class=translate añadido",
+                "pl": "Poprawiono wykrywanie języka: words.js przebudowany z 97 kluczami i18n; class=translate dodany",
+                "uk": "Виправлено визначення мови: words.js перебудовано з 97 ключами i18n; class=translate додано",
+                "zh-cn": "修复语言检测：用97个i18n键（11种语言）重建words.js；向所有UI字符串添加class=translate"
+            },
             "1.7.1": {
                 "en": "Add i18n translations for all SigenMicro admin texts (21 new keys in 11 languages); set i18n:true in sigenmicro-tab.json",
                 "de": "i18n-Übersetzungen für alle SigenMicro-Admin-Texte ergänzt (21 neue Schlüssel in 11 Sprachen); i18n:true in sigenmicro-tab.json gesetzt",
