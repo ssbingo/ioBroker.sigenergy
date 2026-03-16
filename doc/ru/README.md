@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.1 (2026-03-16)
+* Добавлены скрипты test:unit и test:integration в package.json
+
 ### 1.8.0 (2026-03-16)
 * Все оставшиеся ошибки lint исправлены: отступы qty, скобки arrow, переносы тернарных выражений
 

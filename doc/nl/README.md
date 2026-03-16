@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.1 (2026-03-16)
+* Scripts test:unit en test:integration toegevoegd aan package.json
+
 ### 1.8.0 (2026-03-16)
 * Alle resterende lint-fouten gecorrigeerd: qty-inspringing, arrow-haakjes, ternaire regelafbreking
 

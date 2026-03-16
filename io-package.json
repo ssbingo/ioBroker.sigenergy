@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.0",
+        "version": "1.8.1",
         "news": {
-            "1.8.0": {
-                "en": "Fix all remaining lint errors: sigenMicroRegisters qty tab indent, statistics.js arrow parens, main.js ternary line breaks and @type comment; zero lint errors",
-                "de": "Alle verbleibenden Lint-Fehler behoben: sigenMicroRegisters qty-Einrückung, statistics.js Pfeil-Klammern, main.js Ternary-Zeilenumbrüche und @type-Kommentar",
-                "ru": "Все оставшиеся ошибки lint исправлены: отступы qty, скобки arrow, переносы тернарных выражений",
-                "pt": "Todos os erros lint restantes corrigidos: recuo qty, parênteses arrow, quebras ternárias",
-                "nl": "Alle resterende lint-fouten gecorrigeerd: qty-inspringing, arrow-haakjes, ternaire regelafbreking",
-                "fr": "Toutes les erreurs lint restantes corrigées: indentation qty, parenthèses arrow, sauts ternaires",
-                "it": "Tutti gli errori lint restanti corretti: indentazione qty, parentesi arrow, interruzioni ternarie",
-                "es": "Todos los errores lint restantes corregidos: sangría qty, paréntesis arrow, saltos ternarios",
-                "pl": "Wszystkie pozostałe błędy lint naprawione: wcięcie qty, nawiasy arrow, podziały trójkowe",
-                "uk": "Всi помилки lint виправленi: відступ qty, дужки стрiлочних функцiй, переноси тернарних виразiв",
-                "zh-cn": "修复所有剩余lint错误：qty缩进，arrow括号，三元表达式换行，@type注释"
+            "1.8.1": {
+                "en": "Add test:unit and test:integration scripts to package.json",
+                "de": "test:unit und test:integration Scripts in package.json ergänzt",
+                "ru": "Добавлены скрипты test:unit и test:integration в package.json",
+                "pt": "Scripts test:unit e test:integration adicionados ao package.json",
+                "nl": "Scripts test:unit en test:integration toegevoegd aan package.json",
+                "fr": "Scripts test:unit et test:integration ajoutés dans package.json",
+                "it": "Script test:unit e test:integration aggiunti a package.json",
+                "es": "Scripts test:unit e test:integration añadidos a package.json",
+                "pl": "Skrypty test:unit i test:integration dodane do package.json",
+                "uk": "Додано скрипти test:unit та test:integration до package.json",
+                "zh-cn": "在package.json中添加test:unit和test:integration脚本"
             }
         },
         "titleLang": {

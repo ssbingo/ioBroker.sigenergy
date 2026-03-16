@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.1 (2026-03-16)
+* 在package.json中添加test:unit和test:integration脚本
+
 ### 1.8.0 (2026-03-16)
 * 修复所有剩余lint错误：qty缩进，arrow括号，三元表达式换行，@type注释
 

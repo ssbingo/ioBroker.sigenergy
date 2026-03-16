@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.1 (2026-03-16)
+* test:unit und test:integration Scripts in package.json ergänzt
+
 ### 1.8.0 (2026-03-16)
 * Alle verbleibenden Lint-Fehler behoben: sigenMicroRegisters qty-Einrückung, statistics.js Pfeil-Klammern, main.js Ternary-Zeilenumbrüche und @type-Kommentar
 

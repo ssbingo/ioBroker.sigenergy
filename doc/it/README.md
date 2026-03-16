@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.1 (2026-03-16)
+* Script test:unit e test:integration aggiunti a package.json
+
 ### 1.8.0 (2026-03-16)
 * Tutti gli errori lint restanti corretti: indentazione qty, parentesi arrow, interruzioni ternarie
 

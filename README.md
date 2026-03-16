@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.1 (2026-03-16)
+* Add test:unit and test:integration scripts to package.json
+
 ### 1.8.0 (2026-03-16)
 * Fix all remaining lint errors: sigenMicroRegisters qty tab indent, statistics.js arrow parens, main.js ternary line breaks and @type comment; zero lint errors
 
