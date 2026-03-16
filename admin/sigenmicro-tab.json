@@ -3,35 +3,11 @@
   "items": {
     "scanner": {
       "type": "panel",
-      "label": {
-        "en": "SigenMicro — Device Scanner",
-        "de": "SigenMicro — Gerätescan",
-        "ru": "SigenMicro — Сканер устройств",
-        "pt": "SigenMicro — Scanner de Dispositivos",
-        "nl": "SigenMicro — Apparaatscanner",
-        "fr": "SigenMicro — Scanner d'appareils",
-        "it": "SigenMicro — Scanner dispositivi",
-        "es": "SigenMicro — Escáner de dispositivos",
-        "pl": "SigenMicro — Skaner urządzeń",
-        "uk": "SigenMicro — Сканер пристроїв",
-        "zh-cn": "SigenMicro — 设备扫描器"
-      },
+      "label": "SigenMicro — Device Scanner",
       "items": {
         "_desc": {
           "type": "staticText",
-          "text": {
-            "en": "Scan the Modbus bus for SigenMicro micro-inverters. The scan uses the existing Modbus connection and pauses polling temporarily. IDs used by Plant, Inverter, and Chargers are skipped automatically.",
-            "de": "Modbus-Bus nach SigenMicro-Mikro-Wechselrichtern scannen. Der Scan nutzt die bestehende Modbus-Verbindung und pausiert das Polling kurz. IDs von Anlage, Wechselrichter und Ladegeräten werden übersprungen.",
-            "ru": "Сканирование шины Modbus на микро-инверторы SigenMicro. Сканирование использует существующее подключение и временно приостанавливает опрос.",
-            "pt": "Escanear o barramento Modbus em busca de micro-inversores SigenMicro. O scan usa a conexão Modbus existente e pausa o polling temporariamente.",
-            "nl": "Scan de Modbus-bus op SigenMicro micro-omvormers. De scan gebruikt de bestaande Modbus-verbinding en pauzeert het pollen tijdelijk.",
-            "fr": "Scanner le bus Modbus pour les micro-onduleurs SigenMicro. Le scan utilise la connexion Modbus existante et suspend temporairement l'interrogation.",
-            "it": "Scansiona il bus Modbus per micro-inverter SigenMicro. La scansione usa la connessione Modbus esistente e sospende temporaneamente il polling.",
-            "es": "Escanear el bus Modbus en busca de micro-inversores SigenMicro. El escaneo usa la conexión Modbus existente y pausa el polling temporalmente.",
-            "pl": "Skanuj magistralę Modbus w poszukiwaniu mikrofalowników SigenMicro. Skan używa istniejącego połączenia Modbus i tymczasowo wstrzymuje polling.",
-            "uk": "Сканування шини Modbus на мiкроiнвертори SigenMicro. Сканування використовує iснуюче з'єднання та тимчасово призупиняє опитування.",
-            "zh-cn": "扫描Modbus总线上的SigenMicro微型逆变器。扫描使用现有Modbus连接并临时暂停轮询。"
-          },
+          "text": "Scan the Modbus bus for SigenMicro micro-inverters. The scan uses the existing Modbus connection and pauses polling temporarily. IDs used by Plant, Inverter, and Chargers are skipped automatically.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -48,32 +24,8 @@
         },
         "sigenMicroScanFrom": {
           "type": "number",
-          "label": {
-            "en": "Scan — first Modbus ID",
-            "de": "Scan — erste Modbus-ID",
-            "ru": "Скан — первый Modbus ID",
-            "pt": "Scan — primeiro ID Modbus",
-            "nl": "Scan — eerste Modbus ID",
-            "fr": "Scan — premier ID Modbus",
-            "it": "Scan — primo ID Modbus",
-            "es": "Scan — primer ID Modbus",
-            "pl": "Skan — pierwszy Modbus ID",
-            "uk": "Скан — перший Modbus ID",
-            "zh-cn": "扫描 — 起始Modbus ID"
-          },
-          "help": {
-            "en": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
-            "de": "Kleinste Slave-Adresse für den SigenMicro-Scan (1–246)",
-            "ru": "Наименьший адрес ведомого для сканирования SigenMicro (1–246)",
-            "pt": "Menor endereço slave para varredura SigenMicro (1–246)",
-            "nl": "Laagste slave-adres voor SigenMicro-scan (1–246)",
-            "fr": "Adresse esclave la plus basse pour le scan SigenMicro (1–246)",
-            "it": "Indirizzo slave più basso per la scansione SigenMicro (1–246)",
-            "es": "Dirección esclava más baja para el escaneo SigenMicro (1–246)",
-            "pl": "Najniższy adres slave do skanowania SigenMicro (1–246)",
-            "uk": "Найменша адреса ведомого для сканування SigenMicro (1–246)",
-            "zh-cn": "SigenMicro设备扫描的最低从站地址(1–246)"
-          },
+          "label": "Scan — first Modbus ID",
+          "help": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
           "min": 1,
           "max": 246,
           "sm": 12,
@@ -84,32 +36,8 @@
         },
         "sigenMicroScanTo": {
           "type": "number",
-          "label": {
-            "en": "Scan — last Modbus ID",
-            "de": "Scan — letzte Modbus-ID",
-            "ru": "Скан — последний Modbus ID",
-            "pt": "Scan — último ID Modbus",
-            "nl": "Scan — laatste Modbus ID",
-            "fr": "Scan — dernier ID Modbus",
-            "it": "Scan — ultimo ID Modbus",
-            "es": "Scan — último ID Modbus",
-            "pl": "Skan — ostatni Modbus ID",
-            "uk": "Скан — останнiй Modbus ID",
-            "zh-cn": "扫描 — 结束Modbus ID"
-          },
-          "help": {
-            "en": "Highest slave address to probe during the SigenMicro device scan (1–246)",
-            "de": "Größte Slave-Adresse für den SigenMicro-Scan (1–246)",
-            "ru": "Наибольший адрес ведомого для сканирования SigenMicro (1–246)",
-            "pt": "Maior endereço slave para varredura SigenMicro (1–246)",
-            "nl": "Hoogste slave-adres voor SigenMicro-scan (1–246)",
-            "fr": "Adresse esclave la plus haute pour le scan SigenMicro (1–246)",
-            "it": "Indirizzo slave più alto per la scansione SigenMicro (1–246)",
-            "es": "Dirección esclava más alta para el escaneo SigenMicro (1–246)",
-            "pl": "Najwyższy adres slave do skanowania SigenMicro (1–246)",
-            "uk": "Найбiльша адреса ведомого для сканування SigenMicro (1–246)",
-            "zh-cn": "SigenMicro设备扫描的最高从站地址(1–246)"
-          },
+          "label": "Scan — last Modbus ID",
+          "help": "Highest slave address to probe during the SigenMicro device scan (1–246)",
           "min": 1,
           "max": 246,
           "sm": 12,
@@ -128,19 +56,7 @@
         },
         "scan_btn": {
           "type": "sendTo",
-          "label": {
-            "en": "🔍  Start Scan",
-            "de": "🔍  Scan starten",
-            "ru": "🔍  Начать сканирование",
-            "pt": "🔍  Iniciar Scan",
-            "nl": "🔍  Scan starten",
-            "fr": "🔍  Lancer le scan",
-            "it": "🔍  Avvia scansione",
-            "es": "🔍  Iniciar escaneo",
-            "pl": "🔍  Rozpocznij skan",
-            "uk": "🔍  Почати сканування",
-            "zh-cn": "🔍  开始扫描"
-          },
+          "label": "🔍  Start Scan",
           "command": "scanSigenMicro",
           "jsonData": true,
           "variant": "contained",
@@ -161,19 +77,7 @@
         },
         "_progressTitle": {
           "type": "staticText",
-          "text": {
-            "en": "Scan progress (live — updates automatically during scan):",
-            "de": "Scan-Fortschritt (live — aktualisiert sich automatisch während des Scans):",
-            "ru": "Прогресс сканирования (в реальном времени):",
-            "pt": "Progresso do scan (ao vivo — atualiza automaticamente):",
-            "nl": "Scanvoortgang (live — wordt automatisch bijgewerkt):",
-            "fr": "Progression du scan (en direct — mise à jour automatique):",
-            "it": "Avanzamento scansione (live — aggiornamento automatico):",
-            "es": "Progreso del scan (en vivo — se actualiza automáticamente):",
-            "pl": "Postęp skanowania (na żywo — aktualizuje się automatycznie):",
-            "uk": "Прогрес сканування (в реальному часi — оновлюється автоматично):",
-            "zh-cn": "扫描进度（实时——扫描期间自动更新）："
-          },
+          "text": "Scan progress (live — updates automatically during scan):",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -182,19 +86,7 @@
         },
         "_scanProgress": {
           "type": "state",
-          "label": {
-            "en": "Current step",
-            "de": "Aktueller Schritt",
-            "ru": "Текущий шаг",
-            "pt": "Passo atual",
-            "nl": "Huidige stap",
-            "fr": "Étape actuelle",
-            "it": "Passo corrente",
-            "es": "Paso actual",
-            "pl": "Bieżący krok",
-            "uk": "Поточний крок",
-            "zh-cn": "当前步骤"
-          },
+          "label": "Current step",
           "oid": "info.scanProgress",
           "sm": 12,
           "xs": 12,
@@ -204,19 +96,7 @@
         },
         "_scanStatus": {
           "type": "state",
-          "label": {
-            "en": "Status",
-            "de": "Status",
-            "ru": "Статус",
-            "pt": "Status",
-            "nl": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "es": "Estado",
-            "pl": "Status",
-            "uk": "Статус",
-            "zh-cn": "状态"
-          },
+          "label": "Status",
           "oid": "info.scanStatus",
           "sm": 12,
           "xs": 12,
@@ -234,19 +114,7 @@
         },
         "_devicesTitle": {
           "type": "staticText",
-          "text": {
-            "en": "Found devices (stored after scan — use the adapter config to enable/disable individual devices):",
-            "de": "Gefundene Geräte (nach dem Scan gespeichert — über die Adapterkonfiguration aktivieren/deaktivieren):",
-            "ru": "Найденные устройства (сохранены после сканирования — активируйте в настройках адаптера):",
-            "pt": "Dispositivos encontrados (salvos após scan — use a config do adaptador para ativar/desativar):",
-            "nl": "Gevonden apparaten (opgeslagen na scan — gebruik adapterconfiguratie om te activeren/deactiveren):",
-            "fr": "Appareils trouvés (enregistrés après scan — utilisez la config adaptateur pour activer/désactiver):",
-            "it": "Dispositivi trovati (salvati dopo scansione — usa config adattatore per abilitare/disabilitare):",
-            "es": "Dispositivos encontrados (guardados tras escaneo — use config del adaptador para activar/desactivar):",
-            "pl": "Znalezione urządzenia (zapisane po skanie — użyj konfiguracji adaptera do włączania/wyłączania):",
-            "uk": "Знайденi пристрої (збережено пiсля сканування — вмикайте/вимикайте в налаштуваннях адаптера):",
-            "zh-cn": "发现的设备（扫描后保存——使用适配器配置启用/禁用各设备）："
-          },
+          "text": "Found devices (stored after scan — use the adapter config to enable/disable individual devices):",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -255,19 +123,7 @@
         },
         "sigenMicroDevices": {
           "type": "text",
-          "label": {
-            "en": "Discovered devices (JSON)",
-            "de": "Gefundene Geräte (JSON)",
-            "ru": "Найденные устройства (JSON)",
-            "pt": "Dispositivos encontrados (JSON)",
-            "nl": "Gevonden apparaten (JSON)",
-            "fr": "Appareils découverts (JSON)",
-            "it": "Dispositivi trovati (JSON)",
-            "es": "Dispositivos encontrados (JSON)",
-            "pl": "Znalezione urządzenia (JSON)",
-            "uk": "Знайденi пристрої (JSON)",
-            "zh-cn": "发现的设备 (JSON)"
-          },
+          "label": "Discovered devices (JSON)",
           "readOnly": true,
           "minRows": 4,
           "validateJson": true,
@@ -280,5 +136,6 @@
         }
       }
     }
-  }
+  },
+  "i18n": true
 }

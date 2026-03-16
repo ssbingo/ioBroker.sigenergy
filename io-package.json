@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.7.5",
+        "version": "1.7.6",
         "news": {
-            "1.7.5": {
-                "en": "fixed",
-                "de": "fixed",
-                "ru": "fixed",
-                "pt": "fixed",
-                "nl": "fixed",
-                "fr": "fixed",
-                "it": "fixed",
-                "es": "fixed",
-                "pl": "fixed",
-                "uk": "fixed",
-                "zh-cn": "fixed"
+            "1.7.6": {
+                "en": "Fix W5022: empty words.js (jsonConfig adapters must not use systemDictionary); migrate i18n files from LANG/translations.json to flat LANG.json (preferred by adapter-dev)",
+                "de": "W5022 behoben: words.js geleert (jsonConfig-Adapter dürfen systemDictionary nicht verwenden); i18n-Dateien von LANG/translations.json zu flachem LANG.json migriert",
+                "ru": "Исправлен W5022: words.js очищен; i18n-файлы перенесены в плоский формат LANG.json",
+                "pt": "W5022 corrigido: words.js esvaziado; arquivos i18n migrados para LANG.json plano",
+                "nl": "W5022 opgelost: words.js geleegd; i18n-bestanden gemigreerd naar plat LANG.json",
+                "fr": "W5022 corrigé: words.js vidé; fichiers i18n migrés vers LANG.json plat",
+                "it": "W5022 corretto: words.js svuotato; file i18n migrati al formato LANG.json piatto",
+                "es": "W5022 corregido: words.js vaciado; archivos i18n migrados a LANG.json plano",
+                "pl": "Naprawiono W5022: words.js wyczyszczony; pliki i18n zmigrowane do plaskiego LANG.json",
+                "uk": "Виправлено W5022: words.js очищено; файли i18n перенесено у плоский формат LANG.json",
+                "zh-cn": "修复W5022：清空words.js；将i18n文件从LANG/translations.json迁移到扁平LANG.json格式"
             }
         },
         "titleLang": {

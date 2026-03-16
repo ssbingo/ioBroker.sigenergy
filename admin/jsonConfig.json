@@ -3,35 +3,11 @@
   "items": {
     "components": {
       "type": "panel",
-      "label": {
-        "en": "Components",
-        "de": "Komponenten",
-        "ru": "Компоненты",
-        "pt": "Componentes",
-        "nl": "Componenten",
-        "fr": "Composants",
-        "it": "Componenti",
-        "es": "Componentes",
-        "pl": "Komponenty",
-        "uk": "Компоненти",
-        "zh-cn": "组件"
-      },
+      "label": "Components",
       "items": {
         "_componentsHeader": {
           "type": "staticText",
-          "text": {
-            "en": "Select which components are installed in your Sigenergy system.",
-            "de": "Wähle die in deiner Sigenergy-Anlage installierten Komponenten aus.",
-            "ru": "Выберите компоненты, установленные в вашей системе Sigenergy.",
-            "pt": "Selecione os componentes instalados no seu sistema Sigenergy.",
-            "nl": "Selecteer de componenten die in uw Sigenergy-systeem zijn geïnstalleerd.",
-            "fr": "Sélectionnez les composants installés dans votre système Sigenergy.",
-            "it": "Seleziona i componenti installati nel tuo sistema Sigenergy.",
-            "es": "Seleccione los componentes instalados en su sistema Sigenergy.",
-            "pl": "Wybierz komponenty zainstalowane w systemie Sigenergy.",
-            "uk": "Оберіть компоненти, встановлені у вашій системі Sigenergy.",
-            "zh-cn": "选择安装在 Sigenergy 系统中的组件。"
-          },
+          "text": "Select which components are installed in your Sigenergy system.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -40,32 +16,8 @@
         },
         "hasBattery": {
           "type": "checkbox",
-          "label": {
-            "en": "Battery / ESS",
-            "de": "Batterie / ESS",
-            "ru": "Аккумулятор / ESS",
-            "pt": "Bateria / ESS",
-            "nl": "Batterij / ESS",
-            "fr": "Batterie / ESS",
-            "it": "Batteria / ESS",
-            "es": "Batería / ESS",
-            "pl": "Bateria / ESS",
-            "uk": "Акумулятор / ESS",
-            "zh-cn": "电池 / 储能系统"
-          },
-          "help": {
-            "en": "Energy Storage System",
-            "de": "Energiespeichersystem",
-            "ru": "Система хранения энергии",
-            "pt": "Sistema de Armazenamento de Energia",
-            "nl": "Energieopslagsysteem",
-            "fr": "Système de stockage d'énergie",
-            "it": "Sistema di accumulo energetico",
-            "es": "Sistema de almacenamiento de energía",
-            "pl": "System magazynowania energii",
-            "uk": "Система зберігання енергії",
-            "zh-cn": "储能系统"
-          },
+          "label": "Battery / ESS",
+          "help": "Energy Storage System",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -75,32 +27,8 @@
         },
         "hasPv": {
           "type": "checkbox",
-          "label": {
-            "en": "PV Panels",
-            "de": "PV-Module",
-            "ru": "Солнечные панели",
-            "pt": "Painéis FV",
-            "nl": "PV-panelen",
-            "fr": "Panneaux PV",
-            "it": "Pannelli FV",
-            "es": "Paneles FV",
-            "pl": "Panele PV",
-            "uk": "Сонячні панелі",
-            "zh-cn": "光伏板"
-          },
-          "help": {
-            "en": "Photovoltaic solar panels",
-            "de": "Photovoltaik-Solarmodule",
-            "ru": "Фотовольтаические солнечные панели",
-            "pt": "Painéis solares fotovoltaicos",
-            "nl": "Fotovoltaïsche zonnepanelen",
-            "fr": "Panneaux solaires photovoltaïques",
-            "it": "Pannelli solari fotovoltaici",
-            "es": "Paneles solares fotovoltaicos",
-            "pl": "Fotowoltaiczne panele słoneczne",
-            "uk": "Фотовольтаїчні сонячні панелі",
-            "zh-cn": "光伏太阳能板"
-          },
+          "label": "PV Panels",
+          "help": "Photovoltaic solar panels",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -110,32 +38,8 @@
         },
         "hasAcCharger": {
           "type": "checkbox",
-          "label": {
-            "en": "AC Charger (EVAC)",
-            "de": "AC-Ladegerät (EVAC)",
-            "ru": "AC-зарядное устройство (EVAC)",
-            "pt": "Carregador AC (EVAC)",
-            "nl": "AC-oplader (EVAC)",
-            "fr": "Chargeur AC (EVAC)",
-            "it": "Caricatore AC (EVAC)",
-            "es": "Cargador AC (EVAC)",
-            "pl": "Ładowarka AC (EVAC)",
-            "uk": "AC-зарядний пристрій (EVAC)",
-            "zh-cn": "交流充电器 (EVAC)"
-          },
-          "help": {
-            "en": "Sigen EVAC EV charging station",
-            "de": "Sigen EVAC Wallbox",
-            "ru": "Зарядная станция Sigen EVAC",
-            "pt": "Estação de carregamento Sigen EVAC",
-            "nl": "Sigen EVAC laadstation",
-            "fr": "Borne de recharge Sigen EVAC",
-            "it": "Stazione di ricarica Sigen EVAC",
-            "es": "Estación de carga Sigen EVAC",
-            "pl": "Stacja ładowania Sigen EVAC",
-            "uk": "Зарядна станція Sigen EVAC",
-            "zh-cn": "Sigen EVAC 电动车充电站"
-          },
+          "label": "AC Charger (EVAC)",
+          "help": "Sigen EVAC EV charging station",
           "default": false,
           "sm": 12,
           "md": 6,
@@ -145,32 +49,8 @@
         },
         "hasDcCharger": {
           "type": "checkbox",
-          "label": {
-            "en": "DC Charger",
-            "de": "DC-Ladegerät",
-            "ru": "DC-зарядное устройство",
-            "pt": "Carregador DC",
-            "nl": "DC-oplader",
-            "fr": "Chargeur DC",
-            "it": "Caricatore DC",
-            "es": "Cargador DC",
-            "pl": "Ładowarka DC",
-            "uk": "DC-зарядний пристрій",
-            "zh-cn": "直流充电器"
-          },
-          "help": {
-            "en": "DC fast charging (via inverter)",
-            "de": "DC-Schnellladen (über Wechselrichter)",
-            "ru": "DC быстрая зарядка (через инвертор)",
-            "pt": "Carregamento rápido DC (via inversor)",
-            "nl": "DC-snelladen (via omvormer)",
-            "fr": "Charge rapide DC (via onduleur)",
-            "it": "Ricarica rapida DC (tramite inverter)",
-            "es": "Carga rápida DC (a través del inversor)",
-            "pl": "Szybkie ładowanie DC (przez falownik)",
-            "uk": "DC швидке заряджання (через інвертор)",
-            "zh-cn": "直流快速充电（通过逆变器）"
-          },
+          "label": "DC Charger",
+          "help": "DC fast charging (via inverter)",
           "default": false,
           "sm": 12,
           "md": 6,
@@ -180,32 +60,8 @@
         },
         "hasSigenMicro": {
           "type": "checkbox",
-          "label": {
-            "en": "SigenMicro Micro-Inverter",
-            "de": "SigenMicro Mikro-Wechselrichter",
-            "ru": "Микро-инвертор SigenMicro",
-            "pt": "Micro-Inversor SigenMicro",
-            "nl": "SigenMicro Micro-omvormer",
-            "fr": "Micro-onduleur SigenMicro",
-            "it": "Micro-inverter SigenMicro",
-            "es": "Micro-inversor SigenMicro",
-            "pl": "Mikrofalownik SigenMicro",
-            "uk": "Мiкроiнвертор SigenMicro",
-            "zh-cn": "SigenMicro微型逆变器"
-          },
-          "help": {
-            "en": "Sigenergy SigenMicro module-level power electronics (MLPE). Activates the SigenMicro scan & configuration tab.",
-            "de": "Sigenergy SigenMicro Modul-Leistungselektronik (MLPE). Aktiviert den SigenMicro-Scan- und Konfigurationsbereich.",
-            "ru": "Sigenergy SigenMicro (MLPE). Активирует вкладку сканирования и настройки SigenMicro.",
-            "pt": "Sigenergy SigenMicro (MLPE). Ativa a aba de scan e configuração SigenMicro.",
-            "nl": "Sigenergy SigenMicro module-niveau elektronica (MLPE). Activeert de SigenMicro scan- en configuratietab.",
-            "fr": "Sigenergy SigenMicro électronique de puissance au niveau module (MLPE). Active l'onglet de scan et configuration SigenMicro.",
-            "it": "Sigenergy SigenMicro elettronica di potenza a livello modulo (MLPE). Attiva la scheda scansione e configurazione SigenMicro.",
-            "es": "Sigenergy SigenMicro electrónica de potencia a nivel de módulo (MLPE). Activa la pestaña de escaneo y configuración SigenMicro.",
-            "pl": "Sigenergy SigenMicro elektronika mocy na poziomie modułu (MLPE). Aktywuje zakładkę skanowania i konfiguracji SigenMicro.",
-            "uk": "Sigenergy SigenMicro (MLPE). Активує вкладку сканування та налаштування SigenMicro.",
-            "zh-cn": "Sigenergy SigenMicro模块级电力电子装置(MLPE)。激活SigenMicro扫描和配置标签页。"
-          },
+          "label": "SigenMicro Micro-Inverter",
+          "help": "Sigenergy SigenMicro module-level power electronics (MLPE). Activates the SigenMicro scan & configuration tab.",
           "default": false,
           "sm": 12,
           "md": 6,
@@ -223,32 +79,8 @@
         },
         "acChargerId": {
           "type": "number",
-          "label": {
-            "en": "AC Charger Modbus ID",
-            "de": "AC-Ladegerät Modbus-ID",
-            "ru": "Modbus ID AC-зарядного устройства",
-            "pt": "ID Modbus do carregador AC",
-            "nl": "Modbus ID AC-oplader",
-            "fr": "ID Modbus du chargeur AC",
-            "it": "ID Modbus caricatore AC",
-            "es": "ID Modbus del cargador AC",
-            "pl": "Modbus ID ładowarki AC",
-            "uk": "Modbus ID AC-зарядного пристрою",
-            "zh-cn": "交流充电器 Modbus ID"
-          },
-          "help": {
-            "en": "Modbus address of the EVAC charger",
-            "de": "Modbus-Adresse des EVAC-Ladegeräts",
-            "ru": "Modbus-адрес зарядного устройства EVAC",
-            "pt": "Endereço Modbus do carregador EVAC",
-            "nl": "Modbus-adres van de EVAC-oplader",
-            "fr": "Adresse Modbus du chargeur EVAC",
-            "it": "Indirizzo Modbus del caricatore EVAC",
-            "es": "Dirección Modbus del cargador EVAC",
-            "pl": "Adres Modbus ładowarki EVAC",
-            "uk": "Modbus-адреса зарядного пристрою EVAC",
-            "zh-cn": "EVAC 充电器的 Modbus 地址"
-          },
+          "label": "AC Charger Modbus ID",
+          "help": "Modbus address of the EVAC charger",
           "min": 1,
           "max": 246,
           "default": 2,
@@ -269,32 +101,8 @@
         },
         "pollInterval": {
           "type": "number",
-          "label": {
-            "en": "Poll Interval (ms)",
-            "de": "Abfrageintervall (ms)",
-            "ru": "Интервал опроса (мс)",
-            "pt": "Intervalo de sondagem (ms)",
-            "nl": "Pollinginterval (ms)",
-            "fr": "Intervalle d'interrogation (ms)",
-            "it": "Intervallo di polling (ms)",
-            "es": "Intervalo de sondeo (ms)",
-            "pl": "Interwał odpytywania (ms)",
-            "uk": "Інтервал опитування (мс)",
-            "zh-cn": "轮询间隔（毫秒）"
-          },
-          "help": {
-            "en": "How often to read Modbus registers. Minimum: 5000 ms",
-            "de": "Wie oft Modbus-Register gelesen werden. Minimum: 5000 ms",
-            "ru": "Как часто читать регистры Modbus. Минимум: 5000 мс",
-            "pt": "Com que frequência ler os registos Modbus. Mínimo: 5000 ms",
-            "nl": "Hoe vaak Modbus-registers te lezen. Minimum: 5000 ms",
-            "fr": "Fréquence de lecture des registres Modbus. Minimum : 5000 ms",
-            "it": "Con quale frequenza leggere i registri Modbus. Minimo: 5000 ms",
-            "es": "Con qué frecuencia leer los registros Modbus. Mínimo: 5000 ms",
-            "pl": "Jak często odczytywać rejestry Modbus. Minimum: 5000 ms",
-            "uk": "Як часто читати регістри Modbus. Мінімум: 5000 мс",
-            "zh-cn": "读取 Modbus 寄存器的频率。最小：5000 毫秒"
-          },
+          "label": "Poll Interval (ms)",
+          "help": "How often to read Modbus registers. Minimum: 5000 ms",
           "min": 5000,
           "max": 60000,
           "step": 1000,
@@ -307,32 +115,8 @@
         },
         "timeout": {
           "type": "number",
-          "label": {
-            "en": "Connection Timeout (ms)",
-            "de": "Verbindungs-Timeout (ms)",
-            "ru": "Таймаут подключения (мс)",
-            "pt": "Timeout de ligação (ms)",
-            "nl": "Verbindingstimeout (ms)",
-            "fr": "Délai de connexion (ms)",
-            "it": "Timeout connessione (ms)",
-            "es": "Tiempo de espera de conexión (ms)",
-            "pl": "Limit czasu połączenia (ms)",
-            "uk": "Тайм-аут підключення (мс)",
-            "zh-cn": "连接超时（毫秒）"
-          },
-          "help": {
-            "en": "Modbus request timeout before failure",
-            "de": "Modbus-Anfrage-Timeout bis zur Fehlermeldung",
-            "ru": "Таймаут запроса Modbus до ошибки",
-            "pt": "Timeout do pedido Modbus antes da falha",
-            "nl": "Modbus-aanvraagtimeout voor fout",
-            "fr": "Délai d'expiration de la requête Modbus avant échec",
-            "it": "Timeout richiesta Modbus prima del fallimento",
-            "es": "Tiempo de espera de solicitud Modbus antes del fallo",
-            "pl": "Limit czasu żądania Modbus przed błędem",
-            "uk": "Тайм-аут запиту Modbus до помилки",
-            "zh-cn": "失败前的 Modbus 请求超时"
-          },
+          "label": "Connection Timeout (ms)",
+          "help": "Modbus request timeout before failure",
           "min": 1000,
           "max": 30000,
           "step": 1000,
@@ -347,68 +131,20 @@
     },
     "connection": {
       "type": "panel",
-      "label": {
-        "en": "Connection",
-        "de": "Verbindung",
-        "ru": "Подключение",
-        "pt": "Ligação",
-        "nl": "Verbinding",
-        "fr": "Connexion",
-        "it": "Connessione",
-        "es": "Conexión",
-        "pl": "Połączenie",
-        "uk": "Підключення",
-        "zh-cn": "连接"
-      },
+      "label": "Connection",
       "items": {
         "connectionType": {
           "type": "select",
-          "label": {
-            "en": "Connection Type",
-            "de": "Verbindungstyp",
-            "ru": "Тип подключения",
-            "pt": "Tipo de ligação",
-            "nl": "Verbindingstype",
-            "fr": "Type de connexion",
-            "it": "Tipo di connessione",
-            "es": "Tipo de conexión",
-            "pl": "Typ połączenia",
-            "uk": "Тип підключення",
-            "zh-cn": "连接类型"
-          },
+          "label": "Connection Type",
           "default": "tcp",
           "options": [
             {
               "value": "tcp",
-              "label": {
-                "en": "TCP / Ethernet",
-                "de": "TCP / Ethernet",
-                "ru": "TCP / Ethernet",
-                "pt": "TCP / Ethernet",
-                "nl": "TCP / Ethernet",
-                "fr": "TCP / Ethernet",
-                "it": "TCP / Ethernet",
-                "es": "TCP / Ethernet",
-                "pl": "TCP / Ethernet",
-                "uk": "TCP / Ethernet",
-                "zh-cn": "TCP / 以太网"
-              }
+              "label": "TCP / Ethernet"
             },
             {
               "value": "serial",
-              "label": {
-                "en": "Serial / RS485",
-                "de": "Seriell / RS485",
-                "ru": "Последовательный / RS485",
-                "pt": "Serial / RS485",
-                "nl": "Serieel / RS485",
-                "fr": "Série / RS485",
-                "it": "Seriale / RS485",
-                "es": "Serie / RS485",
-                "pl": "Szeregowy / RS485",
-                "uk": "Послідовний / RS485",
-                "zh-cn": "串口 / RS485"
-              }
+              "label": "Serial / RS485"
             }
           ],
           "sm": 12,
@@ -427,19 +163,7 @@
         },
         "tcpHost": {
           "type": "text",
-          "label": {
-            "en": "Host / IP Address",
-            "de": "Host / IP-Adresse",
-            "ru": "Хост / IP-адрес",
-            "pt": "Host / Endereço IP",
-            "nl": "Host / IP-adres",
-            "fr": "Hôte / Adresse IP",
-            "it": "Host / Indirizzo IP",
-            "es": "Host / Dirección IP",
-            "pl": "Host / Adres IP",
-            "uk": "Хост / IP-адреса",
-            "zh-cn": "主机 / IP 地址"
-          },
+          "label": "Host / IP Address",
           "placeholder": "192.168.1.100",
           "default": "192.168.1.100",
           "hidden": "data.connectionType !== 'tcp'",
@@ -451,19 +175,7 @@
         },
         "tcpPort": {
           "type": "number",
-          "label": {
-            "en": "Port",
-            "de": "Port",
-            "ru": "Порт",
-            "pt": "Porta",
-            "nl": "Poort",
-            "fr": "Port",
-            "it": "Porta",
-            "es": "Puerto",
-            "pl": "Port",
-            "uk": "Порт",
-            "zh-cn": "端口"
-          },
+          "label": "Port",
           "min": 1,
           "max": 65535,
           "default": 502,
@@ -476,32 +188,8 @@
         },
         "plantId": {
           "type": "number",
-          "label": {
-            "en": "Plant Modbus ID",
-            "de": "Anlage Modbus-ID",
-            "ru": "Modbus ID установки",
-            "pt": "ID Modbus da instalação",
-            "nl": "Installatie Modbus ID",
-            "fr": "ID Modbus de l'installation",
-            "it": "ID Modbus impianto",
-            "es": "ID Modbus de la instalación",
-            "pl": "Modbus ID instalacji",
-            "uk": "Modbus ID установки",
-            "zh-cn": "电站 Modbus ID"
-          },
-          "help": {
-            "en": "Default: 247 (0xF7)",
-            "de": "Standard: 247 (0xF7)",
-            "ru": "По умолчанию: 247 (0xF7)",
-            "pt": "Padrão: 247 (0xF7)",
-            "nl": "Standaard: 247 (0xF7)",
-            "fr": "Par défaut : 247 (0xF7)",
-            "it": "Predefinito: 247 (0xF7)",
-            "es": "Predeterminado: 247 (0xF7)",
-            "pl": "Domyślnie: 247 (0xF7)",
-            "uk": "За замовчуванням: 247 (0xF7)",
-            "zh-cn": "默认：247 (0xF7)"
-          },
+          "label": "Plant Modbus ID",
+          "help": "Default: 247 (0xF7)",
           "min": 1,
           "max": 247,
           "default": 247,
@@ -513,32 +201,8 @@
         },
         "inverterId": {
           "type": "number",
-          "label": {
-            "en": "Inverter Modbus ID",
-            "de": "Wechselrichter Modbus-ID",
-            "ru": "Modbus ID инвертора",
-            "pt": "ID Modbus do inversor",
-            "nl": "Omvormer Modbus ID",
-            "fr": "ID Modbus de l'onduleur",
-            "it": "ID Modbus inverter",
-            "es": "ID Modbus del inversor",
-            "pl": "Modbus ID falownika",
-            "uk": "Modbus ID інвертора",
-            "zh-cn": "逆变器 Modbus ID"
-          },
-          "help": {
-            "en": "Default: 1",
-            "de": "Standard: 1",
-            "ru": "По умолчанию: 1",
-            "pt": "Padrão: 1",
-            "nl": "Standaard: 1",
-            "fr": "Par défaut : 1",
-            "it": "Predefinito: 1",
-            "es": "Predeterminado: 1",
-            "pl": "Domyślnie: 1",
-            "uk": "За замовчуванням: 1",
-            "zh-cn": "默认：1"
-          },
+          "label": "Inverter Modbus ID",
+          "help": "Default: 1",
           "min": 1,
           "max": 246,
           "default": 1,
@@ -550,19 +214,7 @@
         },
         "serialPort": {
           "type": "text",
-          "label": {
-            "en": "Serial Port",
-            "de": "Serieller Port",
-            "ru": "Последовательный порт",
-            "pt": "Porta série",
-            "nl": "Seriële poort",
-            "fr": "Port série",
-            "it": "Porta seriale",
-            "es": "Puerto serie",
-            "pl": "Port szeregowy",
-            "uk": "Послідовний порт",
-            "zh-cn": "串口"
-          },
+          "label": "Serial Port",
           "placeholder": "/dev/ttyUSB0",
           "default": "/dev/ttyUSB0",
           "hidden": "data.connectionType !== 'serial'",
@@ -574,19 +226,7 @@
         },
         "serialBaudRate": {
           "type": "select",
-          "label": {
-            "en": "Baud Rate",
-            "de": "Baudrate",
-            "ru": "Скорость передачи",
-            "pt": "Taxa de transmissão",
-            "nl": "Baudrate",
-            "fr": "Débit en bauds",
-            "it": "Velocità di trasmissione",
-            "es": "Velocidad de baudios",
-            "pl": "Prędkość transmisji",
-            "uk": "Швидкість передачі",
-            "zh-cn": "波特率"
-          },
+          "label": "Baud Rate",
           "default": 9600,
           "hidden": "data.connectionType !== 'serial'",
           "options": [
@@ -615,19 +255,7 @@
         },
         "serialDataBits": {
           "type": "select",
-          "label": {
-            "en": "Data Bits",
-            "de": "Datenbits",
-            "ru": "Биты данных",
-            "pt": "Bits de dados",
-            "nl": "Databits",
-            "fr": "Bits de données",
-            "it": "Bit di dati",
-            "es": "Bits de datos",
-            "pl": "Bity danych",
-            "uk": "Біти даних",
-            "zh-cn": "数据位"
-          },
+          "label": "Data Bits",
           "default": 8,
           "hidden": "data.connectionType !== 'serial'",
           "options": [
@@ -648,69 +276,21 @@
         },
         "serialParity": {
           "type": "select",
-          "label": {
-            "en": "Parity",
-            "de": "Parität",
-            "ru": "Чётность",
-            "pt": "Paridade",
-            "nl": "Pariteit",
-            "fr": "Parité",
-            "it": "Parità",
-            "es": "Paridad",
-            "pl": "Parzystość",
-            "uk": "Парність",
-            "zh-cn": "奇偶校验"
-          },
+          "label": "Parity",
           "default": "none",
           "hidden": "data.connectionType !== 'serial'",
           "options": [
             {
               "value": "none",
-              "label": {
-                "en": "None",
-                "de": "Keine",
-                "ru": "Нет",
-                "pt": "Nenhum",
-                "nl": "Geen",
-                "fr": "Aucune",
-                "it": "Nessuna",
-                "es": "Ninguna",
-                "pl": "Brak",
-                "uk": "Немає",
-                "zh-cn": "无"
-              }
+              "label": "None"
             },
             {
               "value": "even",
-              "label": {
-                "en": "Even",
-                "de": "Gerade",
-                "ru": "Чётная",
-                "pt": "Par",
-                "nl": "Even",
-                "fr": "Paire",
-                "it": "Pari",
-                "es": "Par",
-                "pl": "Parzysta",
-                "uk": "Парна",
-                "zh-cn": "偶"
-              }
+              "label": "Even"
             },
             {
               "value": "odd",
-              "label": {
-                "en": "Odd",
-                "de": "Ungerade",
-                "ru": "Нечётная",
-                "pt": "Ímpar",
-                "nl": "Oneven",
-                "fr": "Impaire",
-                "it": "Dispari",
-                "es": "Impar",
-                "pl": "Nieparzysta",
-                "uk": "Непарна",
-                "zh-cn": "奇"
-              }
+              "label": "Odd"
             }
           ],
           "sm": 12,
@@ -721,19 +301,7 @@
         },
         "serialStopBits": {
           "type": "select",
-          "label": {
-            "en": "Stop Bits",
-            "de": "Stoppbits",
-            "ru": "Стоповые биты",
-            "pt": "Bits de paragem",
-            "nl": "Stopbits",
-            "fr": "Bits d'arrêt",
-            "it": "Bit di stop",
-            "es": "Bits de parada",
-            "pl": "Bity stopu",
-            "uk": "Стопові біти",
-            "zh-cn": "停止位"
-          },
+          "label": "Stop Bits",
           "default": 1,
           "hidden": "data.connectionType !== 'serial'",
           "options": [
@@ -762,19 +330,7 @@
         },
         "_testHeader": {
           "type": "staticText",
-          "text": {
-            "en": "Connection Test: sends the current settings to the adapter and attempts to read register 30000 (plant system time) via Modbus.",
-            "de": "Verbindungstest: Sendet die aktuellen Einstellungen an den Adapter und liest Register 30000 (Anlagensystemzeit) per Modbus.",
-            "ru": "Тест подключения: отправляет текущие настройки адаптеру и пытается прочитать регистр 30000 (время системы) через Modbus.",
-            "pt": "Teste de ligação: envia as definições atuais para o adaptador e tenta ler o registo 30000 via Modbus.",
-            "nl": "Verbindingstest: stuurt huidige instellingen naar de adapter en leest register 30000 via Modbus.",
-            "fr": "Test de connexion : envoie les paramètres actuels à l'adaptateur et tente de lire le registre 30000 via Modbus.",
-            "it": "Test connessione: invia le impostazioni correnti all'adattatore e tenta di leggere il registro 30000 via Modbus.",
-            "es": "Prueba de conexión: envía la configuración actual al adaptador e intenta leer el registro 30000 via Modbus.",
-            "pl": "Test połączenia: wysyła bieżące ustawienia do adaptera i próbuje odczytać rejestr 30000 przez Modbus.",
-            "uk": "Тест підключення: надсилає поточні налаштування адаптеру та намагається прочитати регістр 30000 через Modbus.",
-            "zh-cn": "连接测试：将当前设置发送到适配器并尝试通过 Modbus 读取寄存器 30000。"
-          },
+          "text": "Connection Test: sends the current settings to the adapter and attempts to read register 30000 (plant system time) via Modbus.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -783,19 +339,7 @@
         },
         "test_btn": {
           "type": "sendTo",
-          "label": {
-            "en": "Test Connection",
-            "de": "Verbindung testen",
-            "ru": "Тест подключения",
-            "pt": "Testar ligação",
-            "nl": "Verbinding testen",
-            "fr": "Tester la connexion",
-            "it": "Test connessione",
-            "es": "Probar conexión",
-            "pl": "Testuj połączenie",
-            "uk": "Тест підключення",
-            "zh-cn": "测试连接"
-          },
+          "label": "Test Connection",
           "command": "testConnection",
           "jsonData": true,
           "sm": 12,
@@ -808,36 +352,12 @@
     },
     "sigenmicro": {
       "type": "panel",
-      "label": {
-        "en": "SigenMicro",
-        "de": "SigenMicro",
-        "ru": "SigenMicro",
-        "pt": "SigenMicro",
-        "nl": "SigenMicro",
-        "fr": "SigenMicro",
-        "it": "SigenMicro",
-        "es": "SigenMicro",
-        "pl": "SigenMicro",
-        "uk": "SigenMicro",
-        "zh-cn": "SigenMicro"
-      },
+      "label": "SigenMicro",
       "hidden": "!data.hasSigenMicro",
       "items": {
         "_microHeader": {
           "type": "staticText",
-          "text": {
-            "en": "Configure the Modbus slave-ID range to scan for SigenMicro micro-inverters. After scanning, enable each discovered device individually. The adapter polls all enabled devices in every cycle.",
-            "de": "Modbus-Slave-ID-Bereich für die SigenMicro-Suche festlegen. Nach dem Scan jedes gefundene Gerät einzeln aktivieren. Der Adapter liest alle aktivierten Geräte in jedem Zyklus aus.",
-            "ru": "Настройте диапазон Modbus slave-ID для сканирования SigenMicro. После сканирования активируйте каждое найденное устройство. Адаптер опрашивает все активированные устройства.",
-            "pt": "Configure o intervalo de slave-ID Modbus para varredura de micro-inversores SigenMicro. Após a varredura, ative cada dispositivo encontrado individualmente.",
-            "nl": "Configureer het Modbus slave-ID-bereik voor SigenMicro-scan. Activeer na het scannen elk gevonden apparaat afzonderlijk.",
-            "fr": "Configurez la plage d'ID esclave Modbus pour le scan des micro-onduleurs SigenMicro. Après le scan, activez chaque appareil découvert individuellement.",
-            "it": "Configura l'intervallo ID slave Modbus per la scansione dei micro-inverter SigenMicro. Dopo la scansione, attiva ogni dispositivo trovato singolarmente.",
-            "es": "Configure el rango de ID esclavo Modbus para escanear micro-inversores SigenMicro. Después del escaneo, active cada dispositivo descubierto individualmente.",
-            "pl": "Skonfiguruj zakres Modbus slave-ID do skanowania mikrofalowników SigenMicro. Po skanowaniu aktywuj każde znalezione urządzenie osobno.",
-            "uk": "Налаштуйте дiапазон Modbus slave-ID для сканування SigenMicro. Пiсля сканування активуйте кожен знайдений пристрiй окремо.",
-            "zh-cn": "配置Modbus从站ID范围以扫描SigenMicro微型逆变器。扫描后，单独启用每个发现的设备。"
-          },
+          "text": "Configure the Modbus slave-ID range to scan for SigenMicro micro-inverters. After scanning, enable each discovered device individually. The adapter polls all enabled devices in every cycle.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -854,32 +374,8 @@
         },
         "sigenMicroScanFrom": {
           "type": "number",
-          "label": {
-            "en": "Scan — first Modbus ID",
-            "de": "Scan — erste Modbus-ID",
-            "ru": "Скан — первый Modbus ID",
-            "pt": "Scan — primeiro ID Modbus",
-            "nl": "Scan — eerste Modbus ID",
-            "fr": "Scan — premier ID Modbus",
-            "it": "Scan — primo ID Modbus",
-            "es": "Scan — primer ID Modbus",
-            "pl": "Skan — pierwszy Modbus ID",
-            "uk": "Скан — перший Modbus ID",
-            "zh-cn": "扫描 — 起始Modbus ID"
-          },
-          "help": {
-            "en": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
-            "de": "Kleinste Slave-Adresse für den SigenMicro-Scan (1–246)",
-            "ru": "Наименьший адрес ведомого для сканирования SigenMicro (1–246)",
-            "pt": "Menor endereço slave para varredura SigenMicro (1–246)",
-            "nl": "Laagste slave-adres voor SigenMicro-scan (1–246)",
-            "fr": "Adresse esclave la plus basse pour le scan SigenMicro (1–246)",
-            "it": "Indirizzo slave più basso per la scansione SigenMicro (1–246)",
-            "es": "Dirección esclava más baja para el escaneo SigenMicro (1–246)",
-            "pl": "Najniższy adres slave do skanowania SigenMicro (1–246)",
-            "uk": "Найменша адреса ведомого для сканування SigenMicro (1–246)",
-            "zh-cn": "SigenMicro设备扫描的最低从站地址(1–246)"
-          },
+          "label": "Scan — first Modbus ID",
+          "help": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
           "min": 1,
           "max": 246,
           "default": 10,
@@ -891,32 +387,8 @@
         },
         "sigenMicroScanTo": {
           "type": "number",
-          "label": {
-            "en": "Scan — last Modbus ID",
-            "de": "Scan — letzte Modbus-ID",
-            "ru": "Скан — последний Modbus ID",
-            "pt": "Scan — último ID Modbus",
-            "nl": "Scan — laatste Modbus ID",
-            "fr": "Scan — dernier ID Modbus",
-            "it": "Scan — ultimo ID Modbus",
-            "es": "Scan — último ID Modbus",
-            "pl": "Skan — ostatni Modbus ID",
-            "uk": "Скан — останнiй Modbus ID",
-            "zh-cn": "扫描 — 结束Modbus ID"
-          },
-          "help": {
-            "en": "Highest slave address to probe during the SigenMicro device scan (1–246)",
-            "de": "Größte Slave-Adresse für den SigenMicro-Scan (1–246)",
-            "ru": "Наибольший адрес ведомого для сканирования SigenMicro (1–246)",
-            "pt": "Maior endereço slave para varredura SigenMicro (1–246)",
-            "nl": "Hoogste slave-adres voor SigenMicro-scan (1–246)",
-            "fr": "Adresse esclave la plus haute pour le scan SigenMicro (1–246)",
-            "it": "Indirizzo slave più alto per la scansione SigenMicro (1–246)",
-            "es": "Dirección esclava más alta para el escaneo SigenMicro (1–246)",
-            "pl": "Najwyższy adres slave do skanowania SigenMicro (1–246)",
-            "uk": "Найбiльша адреса ведомого для сканування SigenMicro (1–246)",
-            "zh-cn": "SigenMicro设备扫描的最高从站地址(1–246)"
-          },
+          "label": "Scan — last Modbus ID",
+          "help": "Highest slave address to probe during the SigenMicro device scan (1–246)",
           "min": 1,
           "max": 246,
           "default": 30,
@@ -936,19 +408,7 @@
         },
         "_scanBtnHeader": {
           "type": "staticText",
-          "text": {
-            "en": "Click the button below to scan the Modbus bus for SigenMicro devices. The scan uses the ID range configured above. Found devices are saved automatically — use the SigenMicro admin tab to enable or disable individual devices.",
-            "de": "Klicke auf die Schaltfläche, um den Modbus-Bus nach SigenMicro-Geräten zu scannen. Der Scan verwendet den oben konfigurierten ID-Bereich. Gefundene Geräte werden automatisch gespeichert.",
-            "ru": "Нажмите кнопку для сканирования шины Modbus на наличие устройств SigenMicro. Найденные устройства сохраняются автоматически.",
-            "pt": "Clique no botão para escanear o barramento Modbus em busca de dispositivos SigenMicro. Dispositivos encontrados são salvos automaticamente.",
-            "nl": "Klik op de knop om de Modbus-bus te scannen op SigenMicro-apparaten. Gevonden apparaten worden automatisch opgeslagen.",
-            "fr": "Cliquez sur le bouton pour scanner le bus Modbus à la recherche d'appareils SigenMicro. Les appareils trouvés sont enregistrés automatiquement.",
-            "it": "Clicca il pulsante per scansionare il bus Modbus alla ricerca di dispositivi SigenMicro. I dispositivi trovati vengono salvati automaticamente.",
-            "es": "Haga clic en el botón para escanear el bus Modbus en busca de dispositivos SigenMicro. Los dispositivos encontrados se guardan automáticamente.",
-            "pl": "Kliknij przycisk, aby zeskanować magistralę Modbus w poszukiwaniu urządzeń SigenMicro. Znalezione urządzenia są zapisywane automatycznie.",
-            "uk": "Натиснiть кнопку для сканування шини Modbus на пристрої SigenMicro. Знайденi пристрої зберiгаються автоматично.",
-            "zh-cn": "点击下方按钮扫描Modbus总线上的SigenMicro设备。找到的设备将自动保存。"
-          },
+          "text": "Click the button below to scan the Modbus bus for SigenMicro devices. The scan uses the ID range configured above. Found devices are saved automatically — use the SigenMicro admin tab to enable or disable individual devices.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -957,19 +417,7 @@
         },
         "scan_btn": {
           "type": "sendTo",
-          "label": {
-            "en": "🔍  Scan for SigenMicro devices",
-            "de": "🔍  SigenMicro-Geräte suchen",
-            "ru": "🔍  Сканировать устройства SigenMicro",
-            "pt": "🔍  Buscar dispositivos SigenMicro",
-            "nl": "🔍  SigenMicro-apparaten scannen",
-            "fr": "🔍  Rechercher les appareils SigenMicro",
-            "it": "🔍  Scansiona dispositivi SigenMicro",
-            "es": "🔍  Buscar dispositivos SigenMicro",
-            "pl": "🔍  Skanuj urządzenia SigenMicro",
-            "uk": "🔍  Сканувати пристрої SigenMicro",
-            "zh-cn": "🔍  扫描SigenMicro设备"
-          },
+          "label": "🔍  Scan for SigenMicro devices",
           "command": "scanSigenMicro",
           "jsonData": true,
           "variant": "contained",
@@ -990,19 +438,7 @@
         },
         "_progressLabel": {
           "type": "staticText",
-          "text": {
-            "en": "Live scan progress (updates while scan is running):",
-            "de": "Scan-Fortschritt in Echtzeit (aktualisiert während des Scans):",
-            "ru": "Прогресс сканирования в реальном времени:",
-            "pt": "Progresso ao vivo do scan:",
-            "nl": "Live scanvoortgang:",
-            "fr": "Progression du scan en direct:",
-            "it": "Avanzamento scansione in tempo reale:",
-            "es": "Progreso del scan en vivo:",
-            "pl": "Postęp skanowania na żywo:",
-            "uk": "Прогрес сканування в реальному часi:",
-            "zh-cn": "实时扫描进度："
-          },
+          "text": "Live scan progress (updates while scan is running):",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -1011,19 +447,7 @@
         },
         "_scanProgress": {
           "type": "state",
-          "label": {
-            "en": "Progress",
-            "de": "Fortschritt",
-            "ru": "Прогресс",
-            "pt": "Progresso",
-            "nl": "Voortgang",
-            "fr": "Progression",
-            "it": "Avanzamento",
-            "es": "Progreso",
-            "pl": "Postęp",
-            "uk": "Прогрес",
-            "zh-cn": "进度"
-          },
+          "label": "Progress",
           "oid": "info.scanProgress",
           "sm": 12,
           "xs": 12,
@@ -1033,19 +457,7 @@
         },
         "_scanStatus": {
           "type": "state",
-          "label": {
-            "en": "Status",
-            "de": "Status",
-            "ru": "Статус",
-            "pt": "Status",
-            "nl": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "es": "Estado",
-            "pl": "Status",
-            "uk": "Статус",
-            "zh-cn": "状态"
-          },
+          "label": "Status",
           "oid": "info.scanStatus",
           "sm": 12,
           "xs": 12,
@@ -1057,35 +469,11 @@
     },
     "statistics": {
       "type": "panel",
-      "label": {
-        "en": "Statistics",
-        "de": "Statistiken",
-        "ru": "Статистика",
-        "pt": "Estatísticas",
-        "nl": "Statistieken",
-        "fr": "Statistiques",
-        "it": "Statistiche",
-        "es": "Estadísticas",
-        "pl": "Statystyki",
-        "uk": "Статистика",
-        "zh-cn": "统计"
-      },
+      "label": "Statistics",
       "items": {
         "_statsHeader": {
           "type": "staticText",
-          "text": {
-            "en": "Select which additional statistics should be calculated and written as ioBroker states. These values are derived from live Modbus measurements.",
-            "de": "Wähle, welche zusätzlichen Statistiken berechnet und als ioBroker-Datenpunkte gespeichert werden sollen.",
-            "ru": "Выберите дополнительную статистику для вычисления и записи как состояния ioBroker.",
-            "pt": "Selecione as estatísticas adicionais a calcular e guardar como estados ioBroker.",
-            "nl": "Selecteer welke statistieken berekend en opgeslagen moeten worden als ioBroker-staten.",
-            "fr": "Sélectionnez les statistiques supplémentaires à calculer et enregistrer comme états ioBroker.",
-            "it": "Seleziona le statistiche aggiuntive da calcolare e salvare come stati ioBroker.",
-            "es": "Seleccione las estadísticas adicionales a calcular y guardar como estados ioBroker.",
-            "pl": "Wybierz dodatkowe statystyki do obliczenia i zapisania jako stany ioBroker.",
-            "uk": "Оберіть додаткову статистику для обчислення та запису як стани ioBroker.",
-            "zh-cn": "选择要计算并写入 ioBroker 状态的附加统计信息。"
-          },
+          "text": "Select which additional statistics should be calculated and written as ioBroker states. These values are derived from live Modbus measurements.",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -1094,32 +482,8 @@
         },
         "calcBatteryTimeToFull": {
           "type": "checkbox",
-          "label": {
-            "en": "Time to full charge",
-            "de": "Zeit bis zur vollen Ladung",
-            "ru": "Время до полного заряда",
-            "pt": "Tempo para carga completa",
-            "nl": "Tijd tot volledig opladen",
-            "fr": "Temps de charge complète",
-            "it": "Tempo alla carica completa",
-            "es": "Tiempo hasta carga completa",
-            "pl": "Czas do pełnego naładowania",
-            "uk": "Час до повного заряду",
-            "zh-cn": "充满时间"
-          },
-          "help": {
-            "en": "How long until the battery reaches 100% at current charge rate",
-            "de": "Wie lange bis die Batterie bei aktueller Laderate 100% erreicht",
-            "ru": "Сколько времени до достижения 100% при текущей скорости зарядки",
-            "pt": "Quanto tempo até a bateria atingir 100% à taxa de carga atual",
-            "nl": "Hoe lang tot de batterij 100% bereikt bij huidige laadsnelheid",
-            "fr": "Durée jusqu'à ce que la batterie atteigne 100% au taux de charge actuel",
-            "it": "Quanto tempo fino a quando la batteria raggiunge il 100% al tasso di carica attuale",
-            "es": "Cuánto tiempo hasta que la batería alcance el 100% a la tasa de carga actual",
-            "pl": "Ile czasu do osiągnięcia 100% przy bieżącej prędkości ładowania",
-            "uk": "Скільки часу до досягнення 100% при поточній швидкості заряджання",
-            "zh-cn": "以当前充电速率充至 100% 需要多长时间"
-          },
+          "label": "Time to full charge",
+          "help": "How long until the battery reaches 100% at current charge rate",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1129,32 +493,8 @@
         },
         "calcBatteryTimeRemaining": {
           "type": "checkbox",
-          "label": {
-            "en": "Battery time remaining",
-            "de": "Verbleibende Batterielaufzeit",
-            "ru": "Оставшееся время работы аккумулятора",
-            "pt": "Tempo restante da bateria",
-            "nl": "Resterende batterijduur",
-            "fr": "Autonomie restante de la batterie",
-            "it": "Autonomia residua della batteria",
-            "es": "Tiempo restante de batería",
-            "pl": "Pozostały czas baterii",
-            "uk": "Залишковий час роботи акумулятора",
-            "zh-cn": "电池剩余时间"
-          },
-          "help": {
-            "en": "How long the battery will last at current consumption",
-            "de": "Wie lange die Batterie bei aktuellem Verbrauch hält",
-            "ru": "Как долго аккумулятор продержится при текущем потреблении",
-            "pt": "Quanto tempo a bateria durará com o consumo atual",
-            "nl": "Hoe lang de batterij meegaat bij huidig verbruik",
-            "fr": "Durée de la batterie à la consommation actuelle",
-            "it": "Durata della batteria con il consumo attuale",
-            "es": "Cuánto tiempo durará la batería con el consumo actual",
-            "pl": "Jak długo bateria wytrzyma przy bieżącym zużyciu",
-            "uk": "Як довго акумулятор протримається при поточному споживанні",
-            "zh-cn": "以当前消耗量电池能持续多长时间"
-          },
+          "label": "Battery time remaining",
+          "help": "How long the battery will last at current consumption",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1164,32 +504,8 @@
         },
         "calcBatteryDailyFull": {
           "type": "checkbox",
-          "label": {
-            "en": "Daily charge completion time",
-            "de": "Tägliche Vollladezeitpunkt",
-            "ru": "Время завершения суточного заряда",
-            "pt": "Tempo de conclusão de carga diária",
-            "nl": "Dagelijkse laadvoltooiingstijd",
-            "fr": "Heure de fin de charge quotidienne",
-            "it": "Ora di completamento della carica giornaliera",
-            "es": "Hora de finalización de carga diaria",
-            "pl": "Dzienny czas zakończenia ładowania",
-            "uk": "Час завершення добового заряду",
-            "zh-cn": "每日充电完成时间"
-          },
-          "help": {
-            "en": "Today: how long it took until the battery was fully charged",
-            "de": "Heute: wie lange es gedauert hat bis die Batterie voll geladen war",
-            "ru": "Сегодня: сколько времени потребовалось до полного заряда",
-            "pt": "Hoje: quanto tempo demorou até a bateria estar totalmente carregada",
-            "nl": "Vandaag: hoe lang het duurde tot de batterij volledig opgeladen was",
-            "fr": "Aujourd'hui : combien de temps a pris la charge complète",
-            "it": "Oggi: quanto tempo ci è voluto per la carica completa",
-            "es": "Hoy: cuánto tiempo tardó en cargarse completamente la batería",
-            "pl": "Dziś: ile czasu zajęło pełne naładowanie baterii",
-            "uk": "Сьогодні: скільки часу знадобилося до повного заряду",
-            "zh-cn": "今天：充满电所花费的时间"
-          },
+          "label": "Daily charge completion time",
+          "help": "Today: how long it took until the battery was fully charged",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1199,32 +515,8 @@
         },
         "calcBatteryCoverageTime": {
           "type": "checkbox",
-          "label": {
-            "en": "Battery coverage time today",
-            "de": "Batterie-Abdeckungszeit heute",
-            "ru": "Время покрытия аккумулятором сегодня",
-            "pt": "Tempo de cobertura da bateria hoje",
-            "nl": "Batterijdekkingstijd vandaag",
-            "fr": "Durée de couverture de la batterie aujourd'hui",
-            "it": "Tempo di copertura della batteria oggi",
-            "es": "Tiempo de cobertura de batería hoy",
-            "pl": "Czas pokrycia baterii dziś",
-            "uk": "Час покриття акумулятором сьогодні",
-            "zh-cn": "今日电池覆盖时间"
-          },
-          "help": {
-            "en": "How long today the battery covered the house consumption without grid",
-            "de": "Wie lange die Batterie heute den Hausverbrauch ohne Netz gedeckt hat",
-            "ru": "Как долго сегодня аккумулятор покрывал потребление дома без сети",
-            "pt": "Quanto tempo hoje a bateria cobriu o consumo doméstico sem rede",
-            "nl": "Hoe lang de batterij vandaag het huisverbruik zonder net dekte",
-            "fr": "Durée pendant laquelle la batterie a couvert la consommation sans réseau aujourd'hui",
-            "it": "Per quanto tempo oggi la batteria ha coperto il consumo domestico senza rete",
-            "es": "Cuánto tiempo hoy la batería cubrió el consumo doméstico sin red",
-            "pl": "Jak długo bateria pokrywała dziś zużycie domu bez sieci",
-            "uk": "Як довго сьогодні акумулятор покривав споживання будинку без мережі",
-            "zh-cn": "今天电池在不依赖电网的情况下覆盖家庭用电的时间"
-          },
+          "label": "Battery coverage time today",
+          "help": "How long today the battery covered the house consumption without grid",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1234,32 +526,8 @@
         },
         "calcSelfConsumptionRate": {
           "type": "checkbox",
-          "label": {
-            "en": "Self-consumption rate",
-            "de": "Eigenverbrauchsquote",
-            "ru": "Доля собственного потребления",
-            "pt": "Taxa de autoconsumo",
-            "nl": "Eigenverbruiksgraad",
-            "fr": "Taux d'autoconsommation",
-            "it": "Tasso di autoconsumo",
-            "es": "Tasa de autoconsumo",
-            "pl": "Wskaźnik autokonsumpcji",
-            "uk": "Частка власного споживання",
-            "zh-cn": "自用率"
-          },
-          "help": {
-            "en": "Percentage of PV production used locally (not exported)",
-            "de": "Anteil der PV-Produktion der lokal genutzt wird (nicht eingespeist)",
-            "ru": "Доля производства ФЭС, использованной локально (не экспортированной)",
-            "pt": "Percentagem da produção FV usada localmente (não exportada)",
-            "nl": "Percentage PV-productie lokaal gebruikt (niet geëxporteerd)",
-            "fr": "Pourcentage de production PV utilisée localement (non exportée)",
-            "it": "Percentuale di produzione FV utilizzata localmente (non esportata)",
-            "es": "Porcentaje de producción FV usada localmente (no exportada)",
-            "pl": "Procent produkcji PV zużyty lokalnie (nie wyeksportowany)",
-            "uk": "Частка виробництва ФЕС, використаної локально (не експортованої)",
-            "zh-cn": "本地使用的光伏发电比例（未出口）"
-          },
+          "label": "Self-consumption rate",
+          "help": "Percentage of PV production used locally (not exported)",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1269,32 +537,8 @@
         },
         "calcAutarkyRate": {
           "type": "checkbox",
-          "label": {
-            "en": "Autarky rate",
-            "de": "Autarkiequote",
-            "ru": "Степень автономности",
-            "pt": "Taxa de autarcia",
-            "nl": "Autarkiegraad",
-            "fr": "Taux d'autarcie",
-            "it": "Tasso di autosufficienza",
-            "es": "Tasa de autarquía",
-            "pl": "Wskaźnik autarkii",
-            "uk": "Ступінь автономності",
-            "zh-cn": "自给率"
-          },
-          "help": {
-            "en": "Percentage of house consumption covered by PV + battery",
-            "de": "Anteil des Hausverbrauchs der durch PV + Batterie gedeckt wird",
-            "ru": "Доля потребления дома, покрытая ФЭС и аккумулятором",
-            "pt": "Percentagem do consumo doméstico coberta por FV + bateria",
-            "nl": "Percentage huisverbruik gedekt door PV + batterij",
-            "fr": "Pourcentage de la consommation domestique couverte par PV + batterie",
-            "it": "Percentuale del consumo domestico coperto da FV + batteria",
-            "es": "Porcentaje del consumo doméstico cubierto por FV + batería",
-            "pl": "Procent zużycia domu pokryty przez PV + bateria",
-            "uk": "Частка споживання будинку, покрита ФЕС та акумулятором",
-            "zh-cn": "光伏+电池覆盖的家庭用电比例"
-          },
+          "label": "Autarky rate",
+          "help": "Percentage of house consumption covered by PV + battery",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1304,32 +548,8 @@
         },
         "calcPvYield": {
           "type": "checkbox",
-          "label": {
-            "en": "PV yield (15-min average)",
-            "de": "PV-Ertrag (15-Min-Durchschnitt)",
-            "ru": "Выработка ФЭС (среднее за 15 мин)",
-            "pt": "Produção FV (média 15 min)",
-            "nl": "PV-opbrengst (15-min gemiddelde)",
-            "fr": "Rendement PV (moyenne 15 min)",
-            "it": "Resa FV (media 15 min)",
-            "es": "Rendimiento FV (media 15 min)",
-            "pl": "Uzysk PV (średnia 15 min)",
-            "uk": "Виробіток ФЕС (середнє за 15 хв)",
-            "zh-cn": "光伏产量（15分钟平均）"
-          },
-          "help": {
-            "en": "Average PV power output over the last 15 minutes",
-            "de": "Durchschnittliche PV-Leistung der letzten 15 Minuten",
-            "ru": "Средняя мощность ФЭС за последние 15 минут",
-            "pt": "Potência média FV nos últimos 15 minutos",
-            "nl": "Gemiddeld PV-vermogen de laatste 15 minuten",
-            "fr": "Puissance PV moyenne sur les 15 dernières minutes",
-            "it": "Potenza FV media negli ultimi 15 minuti",
-            "es": "Potencia FV media en los últimos 15 minutos",
-            "pl": "Średnia moc PV w ciągu ostatnich 15 minut",
-            "uk": "Середня потужність ФЕС за останні 15 хвилин",
-            "zh-cn": "过去15分钟的平均光伏功率输出"
-          },
+          "label": "PV yield (15-min average)",
+          "help": "Average PV power output over the last 15 minutes",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1339,32 +559,8 @@
         },
         "calcGridFeedIn": {
           "type": "checkbox",
-          "label": {
-            "en": "Grid feed-in tracking",
-            "de": "Netzeinspeisung erfassen",
-            "ru": "Учёт подачи в сеть",
-            "pt": "Registo de injeção na rede",
-            "nl": "Netinvoerregistratie",
-            "fr": "Suivi de l'injection réseau",
-            "it": "Monitoraggio immissione in rete",
-            "es": "Seguimiento de inyección a la red",
-            "pl": "Śledzenie oddawanej energii do sieci",
-            "uk": "Облік подачі в мережу",
-            "zh-cn": "馈网追踪"
-          },
-          "help": {
-            "en": "Track daily grid export and import energy",
-            "de": "Tägliche Netzeinspeisung und -bezug erfassen",
-            "ru": "Учёт суточного экспорта и импорта электроэнергии",
-            "pt": "Registar exportação e importação diária de energia",
-            "nl": "Dagelijkse netexport en -import bijhouden",
-            "fr": "Suivre l'exportation et l'importation journalières d'énergie",
-            "it": "Monitorare esportazione e importazione giornaliera di energia",
-            "es": "Seguir la exportación e importación diaria de energía",
-            "pl": "Śledzenie dziennego eksportu i importu energii",
-            "uk": "Облік добового експорту та імпорту електроенергії",
-            "zh-cn": "追踪每日电网出口和进口电量"
-          },
+          "label": "Grid feed-in tracking",
+          "help": "Track daily grid export and import energy",
           "default": true,
           "sm": 12,
           "md": 6,
@@ -1382,19 +578,7 @@
         },
         "_derivedInfo": {
           "type": "staticText",
-          "text": {
-            "en": "Always calculated (cannot be disabled): House Power (PV + Battery discharge − Grid export) · Today max/min SOC · Formatted durations (e.g. \"2h 15m\")",
-            "de": "Immer berechnet (nicht deaktivierbar): Hausleistung (PV + Batterieentladung − Netzeinspeisung) · Heutiges Max/Min-SOC · Formatierte Zeitdauern (z.B. \"2h 15m\")",
-            "ru": "Всегда вычисляется (нельзя отключить): Мощность дома (ФЭС + разряд батареи − подача в сеть) · Макс/мин SOC за сегодня · Форматированная длительность (напр. \"2ч 15м\")",
-            "pt": "Sempre calculado (não pode ser desativado): Potência da casa · SOC máx/mín hoje · Durações formatadas (ex. \"2h 15m\")",
-            "nl": "Altijd berekend (kan niet worden uitgeschakeld): Huisvermogen · Vandaag max/min SOC · Geformatteerde duraties (bijv. \"2h 15m\")",
-            "fr": "Toujours calculé (non désactivable) : Puissance maison · SOC max/min aujourd'hui · Durées formatées (ex. \"2h 15m\")",
-            "it": "Sempre calcolato (non disattivabile): Potenza casa · SOC max/min oggi · Durate formattate (es. \"2h 15m\")",
-            "es": "Siempre calculado (no se puede deshabilitar): Potencia de la casa · SOC máx/mín hoy · Duraciones formateadas (ej. \"2h 15m\")",
-            "pl": "Zawsze obliczane (nie można wyłączyć): Moc domu · Dzisiejszy maks/min SOC · Sformatowane czasy (np. \"2h 15m\")",
-            "uk": "Завжди обчислюється (не можна вимкнути): Потужність будинку · Макс/мін SOC за сьогодні · Форматована тривалість (напр. \"2г 15хв\")",
-            "zh-cn": "始终计算（无法禁用）：家庭功率 · 今日最大/最小SOC · 格式化时长（如\"2h 15m\"）"
-          },
+          "text": "Always calculated (cannot be disabled): House Power (PV + Battery discharge − Grid export) · Today max/min SOC · Formatted durations (e.g. \"2h 15m\")",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -1403,5 +587,6 @@
         }
       }
     }
-  }
+  },
+  "i18n": true
 }

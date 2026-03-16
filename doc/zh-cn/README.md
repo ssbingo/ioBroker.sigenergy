@@ -156,6 +156,12 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.6 (2026-03-16)
+* 修复W5022：清空words.js；将i18n文件从LANG/translations.json迁移到扁平LANG.json格式
+
+### 1.7.5 (2026-03-16)
+* 恢复使用admin/i18n/文件的i18n:true（W5022合规）；将内联多语言对象恢复为字符串键
+
 ### 1.7.5 (2026-03-16)
 * fixed
 

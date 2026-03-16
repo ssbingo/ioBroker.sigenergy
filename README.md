@@ -156,6 +156,12 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.6 (2026-03-16)
+* Fix W5022: empty words.js (jsonConfig adapters must not use systemDictionary); migrate i18n files from LANG/translations.json to flat LANG.json (preferred by adapter-dev)
+
+### 1.7.5 (2026-03-16)
+* Restore i18n:true with admin/i18n/ files (W5022 compliance); revert inline multilingual objects to string keys per ioBroker best practice
+
 ### 1.7.5 (2026-03-16)
 * fixed
 

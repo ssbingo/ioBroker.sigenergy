@@ -156,6 +156,12 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.6 (2026-03-16)
+* Naprawiono W5022: words.js wyczyszczony; pliki i18n zmigrowane do plaskiego LANG.json
+
+### 1.7.5 (2026-03-16)
+* Przywrócono i18n:true z plikami admin/i18n/ (zgodność W5022); obiekty wielojęzyczne inline przywrócone do kluczy string
+
 ### 1.7.5 (2026-03-16)
 * fixed
 
