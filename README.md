@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Replace invisible progress bar with plain text status line showing percentage and current ID range
+
 ### 1.5.5 (2026-03-16)
 * Fix SigenMicro scan (root causes): reuse existing Modbus connection instead of opening a second TCP socket (device allows only one); pause polling during scan; fix duplicate scan start
 

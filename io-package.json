@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.5",
+        "version": "1.5.6",
         "news": {
+            "1.5.6": {
+                "en": "Replace invisible progress bar with plain text status line showing percentage and current ID range",
+                "de": "Unsichtbaren Fortschrittsbalken durch einfache Textanzeige mit Prozent und aktuellem ID-Bereich ersetzt",
+                "ru": "Невидимый прогресс-бар заменён текстовой строкой с процентами и диапазоном ID",
+                "pt": "Barra de progresso invisivel substituida por linha de texto com percentual e intervalo de ID",
+                "nl": "Onzichtbare voortgangsbalk vervangen door tekstregel met percentage en ID-bereik",
+                "fr": "Barre de progression invisible remplacee par une ligne de texte avec pourcentage et plage ID",
+                "it": "Barra di avanzamento invisibile sostituita con riga di testo con percentuale e intervallo ID",
+                "es": "Barra de progreso invisible reemplazada por linea de texto con porcentaje y rango de ID",
+                "pl": "Niewidoczny pasek postepu zastapiony linia tekstowa z procentem i zakresem ID",
+                "uk": "Невидимий прогрес-бар замiнено текстовим рядком з вiдсотками та дiапазоном ID",
+                "zh-cn": "将不可见进度条替换为显示百分比和当前ID范围的纯文本状态行"
+            },
             "1.5.5": {
                 "en": "Fix SigenMicro scan (root causes): reuse existing Modbus connection instead of opening a second TCP socket (device allows only one); pause polling during scan; fix duplicate scan start",
                 "de": "SigenMicro Scan Grundursachen behoben: bestehende Modbus-Verbindung wiederverwenden statt zweite TCP-Verbindung (Geraet erlaubt nur eine); Polling pausieren; doppelten Scan-Start behoben",

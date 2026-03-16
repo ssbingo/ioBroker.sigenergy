@@ -156,6 +156,9 @@ Licenza MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Barra di avanzamento invisibile sostituita con riga di testo con percentuale e intervallo ID
+
 ### 1.5.5 (2026-03-16)
 * Correzione scan SigenMicro: riutilizzo connessione Modbus; pausa polling; avvio doppio corretto
 

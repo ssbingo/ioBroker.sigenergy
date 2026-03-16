@@ -474,57 +474,6 @@
         .btn-save-micro:hover    { background: #1e8449; }
         .btn-save-micro:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* ─ Progress panel: shown/hidden via element.style.display in JS only ─ */
-        .scan-progress-panel {
-            margin-top: 16px;
-            padding: 16px 20px;
-            background: #fafafa;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-        }
-        .scan-progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .scan-progress-label {
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-        .scan-progress-pct {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-            min-width: 42px;
-            text-align: right;
-        }
-        .progress-bar-wrap {
-            width: 100%;
-            height: 14px;
-            background: var(--border);
-            border-radius: 7px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
-            border-radius: 7px;
-            transition: width 0.4s ease-out;
-        }
-        .scan-progress-sub {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 6px;
-        }
-        .scan-found-live {
-            font-weight: 700;
-            color: var(--success);
-        }
         }
 
         /* scan-result-msg: shown/hidden via element.style.display in JS only */
@@ -975,20 +924,8 @@
             <span id="scanStatusText" style="font-size:0.85rem; color:var(--text-light);"></span>
         </div>
 
-        <!-- Progress panel (hidden until scan starts) -->
-        <div class="scan-progress-panel" id="scanProgressPanel" style="display:none">
-            <div class="scan-progress-header">
-                <span class="scan-progress-label" id="scanProgressLabel">Preparing scan…</span>
-                <span class="scan-progress-pct" id="scanProgressPct">0%</span>
-            </div>
-            <div class="progress-bar-wrap">
-                <div class="progress-bar-fill" id="scanProgressBar"></div>
-            </div>
-            <div class="scan-progress-sub">
-                <span id="scanProgressDetail">Connecting to Modbus…</span>
-                <span>Devices found: <span class="scan-found-live" id="scanFoundLive">0</span></span>
-            </div>
-        </div>
+        <!-- Scan status line: always visible, updated as text only -->
+        <div id="scanStatusLine" style="margin-top:14px; font-size:0.9rem; color:var(--text-light); min-height:1.4em;"></div>
 
         <div class="scan-result-msg" id="scanResultMsg" style="display:none"></div>
     </div>
@@ -1243,47 +1180,31 @@ function startSigenMicroScan() {
     var scannedIds = 0;
     _scanAborted   = false;
 
-    // ── All DOM refs grabbed once — no jQuery, no class toggling ────────────
-    var _panel    = document.getElementById('scanProgressPanel');
-    var _bar      = document.getElementById('scanProgressBar');
-    var _barWrap  = _panel.querySelector('.progress-bar-wrap');
-    var _pctEl    = document.getElementById('scanProgressPct');
-    var _labelEl  = document.getElementById('scanProgressLabel');
-    var _detailEl = document.getElementById('scanProgressDetail');
-    var _foundEl  = document.getElementById('scanFoundLive');
-    var _msgEl    = document.getElementById('scanResultMsg');
-    var _btn      = document.getElementById('btnScan');
+    // ── Status text line — always visible, no show/hide needed ──────────────
+    var _statusLine = document.getElementById('scanStatusLine');
+    var _msgEl      = document.getElementById('scanResultMsg');
+    var _btn        = document.getElementById('btnScan');
 
-    // Button into scanning state
     _btn.disabled = true;
     _btn.classList.add('scanning');
     _btn.querySelector('.scan-btn-text').textContent = 'Scanning...';
     document.getElementById('btnSaveMicro').disabled = true;
 
-    // Reset result message — clear ALL inline styles and classes
     _msgEl.removeAttribute('style');
     _msgEl.style.display = 'none';
     _msgEl.className = 'scan-result-msg';
     _msgEl.textContent = '';
 
-    // ── Show progress panel via inline style (beats every CSS rule) ──────────
-    _panel.style.display = 'block';
-    _bar.style.width     = '0%';
-    _pctEl.textContent   = '0%';
-    _foundEl.textContent = '0';
-
     var skipArr = Array.from(reserved).sort(function(a,b){ return a-b; });
-    _labelEl.textContent  = 'Scanning IDs ' + from + '-' + to + '...';
-    _detailEl.textContent = skipArr.length
-        ? 'Auto-skipping reserved IDs: ' + skipArr.join(', ')
-        : 'Connecting to Modbus...';
+    var skipTxt = skipArr.length ? ' (skipping IDs: ' + skipArr.join(', ') + ')' : '';
+    _statusLine.textContent = 'Starting scan' + skipTxt + '...';
 
-    // Small chunks (3 IDs) = progress bar moves every ~1-3 s
     var CHUNK = 3;
     var chunks = [];
     for (var cs = from; cs <= to; cs += CHUNK) {
         chunks.push({ from: cs, to: Math.min(cs + CHUNK - 1, to) });
     }
+    var totalChunks = chunks.length;
 
     function processChunk(idx) {
         if (_scanAborted || idx >= chunks.length) {
@@ -1291,23 +1212,18 @@ function startSigenMicroScan() {
             return;
         }
         var chunk = chunks[idx];
-        _detailEl.textContent = 'Probing IDs ' + chunk.from + '-' + chunk.to + '...';
+        var pct   = Math.round((idx / totalChunks) * 100);
+        _statusLine.style.color = 'var(--text)';
+        _statusLine.textContent = pct + '% — probing IDs ' + chunk.from + '–' + chunk.to + '...';
 
         _sendToAdapter('scanSigenMicro', { scanFrom: chunk.from, scanTo: chunk.to }, function(res) {
             if (_scanAborted) { _scanDone(allFound, false); return; }
 
             if (res && res.success && res.devices && res.devices.length) {
                 allFound = allFound.concat(res.devices);
-                _foundEl.textContent = allFound.length;
             }
 
             scannedIds += (chunk.to - chunk.from + 1);
-            var pct = Math.min(97, Math.round((scannedIds / totalIds) * 100));
-            _bar.style.width    = pct + '%';
-            _pctEl.textContent  = pct + '%';
-            _labelEl.textContent = scannedIds + ' / ' + totalIds + ' IDs scanned';
-
-            // Zero timeout: yield to browser repaint, then continue
             setTimeout(function() { processChunk(idx + 1); }, 0);
         });
     }
@@ -1316,47 +1232,42 @@ function startSigenMicroScan() {
 }
 
 function _scanDone(found, success) {
-    var panel   = document.getElementById('scanProgressPanel');
-    var bar     = document.getElementById('scanProgressBar');
-    var btn     = document.getElementById('btnScan');
+    var btn  = document.getElementById('btnScan');
+    var stat = document.getElementById('scanStatusLine');
 
-    // Restore button
     btn.disabled = false;
     btn.classList.remove('scanning');
     btn.querySelector('.scan-btn-text').textContent = 'Start Scan';
 
     if (!success) {
-        panel.style.display = 'none';
-        _showScanMsg('error', 'Scan failed. Check the adapter log for details.');
+        stat.style.color = 'var(--error, #c0392b)';
+        stat.textContent = 'Scan failed. Check the adapter log for details.';
         return;
     }
 
-    // Merge activation flags from previous scan
     found = found.map(function(dev) {
         var prev = _microDevices.find(function(e) { return e.slaveId === dev.slaveId; });
         return Object.assign({}, dev, { active: prev ? !!prev.active : false });
     });
 
-    // Complete bar to 100%
-    bar.style.width = '100%';
-    document.getElementById('scanProgressPct').textContent = '100%';
-    document.getElementById('scanProgressLabel').textContent = 'Scan complete';
+    stat.style.color = 'var(--success, #27ae60)';
     var fromV = document.getElementById('sigenMicroScanFrom').value;
     var toV   = document.getElementById('sigenMicroScanTo').value;
-    document.getElementById('scanProgressDetail').textContent =
-        'All IDs ' + fromV + '-' + toV + ' probed.';
 
     _microDevices = found;
     _renderDeviceTable(_microDevices);
 
     var n = found.length;
     if (n > 0) {
+        stat.textContent = '100% — Scan complete: ' + n + ' device' + (n !== 1 ? 's' : '') + ' found.';
         _showScanMsg('success',
             'Scan complete: ' + n + ' SigenMicro device' + (n !== 1 ? 's' : '') +
             ' found. Enable the devices you want to poll, then click Save selection.');
     } else {
+        stat.style.color = 'var(--text-light)';
+        stat.textContent = '100% — Scan complete: no SigenMicro devices found in range ' + fromV + '–' + toV + '.';
         _showScanMsg('info',
-            'Scan complete: no SigenMicro devices found in range ' + fromV + '-' + toV +
+            'Scan complete: no SigenMicro devices found in range ' + fromV + '–' + toV +
             '. Verify the Modbus connection and ID range, then scan again.');
     }
     document.getElementById('btnSaveMicro').disabled = (n === 0);

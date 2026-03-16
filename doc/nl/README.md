@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Onzichtbare voortgangsbalk vervangen door tekstregel met percentage en ID-bereik
+
 ### 1.5.5 (2026-03-16)
 * SigenMicro scan hersteld: bestaande Modbus-verbinding hergebruiken; polling pauzeren; dubbele scanstart gecorrigeerd
 

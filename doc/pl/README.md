@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Niewidoczny pasek postepu zastapiony linia tekstowa z procentem i zakresem ID
+
 ### 1.5.5 (2026-03-16)
 * Naprawa skanowania SigenMicro: ponowne uzycie polaczenia Modbus; pauza pollingu; poprawiony podwojny start
 

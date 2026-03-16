@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Barre de progression invisible remplacee par une ligne de texte avec pourcentage et plage ID
+
 ### 1.5.5 (2026-03-16)
 * Correction scan SigenMicro: reutiliser la connexion Modbus existante; pause du polling; demarrage double corrige
 

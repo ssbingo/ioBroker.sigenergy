@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.6 (2026-03-16)
+* Unsichtbaren Fortschrittsbalken durch einfache Textanzeige mit Prozent und aktuellem ID-Bereich ersetzt
+
 ### 1.5.5 (2026-03-16)
 * SigenMicro Scan Grundursachen behoben: bestehende Modbus-Verbindung wiederverwenden statt zweite TCP-Verbindung (Geraet erlaubt nur eine); Polling pausieren; doppelten Scan-Start behoben
 
