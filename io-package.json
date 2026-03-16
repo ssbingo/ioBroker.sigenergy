@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.6.0",
+        "version": "1.6.1",
         "news": {
+            "1.6.1": {
+                "en": "Fix scan progress: replace unreliable subscribeState with setInterval+getState polling (500ms); extend safety timer to 2s per ID; dedicated _sendToAdapterRaw bypasses old 30s limit",
+                "de": "Scan-Fortschritt: subscribeState durch setInterval+getState-Polling (500ms) ersetzt; Safety-Timer auf 2s pro ID erweitert; eigener _sendToAdapterRaw umgeht altes 30s-Limit",
+                "ru": "Прогресс сканирования: subscribeState заменен на setInterval+getState (500мс); таймер безопасности 2с на ID",
+                "pt": "Progresso scan: subscribeState substituido por setInterval+getState (500ms); timer de seguranca 2s por ID",
+                "nl": "Scan voortgang: subscribeState vervangen door setInterval+getState (500ms); veiligheidstimer 2s per ID",
+                "fr": "Progression scan: subscribeState remplace par setInterval+getState (500ms); timer securite 2s par ID",
+                "it": "Avanzamento scan: subscribeState sostituito da setInterval+getState (500ms); timer sicurezza 2s per ID",
+                "es": "Progreso scan: subscribeState reemplazado por setInterval+getState (500ms); timer seguridad 2s por ID",
+                "pl": "Postep skanowania: subscribeState zastapiony setInterval+getState (500ms); timer bezpiecz. 2s/ID",
+                "uk": "Прогрес сканування: subscribeState замiнено setInterval+getState (500мс); таймер 2с на ID",
+                "zh-cn": "修复扫描进度：用setInterval+getState轮询替代subscribeState；安全计时器改为每ID 2秒"
+            },
             "1.6.0": {
                 "en": "Fix scan progress display: use ioBroker state subscription (info.scanProgress) instead of sendTo chunks; adapter writes progress per ID, admin page subscribes via socket.subscribeState for real-time updates",
                 "de": "Scan-Fortschritt: ioBroker State-Subscription (info.scanProgress) statt sendTo-Chunks; Adapter schreibt Fortschritt pro ID, Admin-Seite abonniert via socket.subscribeState fuer Echtzeit-Updates",

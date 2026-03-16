@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.1 (2026-03-16)
+* Postep skanowania: subscribeState zastapiony setInterval+getState (500ms); timer bezpiecz. 2s/ID
+
 ### 1.6.0 (2026-03-16)
 * Postep skanowania: State subscription (info.scanProgress) zamiast sendTo chunks; adapter pisze postep na ID
 

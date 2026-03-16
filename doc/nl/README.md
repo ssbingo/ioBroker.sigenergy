@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.1 (2026-03-16)
+* Scan voortgang: subscribeState vervangen door setInterval+getState (500ms); veiligheidstimer 2s per ID
+
 ### 1.6.0 (2026-03-16)
 * Scan voortgang: State subscription (info.scanProgress) i.p.v. sendTo chunks; adapter schrijft voortgang per ID
 

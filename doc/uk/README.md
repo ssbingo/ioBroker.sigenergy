@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.6.1 (2026-03-16)
+* Прогрес сканування: subscribeState замiнено setInterval+getState (500мс); таймер 2с на ID
+
 ### 1.6.0 (2026-03-16)
 * Прогрес сканування: State subscription (info.scanProgress) замiсть sendTo chunks; адаптер пише прогрес на ID
 

@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.6.1 (2026-03-16)
+* 修复扫描进度：用setInterval+getState轮询替代subscribeState；安全计时器改为每ID 2秒
+
 ### 1.6.0 (2026-03-16)
 * 修复扫描进度：使用State订阅(info.scanProgress)代替sendTo分块；适配器逐ID写入进度，管理页面通过socket.subscribeState实时更新
 

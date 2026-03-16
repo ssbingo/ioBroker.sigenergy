@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.6.1 (2026-03-16)
+* Scan-Fortschritt: subscribeState durch setInterval+getState-Polling (500ms) ersetzt; Safety-Timer auf 2s pro ID erweitert; eigener _sendToAdapterRaw umgeht altes 30s-Limit
+
 ### 1.6.0 (2026-03-16)
 * Scan-Fortschritt: ioBroker State-Subscription (info.scanProgress) statt sendTo-Chunks; Adapter schreibt Fortschritt pro ID, Admin-Seite abonniert via socket.subscribeState fuer Echtzeit-Updates
 
