@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.7.5 (2026-03-16)
+* fixed
+
 ### 1.7.4 (2026-03-16)
 * 修复翻译：将jsonConfig.json和sigenmicro-tab.json中的i18n:true文件查找替换为内联多语言label对象
 

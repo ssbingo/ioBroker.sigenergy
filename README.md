@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.5 (2026-03-16)
+* fixed
+
 ### 1.7.4 (2026-03-16)
 * Fix translations: replace i18n:true file-based lookup with inline multilingual label objects in jsonConfig.json and sigenmicro-tab.json; guaranteed to work in all Admin 7 contexts
 

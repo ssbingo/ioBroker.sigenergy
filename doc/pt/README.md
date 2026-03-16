@@ -156,6 +156,9 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.7.5 (2026-03-16)
+* fixed
+
 ### 1.7.4 (2026-03-16)
 * Traduções corrigidas: i18n:true substituído por objetos label multilíngues inline em jsonConfig.json e sigenmicro-tab.json
 
