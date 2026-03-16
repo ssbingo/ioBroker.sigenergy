@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.1 (2026-03-16)
+* Przycisk skanowania SigenMicro dodany bezpośrednio do zakładki jsonConfig; znalezione urządzenia są zapisywane automatycznie
+
 ### 1.5.0 (2026-03-16)
 * Karta SigenMicro: widoczny przycisk skanowania, pasek postępu w czasie rzeczywistym z zakresem ID i licznikiem urządzeń
 

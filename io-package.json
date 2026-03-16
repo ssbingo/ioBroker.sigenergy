@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "news": {
+            "1.5.1": {
+                "en": "Add SigenMicro scan button directly in the jsonConfig admin tab; scan auto-saves discovered devices and shows a result summary",
+                "de": "Scan-Button direkt im Admin-Tab (jsonConfig) ergänzt; Scan speichert gefundene Geräte automatisch und zeigt eine Ergebniszusammenfassung",
+                "ru": "Кнопка сканирования SigenMicro добавлена прямо на вкладку настроек (jsonConfig); результаты сохраняются автоматически",
+                "pt": "Botão de scan SigenMicro adicionado diretamente na aba jsonConfig; dispositivos encontrados são salvos automaticamente",
+                "nl": "Scan-knop voor SigenMicro direct toegevoegd aan de jsonConfig-tab; gevonden apparaten worden automatisch opgeslagen",
+                "fr": "Bouton de scan SigenMicro ajouté directement dans l'onglet jsonConfig; les appareils trouvés sont enregistrés automatiquement",
+                "it": "Pulsante di scansione SigenMicro aggiunto direttamente nella scheda jsonConfig; i dispositivi trovati vengono salvati automaticamente",
+                "es": "Botón de escaneo SigenMicro añadido directamente en la pestaña jsonConfig; los dispositivos encontrados se guardan automáticamente",
+                "pl": "Przycisk skanowania SigenMicro dodany bezpośrednio do zakładki jsonConfig; znalezione urządzenia są zapisywane automatycznie",
+                "uk": "Кнопку сканування SigenMicro додано безпосередньо на вкладку jsonConfig; знайдені пристрої зберігаються автоматично",
+                "zh-cn": "在jsonConfig管理标签页中直接添加SigenMicro扫描按钮；扫描自动保存发现的设备并显示结果摘要"
+            },
             "1.5.0": {
                 "en": "SigenMicro scan tab: prominent scan button, real-time chunked progress bar showing current ID range and live device count",
                 "de": "SigenMicro-Tab: markanter Scan-Button, Echtzeit-Fortschrittsbalken mit aktuellem ID-Bereich und laufender Geräteanzahl",

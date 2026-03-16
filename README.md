@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.1 (2026-03-16)
+* Add SigenMicro scan button directly in the jsonConfig admin tab; scan auto-saves discovered devices and shows a result summary
+
 ### 1.5.0 (2026-03-16)
 * SigenMicro scan tab: prominent scan button, real-time chunked progress bar showing current ID range and live device count
 

@@ -697,11 +697,18 @@ class Sigenergy extends utils.Adapter {
 			return;
 		}
 
-		const msg     = obj.message || {};
-		const from    = Math.max(1,   parseInt(msg.scanFrom, 10) || this.config.sigenMicroScanFrom || 10);
-		const to      = Math.min(246, parseInt(msg.scanTo,   10) || this.config.sigenMicroScanTo   || 30);
+		const msg = obj.message || {};
 
-		this.log.info(`[scanSigenMicro] Starting scan, range ${from}–${to}`);
+		// Accept range from both sources:
+		//   admin/index.html  → { scanFrom, scanTo }
+		//   jsonConfig sendTo → full native config object with { sigenMicroScanFrom, sigenMicroScanTo }
+		const from = Math.max(1,   parseInt(msg.scanFrom  ?? msg.sigenMicroScanFrom,  10) || this.config.sigenMicroScanFrom || 10);
+		const to   = Math.min(246, parseInt(msg.scanTo    ?? msg.sigenMicroScanTo,    10) || this.config.sigenMicroScanTo   || 30);
+
+		// Detect call origin: jsonConfig sends the entire native config object (has tcpHost etc.)
+		const fromJsonConfig = (msg.tcpHost !== undefined || msg.connectionType !== undefined);
+
+		this.log.info(`[scanSigenMicro] Starting scan, range ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`);
 
 		const scanner = new SigenMicroScanner(this.config, {
 			debug: m => this.log.debug(m),
@@ -711,7 +718,6 @@ class Sigenergy extends utils.Adapter {
 		});
 
 		try {
-			// Merge found devices with existing activation state
 			const found = await scanner.scan(from, to);
 			const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
 
@@ -721,6 +727,33 @@ class Sigenergy extends utils.Adapter {
 			});
 
 			this.log.info(`[scanSigenMicro] Done: ${merged.length} device(s) found`);
+
+			// When called from jsonConfig: auto-save device list and return a human-readable message
+			if (fromJsonConfig) {
+				this._sigenMicroDevices = merged;
+				try {
+					const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+					if (adapterObj) {
+						adapterObj.native.sigenMicroDevices = JSON.stringify(merged);
+						await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
+					}
+				} catch (saveErr) {
+					this.log.warn(`[scanSigenMicro] Could not auto-save: ${saveErr.message}`);
+				}
+				let message;
+				if (merged.length === 0) {
+					message = `No SigenMicro devices found in range ${from}–${to}. Check Modbus connection and ID range.`;
+				} else {
+					const list = merged.map(d => `${d.model || 'SigenMicro'} (ID ${d.slaveId})`).join(', ');
+					message = `Found ${merged.length} device(s): ${list}. Use the SigenMicro admin tab to enable/disable individual devices.`;
+				}
+				if (obj.callback) {
+					this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
+				}
+				return;
+			}
+
+			// When called from admin/index.html: return full device list for the live UI
 			if (obj.callback) {
 				this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
 			}

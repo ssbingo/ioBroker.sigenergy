@@ -406,14 +406,27 @@
           "lg": 12,
           "xl": 12
         },
-        "_scanNote": {
+        "_scanBtnHeader": {
           "type": "staticText",
-          "text": "Use the SigenMicro tab in the adapter admin page to run the scan and manage discovered devices. The device list and individual enable/disable selections are stored automatically.",
+          "text": "Click the button below to scan the Modbus bus for SigenMicro devices. The scan uses the ID range configured above. Found devices are saved automatically — use the SigenMicro admin tab to enable or disable individual devices.",
           "sm": 12,
           "xs": 12,
           "md": 12,
           "lg": 12,
           "xl": 12
+        },
+        "scan_btn": {
+          "type": "sendTo",
+          "label": "🔍  Scan for SigenMicro devices",
+          "command": "scanSigenMicro",
+          "jsonData": true,
+          "variant": "contained",
+          "color": "primary",
+          "sm": 12,
+          "xs": 12,
+          "md": 6,
+          "lg": 5,
+          "xl": 4
         }
       }
     },

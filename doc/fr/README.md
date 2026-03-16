@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.1 (2026-03-16)
+* Bouton de scan SigenMicro ajouté directement dans l'onglet jsonConfig; les appareils trouvés sont enregistrés automatiquement
+
 ### 1.5.0 (2026-03-16)
 * Onglet SigenMicro: bouton de scan visible, barre de progression en temps réel avec plage d'ID et compteur de dispositifs
 

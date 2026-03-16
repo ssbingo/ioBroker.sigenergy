@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.5.1 (2026-03-16)
+* Scan-Button direkt im Admin-Tab (jsonConfig) ergänzt; Scan speichert gefundene Geräte automatisch und zeigt eine Ergebniszusammenfassung
+
 ### 1.5.0 (2026-03-16)
 * SigenMicro-Tab: markanter Scan-Button, Echtzeit-Fortschrittsbalken mit aktuellem ID-Bereich und laufender Geräteanzahl
 
