@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.3 (2026-03-16)
+* Remove adminTab navigation entry; all configuration including SigenMicro scan remains in the instance configuration dialog
+
 ### 1.8.2 (2026-03-16)
 * Add test/unit and test/integration directories with basic tests; fixes CI error "No test files found"
 

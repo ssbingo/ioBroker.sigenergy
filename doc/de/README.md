@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.3 (2026-03-16)
+* adminTab-Navigationseintrag entfernt; gesamte Konfiguration inkl. SigenMicro-Scan verbleibt im Instanz-Konfigurationsdialog
+
 ### 1.8.2 (2026-03-16)
 * Verzeichnisse test/unit und test/integration mit Basis-Tests angelegt; behebt CI-Fehler "No test files found"
 

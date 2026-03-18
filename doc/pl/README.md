@@ -156,6 +156,9 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.3 (2026-03-16)
+* Usunięto wpis adminTab z nawigacji; cała konfiguracja łącznie ze skanowaniem SigenMicro pozostaje w oknie konfiguracji instancji
+
 ### 1.8.2 (2026-03-16)
 * Katalogi test/unit i test/integration utworzone; naprawia błąd CI
 

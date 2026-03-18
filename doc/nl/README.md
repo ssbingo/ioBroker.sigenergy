@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.3 (2026-03-16)
+* adminTab-navigatie-item verwijderd; alle configuratie inclusief SigenMicro-scan blijft in het instantie-configuratiedialoog
+
 ### 1.8.2 (2026-03-16)
 * Mappen test/unit en test/integration aangemaakt; CI-fout opgelost
 

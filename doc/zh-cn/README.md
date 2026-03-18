@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.3 (2026-03-16)
+* 删除adminTab导航条目；所有配置（包括SigenMicro扫描）仍保留在实例配置对话框中
+
 ### 1.8.2 (2026-03-16)
 * 添加test/unit和test/integration目录及基础测试；修复CI错误"No test files found"
 
