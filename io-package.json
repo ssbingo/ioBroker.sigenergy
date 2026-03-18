@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.3",
+        "version": "1.8.4",
         "news": {
-            "1.8.3": {
-                "en": "Remove adminTab navigation entry; all configuration including SigenMicro scan remains in the instance configuration dialog",
-                "de": "adminTab-Navigationseintrag entfernt; gesamte Konfiguration inkl. SigenMicro-Scan verbleibt im Instanz-Konfigurationsdialog",
-                "ru": "Удалена запись adminTab в навигации; вся конфигурация, включая сканирование SigenMicro, остаётся в диалоге настройки экземпляра",
-                "pt": "Entrada adminTab removida; toda a configuração incluindo scan SigenMicro permanece no diálogo da instância",
-                "nl": "adminTab-navigatie-item verwijderd; alle configuratie inclusief SigenMicro-scan blijft in het instantie-configuratiedialoog",
-                "fr": "Entrée adminTab supprimée; toute la configuration incluant le scan SigenMicro reste dans le dialogue de configuration de l instance",
-                "it": "Voce adminTab rimossa; tutta la configurazione inclusa la scansione SigenMicro rimane nel dialogo di configurazione istanza",
-                "es": "Entrada adminTab eliminada; toda la configuración incluyendo el scan SigenMicro permanece en el diálogo de configuración de instancia",
-                "pl": "Usunięto wpis adminTab z nawigacji; cała konfiguracja łącznie ze skanowaniem SigenMicro pozostaje w oknie konfiguracji instancji",
-                "uk": "Видалено запис adminTab у навiгацiї; уся конфiгурацiя, включаючи сканування SigenMicro, залишається в дiалозi налаштування екземпляра",
-                "zh-cn": "删除adminTab导航条目；所有配置（包括SigenMicro扫描）仍保留在实例配置对话框中"
+            "1.8.4": {
+                "en": "Add comprehensive debug logging: config on startup, FC03/FC04 requests and responses, per-state decoded values, poll cycle timing per component, SigenMicro device details",
+                "de": "Ausführliche Debug-Protokollierung: Konfiguration beim Start, FC03/FC04-Anfragen und -Antworten, dekodierte Zustandswerte, Poll-Zeiten pro Komponente, SigenMicro-Gerätedetails",
+                "ru": "Расширенное debug-протоколирование: конфигурация при запуске, FC03/FC04 запросы и ответы, декодированные значения состояний, тайминги опроса",
+                "pt": "Registro de debug abrangente: config na inicialização, requisições/respostas FC03/FC04, valores decodificados, tempos de ciclo por componente",
+                "nl": "Uitgebreide debug-logging: configuratie bij start, FC03/FC04 verzoeken en antwoorden, gedecodeerde state-waarden, poll-tijden per component",
+                "fr": "Journalisation debug complète: config au démarrage, requêtes/réponses FC03/FC04, valeurs décodées, temps de cycle par composant",
+                "it": "Log debug completo: config all avvio, richieste/risposte FC03/FC04, valori decodificati, tempi ciclo per componente",
+                "es": "Registro debug completo: config al inicio, solicitudes/respuestas FC03/FC04, valores decodificados, tiempos de ciclo por componente",
+                "pl": "Obszerne logowanie debug: konfiguracja przy starcie, żądania/odpowiedzi FC03/FC04, odkodowane wartości, czasy cyklu na komponent",
+                "uk": "Розширене debug-логування: конфiгурацiя при запуску, запити/вiдповiдi FC03/FC04, декодованi значення станiв, таймiнги опитування",
+                "zh-cn": "添加全面的调试日志：启动时配置，FC03/FC04请求和响应，解码状态值，每组件轮询时序，SigenMicro设备详情"
             }
         },
         "titleLang": {

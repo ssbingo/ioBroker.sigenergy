@@ -156,6 +156,9 @@ MIT-licentie — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.4 (2026-03-16)
+* Uitgebreide debug-logging: configuratie bij start, FC03/FC04 verzoeken en antwoorden, gedecodeerde state-waarden, poll-tijden per component
+
 ### 1.8.3 (2026-03-16)
 * adminTab-navigatie-item verwijderd; alle configuratie inclusief SigenMicro-scan blijft in het instantie-configuratiedialoog
 

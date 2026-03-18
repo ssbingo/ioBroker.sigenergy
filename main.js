@@ -58,6 +58,14 @@ class Sigenergy extends utils.Adapter {
 	async onReady() {
 		this.log.info(`Sigenergy adapter v${this.pack ? this.pack.version : '?'} starting...`);
 		this.log.debug(
+			`[onReady] Config: connectionType=${this.config.connectionType},` +
+				` host=${this.config.tcpHost}:${this.config.tcpPort},` +
+				` plantId=${this.config.plantId || 247},` +
+				` inverterId=${this.config.inverterId || 1},` +
+				` pollInterval=${this.config.pollInterval}ms,` +
+				` timeout=${this.config.timeout}ms`,
+		);
+		this.log.debug(
 			`Config: connectionType=${this.config.connectionType}, ` +
 				`host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
 				`plantId=${this.config.plantId}, inverterId=${this.config.inverterId}, ` +
@@ -163,11 +171,13 @@ class Sigenergy extends utils.Adapter {
 			return;
 		}
 
-		this.log.debug('Poll cycle started');
-		const pollStart = Date.now();
+		const _pollStart = Date.now();
+		this.log.debug('[poll] cycle started');
 
 		try {
+			const _t0 = Date.now();
 			await this._readPlant();
+			this.log.debug(`[poll] plant read in ${Date.now() - _t0} ms`);
 			await this._readInverter();
 
 			if (this.config.hasAcCharger) {
@@ -183,7 +193,7 @@ class Sigenergy extends utils.Adapter {
 			await this._updateStatistics();
 
 			this.setState('info.connection', true, true);
-			this.log.debug(`Poll cycle completed in ${Date.now() - pollStart} ms`);
+			this.log.debug(`[poll] cycle completed in ${Date.now() - _pollStart} ms`);
 		} catch (err) {
 			this.log.error(`Poll error: ${err.message}`);
 			this.setState('info.connection', false, true);
@@ -204,6 +214,7 @@ class Sigenergy extends utils.Adapter {
 
 		for (const group of groups) {
 			try {
+				this.log.debug(`[plant] FC04 addr=${group.startAddr} qty=${group.totalQty}`);
 				const raw = await this.modbus.readInputRegisters(plantId, group.startAddr, group.totalQty);
 				await this._processReadGroup(group, raw, 'plant');
 				await this._sleep(100);
@@ -284,12 +295,15 @@ class Sigenergy extends utils.Adapter {
 		if (activeDevices.length === 0) {
 			return;
 		}
-		this.log.debug(`Reading ${activeDevices.length} active SigenMicro device(s)`);
+		this.log.debug(`[SigenMicro] Reading ${activeDevices.length} active device(s):` +
+			` IDs ${activeDevices.map((d) => d.slaveId).join(', ')}`);
 
 		for (const device of activeDevices) {
 			const registers = getRegistersForDevice(device.slaveId);
 			const batchSize = 30;
 			const groups = this._buildReadGroups(registers, batchSize);
+			this.log.debug(`[SigenMicro] device slaveId=${device.slaveId} model='${device.model}':` +
+				` ${groups.length} group(s), ${registers.length} registers`);
 
 			for (const group of groups) {
 				try {
@@ -367,6 +381,7 @@ class Sigenergy extends utils.Adapter {
 
 				const value = ModbusConnection.parseValue(slice, reg.type, reg.gain);
 				const stateId = reg.name;
+				this.log.debug(`[state] ${stateId} = ${value}${reg.unit ? ' ' + reg.unit : ''}`);
 
 				await this.setStateAsync(stateId, { val: value, ack: true });
 				this._storeCurrentData(reg.name, value);

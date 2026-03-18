@@ -156,6 +156,9 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.4 (2026-03-16)
+* Journalisation debug complète: config au démarrage, requêtes/réponses FC03/FC04, valeurs décodées, temps de cycle par composant
+
 ### 1.8.3 (2026-03-16)
 * Entrée adminTab supprimée; toute la configuration incluant le scan SigenMicro reste dans le dialogue de configuration de l instance
 

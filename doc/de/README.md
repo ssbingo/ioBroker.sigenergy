@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.4 (2026-03-16)
+* Ausführliche Debug-Protokollierung: Konfiguration beim Start, FC03/FC04-Anfragen und -Antworten, dekodierte Zustandswerte, Poll-Zeiten pro Komponente, SigenMicro-Gerätedetails
+
 ### 1.8.3 (2026-03-16)
 * adminTab-Navigationseintrag entfernt; gesamte Konfiguration inkl. SigenMicro-Scan verbleibt im Instanz-Konfigurationsdialog
 

@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.4 (2026-03-16)
+* Add comprehensive debug logging: config on startup, FC03/FC04 requests and responses, per-state decoded values, poll cycle timing per component, SigenMicro device details
+
 ### 1.8.3 (2026-03-16)
 * Remove adminTab navigation entry; all configuration including SigenMicro scan remains in the instance configuration dialog
 
