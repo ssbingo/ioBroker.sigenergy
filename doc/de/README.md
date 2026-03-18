@@ -44,15 +44,6 @@ Unterstützt das Sigenergy Modbus Protokoll V2.5 (veröffentlicht 2025-02-19).
 
 ---
 
-## Installation
-
-### Über ioBroker Admin (empfohlen)
-1. ioBroker Admin öffnen → Adapter
-2. Nach „sigenergy" suchen
-3. Installieren
-
----
-
 ## Konfiguration
 
 ### Reiter Verbindung
@@ -156,6 +147,12 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.8 (2026-03-18)
+* README.md ## Installation-Abschnitt entfernt (S6014); Standard-ioBroker-Installation über Admin ist der Default
+
+### 1.8.7 (2026-03-18)
+* npm-token aus Workflow entfernt (W3019); Trusted Publishing für npm-Releases wird verwendet
+
 ### 1.8.6 (2026-03-18)
 * npm-token in test-and-release.yml für npm-Veröffentlichung ergänzt
 

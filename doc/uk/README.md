@@ -156,6 +156,12 @@
 ---
 
 ## Changelog
+### 1.8.8 (2026-03-18)
+* Роздiл ## Installation видалено з README.md (S6014); стандартне встановлення через Admin є типовим
+
+### 1.8.7 (2026-03-18)
+* npm-token видалено з workflow (W3019); використовується Trusted Publishing для npm-релiзiв
+
 ### 1.8.6 (2026-03-18)
 * npm-token додано до test-and-release.yml для публiкацiї npm
 

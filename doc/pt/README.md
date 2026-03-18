@@ -156,6 +156,12 @@ Licença MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.8 (2026-03-18)
+* Seção ## Installation removida do README.md (S6014); instalação padrão via Admin é o padrão
+
+### 1.8.7 (2026-03-18)
+* npm-token removido do workflow (W3019); Trusted Publishing usado para releases npm
+
 ### 1.8.6 (2026-03-18)
 * npm-token adicionado ao test-and-release.yml para publicação no npm
 

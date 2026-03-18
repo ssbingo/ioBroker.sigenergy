@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.6",
+        "version": "1.8.8",
         "news": {
-            "1.8.6": {
-                "en": "Add npm-token to test-and-release.yml for npm publish authentication",
-                "de": "npm-token in test-and-release.yml für npm-Veröffentlichung ergänzt",
-                "ru": "Добавлен npm-token в test-and-release.yml для публикации на npm",
-                "pt": "npm-token adicionado ao test-and-release.yml para publicação no npm",
-                "nl": "npm-token toegevoegd aan test-and-release.yml voor npm-publicatie",
-                "fr": "npm-token ajouté au test-and-release.yml pour la publication npm",
-                "it": "npm-token aggiunto al test-and-release.yml per la pubblicazione npm",
-                "es": "npm-token añadido al test-and-release.yml para publicación en npm",
-                "pl": "npm-token dodany do test-and-release.yml dla publikacji npm",
-                "uk": "npm-token додано до test-and-release.yml для публiкацiї npm",
-                "zh-cn": "在test-and-release.yml中添加npm-token用于npm发布认证"
+            "1.8.8": {
+                "en": "Remove README.md ## Installation section (S6014); standard ioBroker installation via Admin is the default",
+                "de": "README.md ## Installation-Abschnitt entfernt (S6014); Standard-ioBroker-Installation über Admin ist der Default",
+                "ru": "Удалён раздел ## Installation из README.md (S6014); стандартная установка через Admin по умолчанию",
+                "pt": "Seção ## Installation removida do README.md (S6014); instalação padrão via Admin é o padrão",
+                "nl": "Sectie ## Installation verwijderd uit README.md (S6014); standaard ioBroker-installatie via Admin",
+                "fr": "Section ## Installation supprimée du README.md (S6014); installation standard via Admin par défaut",
+                "it": "Sezione ## Installation rimossa dal README.md (S6014); installazione standard via Admin è il default",
+                "es": "Sección ## Installation eliminada del README.md (S6014); instalación estándar via Admin es el default",
+                "pl": "Sekcja ## Installation usunięta z README.md (S6014); standardowa instalacja przez Admin jest domyślna",
+                "uk": "Роздiл ## Installation видалено з README.md (S6014); стандартне встановлення через Admin є типовим",
+                "zh-cn": "从README.md中删除## Installation章节(S6014)；通过Admin的标准安装是默认方式"
             }
         },
         "titleLang": {

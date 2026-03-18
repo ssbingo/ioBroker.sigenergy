@@ -156,6 +156,12 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.8 (2026-03-18)
+* 从README.md中删除## Installation章节(S6014)；通过Admin的标准安装是默认方式
+
+### 1.8.7 (2026-03-18)
+* 从工作流中删除npm-token(W3019)；改用Trusted Publishing发布npm包
+
 ### 1.8.6 (2026-03-18)
 * 在test-and-release.yml中添加npm-token用于npm发布认证
 
