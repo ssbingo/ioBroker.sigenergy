@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.6 (2026-03-18)
+* Add npm-token to test-and-release.yml for npm publish authentication
+
 ### 1.8.5 (2026-03-18)
 * Add npm-token to test-and-release.yml workflow for npm publish authentication
 

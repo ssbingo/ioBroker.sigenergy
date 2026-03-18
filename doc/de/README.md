@@ -156,6 +156,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.6 (2026-03-18)
+* npm-token in test-and-release.yml für npm-Veröffentlichung ergänzt
+
 ### 1.8.5 (2026-03-18)
 * npm-token in test-and-release.yml Workflow für npm-Veröffentlichung ergänzt
 

@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.6 (2026-03-18)
+* 在test-and-release.yml中添加npm-token用于npm发布认证
+
 ### 1.8.5 (2026-03-18)
 * 在test-and-release.yml工作流中添加npm-token用于npm发布认证
 

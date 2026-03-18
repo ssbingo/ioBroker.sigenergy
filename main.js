@@ -295,15 +295,17 @@ class Sigenergy extends utils.Adapter {
 		if (activeDevices.length === 0) {
 			return;
 		}
-		this.log.debug(`[SigenMicro] Reading ${activeDevices.length} active device(s):` +
-			` IDs ${activeDevices.map((d) => d.slaveId).join(', ')}`);
+		const _deviceIds = activeDevices.map((d) => d.slaveId).join(', ');
+		this.log.debug(`[SigenMicro] Reading ${activeDevices.length} active device(s): IDs ${_deviceIds}`);
 
 		for (const device of activeDevices) {
 			const registers = getRegistersForDevice(device.slaveId);
 			const batchSize = 30;
 			const groups = this._buildReadGroups(registers, batchSize);
-			this.log.debug(`[SigenMicro] device slaveId=${device.slaveId} model='${device.model}':` +
-				` ${groups.length} group(s), ${registers.length} registers`);
+			this.log.debug(
+				`[SigenMicro] device slaveId=${device.slaveId}` +
+					` model='${device.model}': ${groups.length} group(s), ${registers.length} registers`,
+			);
 
 			for (const group of groups) {
 				try {
@@ -381,7 +383,7 @@ class Sigenergy extends utils.Adapter {
 
 				const value = ModbusConnection.parseValue(slice, reg.type, reg.gain);
 				const stateId = reg.name;
-				this.log.debug(`[state] ${stateId} = ${value}${reg.unit ? ' ' + reg.unit : ''}`);
+				this.log.debug(`[state] ${stateId} = ${value}${reg.unit ? ` ${reg.unit}` : ''}`);
 
 				await this.setStateAsync(stateId, { val: value, ack: true });
 				this._storeCurrentData(reg.name, value);

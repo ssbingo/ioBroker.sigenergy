@@ -156,6 +156,9 @@
 ---
 
 ## Changelog
+### 1.8.6 (2026-03-18)
+* npm-token додано до test-and-release.yml для публiкацiї npm
+
 ### 1.8.5 (2026-03-18)
 * npm-token додано до workflow test-and-release.yml для публiкацiї npm
 
