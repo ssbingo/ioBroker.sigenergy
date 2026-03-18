@@ -156,6 +156,9 @@ MIT License — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.5 (2026-03-18)
+* Add npm-token to test-and-release.yml workflow for npm publish authentication
+
 ### 1.8.4 (2026-03-16)
 * Add comprehensive debug logging: config on startup, FC03/FC04 requests and responses, per-state decoded values, poll cycle timing per component, SigenMicro device details
 

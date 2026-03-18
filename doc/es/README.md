@@ -156,6 +156,9 @@ Licencia MIT — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.5 (2026-03-18)
+* npm-token añadido al workflow test-and-release.yml para publicación en npm
+
 ### 1.8.4 (2026-03-16)
 * Registro debug completo: config al inicio, solicitudes/respuestas FC03/FC04, valores decodificados, tiempos de ciclo por componente
 

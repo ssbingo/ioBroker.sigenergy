@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.5 (2026-03-18)
+* 在test-and-release.yml工作流中添加npm-token用于npm发布认证
+
 ### 1.8.4 (2026-03-16)
 * 添加全面的调试日志：启动时配置，FC03/FC04请求和响应，解码状态值，每组件轮询时序，SigenMicro设备详情
 

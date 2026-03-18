@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.4",
+        "version": "1.8.5",
         "news": {
-            "1.8.4": {
-                "en": "Add comprehensive debug logging: config on startup, FC03/FC04 requests and responses, per-state decoded values, poll cycle timing per component, SigenMicro device details",
-                "de": "Ausführliche Debug-Protokollierung: Konfiguration beim Start, FC03/FC04-Anfragen und -Antworten, dekodierte Zustandswerte, Poll-Zeiten pro Komponente, SigenMicro-Gerätedetails",
-                "ru": "Расширенное debug-протоколирование: конфигурация при запуске, FC03/FC04 запросы и ответы, декодированные значения состояний, тайминги опроса",
-                "pt": "Registro de debug abrangente: config na inicialização, requisições/respostas FC03/FC04, valores decodificados, tempos de ciclo por componente",
-                "nl": "Uitgebreide debug-logging: configuratie bij start, FC03/FC04 verzoeken en antwoorden, gedecodeerde state-waarden, poll-tijden per component",
-                "fr": "Journalisation debug complète: config au démarrage, requêtes/réponses FC03/FC04, valeurs décodées, temps de cycle par composant",
-                "it": "Log debug completo: config all avvio, richieste/risposte FC03/FC04, valori decodificati, tempi ciclo per componente",
-                "es": "Registro debug completo: config al inicio, solicitudes/respuestas FC03/FC04, valores decodificados, tiempos de ciclo por componente",
-                "pl": "Obszerne logowanie debug: konfiguracja przy starcie, żądania/odpowiedzi FC03/FC04, odkodowane wartości, czasy cyklu na komponent",
-                "uk": "Розширене debug-логування: конфiгурацiя при запуску, запити/вiдповiдi FC03/FC04, декодованi значення станiв, таймiнги опитування",
-                "zh-cn": "添加全面的调试日志：启动时配置，FC03/FC04请求和响应，解码状态值，每组件轮询时序，SigenMicro设备详情"
+            "1.8.5": {
+                "en": "Add npm-token to test-and-release.yml workflow for npm publish authentication",
+                "de": "npm-token in test-and-release.yml Workflow für npm-Veröffentlichung ergänzt",
+                "ru": "Добавлен npm-token в workflow test-and-release.yml для публикации на npm",
+                "pt": "npm-token adicionado ao workflow test-and-release.yml para publicação no npm",
+                "nl": "npm-token toegevoegd aan test-and-release.yml workflow voor npm-publicatie",
+                "fr": "npm-token ajouté au workflow test-and-release.yml pour la publication npm",
+                "it": "npm-token aggiunto al workflow test-and-release.yml per la pubblicazione npm",
+                "es": "npm-token añadido al workflow test-and-release.yml para publicación en npm",
+                "pl": "npm-token dodany do workflow test-and-release.yml dla publikacji npm",
+                "uk": "npm-token додано до workflow test-and-release.yml для публiкацiї npm",
+                "zh-cn": "在test-and-release.yml工作流中添加npm-token用于npm发布认证"
             }
         },
         "titleLang": {
