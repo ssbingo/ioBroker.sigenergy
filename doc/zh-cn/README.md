@@ -156,6 +156,9 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 ---
 
 ## 更新日志
+### 1.8.9 (2026-03-18)
+* Update Dependencies modbus-serial -> 8.0.25
+
 ### 1.8.8 (2026-03-18)
 * 从README.md中删除## Installation章节(S6014)；通过Admin的标准安装是默认方式
 

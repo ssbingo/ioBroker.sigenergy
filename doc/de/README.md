@@ -147,6 +147,9 @@ MIT-Lizenz — Copyright (c) 2025 ioBroker Community
 ---
 
 ## Changelog
+### 1.8.9 (2026-03-18)
+* Update Dependencies modbus-serial -> 8.0.25
+
 ### 1.8.8 (2026-03-18)
 * README.md ## Installation-Abschnitt entfernt (S6014); Standard-ioBroker-Installation über Admin ist der Default
 

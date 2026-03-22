@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.8",
+        "version": "1.8.9",
         "news": {
-            "1.8.8": {
-                "en": "Remove README.md ## Installation section (S6014); standard ioBroker installation via Admin is the default",
-                "de": "README.md ## Installation-Abschnitt entfernt (S6014); Standard-ioBroker-Installation über Admin ist der Default",
-                "ru": "Удалён раздел ## Installation из README.md (S6014); стандартная установка через Admin по умолчанию",
-                "pt": "Seção ## Installation removida do README.md (S6014); instalação padrão via Admin é o padrão",
-                "nl": "Sectie ## Installation verwijderd uit README.md (S6014); standaard ioBroker-installatie via Admin",
-                "fr": "Section ## Installation supprimée du README.md (S6014); installation standard via Admin par défaut",
-                "it": "Sezione ## Installation rimossa dal README.md (S6014); installazione standard via Admin è il default",
-                "es": "Sección ## Installation eliminada del README.md (S6014); instalación estándar via Admin es el default",
-                "pl": "Sekcja ## Installation usunięta z README.md (S6014); standardowa instalacja przez Admin jest domyślna",
-                "uk": "Роздiл ## Installation видалено з README.md (S6014); стандартне встановлення через Admin є типовим",
-                "zh-cn": "从README.md中删除## Installation章节(S6014)；通过Admin的标准安装是默认方式"
+            "1.8.9": {
+                "en": "Update Dependencies modbus-serial -> 8.0.25",
+                "de": "Update Dependencies modbus-serial -> 8.0.25",
+                "ru": "Update Dependencies modbus-serial -> 8.0.25",
+                "pt": "Update Dependencies modbus-serial -> 8.0.25",
+                "nl": "Update Dependencies modbus-serial -> 8.0.25",
+                "fr": "Update Dependencies modbus-serial -> 8.0.25",
+                "it": "Update Dependencies modbus-serial -> 8.0.25",
+                "es": "Update Dependencies modbus-serial -> 8.0.25",
+                "pl": "Update Dependencies modbus-serial -> 8.0.25",
+                "uk": "Update Dependencies modbus-serial -> 8.0.25",
+                "zh-cn": "Update Dependencies modbus-serial -> 8.0.25"
             }
         },
         "titleLang": {
