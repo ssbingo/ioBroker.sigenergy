@@ -150,6 +150,9 @@ Estado e medições de potência do carregador DC.
 ---
 
 ## Changelog
+## 1.8.23 (2026-03-26)
+- (ssbingo) Ano de copyright corrigido para 2026 em LICENSE e README; correções técnicas: CI/CD, linting, testes
+
 ## 1.8.22 (2026-03-26)
 - (ssbingo) Correções técnicas: fluxo de trabalho CI/CD (publicação OIDC), configuração de linting, testes padrão restaurados
 

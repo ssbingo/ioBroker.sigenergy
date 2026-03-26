@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+## 1.8.23 (2026-03-26)
+- (ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests
+
 ## 1.8.22 (2026-03-26)
 - (ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored
 
@@ -491,7 +494,7 @@ Status and power readings for the DC charger.
 ## License
 MIT License
 
-Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+Copyright (c) 2026 ssbingo <s.sternitzke@online.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

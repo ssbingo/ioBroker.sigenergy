@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+## 1.8.23 (2026-03-26)
+- (ssbingo) Anno di copyright corretto a 2026 in LICENSE e README; correzioni tecniche: CI/CD, linting, test
+
 ## 1.8.22 (2026-03-26)
 - (ssbingo) Correzioni tecniche: workflow CI/CD (pubblicazione OIDC), configurazione linting, test standard ripristinati
 

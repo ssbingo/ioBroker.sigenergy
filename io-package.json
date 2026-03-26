@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.22",
+        "version": "1.8.23",
         "news": {
-            "1.8.22": {
-                "en": "(ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored",
-                "de": "(ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt",
-                "ru": "(ssbingo) Технические исправления: рабочий процесс CI/CD (публикация OIDC), настройка линтинга, стандартные тесты восстановлены",
-                "pt": "(ssbingo) Correções técnicas: fluxo de trabalho CI/CD (publicação OIDC), configuração de linting, testes padrão restaurados",
-                "nl": "(ssbingo) Technische correcties: CI/CD-workflow (OIDC-publicatie), linting-setup, standaardtests hersteld",
-                "fr": "(ssbingo) Corrections techniques : workflow CI/CD (publication OIDC), configuration du linting, tests standard restaurés",
-                "it": "(ssbingo) Correzioni tecniche: workflow CI/CD (pubblicazione OIDC), configurazione linting, test standard ripristinati",
-                "es": "(ssbingo) Correcciones técnicas: flujo de trabajo CI/CD (publicación OIDC), configuración de linting, pruebas estándar restauradas",
-                "pl": "(ssbingo) Korekty techniczne: przepływ pracy CI/CD (publikacja OIDC), konfiguracja lintingu, przywrócono standardowe testy",
-                "uk": "(ssbingo) Технічні виправлення: робочий процес CI/CD (публікація OIDC), налаштування лінтингу, стандартні тести відновлено",
-                "zh-cn": "(ssbingo) 技术修正：CI/CD工作流（OIDC发布）、代码检查配置、标准测试已恢复"
+            "1.8.23": {
+                "en": "(ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests",
+                "de": "(ssbingo) Copyright-Jahr auf 2026 korrigiert in LICENSE und README; technische Korrekturen: CI/CD-Workflow, Linting, Tests",
+                "ru": "(ssbingo) Исправлен год авторского права на 2026 в LICENSE и README; технические исправления: CI/CD, линтинг, тесты",
+                "pt": "(ssbingo) Ano de copyright corrigido para 2026 em LICENSE e README; correções técnicas: CI/CD, linting, testes",
+                "nl": "(ssbingo) Copyrightjaar gecorrigeerd naar 2026 in LICENSE en README; technische correcties: CI/CD, linting, tests",
+                "fr": "(ssbingo) Année de copyright corrigée à 2026 dans LICENSE et README ; corrections techniques : CI/CD, linting, tests",
+                "it": "(ssbingo) Anno di copyright corretto a 2026 in LICENSE e README; correzioni tecniche: CI/CD, linting, test",
+                "es": "(ssbingo) Año de copyright corregido a 2026 en LICENSE y README; correcciones técnicas: CI/CD, linting, pruebas",
+                "pl": "(ssbingo) Poprawiono rok praw autorskich na 2026 w LICENSE i README; korekty techniczne: CI/CD, linting, testy",
+                "uk": "(ssbingo) Виправлено рік авторського права на 2026 у LICENSE та README; технічні виправлення: CI/CD, лінтинг, тести",
+                "zh-cn": "(ssbingo) 修正LICENSE和README中的版权年份为2026；技术修正：CI/CD工作流、代码检查、测试"
             }
         },
         "titleLang": {

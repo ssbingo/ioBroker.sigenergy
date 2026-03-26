@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+## 1.8.23 (2026-03-26)
+- (ssbingo) Année de copyright corrigée à 2026 dans LICENSE et README ; corrections techniques : CI/CD, linting, tests
+
 ## 1.8.22 (2026-03-26)
 - (ssbingo) Corrections techniques : workflow CI/CD (publication OIDC), configuration du linting, tests standard restaurés
 
