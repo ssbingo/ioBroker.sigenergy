@@ -150,6 +150,9 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 errores prettier restantes corregidos: paréntesis scanner.js, línea en blanco extra main.js, envoltorio setTimeout, sangría continuación cadena
+
 ### 1.8.19 (2026-03-26)
 * Todos los archivos JS convertidos de tabs a 4 espacios según el estándar @iobroker/eslint-config; paréntesis de arrow functions corregidos
 

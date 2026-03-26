@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.19",
+        "version": "1.8.20",
         "news": {
-            "1.8.19": {
-                "en": "Convert all JS files from tabs to 4-space indentation to match standard @iobroker/eslint-config prettier settings; fix arrow function parameter parentheses",
-                "de": "Alle JS-Dateien von Tabs auf 4-Leerzeichen-Einrückung umgestellt (Standard @iobroker/eslint-config prettier); Pfeilfunktions-Parameter-Klammern angepasst",
-                "ru": "Все JS-файлы переведены с табуляции на 4 пробела согласно стандарту @iobroker/eslint-config; исправлены скобки параметров стрелочных функций",
-                "pt": "Todos os arquivos JS convertidos de tabs para 4 espaços conforme padrão @iobroker/eslint-config; parênteses de arrow functions corrigidos",
-                "nl": "Alle JS-bestanden geconverteerd van tabs naar 4 spaties conform standaard @iobroker/eslint-config; pijlfunctie-haakjes gecorrigeerd",
-                "fr": "Tous les fichiers JS convertis des tabulations à 4 espaces selon le standard @iobroker/eslint-config; parenthèses des fonctions fléchées corrigées",
-                "it": "Tutti i file JS convertiti da tab a 4 spazi secondo lo standard @iobroker/eslint-config; parentesi delle arrow function corrette",
-                "es": "Todos los archivos JS convertidos de tabs a 4 espacios según el estándar @iobroker/eslint-config; paréntesis de arrow functions corregidos",
-                "pl": "Wszystkie pliki JS przekonwertowane z tabulacji na 4 spacje zgodnie ze standardem @iobroker/eslint-config; nawiasy arrow functions poprawione",
-                "uk": "Всi JS-файли переведено з табуляцiй на 4 пробiли вiдповiдно до стандарту @iobroker/eslint-config; дужки стрiлочних функцiй виправлено",
-                "zh-cn": "将所有JS文件从制表符转换为4空格缩进以符合@iobroker/eslint-config prettier标准；修正箭头函数参数括号"
+            "1.8.20": {
+                "en": "Fix 4 remaining prettier errors: scanner.js assignment parens, main.js extra blank line, setTimeout wrap, string continuation indent",
+                "de": "4 verbleibende prettier-Fehler behoben: scanner.js Zuweisungs-Klammern, main.js extra Leerzeile, setTimeout-Umbruch, String-Fortsetzungs-Einrückung",
+                "ru": "Исправлены 4 оставшиеся ошибки prettier: скобки в scanner.js, лишняя строка в main.js, перенос setTimeout, отступ продолжения строки",
+                "pt": "4 erros prettier restantes corrigidos: parênteses scanner.js, linha em branco extra main.js, quebra setTimeout, recuo continuação string",
+                "nl": "4 resterende prettier-fouten gecorrigeerd: haakjes scanner.js, extra lege regel main.js, setTimeout-omloop, string-vervolg-inspringing",
+                "fr": "4 erreurs prettier restantes corrigées: parenthèses scanner.js, ligne vide extra main.js, enroulement setTimeout, indentation continuation chaîne",
+                "it": "4 errori prettier rimanenti corretti: parentesi scanner.js, riga vuota extra main.js, avvolgimento setTimeout, indentazione continuazione stringa",
+                "es": "4 errores prettier restantes corregidos: paréntesis scanner.js, línea en blanco extra main.js, envoltorio setTimeout, sangría continuación cadena",
+                "pl": "4 pozostałe błędy prettier naprawione: nawiasy scanner.js, dodatkowa pusta linia main.js, zawinięcie setTimeout, wcięcie kontynuacji łańcucha",
+                "uk": "4 помилки prettier виправлено: дужки scanner.js, зайвий рядок main.js, перенос setTimeout, вiдступ продовження рядка",
+                "zh-cn": "修复4个剩余prettier错误：scanner.js括号、main.js多余空行、setTimeout换行、字符串续行缩进"
             }
         },
         "titleLang": {

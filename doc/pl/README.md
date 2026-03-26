@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 pozostałe błędy prettier naprawione: nawiasy scanner.js, dodatkowa pusta linia main.js, zawinięcie setTimeout, wcięcie kontynuacji łańcucha
+
 ### 1.8.19 (2026-03-26)
 * Wszystkie pliki JS przekonwertowane z tabulacji na 4 spacje zgodnie ze standardem @iobroker/eslint-config; nawiasy arrow functions poprawione
 

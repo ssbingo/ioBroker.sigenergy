@@ -655,7 +655,6 @@ class Sigenergy extends utils.Adapter {
         }
     }
 
-
     /**
      * Handle messages from admin (connection test, etc.)
      *
@@ -682,7 +681,10 @@ class Sigenergy extends utils.Adapter {
                 result = await Promise.race([
                     testModbus.testConnection(),
                     new Promise((_, reject) =>
-                        this.setTimeout(() => reject(new Error('Test timed out — no response from device')), hardTimeout),
+                        this.setTimeout(
+                            () => reject(new Error('Test timed out — no response from device')),
+                            hardTimeout,
+                        ),
                     ),
                 ]);
             } catch (e) {
@@ -798,7 +800,7 @@ class Sigenergy extends utils.Adapter {
                     merged.length === 0
                         ? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
                         : `Found ${merged.length} device(s): ${deviceList}.` +
-                            ` Use the SigenMicro admin tab to enable/disable devices.`;
+                        ` Use the SigenMicro admin tab to enable/disable devices.`;
                 if (obj.callback) {
                     this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
                 }

@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* Fix 4 remaining prettier errors: scanner.js assignment parens, main.js extra blank line, setTimeout wrap, string continuation indent
+
 ### 1.8.19 (2026-03-26)
 * Convert all JS files from tabs to 4-space indentation to match standard @iobroker/eslint-config prettier settings; fix arrow function parameter parentheses
 

@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 errori prettier rimanenti corretti: parentesi scanner.js, riga vuota extra main.js, avvolgimento setTimeout, indentazione continuazione stringa
+
 ### 1.8.19 (2026-03-26)
 * Tutti i file JS convertiti da tab a 4 spazi secondo lo standard @iobroker/eslint-config; parentesi delle arrow function corrette
 

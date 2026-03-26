@@ -50,9 +50,9 @@
   "scripts": {
     "start": "node node_modules/@iobroker/dev-server/build/main.js watch",
     "watch": "node node_modules/@iobroker/dev-server/build/main.js watch",
-    "test:package": "mocha test/package --exit",
-    "test:unit": "mocha test/unit --exit",
-    "test:integration": "mocha test/integration --exit",
+    "test:package": "mocha test/package.js --exit",
+    "test:unit": "mocha test/unit.js --exit",
+    "test:integration": "mocha test/integration.js --exit",
     "test": "npm run test:package && npm run test:unit && npm run test:integration",
     "lint": "eslint -c eslint.config.mjs .",
     "release": "release-script"

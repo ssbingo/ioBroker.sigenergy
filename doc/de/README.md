@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 verbleibende prettier-Fehler behoben: scanner.js Zuweisungs-Klammern, main.js extra Leerzeile, setTimeout-Umbruch, String-Fortsetzungs-Einrückung
+
 ### 1.8.19 (2026-03-26)
 * Alle JS-Dateien von Tabs auf 4-Leerzeichen-Einrückung umgestellt (Standard @iobroker/eslint-config prettier); Pfeilfunktions-Parameter-Klammern angepasst
 

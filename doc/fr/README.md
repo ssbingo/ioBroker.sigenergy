@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 erreurs prettier restantes corrigées: parenthèses scanner.js, ligne vide extra main.js, enroulement setTimeout, indentation continuation chaîne
+
 ### 1.8.19 (2026-03-26)
 * Tous les fichiers JS convertis des tabulations à 4 espaces selon le standard @iobroker/eslint-config; parenthèses des fonctions fléchées corrigées
 

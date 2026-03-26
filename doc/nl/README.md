@@ -150,6 +150,9 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+### 1.8.20 (2026-03-26)
+* 4 resterende prettier-fouten gecorrigeerd: haakjes scanner.js, extra lege regel main.js, setTimeout-omloop, string-vervolg-inspringing
+
 ### 1.8.19 (2026-03-26)
 * Alle JS-bestanden geconverteerd van tabs naar 4 spaties conform standaard @iobroker/eslint-config; pijlfunctie-haakjes gecorrigeerd
 
