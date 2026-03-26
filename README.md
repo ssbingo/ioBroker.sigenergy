@@ -141,13 +141,16 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
-## 1.8.23 (2026-03-26)
+### 1.9.0 (2026-03-26)
+- (ssbingo) Test abgeschlossen
+
+### 1.8.23 (2026-03-26)
 - (ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests
 
-## 1.8.22 (2026-03-26)
+### 1.8.22 (2026-03-26)
 - (ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored
 
-## 1.8.21 (2026-03-26)
+### 1.8.21 (2026-03-26)
 - (ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored
 
 ### 1.8.20 (2026-03-26)

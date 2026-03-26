@@ -150,13 +150,16 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
-## 1.8.23 (2026-03-26)
+### 1.9.0 (2026-03-26)
+- (ssbingo) Test zakończony
+
+### 1.8.23 (2026-03-26)
 - (ssbingo) Poprawiono rok praw autorskich na 2026 w LICENSE i README; korekty techniczne: CI/CD, linting, testy
 
-## 1.8.22 (2026-03-26)
+### 1.8.22 (2026-03-26)
 - (ssbingo) Korekty techniczne: przepływ pracy CI/CD (publikacja OIDC), konfiguracja lintingu, przywrócono standardowe testy
 
-## 1.8.21 (2026-03-26)
+### 1.8.21 (2026-03-26)
 - (ssbingo) Korekty techniczne: przepływ pracy CI/CD (publikacja OIDC), konfiguracja lintingu, przywrócono standardowe testy
 
 ### 1.8.20 (2026-03-26)

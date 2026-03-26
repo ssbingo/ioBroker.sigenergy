@@ -141,13 +141,16 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
-## 1.8.23 (2026-03-26)
+### 1.9.0 (2026-03-26)
+- (ssbingo) Test abgeschlossen
+
+### 1.8.23 (2026-03-26)
 - (ssbingo) Copyright-Jahr auf 2026 korrigiert in LICENSE und README; technische Korrekturen: CI/CD-Workflow, Linting, Tests
 
-## 1.8.22 (2026-03-26)
+### 1.8.22 (2026-03-26)
 - (ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt
 
-## 1.8.21 (2026-03-26)
+### 1.8.21 (2026-03-26)
 - (ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt
 
 ### 1.8.20 (2026-03-26)
