@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+## 1.8.21 (2026-03-26)
+- (ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt
+
 ### 1.8.20 (2026-03-26)
 * 4 verbleibende prettier-Fehler behoben: scanner.js Zuweisungs-Klammern, main.js extra Leerzeile, setTimeout-Umbruch, String-Fortsetzungs-Einrückung
 

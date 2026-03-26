@@ -55,6 +55,7 @@
     "test:integration": "mocha test/integration.js --exit",
     "test": "npm run test:package && npm run test:unit && npm run test:integration",
     "lint": "eslint -c eslint.config.mjs .",
+    "lint:fix": "eslint -c eslint.config.mjs . --fix",
     "release": "release-script"
   },
   "bugs": {

@@ -150,6 +150,9 @@ Estado e medições de potência do carregador DC.
 ---
 
 ## Changelog
+## 1.8.21 (2026-03-26)
+- (ssbingo) Correções técnicas: fluxo de trabalho CI/CD (publicação OIDC), configuração de linting, testes padrão restaurados
+
 ### 1.8.20 (2026-03-26)
 * 4 erros prettier restantes corrigidos: parênteses scanner.js, linha em branco extra main.js, quebra setTimeout, recuo continuação string
 

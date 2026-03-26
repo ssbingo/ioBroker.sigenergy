@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+## 1.8.21 (2026-03-26)
+- (ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored
+
 ### 1.8.20 (2026-03-26)
 * Fix 4 remaining prettier errors: scanner.js assignment parens, main.js extra blank line, setTimeout wrap, string continuation indent
 

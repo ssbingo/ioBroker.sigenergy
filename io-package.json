@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.20",
+        "version": "1.8.21",
         "news": {
-            "1.8.20": {
-                "en": "Fix 4 remaining prettier errors: scanner.js assignment parens, main.js extra blank line, setTimeout wrap, string continuation indent",
-                "de": "4 verbleibende prettier-Fehler behoben: scanner.js Zuweisungs-Klammern, main.js extra Leerzeile, setTimeout-Umbruch, String-Fortsetzungs-Einrückung",
-                "ru": "Исправлены 4 оставшиеся ошибки prettier: скобки в scanner.js, лишняя строка в main.js, перенос setTimeout, отступ продолжения строки",
-                "pt": "4 erros prettier restantes corrigidos: parênteses scanner.js, linha em branco extra main.js, quebra setTimeout, recuo continuação string",
-                "nl": "4 resterende prettier-fouten gecorrigeerd: haakjes scanner.js, extra lege regel main.js, setTimeout-omloop, string-vervolg-inspringing",
-                "fr": "4 erreurs prettier restantes corrigées: parenthèses scanner.js, ligne vide extra main.js, enroulement setTimeout, indentation continuation chaîne",
-                "it": "4 errori prettier rimanenti corretti: parentesi scanner.js, riga vuota extra main.js, avvolgimento setTimeout, indentazione continuazione stringa",
-                "es": "4 errores prettier restantes corregidos: paréntesis scanner.js, línea en blanco extra main.js, envoltorio setTimeout, sangría continuación cadena",
-                "pl": "4 pozostałe błędy prettier naprawione: nawiasy scanner.js, dodatkowa pusta linia main.js, zawinięcie setTimeout, wcięcie kontynuacji łańcucha",
-                "uk": "4 помилки prettier виправлено: дужки scanner.js, зайвий рядок main.js, перенос setTimeout, вiдступ продовження рядка",
-                "zh-cn": "修复4个剩余prettier错误：scanner.js括号、main.js多余空行、setTimeout换行、字符串续行缩进"
+            "1.8.21": {
+                "en": "(ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored",
+                "de": "(ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt",
+                "ru": "(ssbingo) Технические исправления: рабочий процесс CI/CD (публикация OIDC), настройка линтинга, стандартные тесты восстановлены",
+                "pt": "(ssbingo) Correções técnicas: fluxo de trabalho CI/CD (publicação OIDC), configuração de linting, testes padrão restaurados",
+                "nl": "(ssbingo) Technische correcties: CI/CD-workflow (OIDC-publicatie), linting-setup, standaardtests hersteld",
+                "fr": "(ssbingo) Corrections techniques : workflow CI/CD (publication OIDC), configuration du linting, tests standard restaurés",
+                "it": "(ssbingo) Correzioni tecniche: workflow CI/CD (pubblicazione OIDC), configurazione linting, test standard ripristinati",
+                "es": "(ssbingo) Correcciones técnicas: flujo de trabajo CI/CD (publicación OIDC), configuración de linting, pruebas estándar restauradas",
+                "pl": "(ssbingo) Korekty techniczne: przepływ pracy CI/CD (publikacja OIDC), konfiguracja lintingu, przywrócono standardowe testy",
+                "uk": "(ssbingo) Технічні виправлення: робочий процес CI/CD (публікація OIDC), налаштування лінтингу, стандартні тести відновлено",
+                "zh-cn": "(ssbingo) 技术修正：CI/CD工作流（OIDC发布）、代码检查配置、标准测试已恢复"
             }
         },
         "titleLang": {

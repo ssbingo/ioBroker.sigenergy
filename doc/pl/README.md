@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+## 1.8.21 (2026-03-26)
+- (ssbingo) Korekty techniczne: przepływ pracy CI/CD (publikacja OIDC), konfiguracja lintingu, przywrócono standardowe testy
+
 ### 1.8.20 (2026-03-26)
 * 4 pozostałe błędy prettier naprawione: nawiasy scanner.js, dodatkowa pusta linia main.js, zawinięcie setTimeout, wcięcie kontynuacji łańcucha
 
