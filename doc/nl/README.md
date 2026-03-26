@@ -150,6 +150,9 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+## 1.8.22 (2026-03-26)
+- (ssbingo) Technische correcties: CI/CD-workflow (OIDC-publicatie), linting-setup, standaardtests hersteld
+
 ## 1.8.21 (2026-03-26)
 - (ssbingo) Technische correcties: CI/CD-workflow (OIDC-publicatie), linting-setup, standaardtests hersteld
 

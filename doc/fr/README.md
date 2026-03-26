@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+## 1.8.22 (2026-03-26)
+- (ssbingo) Corrections techniques : workflow CI/CD (publication OIDC), configuration du linting, tests standard restaurés
+
 ## 1.8.21 (2026-03-26)
 - (ssbingo) Corrections techniques : workflow CI/CD (publication OIDC), configuration du linting, tests standard restaurés
 

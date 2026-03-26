@@ -150,6 +150,9 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+## 1.8.22 (2026-03-26)
+- (ssbingo) Correcciones técnicas: flujo de trabajo CI/CD (publicación OIDC), configuración de linting, pruebas estándar restauradas
+
 ## 1.8.21 (2026-03-26)
 - (ssbingo) Correcciones técnicas: flujo de trabajo CI/CD (publicación OIDC), configuración de linting, pruebas estándar restauradas
 

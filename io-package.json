@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.21",
+        "version": "1.8.22",
         "news": {
-            "1.8.21": {
+            "1.8.22": {
                 "en": "(ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored",
                 "de": "(ssbingo) Technische Korrekturen: CI/CD-Workflow (OIDC-Publish), Linting-Setup, Standard-Tests wiederhergestellt",
                 "ru": "(ssbingo) Технические исправления: рабочий процесс CI/CD (публикация OIDC), настройка линтинга, стандартные тесты восстановлены",
