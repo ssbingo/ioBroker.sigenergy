@@ -140,13 +140,37 @@ Status and power readings for the DC charger.
 
 ---
 
-## License
-
-MIT License — Copyright (c) 2025 ioBroker Community
-
----
-
 ## Changelog
+### 1.8.18 (2026-03-26)
+* Use standard ioBroker linter setup: simplify eslint.config.mjs and prettier.config.mjs to delegate fully to @iobroker/eslint-config; remove legacy .eslintrc/.prettierrc files
+
+### 1.8.17 (2026-03-26)
+* Restore standard ioBroker tests: replace custom unit/integration placeholders with tests.unit() and tests.integration() from @iobroker/testing
+
+### 1.8.16 (2026-03-26)
+* Replace setInterval polling with setTimeout loop to prevent overlapping poll cycles; clamp pollInterval to [5 000…300 000 ms]
+
+### 1.8.15 (2026-03-26)
+* Replace all native setTimeout/setInterval/clearTimeout/clearInterval with adapter wrapper methods (this.setTimeout etc.); inject adapter timers into lib/modbus.js and lib/scanner.js via constructor
+
+### 1.8.15 (2026-03-26)
+* Replace native setTimeout/setInterval/clearTimeout/clearInterval with adapter wrapper methods (this.setTimeout etc.) to ensure timers are cancelled on unload
+
+### 1.8.14 (2026-03-26)
+* Remove unused onStateChange handler (adapter does not react to state changes)
+
+### 1.8.13 (2026-03-26)
+* Remove util._extend patcher (workaround for http-proxy which is not a dependency of this adapter)
+
+### 1.8.12 (2026-03-26)
+* Move serialport to dependencies (W5042); remove eslint/@eslint/js devDependencies (redundant with @iobroker/eslint-config); remove outdated admin/index.html and admin/words.js
+
+### 1.8.11 (2026-03-26)
+* Use 'node:util' prefix for built-in Node.js module import (S5043)
+
+### 1.8.10 (2026-03-26)
+* Move LICENSE section to end of README.md (after Changelog); add full MIT license text; add LICENSE file to repository root
+
 ### 1.8.9 (2026-03-18)
 * Update Dependencies modbus-serial -> 8.0.25
 
@@ -451,3 +475,26 @@ MIT License — Copyright (c) 2025 ioBroker Community
 - 🇵🇹 [Documentação portuguesa](doc/pt/README.md)
 - 🇺🇦 [Документація українською](doc/uk/README.md)
 - 🇨🇳 [简体中文文档](doc/zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

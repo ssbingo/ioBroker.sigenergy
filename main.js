@@ -6,17 +6,6 @@
  * Protocol: Sigenergy Modbus V2.5
  */
 
-// Fix DEP0060: util._extend is deprecated in Node 22+.
-// Several transitive dependencies (e.g. http-proxy@1.18.1) still use it.
-// Replacing it with Object.assign before any other require() suppresses
-// the warning without affecting functionality.
-(function patchUtilExtend() {
-	const u = require('util');
-	if (typeof u._extend === 'function' && u._extend !== Object.assign) {
-		u._extend = Object.assign;
-	}
-})();
-
 const utils = require('@iobroker/adapter-core');
 const ModbusConnection = require('./lib/modbus');
 const StatisticsCalculator = require('./lib/statistics');
@@ -47,7 +36,6 @@ class Sigenergy extends utils.Adapter {
 		this._sigenMicroDevices = [];
 
 		this.on('ready', this.onReady.bind(this));
-		this.on('stateChange', this.onStateChange.bind(this));
 		this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 	}
@@ -112,6 +100,8 @@ class Sigenergy extends utils.Adapter {
 			info: (msg) => this.log.info(msg),
 			warn: (msg) => this.log.warn(msg),
 			error: (msg) => this.log.error(msg),
+			setTimeout: (fn, ms) => this.setTimeout(fn, ms),
+			clearTimeout: (t) => this.clearTimeout(t),
 		});
 
 		// Create all objects first
@@ -138,24 +128,43 @@ class Sigenergy extends utils.Adapter {
 		} else {
 			this.log.warn(`Connection to ${target} failed — retrying in 30 seconds`);
 			this.setState('info.connection', false, true);
-			this._pollTimer = setTimeout(() => {
+			this._pollTimer = this.setTimeout(() => {
 				this._connectAndPoll();
 			}, 30000);
 		}
 	}
 
 	/**
-	 * Start the polling interval
+	 * Start the polling loop using setTimeout (not setInterval) to prevent
+	 * overlapping poll cycles when Modbus requests take longer than the interval.
+	 * Poll interval is clamped to [5 000 ms … 300 000 ms] (5 s – 5 min).
 	 */
 	_startPolling() {
-		const interval = this.config.pollInterval || 10000;
-		this.log.info(`Starting polling every ${interval} ms`);
-		this._pollTimer = setInterval(async () => {
-			await this._poll();
-		}, interval);
-
-		// Immediate first poll
+		const MIN_INTERVAL = 5_000;
+		const MAX_INTERVAL = 300_000;
+		const raw = this.config.pollInterval || 10_000;
+		this._pollInterval = Math.max(MIN_INTERVAL, Math.min(MAX_INTERVAL, raw));
+		if (this._pollInterval !== raw) {
+			this.log.warn(
+				`[poll] configured interval ${raw} ms out of range — clamped to ${this._pollInterval} ms`,
+			);
+		}
+		this.log.info(`Starting polling every ${this._pollInterval} ms`);
+		// Run first cycle immediately, subsequent cycles are scheduled by _scheduleNextPoll()
 		this._poll();
+	}
+
+	/**
+	 * Schedule the next poll cycle via setTimeout.
+	 * Called at the end of each _poll() cycle so only one cycle runs at a time.
+	 */
+	_scheduleNextPoll() {
+		if (this._pollTimer) {
+			this.clearTimeout(this._pollTimer);
+		}
+		this._pollTimer = this.setTimeout(() => {
+			this._poll();
+		}, this._pollInterval);
 	}
 
 	/**
@@ -165,9 +174,11 @@ class Sigenergy extends utils.Adapter {
 		if (!this.modbus || !this.modbus.connected) {
 			this.log.warn('Not connected, skipping poll — attempting reconnect in 5 seconds');
 			this.setState('info.connection', false, true);
-			clearInterval(this._pollTimer);
-			this._pollTimer = null;
-			setTimeout(() => this._connectAndPoll(), 5000);
+			if (this._pollTimer) {
+				this.clearTimeout(this._pollTimer);
+				this._pollTimer = null;
+			}
+			this._pollTimer = this.setTimeout(() => this._connectAndPoll(), 5000);
 			return;
 		}
 
@@ -198,6 +209,8 @@ class Sigenergy extends utils.Adapter {
 			this.log.error(`Poll error: ${err.message}`);
 			this.setState('info.connection', false, true);
 			this.modbus.connected = false;
+		} finally {
+			this._scheduleNextPoll();
 		}
 	}
 
@@ -644,18 +657,6 @@ class Sigenergy extends utils.Adapter {
 		}
 	}
 
-	/**
-	 * Handle state changes (for writable states)
-	 *
-	 * @param {string} id - State ID
-	 * @param {object} state - New state value
-	 */
-	onStateChange(id, state) {
-		if (!state || state.ack) {
-			return;
-		}
-		this.log.debug(`State change received: ${id} = ${JSON.stringify(state.val)}`);
-	}
 
 	/**
 	 * Handle messages from admin (connection test, etc.)
@@ -674,6 +675,8 @@ class Sigenergy extends utils.Adapter {
 				info: (m) => this.log.info(m),
 				warn: (m) => this.log.warn(m),
 				error: (m) => this.log.error(m),
+				setTimeout: (fn, ms) => this.setTimeout(fn, ms),
+				clearTimeout: (t) => this.clearTimeout(t),
 			});
 			const hardTimeout = (obj.message && obj.message.timeout ? obj.message.timeout : 5000) + 3000;
 			let result;
@@ -681,7 +684,7 @@ class Sigenergy extends utils.Adapter {
 				result = await Promise.race([
 					testModbus.testConnection(),
 					new Promise((_, reject) =>
-						setTimeout(() => reject(new Error('Test timed out — no response from device')), hardTimeout),
+						this.setTimeout(() => reject(new Error('Test timed out — no response from device')), hardTimeout),
 					),
 				]);
 			} catch (e) {
@@ -746,7 +749,7 @@ class Sigenergy extends utils.Adapter {
 		const wasPolling = !!this._pollTimer;
 		if (wasPolling) {
 			this.log.info('[scanSigenMicro] Pausing poll timer for scan duration');
-			clearInterval(this._pollTimer);
+			this.clearTimeout(this._pollTimer);
 			this._pollTimer = null;
 		}
 
@@ -755,6 +758,7 @@ class Sigenergy extends utils.Adapter {
 			info: (m) => this.log.info(m),
 			warn: (m) => this.log.warn(m),
 			error: (m) => this.log.error(m),
+			setTimeout: (fn, ms) => this.setTimeout(fn, ms),
 		});
 
 		try {
@@ -818,7 +822,7 @@ class Sigenergy extends utils.Adapter {
 		} finally {
 			if (wasPolling) {
 				this.log.info('[scanSigenMicro] Resuming poll timer after scan');
-				this._startPolling();
+				this._scheduleNextPoll();
 			}
 		}
 	}
@@ -887,8 +891,7 @@ class Sigenergy extends utils.Adapter {
 		try {
 			this.log.info('Sigenergy adapter shutting down...');
 			if (this._pollTimer) {
-				clearInterval(this._pollTimer);
-				clearTimeout(this._pollTimer);
+				this.clearTimeout(this._pollTimer);
 				this._pollTimer = null;
 				this.log.debug('Poll timer cleared');
 			}
@@ -911,7 +914,7 @@ class Sigenergy extends utils.Adapter {
 	 * @returns {Promise<void>}
 	 */
 	_sleep(ms) {
-		return new Promise((resolve) => setTimeout(resolve, ms));
+		return new Promise((resolve) => this.setTimeout(resolve, ms));
 	}
 }
 

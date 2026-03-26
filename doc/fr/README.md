@@ -140,13 +140,37 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ---
 
-## Licence
-
-Licence MIT — Copyright (c) 2025 ioBroker Community
-
----
-
 ## Changelog
+### 1.8.18 (2026-03-26)
+* Configuration linter ioBroker standard: eslint.config.mjs et prettier.config.mjs simplifiés, délèguent entièrement à @iobroker/eslint-config
+
+### 1.8.17 (2026-03-26)
+* Tests ioBroker standard restaurés: placeholders personnalisés remplacés par tests.unit() et tests.integration() de @iobroker/testing
+
+### 1.8.16 (2026-03-26)
+* setInterval remplacé par une boucle setTimeout pour éviter les cycles de polling superposés; pollInterval limité à [5 000…300 000 ms]
+
+### 1.8.15 (2026-03-26)
+* Tous les timers natifs remplacés par des wrappers adaptateur; timers adaptateur injectés dans lib/modbus.js et lib/scanner.js via constructeur
+
+### 1.8.15 (2026-03-26)
+* Timers natifs remplacés par les méthodes wrapper de l'adaptateur (this.setTimeout etc.) pour garantir l'annulation au déchargement
+
+### 1.8.14 (2026-03-26)
+* Gestionnaire onStateChange inutilisé supprimé (l'adaptateur ne réagit pas aux changements d'état)
+
+### 1.8.13 (2026-03-26)
+* Patcher util._extend supprimé (contournement pour http-proxy qui n'est pas une dépendance de cet adaptateur)
+
+### 1.8.12 (2026-03-26)
+* serialport déplacé dans dependencies (W5042); eslint/@eslint/js supprimés des devDependencies; admin/index.html et admin/words.js obsolètes supprimés
+
+### 1.8.11 (2026-03-26)
+* Préfixe 'node:util' utilisé pour le module intégré Node.js (S5043)
+
+### 1.8.10 (2026-03-26)
+* Section LICENSE déplacée en fin de README.md (après Changelog); texte complet de la licence MIT ajouté; fichier LICENSE ajouté à la racine du dépôt
+
 ### 1.8.9 (2026-03-18)
 * Update Dependencies modbus-serial -> 8.0.25
 
@@ -357,3 +381,26 @@ Licence MIT — Copyright (c) 2025 ioBroker Community
 - 🇵🇹 [Documentação portuguesa](../pt/README.md)
 - 🇺🇦 [Документація українською](../uk/README.md)
 - 🇨🇳 [简体中文文档](../zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -149,13 +149,37 @@ Stan i pomiary mocy ładowarki DC.
 
 ---
 
-## Licencja
-
-Licencja MIT — Copyright (c) 2025 ioBroker Community
-
----
-
 ## Changelog
+### 1.8.18 (2026-03-26)
+* Standardowa konfiguracja lintera ioBroker: uproszczono eslint.config.mjs i prettier.config.mjs, w pełni delegują do @iobroker/eslint-config
+
+### 1.8.17 (2026-03-26)
+* Przywrócono standardowe testy ioBroker: niestandardowe placeholdery zastąpiono tests.unit() i tests.integration() z @iobroker/testing
+
+### 1.8.16 (2026-03-26)
+* setInterval zastąpiony pętlą setTimeout aby zapobiec nakładaniu się cykli poll; pollInterval ograniczony do [5 000…300 000 ms]
+
+### 1.8.15 (2026-03-26)
+* Wszystkie natywne timery zastąpione wrapperami adaptera; timery adaptera wstrzyknięte do lib/modbus.js i lib/scanner.js przez konstruktor
+
+### 1.8.15 (2026-03-26)
+* Natywne timery zastąpione metodami wrapper adaptera (this.setTimeout itp.) dla zagwarantowania anulowania przy unload
+
+### 1.8.14 (2026-03-26)
+* Usunięto nieużywany handler onStateChange (adapter nie reaguje na zmiany stanu)
+
+### 1.8.13 (2026-03-26)
+* Usunięto patcher util._extend (obejście dla http-proxy, które nie jest zależnością tego adaptera)
+
+### 1.8.12 (2026-03-26)
+* serialport przeniesiony do dependencies (W5042); eslint/@eslint/js usunięte z devDependencies; przestarzałe admin/index.html i admin/words.js usunięte
+
+### 1.8.11 (2026-03-26)
+* Prefiks 'node:util' użyty dla wbudowanego modułu Node.js (S5043)
+
+### 1.8.10 (2026-03-26)
+* Sekcja LICENSE przeniesiona na koniec README.md (po Changelog); dodano pełny tekst licencji MIT; plik LICENSE dodany do korzenia repozytorium
+
 ### 1.8.9 (2026-03-18)
 * Update Dependencies modbus-serial -> 8.0.25
 
@@ -353,3 +377,26 @@ Licencja MIT — Copyright (c) 2025 ioBroker Community
 - 🇵🇹 [Documentação portuguesa](../pt/README.md)
 - 🇺🇦 [Документація українською](../uk/README.md)
 - 🇨🇳 [简体中文文档](../zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

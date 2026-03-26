@@ -149,13 +149,37 @@
 
 ---
 
-## Ліцензія
-
-Ліцензія MIT — Copyright (c) 2025 ioBroker Community
-
----
-
 ## Changelog
+### 1.8.18 (2026-03-26)
+* Стандартне налаштування лiнтера ioBroker: спрощено eslint.config.mjs та prettier.config.mjs, повнiстю делегують до @iobroker/eslint-config
+
+### 1.8.17 (2026-03-26)
+* Вiдновлено стандартнi тести ioBroker: користувацькi заглушки замiненi на tests.unit() та tests.integration() з @iobroker/testing
+
+### 1.8.16 (2026-03-26)
+* setInterval замiнено циклом setTimeout для запобiгання перекриваючим циклам опитування; pollInterval обмежено до [5 000…300 000 мс]
+
+### 1.8.15 (2026-03-26)
+* Всi нативнi таймери замiненi обгортками адаптера; таймери адаптера впровадженi в lib/modbus.js та lib/scanner.js через конструктор
+
+### 1.8.15 (2026-03-26)
+* Нативнi таймери замiненi методами-обгортками адаптера (this.setTimeout тощо) для гарантованого скасування при вивантаженнi
+
+### 1.8.14 (2026-03-26)
+* Видалено невикористовуваний обробник onStateChange (адаптер не реагує на змiни стану)
+
+### 1.8.13 (2026-03-26)
+* Видалено патчер util._extend (обхiдне рiшення для http-proxy, яке не є залежнiстю цього адаптера)
+
+### 1.8.12 (2026-03-26)
+* serialport перемiщено до dependencies (W5042); eslint/@eslint/js видалено з devDependencies; застарiлi admin/index.html та admin/words.js видалено
+
+### 1.8.11 (2026-03-26)
+* Використано префiкс 'node:util' для вбудованого модуля Node.js (S5043)
+
+### 1.8.10 (2026-03-26)
+* Роздiл LICENSE перемiщено в кiнець README.md (пiсля Changelog); додано повний текст лiцензiї MIT; файл LICENSE додано до кореня репозиторiю
+
 ### 1.8.9 (2026-03-18)
 * Update Dependencies modbus-serial -> 8.0.25
 
@@ -390,3 +414,26 @@
 - 🇵🇹 [Documentação portuguesa](../pt/README.md)
 - 🇺🇦 [Документація українською](../uk/README.md)
 - 🇨🇳 [简体中文文档](../zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

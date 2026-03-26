@@ -149,13 +149,37 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ---
 
-## 许可证
-
-MIT 许可证 — Copyright (c) 2025 ioBroker Community
-
----
-
 ## 更新日志
+### 1.8.18 (2026-03-26)
+* 使用标准ioBroker linter配置：简化eslint.config.mjs和prettier.config.mjs，完全委托给@iobroker/eslint-config
+
+### 1.8.17 (2026-03-26)
+* 恢复标准ioBroker测试：将自定义占位符替换为@iobroker/testing中的tests.unit()和tests.integration()
+
+### 1.8.16 (2026-03-26)
+* 将setInterval轮询替换为setTimeout循环以防止重叠轮询周期；pollInterval限制在[5 000…300 000 ms]范围内
+
+### 1.8.15 (2026-03-26)
+* 将所有原生计时器替换为适配器封装方法；通过构造函数将适配器计时器注入lib/modbus.js和lib/scanner.js
+
+### 1.8.15 (2026-03-26)
+* 将原生setTimeout/setInterval/clearTimeout/clearInterval替换为适配器封装方法(this.setTimeout等)，确保卸载时取消计时器
+
+### 1.8.14 (2026-03-26)
+* 删除未使用的onStateChange处理程序（适配器不响应状态变化）
+
+### 1.8.13 (2026-03-26)
+* 删除util._extend补丁程序（针对http-proxy的临时方案，而http-proxy并非此适配器的依赖项）
+
+### 1.8.12 (2026-03-26)
+* 将serialport移入dependencies(W5042)；从devDependencies中删除eslint/@eslint/js；删除过时的admin/index.html和admin/words.js
+
+### 1.8.11 (2026-03-26)
+* 对Node.js内置模块使用'node:util'前缀格式(S5043)
+
+### 1.8.10 (2026-03-26)
+* 将LICENSE部分移至README.md末尾（Changelog之后）；添加完整MIT许可证文本；在仓库根目录添加LICENSE文件
+
 ### 1.8.9 (2026-03-18)
 * Update Dependencies modbus-serial -> 8.0.25
 
@@ -390,3 +414,26 @@ MIT 许可证 — Copyright (c) 2025 ioBroker Community
 - 🇵🇹 [Documentação portuguesa](../pt/README.md)
 - 🇺🇦 [Документація українською](../uk/README.md)
 - 🇨🇳 [简体中文文档](../zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2025 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

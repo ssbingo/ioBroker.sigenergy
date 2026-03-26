@@ -1,30 +1,22 @@
-import globals from 'globals';
-import ioBrokerConfig from '@iobroker/eslint-config';
+import config from '@iobroker/eslint-config';
 
 export default [
-	...ioBrokerConfig,
+	...config,
 	{
-		files: ['*.test.js', 'test/**/*.js'],
-		languageOptions: {
-			globals: {
-				describe: 'readonly',
-				it: 'readonly',
-				before: 'readonly',
-				after: 'readonly',
-				beforeEach: 'readonly',
-				afterEach: 'readonly',
-			},
-		},
-	},
-	{
-		languageOptions: {
-			globals: {
-				...globals.node,
-				...globals.browser,
-			},
-		},
-	},
-	{
-		ignores: ['admin/', 'test/', 'node_modules/'],
+		// Specify files to exclude from linting
+		ignores: [
+			'.dev-server/',
+			'.vscode/',
+			'*.test.js',
+			'test/**/*.js',
+			'*.config.mjs',
+			'build',
+			'dist',
+			'admin/build',
+			'admin/words.js',
+			'admin/admin.d.ts',
+			'admin/blockly.js',
+			'**/adapter-config.d.ts',
+		],
 	},
 ];
