@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Tutti i file JS convertiti da tab a 4 spazi secondo lo standard @iobroker/eslint-config; parentesi delle arrow function corrette
+
 ### 1.8.18 (2026-03-26)
 * Setup linter ioBroker standard: eslint.config.mjs e prettier.config.mjs semplificati, delegano completamente a @iobroker/eslint-config
 

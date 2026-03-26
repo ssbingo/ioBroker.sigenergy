@@ -150,6 +150,9 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Alle JS-bestanden geconverteerd van tabs naar 4 spaties conform standaard @iobroker/eslint-config; pijlfunctie-haakjes gecorrigeerd
+
 ### 1.8.18 (2026-03-26)
 * Standaard ioBroker linter-setup: eslint.config.mjs en prettier.config.mjs vereenvoudigd, delegeren volledig aan @iobroker/eslint-config
 

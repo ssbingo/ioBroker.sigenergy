@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Wszystkie pliki JS przekonwertowane z tabulacji na 4 spacje zgodnie ze standardem @iobroker/eslint-config; nawiasy arrow functions poprawione
+
 ### 1.8.18 (2026-03-26)
 * Standardowa konfiguracja lintera ioBroker: uproszczono eslint.config.mjs i prettier.config.mjs, w pełni delegują do @iobroker/eslint-config
 

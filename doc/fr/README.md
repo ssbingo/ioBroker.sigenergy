@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Tous les fichiers JS convertis des tabulations à 4 espaces selon le standard @iobroker/eslint-config; parenthèses des fonctions fléchées corrigées
+
 ### 1.8.18 (2026-03-26)
 * Configuration linter ioBroker standard: eslint.config.mjs et prettier.config.mjs simplifiés, délèguent entièrement à @iobroker/eslint-config
 

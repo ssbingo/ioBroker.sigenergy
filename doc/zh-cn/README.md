@@ -150,6 +150,9 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+### 1.8.19 (2026-03-26)
+* 将所有JS文件从制表符转换为4空格缩进以符合@iobroker/eslint-config prettier标准；修正箭头函数参数括号
+
 ### 1.8.18 (2026-03-26)
 * 使用标准ioBroker linter配置：简化eslint.config.mjs和prettier.config.mjs，完全委托给@iobroker/eslint-config
 

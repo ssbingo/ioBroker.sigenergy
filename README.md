@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Convert all JS files from tabs to 4-space indentation to match standard @iobroker/eslint-config prettier settings; fix arrow function parameter parentheses
+
 ### 1.8.18 (2026-03-26)
 * Use standard ioBroker linter setup: simplify eslint.config.mjs and prettier.config.mjs to delegate fully to @iobroker/eslint-config; remove legacy .eslintrc/.prettierrc files
 

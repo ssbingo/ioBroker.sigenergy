@@ -150,6 +150,9 @@
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Всi JS-файли переведено з табуляцiй на 4 пробiли вiдповiдно до стандарту @iobroker/eslint-config; дужки стрiлочних функцiй виправлено
+
 ### 1.8.18 (2026-03-26)
 * Стандартне налаштування лiнтера ioBroker: спрощено eslint.config.mjs та prettier.config.mjs, повнiстю делегують до @iobroker/eslint-config
 

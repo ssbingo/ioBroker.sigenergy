@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.8.19 (2026-03-26)
+* Alle JS-Dateien von Tabs auf 4-Leerzeichen-Einrückung umgestellt (Standard @iobroker/eslint-config prettier); Pfeilfunktions-Parameter-Klammern angepasst
+
 ### 1.8.18 (2026-03-26)
 * Standard ioBroker Linter-Setup verwendet: eslint.config.mjs und prettier.config.mjs vereinfacht, delegieren vollständig an @iobroker/eslint-config; veraltete .eslintrc/.prettierrc Dateien entfernt
 

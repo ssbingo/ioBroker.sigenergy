@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "1.8.18",
+        "version": "1.8.19",
         "news": {
-            "1.8.18": {
-                "en": "Use standard ioBroker linter setup: simplify eslint.config.mjs and prettier.config.mjs to delegate fully to @iobroker/eslint-config; remove legacy .eslintrc/.prettierrc files",
-                "de": "Standard ioBroker Linter-Setup verwendet: eslint.config.mjs und prettier.config.mjs vereinfacht, delegieren vollständig an @iobroker/eslint-config; veraltete .eslintrc/.prettierrc Dateien entfernt",
-                "ru": "Используется стандартная настройка линтера ioBroker: упрощены eslint.config.mjs и prettier.config.mjs, полностью делегируют @iobroker/eslint-config",
-                "pt": "Configuração padrão do linter ioBroker: eslint.config.mjs e prettier.config.mjs simplificados, delegam totalmente ao @iobroker/eslint-config",
-                "nl": "Standaard ioBroker linter-setup: eslint.config.mjs en prettier.config.mjs vereenvoudigd, delegeren volledig aan @iobroker/eslint-config",
-                "fr": "Configuration linter ioBroker standard: eslint.config.mjs et prettier.config.mjs simplifiés, délèguent entièrement à @iobroker/eslint-config",
-                "it": "Setup linter ioBroker standard: eslint.config.mjs e prettier.config.mjs semplificati, delegano completamente a @iobroker/eslint-config",
-                "es": "Configuración estándar del linter ioBroker: eslint.config.mjs y prettier.config.mjs simplificados, delegan completamente a @iobroker/eslint-config",
-                "pl": "Standardowa konfiguracja lintera ioBroker: uproszczono eslint.config.mjs i prettier.config.mjs, w pełni delegują do @iobroker/eslint-config",
-                "uk": "Стандартне налаштування лiнтера ioBroker: спрощено eslint.config.mjs та prettier.config.mjs, повнiстю делегують до @iobroker/eslint-config",
-                "zh-cn": "使用标准ioBroker linter配置：简化eslint.config.mjs和prettier.config.mjs，完全委托给@iobroker/eslint-config"
+            "1.8.19": {
+                "en": "Convert all JS files from tabs to 4-space indentation to match standard @iobroker/eslint-config prettier settings; fix arrow function parameter parentheses",
+                "de": "Alle JS-Dateien von Tabs auf 4-Leerzeichen-Einrückung umgestellt (Standard @iobroker/eslint-config prettier); Pfeilfunktions-Parameter-Klammern angepasst",
+                "ru": "Все JS-файлы переведены с табуляции на 4 пробела согласно стандарту @iobroker/eslint-config; исправлены скобки параметров стрелочных функций",
+                "pt": "Todos os arquivos JS convertidos de tabs para 4 espaços conforme padrão @iobroker/eslint-config; parênteses de arrow functions corrigidos",
+                "nl": "Alle JS-bestanden geconverteerd van tabs naar 4 spaties conform standaard @iobroker/eslint-config; pijlfunctie-haakjes gecorrigeerd",
+                "fr": "Tous les fichiers JS convertis des tabulations à 4 espaces selon le standard @iobroker/eslint-config; parenthèses des fonctions fléchées corrigées",
+                "it": "Tutti i file JS convertiti da tab a 4 spazi secondo lo standard @iobroker/eslint-config; parentesi delle arrow function corrette",
+                "es": "Todos los archivos JS convertidos de tabs a 4 espacios según el estándar @iobroker/eslint-config; paréntesis de arrow functions corregidos",
+                "pl": "Wszystkie pliki JS przekonwertowane z tabulacji na 4 spacje zgodnie ze standardem @iobroker/eslint-config; nawiasy arrow functions poprawione",
+                "uk": "Всi JS-файли переведено з табуляцiй на 4 пробiли вiдповiдно до стандарту @iobroker/eslint-config; дужки стрiлочних функцiй виправлено",
+                "zh-cn": "将所有JS文件从制表符转换为4空格缩进以符合@iobroker/eslint-config prettier标准；修正箭头函数参数括号"
             }
         },
         "titleLang": {
