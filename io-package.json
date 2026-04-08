@@ -1,176 +1,176 @@
 {
-    "common": {
-        "name": "sigenergy",
-        "version": "1.9.0",
-        "news": {
-            "1.9.0": {
-                "en": "(ssbingo) Testing completed",
-                "de": "(ssbingo) Test abgeschlossen",
-                "ru": "(ssbingo) Тестирование завершено",
-                "pt": "(ssbingo) Teste concluído",
-                "nl": "(ssbingo) Test voltooid",
-                "fr": "(ssbingo) Test terminé",
-                "it": "(ssbingo) Test completato",
-                "es": "(ssbingo) Prueba completada",
-                "pl": "(ssbingo) Test zakończony",
-                "uk": "(ssbingo) Тестування завершено",
-                "zh-cn": "(ssbingo) 测试完成"
-            }
-        },
-        "titleLang": {
-            "en": "Sigenergy Solar System",
-            "de": "Sigenergy Solaranlage",
-            "ru": "Солнечная система Sigenergy",
-            "pt": "Sistema Solar Sigenergy",
-            "nl": "Sigenergy Zonne-energiesysteem",
-            "fr": "Système Solaire Sigenergy",
-            "it": "Sistema Solare Sigenergy",
-            "es": "Sistema Solar Sigenergy",
-            "pl": "System Słoneczny Sigenergy",
-            "uk": "Сонячна система Sigenergy",
-            "zh-cn": "Sigenergy 太阳能系统"
-        },
-        "desc": {
-            "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-            "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
-            "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
-            "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
-            "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
-            "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
-            "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
-            "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
-            "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
-            "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
-            "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
-        },
-        "authors": [
-            "ioBroker Community"
-        ],
-        "keywords": [
-            "sigenergy",
-            "solar",
-            "modbus",
-            "energy",
-            "inverter",
-            "battery",
-            "pv"
-        ],
-        "platform": "Javascript/Node.js",
-        "icon": "sigenergy.png",
-        "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
-        "enabled": true,
-        "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "energy",
-        "compact": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "supportCustoms": false,
-        "schedule": "",
-        "subscribable": false,
-        "supportedMessages": {
-            "custom": true
-        },
-        "tier": 2,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=7.6.20"
-            }
-        ],
-        "licenseInformation": {
-            "license": "MIT",
-            "type": "free"
-        }
+  "common": {
+    "name": "sigenergy",
+    "version": "1.9.1",
+    "news": {
+      "1.9.1": {
+        "en": "(ssbingo) Fixed admin UI: removed legacy index.html/index_m.html/words.js; fixed jsonData type in jsonConfig sendTo buttons",
+        "de": "(ssbingo) Admin-UI bereinigt: veraltete index.html/index_m.html/words.js entfernt; jsonData-Typ in jsonConfig sendTo-Buttons korrigiert",
+        "ru": "(ssbingo) Исправлен Admin-UI: удалены устаревшие файлы index.html/index_m.html/words.js; исправлен тип jsonData в кнопках sendTo конфигурации jsonConfig",
+        "pt": "(ssbingo) IU de administração corrigida: removidos ficheiros legados index.html/index_m.html/words.js; corrigido o tipo jsonData nos botões sendTo do jsonConfig",
+        "nl": "(ssbingo) Admin-UI gecorrigeerd: verouderde bestanden index.html/index_m.html/words.js verwijderd; jsonData-type in jsonConfig sendTo-knoppen gecorrigeerd",
+        "fr": "(ssbingo) Interface d'administration corrigée : suppression des fichiers obsolètes index.html/index_m.html/words.js ; correction du type jsonData dans les boutons sendTo de jsonConfig",
+        "it": "(ssbingo) Interfaccia di amministrazione corretta: rimossi i file legacy index.html/index_m.html/words.js; corretto il tipo jsonData nei pulsanti sendTo di jsonConfig",
+        "es": "(ssbingo) Interfaz de administración corregida: eliminados archivos obsoletos index.html/index_m.html/words.js; corregido el tipo jsonData en los botones sendTo de jsonConfig",
+        "pl": "(ssbingo) Poprawiono interfejs administratora: usunięto przestarzałe pliki index.html/index_m.html/words.js; naprawiono typ jsonData w przyciskach sendTo konfiguracji jsonConfig",
+        "uk": "(ssbingo) Виправлено Admin-UI: видалено застарілі файли index.html/index_m.html/words.js; виправлено тип jsonData у кнопках sendTo конфігурації jsonConfig",
+        "zh-cn": "(ssbingo) 修复管理界面：删除过时的 index.html/index_m.html/words.js 文件；修复 jsonConfig sendTo 按钮中的 jsonData 类型"
+      }
     },
-    "native": {
-        "connectionType": "tcp",
-        "tcpHost": "192.168.1.100",
-        "tcpPort": 502,
-        "serialPort": "/dev/ttyUSB0",
-        "serialBaudRate": 9600,
-        "serialDataBits": 8,
-        "serialParity": "none",
-        "serialStopBits": 1,
-        "plantId": 247,
-        "inverterId": 1,
-        "acChargerId": 2,
-        "dcChargerId": 3,
-        "pollInterval": 10000,
-        "timeout": 5000,
-        "hasAcCharger": false,
-        "hasDcCharger": false,
-        "hasBattery": true,
-        "hasPv": true,
-        "calcBatteryTimeToFull": true,
-        "calcBatteryTimeRemaining": true,
-        "calcBatteryDailyFull": true,
-        "calcBatteryCoverageTime": true,
-        "calcSelfConsumptionRate": true,
-        "calcAutarkyRate": true,
-        "calcPvYield": true,
-        "calcGridFeedIn": true,
-        "hasSigenMicro": false,
-        "sigenMicroScanFrom": 10,
-        "sigenMicroScanTo": 30,
-        "sigenMicroDevices": "[]"
+    "titleLang": {
+      "en": "Sigenergy Solar System",
+      "de": "Sigenergy Solaranlage",
+      "ru": "Солнечная система Sigenergy",
+      "pt": "Sistema Solar Sigenergy",
+      "nl": "Sigenergy Zonne-energiesysteem",
+      "fr": "Système Solaire Sigenergy",
+      "it": "Sistema Solare Sigenergy",
+      "es": "Sistema Solar Sigenergy",
+      "pl": "System Słoneczny Sigenergy",
+      "uk": "Сонячна система Sigenergy",
+      "zh-cn": "Sigenergy 太阳能系统"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "name": "Connection status",
-                "type": "boolean",
-                "role": "indicator.connected",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.scanProgress",
-            "type": "state",
-            "common": {
-                "name": "SigenMicro scan progress",
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.scanStatus",
-            "type": "state",
-            "common": {
-                "name": "SigenMicro scan status",
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": false,
-                "def": "idle"
-            },
-            "native": {}
-        }
-    ]
+    "desc": {
+      "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
+      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
+      "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
+      "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
+      "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
+      "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
+      "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
+      "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
+      "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
+      "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
+      "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
+    },
+    "authors": [
+      "ioBroker Community"
+    ],
+    "keywords": [
+      "sigenergy",
+      "solar",
+      "modbus",
+      "energy",
+      "inverter",
+      "battery",
+      "pv"
+    ],
+    "platform": "Javascript/Node.js",
+    "icon": "sigenergy.png",
+    "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
+    "enabled": true,
+    "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "energy",
+    "compact": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "supportCustoms": false,
+    "schedule": "",
+    "subscribable": false,
+    "supportedMessages": {
+      "custom": true
+    },
+    "tier": 2,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.20"
+      }
+    ],
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    }
+  },
+  "native": {
+    "connectionType": "tcp",
+    "tcpHost": "192.168.1.100",
+    "tcpPort": 502,
+    "serialPort": "/dev/ttyUSB0",
+    "serialBaudRate": 9600,
+    "serialDataBits": 8,
+    "serialParity": "none",
+    "serialStopBits": 1,
+    "plantId": 247,
+    "inverterId": 1,
+    "acChargerId": 2,
+    "dcChargerId": 3,
+    "pollInterval": 10000,
+    "timeout": 5000,
+    "hasAcCharger": false,
+    "hasDcCharger": false,
+    "hasBattery": true,
+    "hasPv": true,
+    "calcBatteryTimeToFull": true,
+    "calcBatteryTimeRemaining": true,
+    "calcBatteryDailyFull": true,
+    "calcBatteryCoverageTime": true,
+    "calcSelfConsumptionRate": true,
+    "calcAutarkyRate": true,
+    "calcPvYield": true,
+    "calcGridFeedIn": true,
+    "hasSigenMicro": false,
+    "sigenMicroScanFrom": 10,
+    "sigenMicroScanTo": 30,
+    "sigenMicroDevices": "[]"
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "name": "Connection status",
+        "type": "boolean",
+        "role": "indicator.connected",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.scanProgress",
+      "type": "state",
+      "common": {
+        "name": "SigenMicro scan progress",
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.scanStatus",
+      "type": "state",
+      "common": {
+        "name": "SigenMicro scan status",
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false,
+        "def": "idle"
+      },
+      "native": {}
+    }
+  ]
 }

@@ -150,6 +150,9 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+### 1.9.1 (2026-04-08)
+- (ssbingo) Interfaz de administración corregida: eliminados archivos obsoletos index.html/index_m.html/words.js; corregido el tipo jsonData en los botones sendTo de jsonConfig
+
 ### 1.9.0 (2026-03-26)
 - (ssbingo) Prueba completada
 

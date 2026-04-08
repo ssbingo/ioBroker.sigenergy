@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.9.1 (2026-04-08)
+- (ssbingo) Admin-UI bereinigt: veraltete index.html/index_m.html/words.js entfernt; jsonData-Typ in jsonConfig sendTo-Buttons korrigiert
+
 ### 1.9.0 (2026-03-26)
 - (ssbingo) Test abgeschlossen
 

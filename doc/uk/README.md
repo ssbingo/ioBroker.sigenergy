@@ -150,6 +150,9 @@
 ---
 
 ## Changelog
+### 1.9.1 (2026-04-08)
+- (ssbingo) Виправлено Admin-UI: видалено застарілі файли index.html/index_m.html/words.js; виправлено тип jsonData у кнопках sendTo конфігурації jsonConfig
+
 ### 1.9.0 (2026-03-26)
 - (ssbingo) Тестування завершено
 
