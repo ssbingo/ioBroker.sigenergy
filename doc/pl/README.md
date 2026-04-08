@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+### 1.9.2 (2026-04-08)
+- (ssbingo) Poprawki
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) Poprawiono interfejs administratora: usunięto przestarzałe pliki index.html/index_m.html/words.js; naprawiono typ jsonData w przyciskach sendTo konfiguracji jsonConfig
 

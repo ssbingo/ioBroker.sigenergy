@@ -150,6 +150,9 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+### 1.9.2 (2026-04-08)
+- (ssbingo) 修复
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) 修复管理界面：删除过时的 index.html/index_m.html/words.js 文件；修复 jsonConfig sendTo 按钮中的 jsonData 类型
 

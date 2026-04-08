@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.9.2 (2026-04-08)
+- (ssbingo) fixes
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) Fixed admin UI: removed legacy index.html/index_m.html/words.js; fixed jsonData type in jsonConfig sendTo buttons
 

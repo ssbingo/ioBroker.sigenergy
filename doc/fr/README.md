@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.9.2 (2026-04-08)
+- (ssbingo) Corrections
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) Interface d'administration corrigée : suppression des fichiers obsolètes index.html/index_m.html/words.js ; correction du type jsonData dans les boutons sendTo de jsonConfig
 

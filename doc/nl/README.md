@@ -150,6 +150,9 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+### 1.9.2 (2026-04-08)
+- (ssbingo) Bugfixes
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) Admin-UI gecorrigeerd: verouderde bestanden index.html/index_m.html/words.js verwijderd; jsonData-type in jsonConfig sendTo-knoppen gecorrigeerd
 

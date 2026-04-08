@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.9.2 (2026-04-08)
+- (ssbingo) Correzioni
+
 ### 1.9.1 (2026-04-08)
 - (ssbingo) Interfaccia di amministrazione corretta: rimossi i file legacy index.html/index_m.html/words.js; corretto il tipo jsonData nei pulsanti sendTo di jsonConfig
 
