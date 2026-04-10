@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.3",
+    "version": "1.9.4",
     "news": {
-      "1.9.3": {
-        "en": "(ssbingo) fix remove admin/index.html",
-        "de": "(ssbingo) Korrektur: admin/index.html entfernt",
-        "ru": "(ssbingo) Исправление: удалён файл admin/index.html",
-        "pt": "(ssbingo) Correção: removido admin/index.html",
-        "nl": "(ssbingo) Bugfix: admin/index.html verwijderd",
-        "fr": "(ssbingo) Correction : suppression de admin/index.html",
-        "it": "(ssbingo) Correzione: rimosso admin/index.html",
-        "es": "(ssbingo) Corrección: eliminado admin/index.html",
-        "pl": "(ssbingo) Poprawka: usunięto admin/index.html",
-        "uk": "(ssbingo) Виправлення: видалено admin/index.html",
-        "zh-cn": "(ssbingo) 修复：删除 admin/index.html"
+      "1.9.4": {
+        "en": "(ssbingo) fix: Changelog / adding CHANGELOG_OLD.md",
+        "de": "(ssbingo) Fix: Changelog / CHANGELOG_OLD.md hinzugefügt",
+        "ru": "(ssbingo) Исправление: Changelog / добавлен CHANGELOG_OLD.md",
+        "pt": "(ssbingo) Correção: Changelog / adicionado CHANGELOG_OLD.md",
+        "nl": "(ssbingo) Fix: Changelog / CHANGELOG_OLD.md toegevoegd",
+        "fr": "(ssbingo) Correction : Changelog / ajout de CHANGELOG_OLD.md",
+        "it": "(ssbingo) Correzione: Changelog / aggiunto CHANGELOG_OLD.md",
+        "es": "(ssbingo) Corrección: Changelog / añadido CHANGELOG_OLD.md",
+        "pl": "(ssbingo) Poprawka: Changelog / dodano CHANGELOG_OLD.md",
+        "uk": "(ssbingo) Виправлення: Changelog / додано CHANGELOG_OLD.md",
+        "zh-cn": "(ssbingo) 修复：Changelog / 添加 CHANGELOG_OLD.md"
       }
     },
     "titleLang": {
