@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) Korrektur: admin/index.html entfernt
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) Korrekturen
 

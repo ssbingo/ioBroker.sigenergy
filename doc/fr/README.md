@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) Correction : suppression de admin/index.html
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) Corrections
 

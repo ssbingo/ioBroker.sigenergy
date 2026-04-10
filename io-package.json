@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.2",
+    "version": "1.9.3",
     "news": {
-      "1.9.2": {
-        "en": "(ssbingo) fixes",
-        "de": "(ssbingo) Korrekturen",
-        "ru": "(ssbingo) Исправления",
-        "pt": "(ssbingo) Correções",
-        "nl": "(ssbingo) Bugfixes",
-        "fr": "(ssbingo) Corrections",
-        "it": "(ssbingo) Correzioni",
-        "es": "(ssbingo) Correcciones",
-        "pl": "(ssbingo) Poprawki",
-        "uk": "(ssbingo) Виправлення",
-        "zh-cn": "(ssbingo) 修复"
+      "1.9.3": {
+        "en": "(ssbingo) fix remove admin/index.html",
+        "de": "(ssbingo) Korrektur: admin/index.html entfernt",
+        "ru": "(ssbingo) Исправление: удалён файл admin/index.html",
+        "pt": "(ssbingo) Correção: removido admin/index.html",
+        "nl": "(ssbingo) Bugfix: admin/index.html verwijderd",
+        "fr": "(ssbingo) Correction : suppression de admin/index.html",
+        "it": "(ssbingo) Correzione: rimosso admin/index.html",
+        "es": "(ssbingo) Corrección: eliminado admin/index.html",
+        "pl": "(ssbingo) Poprawka: usunięto admin/index.html",
+        "uk": "(ssbingo) Виправлення: видалено admin/index.html",
+        "zh-cn": "(ssbingo) 修复：删除 admin/index.html"
       }
     },
     "titleLang": {

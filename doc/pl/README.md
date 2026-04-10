@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) Poprawka: usunięto admin/index.html
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) Poprawki
 

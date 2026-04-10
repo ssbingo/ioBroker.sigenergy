@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) Correzione: rimosso admin/index.html
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) Correzioni
 

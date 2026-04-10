@@ -150,6 +150,9 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) Corrección: eliminado admin/index.html
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) Correcciones
 

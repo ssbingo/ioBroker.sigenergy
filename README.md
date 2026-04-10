@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.9.3 (2026-04-08)
+- (ssbingo) fix remove admin/index.html
+
 ### 1.9.2 (2026-04-08)
 - (ssbingo) fixes
 
