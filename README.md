@@ -141,6 +141,9 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) fix: removed unused common.schedule from io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) fix: Changelog / adding CHANGELOG_OLD.md
 
@@ -159,3 +162,40 @@ Status and power readings for the DC charger.
 ### 1.8.23 (2026-03-26)
 - (ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests
 
+---
+
+## Documentation
+
+- 🇩🇪 [Deutsche Dokumentation](doc/de/README.md)
+- 🇷🇺 [Документация на русском](doc/ru/README.md)
+- 🇳🇱 [Nederlandse documentatie](doc/nl/README.md)
+- 🇫🇷 [Documentation française](doc/fr/README.md)
+- 🇮🇹 [Documentazione italiana](doc/it/README.md)
+- 🇪🇸 [Documentación en español](doc/es/README.md)
+- 🇵🇱 [Dokumentacja polska](doc/pl/README.md)
+- 🇵🇹 [Documentação portuguesa](doc/pt/README.md)
+- 🇺🇦 [Документація українською](doc/uk/README.md)
+- 🇨🇳 [简体中文文档](doc/zh-cn/README.md)
+
+## License
+MIT License
+
+Copyright (c) 2026 ssbingo <s.sternitzke@online.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

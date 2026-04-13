@@ -150,6 +150,9 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+### 1.9.5 (2026-04-08)
+- (ssbingo) 修复：从 io-package.json 中删除未使用的 common.schedule
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) 修复：Changelog / 添加 CHANGELOG_OLD.md
 

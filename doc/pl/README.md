@@ -150,6 +150,9 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Poprawka: usunięto nieużywany common.schedule z io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Poprawka: Changelog / dodano CHANGELOG_OLD.md
 

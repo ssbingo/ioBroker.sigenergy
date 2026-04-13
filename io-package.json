@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.4",
+    "version": "1.9.5",
     "news": {
-      "1.9.4": {
-        "en": "(ssbingo) fix: Changelog / adding CHANGELOG_OLD.md",
-        "de": "(ssbingo) Fix: Changelog / CHANGELOG_OLD.md hinzugefügt",
-        "ru": "(ssbingo) Исправление: Changelog / добавлен CHANGELOG_OLD.md",
-        "pt": "(ssbingo) Correção: Changelog / adicionado CHANGELOG_OLD.md",
-        "nl": "(ssbingo) Fix: Changelog / CHANGELOG_OLD.md toegevoegd",
-        "fr": "(ssbingo) Correction : Changelog / ajout de CHANGELOG_OLD.md",
-        "it": "(ssbingo) Correzione: Changelog / aggiunto CHANGELOG_OLD.md",
-        "es": "(ssbingo) Corrección: Changelog / añadido CHANGELOG_OLD.md",
-        "pl": "(ssbingo) Poprawka: Changelog / dodano CHANGELOG_OLD.md",
-        "uk": "(ssbingo) Виправлення: Changelog / додано CHANGELOG_OLD.md",
-        "zh-cn": "(ssbingo) 修复：Changelog / 添加 CHANGELOG_OLD.md"
+      "1.9.5": {
+        "en": "(ssbingo) fix: removed unused common.schedule from io-package.json",
+        "de": "(ssbingo) Fix: ungenutztes common.schedule aus io-package.json entfernt",
+        "ru": "(ssbingo) Исправление: удалён неиспользуемый атрибут common.schedule из io-package.json",
+        "pt": "(ssbingo) Correção: removido common.schedule não utilizado do io-package.json",
+        "nl": "(ssbingo) Fix: ongebruikt common.schedule verwijderd uit io-package.json",
+        "fr": "(ssbingo) Correction : suppression de common.schedule inutilisé dans io-package.json",
+        "it": "(ssbingo) Correzione: rimosso common.schedule inutilizzato da io-package.json",
+        "es": "(ssbingo) Corrección: eliminado common.schedule no utilizado de io-package.json",
+        "pl": "(ssbingo) Poprawka: usunięto nieużywany common.schedule z io-package.json",
+        "uk": "(ssbingo) Виправлення: видалено невикористаний common.schedule з io-package.json",
+        "zh-cn": "(ssbingo) 修复：从 io-package.json 中删除未使用的 common.schedule"
       }
     },
     "titleLang": {
@@ -68,7 +68,6 @@
       "config": "json"
     },
     "supportCustoms": false,
-    "schedule": "",
     "subscribable": false,
     "supportedMessages": {
       "custom": true

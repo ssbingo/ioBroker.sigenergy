@@ -141,6 +141,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Correction : suppression de common.schedule inutilisé dans io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Correction : Changelog / ajout de CHANGELOG_OLD.md
 

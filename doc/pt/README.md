@@ -150,6 +150,9 @@ Estado e medições de potência do carregador DC.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Correção: removido common.schedule não utilizado do io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Correção: Changelog / adicionado CHANGELOG_OLD.md
 

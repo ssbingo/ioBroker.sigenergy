@@ -150,6 +150,9 @@
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Исправление: удалён неиспользуемый атрибут common.schedule из io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Исправление: Changelog / добавлен CHANGELOG_OLD.md
 

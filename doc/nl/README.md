@@ -150,6 +150,9 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Fix: ongebruikt common.schedule verwijderd uit io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Fix: Changelog / CHANGELOG_OLD.md toegevoegd
 

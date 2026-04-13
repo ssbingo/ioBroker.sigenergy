@@ -150,6 +150,9 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Correzione: rimosso common.schedule inutilizzato da io-package.json
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Correzione: Changelog / aggiunto CHANGELOG_OLD.md
 

@@ -7,6 +7,8 @@ updates:
       day: "sunday"
       time: "00:05"
       timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 15
     assignees:
       - ssbingo
@@ -19,6 +21,8 @@ updates:
       day: "sunday"
       time: "00:05"
       timezone: Europe/Berlin
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 15
     assignees:
       - ssbingo

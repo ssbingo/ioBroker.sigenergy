@@ -141,6 +141,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.9.5 (2026-04-08)
+- (ssbingo) Fix: ungenutztes common.schedule aus io-package.json entfernt
+
 ### 1.9.4 (2026-04-08)
 - (ssbingo) Fix: Changelog / CHANGELOG_OLD.md hinzugefügt
 
