@@ -150,6 +150,10 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+### 1.9.6 (2026-04-16)
+- (ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd
+
+
 ### 1.9.5 (2026-04-08)
 - (ssbingo) Fix: ongebruikt common.schedule verwijderd uit io-package.json
 

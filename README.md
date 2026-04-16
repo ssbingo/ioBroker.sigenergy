@@ -141,6 +141,10 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+### 1.9.6 (2026-04-16)
+- (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
+
+
 ### 1.9.5 (2026-04-08)
 - (ssbingo) fix: removed unused common.schedule from io-package.json
 

@@ -200,6 +200,7 @@ class Sigenergy extends utils.Adapter {
             }
 
             await this._updateStatistics();
+            await this._updatePvStringPowers();
 
             this.setState('info.connection', true, true);
             this.log.debug(`[poll] cycle completed in ${Date.now() - _pollStart} ms`);
@@ -418,6 +419,12 @@ class Sigenergy extends utils.Adapter {
             'plant.essSoc': 'soc',
             'plant.essRatedEnergyCapacity': 'ratedCapacity',
             'plant.essDischargeSOC': 'cutoffSoc',
+            'inverter.pv1Voltage': 'pv1Voltage',
+            'inverter.pv1Current': 'pv1Current',
+            'inverter.pv2Voltage': 'pv2Voltage',
+            'inverter.pv2Current': 'pv2Current',
+            'inverter.pv3Voltage': 'pv3Voltage',
+            'inverter.pv3Current': 'pv3Current',
         };
         if (map[name] !== undefined) {
             this._currentData[map[name]] = value;
@@ -451,6 +458,26 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
+     * Calculate and write PV string powers (voltage × current / 1000)
+     */
+    async _updatePvStringPowers() {
+        const strings = [
+            { id: 'plant.pv1Power', v: 'pv1Voltage', i: 'pv1Current' },
+            { id: 'plant.pv2Power', v: 'pv2Voltage', i: 'pv2Current' },
+            { id: 'plant.pv3Power', v: 'pv3Voltage', i: 'pv3Current' },
+        ];
+
+        for (const s of strings) {
+            const voltage = this._currentData[s.v];
+            const current = this._currentData[s.i];
+            if (voltage !== undefined && current !== undefined) {
+                const power = Math.round((voltage * current) / 1000 * 1000) / 1000;
+                await this.setStateAsync(s.id, { val: power, ack: true });
+            }
+        }
+    }
+
+    /**
      * Create all ioBroker objects/states
      */
     async _createObjects() {
@@ -469,6 +496,27 @@ class Sigenergy extends utils.Adapter {
         for (const reg of PLANT_READ_REGISTERS) {
             await this._createStateFromRegister(reg);
         }
+
+        // Virtual PV string power states (calculated from voltage × current)
+        for (const pvState of [
+            { id: 'plant.pv1Power', desc: 'PV string 1 power' },
+            { id: 'plant.pv2Power', desc: 'PV string 2 power' },
+            { id: 'plant.pv3Power', desc: 'PV string 3 power' },
+        ]) {
+            await this.setObjectNotExistsAsync(pvState.id, {
+                type: 'state',
+                common: {
+                    name: pvState.desc,
+                    type: 'number',
+                    role: 'value.power',
+                    unit: 'kW',
+                    read: true,
+                    write: false,
+                },
+                native: {},
+            });
+        }
+
         for (const reg of INVERTER_READ_REGISTERS) {
             await this._createStateFromRegister(reg);
         }

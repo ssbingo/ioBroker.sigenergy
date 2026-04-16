@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.5",
+    "version": "1.9.6",
     "news": {
-      "1.9.5": {
-        "en": "(ssbingo) fix: removed unused common.schedule from io-package.json",
-        "de": "(ssbingo) Fix: ungenutztes common.schedule aus io-package.json entfernt",
-        "ru": "(ssbingo) Исправление: удалён неиспользуемый атрибут common.schedule из io-package.json",
-        "pt": "(ssbingo) Correção: removido common.schedule não utilizado do io-package.json",
-        "nl": "(ssbingo) Fix: ongebruikt common.schedule verwijderd uit io-package.json",
-        "fr": "(ssbingo) Correction : suppression de common.schedule inutilisé dans io-package.json",
-        "it": "(ssbingo) Correzione: rimosso common.schedule inutilizzato da io-package.json",
-        "es": "(ssbingo) Corrección: eliminado common.schedule no utilizado de io-package.json",
-        "pl": "(ssbingo) Poprawka: usunięto nieużywany common.schedule z io-package.json",
-        "uk": "(ssbingo) Виправлення: видалено невикористаний common.schedule з io-package.json",
-        "zh-cn": "(ssbingo) 修复：从 io-package.json 中删除未使用的 common.schedule"
+      "1.9.6": {
+        "en": "(ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "de": "(ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt",
+        "ru": "(ssbingo) Новое: добавлены вычисляемые состояния plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "pt": "(ssbingo) Novo: adicionados estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "nl": "(ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd",
+        "fr": "(ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "it": "(ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "es": "(ssbingo) Nuevo: añadidos estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "pl": "(ssbingo) Nowość: dodano obliczone stany plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "uk": "(ssbingo) Нове: додано обчислювані стани plant.pv1Power, plant.pv2Power, plant.pv3Power",
+        "zh-cn": "(ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power"
       }
     },
     "titleLang": {

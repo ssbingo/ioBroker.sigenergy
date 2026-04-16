@@ -141,6 +141,10 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+### 1.9.6 (2026-04-16)
+- (ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power
+
+
 ### 1.9.5 (2026-04-08)
 - (ssbingo) Correction : suppression de common.schedule inutilisé dans io-package.json
 
