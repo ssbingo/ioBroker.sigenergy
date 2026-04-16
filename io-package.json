@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.6",
+    "version": "1.9.7",
     "news": {
-      "1.9.6": {
+      "1.9.7": {
         "en": "(ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power",
         "de": "(ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt",
         "ru": "(ssbingo) Новое: добавлены вычисляемые состояния plant.pv1Power, plant.pv2Power, plant.pv3Power",

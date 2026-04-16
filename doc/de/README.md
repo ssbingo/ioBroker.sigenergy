@@ -141,6 +141,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+### 1.9.7 (2026-04-16)
+- (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt
+
+
 ### 1.9.6 (2026-04-16)
 - (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt
 

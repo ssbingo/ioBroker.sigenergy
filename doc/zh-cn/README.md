@@ -150,6 +150,10 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+### 1.9.7 (2026-04-16)
+- (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power
+
+
 ### 1.9.6 (2026-04-16)
 - (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power
 

@@ -150,6 +150,10 @@ Stato e misure di potenza del caricatore DC.
 ---
 
 ## Changelog
+### 1.9.7 (2026-04-16)
+- (ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power
+
+
 ### 1.9.6 (2026-04-16)
 - (ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power
 

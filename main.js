@@ -471,7 +471,7 @@ class Sigenergy extends utils.Adapter {
             const voltage = this._currentData[s.v];
             const current = this._currentData[s.i];
             if (voltage !== undefined && current !== undefined) {
-                const power = Math.round((voltage * current) / 1000 * 1000) / 1000;
+                const power = Math.round(((voltage * current) / 1000) * 1000) / 1000;
                 await this.setStateAsync(s.id, { val: power, ack: true });
             }
         }
