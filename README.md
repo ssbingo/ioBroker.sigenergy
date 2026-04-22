@@ -141,6 +141,12 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) fix: deduplicated connection/poll error logs to prevent log flooding and improve Sentry-readiness
+- (ssbingo) fix: shutdown guards and extendForeignObject prevent race conditions on unload and with admin UI
+- (ssbingo) fix: closed socket leak on Modbus timeout; testConnection pauses polling; removed empty control channels
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
 

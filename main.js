@@ -17,6 +17,7 @@ const {
 } = require('./lib/registers');
 const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
+const adapterVersion = require('./package.json').version;
 
 class Sigenergy extends utils.Adapter {
     /**
@@ -34,6 +35,10 @@ class Sigenergy extends utils.Adapter {
         this._currentData = {};
         this._objectsCreated = false;
         this._sigenMicroDevices = [];
+        // Shutdown guard — set to true in onUnload so pending async operations
+        // (modbus reads, scans, setTimeout-chains) can abort gracefully instead of
+        // calling setStateAsync on a stopped adapter.
+        this._stopped = false;
 
         this.on('ready', this.onReady.bind(this));
         this.on('message', this.onMessage.bind(this));
@@ -44,19 +49,11 @@ class Sigenergy extends utils.Adapter {
      * Adapter started
      */
     async onReady() {
-        this.log.info(`Sigenergy adapter v${this.pack ? this.pack.version : '?'} starting...`);
+        this.log.info(`Sigenergy adapter v${adapterVersion} starting...`);
         this.log.debug(
-            `[onReady] Config: connectionType=${this.config.connectionType},` +
-                ` host=${this.config.tcpHost}:${this.config.tcpPort},` +
-                ` plantId=${this.config.plantId || 247},` +
-                ` inverterId=${this.config.inverterId || 1},` +
-                ` pollInterval=${this.config.pollInterval}ms,` +
-                ` timeout=${this.config.timeout}ms`,
-        );
-        this.log.debug(
-            `Config: connectionType=${this.config.connectionType}, ` +
+            `[onReady] Config: connectionType=${this.config.connectionType}, ` +
                 `host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
-                `plantId=${this.config.plantId}, inverterId=${this.config.inverterId}, ` +
+                `plantId=${this.config.plantId || 247}, inverterId=${this.config.inverterId || 1}, ` +
                 `pollInterval=${this.config.pollInterval}ms, timeout=${this.config.timeout}ms`,
         );
         this.log.debug(
@@ -64,7 +61,7 @@ class Sigenergy extends utils.Adapter {
                 `acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}, ` +
                 `sigenMicro=${this.config.hasSigenMicro}`,
         );
-        this.setState('info.connection', false, true);
+        await this.setStateAsync('info.connection', { val: false, ack: true });
 
         // Load persisted SigenMicro device list from config
         try {
@@ -81,13 +78,18 @@ class Sigenergy extends utils.Adapter {
         }
 
         // Migration: remove visWidgets from adapter object if present from older versions.
+        // Uses extendForeignObjectAsync (merge) instead of setForeignObjectAsync (overwrite)
+        // to avoid racing with concurrent config changes from the admin UI.
         try {
             const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
             if (adapterObj && adapterObj.common && adapterObj.common.visWidgets) {
                 this.log.info('Migration: removing legacy visWidgets from adapter object');
-                delete adapterObj.common.visWidgets;
-                delete adapterObj.common.restartAdapters;
-                await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
+                await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                    common: {
+                        visWidgets: null,
+                        restartAdapters: null,
+                    },
+                });
                 this.log.info('Migration complete: visWidgets removed');
             }
         } catch (e) {
@@ -106,6 +108,9 @@ class Sigenergy extends utils.Adapter {
 
         // Create all objects first
         await this._createObjects();
+        if (this._stopped) {
+            return;
+        }
 
         // Connect and start polling
         await this._connectAndPoll();
@@ -115,19 +120,28 @@ class Sigenergy extends utils.Adapter {
      * Connect and start the polling loop
      */
     async _connectAndPoll() {
+        if (this._stopped) {
+            return;
+        }
         const target =
             this.config.connectionType === 'serial'
                 ? this.config.serialPort
                 : `${this.config.tcpHost}:${this.config.tcpPort}`;
         this.log.info(`Connecting to ${this.config.connectionType === 'serial' ? 'serial' : 'TCP'} ${target}...`);
         const connected = await this.modbus.connect();
+        if (this._stopped) {
+            return;
+        }
         if (connected) {
             this.log.info(`Successfully connected to ${target}`);
-            this.setState('info.connection', true, true);
+            await this.setStateAsync('info.connection', { val: true, ack: true });
             this._startPolling();
         } else {
-            this.log.warn(`Connection to ${target} failed — retrying in 30 seconds`);
-            this.setState('info.connection', false, true);
+            // Note: individual failure messages are deduplicated inside modbus.connect().
+            // We still log the retry intent once per attempt, but at DEBUG level after the
+            // first failure so we do not flood the log during a long outage.
+            this.log.debug(`Connection to ${target} failed — retrying in 30 seconds`);
+            await this.setStateAsync('info.connection', { val: false, ack: true });
             this._pollTimer = this.setTimeout(() => {
                 this._connectAndPoll();
             }, 30000);
@@ -140,6 +154,9 @@ class Sigenergy extends utils.Adapter {
      * Poll interval is clamped to [5 000 ms … 300 000 ms] (5 s – 5 min).
      */
     _startPolling() {
+        if (this._stopped) {
+            return;
+        }
         const MIN_INTERVAL = 5_000;
         const MAX_INTERVAL = 300_000;
         const raw = this.config.pollInterval || 10_000;
@@ -157,6 +174,9 @@ class Sigenergy extends utils.Adapter {
      * Called at the end of each _poll() cycle so only one cycle runs at a time.
      */
     _scheduleNextPoll() {
+        if (this._stopped) {
+            return;
+        }
         if (this._pollTimer) {
             this.clearTimeout(this._pollTimer);
         }
@@ -169,9 +189,18 @@ class Sigenergy extends utils.Adapter {
      * Main polling function - reads all registers
      */
     async _poll() {
+        if (this._stopped) {
+            return;
+        }
         if (!this.modbus || !this.modbus.connected) {
-            this.log.warn('Not connected, skipping poll — attempting reconnect in 5 seconds');
-            this.setState('info.connection', false, true);
+            // Deduplicate: only log the "skipping poll" message once per outage.
+            if (!this._pollWarnLogged) {
+                this.log.warn('Not connected, skipping poll — attempting reconnect in 5 seconds');
+                this._pollWarnLogged = true;
+            } else {
+                this.log.debug('Still not connected — waiting for reconnect cycle');
+            }
+            await this.setStateAsync('info.connection', { val: false, ack: true });
             if (this._pollTimer) {
                 this.clearTimeout(this._pollTimer);
                 this._pollTimer = null;
@@ -186,28 +215,61 @@ class Sigenergy extends utils.Adapter {
         try {
             const _t0 = Date.now();
             await this._readPlant();
+            if (this._stopped) {
+                return;
+            }
             this.log.debug(`[poll] plant read in ${Date.now() - _t0} ms`);
             await this._readInverter();
+            if (this._stopped) {
+                return;
+            }
 
             if (this.config.hasAcCharger) {
                 await this._readAcCharger();
+                if (this._stopped) {
+                    return;
+                }
             }
             if (this.config.hasDcCharger) {
                 await this._readDcCharger();
+                if (this._stopped) {
+                    return;
+                }
             }
             if (this.config.hasSigenMicro) {
                 await this._readSigenMicroDevices();
+                if (this._stopped) {
+                    return;
+                }
             }
 
             await this._updateStatistics();
             await this._updatePvStringPowers();
 
-            this.setState('info.connection', true, true);
+            await this.setStateAsync('info.connection', { val: true, ack: true });
+            // Successful cycle → reset dedup flags so next outage logs at ERROR level again.
+            this._pollErrorKey = null;
+            this._pollWarnLogged = false;
             this.log.debug(`[poll] cycle completed in ${Date.now() - _pollStart} ms`);
         } catch (err) {
-            this.log.error(`Poll error: ${err.message}`);
-            this.setState('info.connection', false, true);
-            this.modbus.connected = false;
+            // Deduplicate: first occurrence → ERROR (visible + Sentry-worthy).
+            // Identical subsequent errors → DEBUG, so a broken network does not flood the log.
+            const key = `poll:${err.code || err.message}`;
+            if (this._pollErrorKey !== key) {
+                this.log.error(`Poll error: ${err.message}`);
+                this._pollErrorKey = key;
+            } else {
+                this.log.debug(`Poll error (repeated): ${err.message}`);
+            }
+            await this.setStateAsync('info.connection', { val: false, ack: true });
+            // Actively close the half-broken socket instead of only flipping the flag —
+            // modbus-serial can leave the TCP connection in a partially open state after
+            // a timeout, which would cause all subsequent reads to fail until we reconnect.
+            try {
+                await this.modbus.disconnect();
+            } catch {
+                // ignore disconnect errors during error cleanup
+            }
         } finally {
             this._scheduleNextPoll();
         }
@@ -225,6 +287,9 @@ class Sigenergy extends utils.Adapter {
         );
 
         for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
             try {
                 this.log.debug(`[plant] FC04 addr=${group.startAddr} qty=${group.totalQty}`);
                 const raw = await this.modbus.readInputRegisters(plantId, group.startAddr, group.totalQty);
@@ -249,6 +314,9 @@ class Sigenergy extends utils.Adapter {
         );
 
         for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
             try {
                 const raw = await this.modbus.readInputRegisters(inverterId, group.startAddr, group.totalQty);
                 await this._processReadGroup(group, raw, 'inverter');
@@ -269,6 +337,9 @@ class Sigenergy extends utils.Adapter {
         this.log.debug(`Reading AC charger (slaveId=${acChargerId}): ${groups.length} group(s)`);
 
         for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
             try {
                 const raw = await this.modbus.readInputRegisters(acChargerId, group.startAddr, group.totalQty);
                 await this._processReadGroup(group, raw, 'acCharger');
@@ -289,6 +360,9 @@ class Sigenergy extends utils.Adapter {
         this.log.debug(`Reading DC charger via inverter (slaveId=${inverterId}): ${groups.length} group(s)`);
 
         for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
             try {
                 const raw = await this.modbus.readInputRegisters(inverterId, group.startAddr, group.totalQty);
                 await this._processReadGroup(group, raw, 'dcCharger');
@@ -311,6 +385,9 @@ class Sigenergy extends utils.Adapter {
         this.log.debug(`[SigenMicro] Reading ${activeDevices.length} active device(s): IDs ${_deviceIds}`);
 
         for (const device of activeDevices) {
+            if (this._stopped) {
+                return;
+            }
             const registers = getRegistersForDevice(device.slaveId);
             const batchSize = 30;
             const groups = this._buildReadGroups(registers, batchSize);
@@ -320,6 +397,9 @@ class Sigenergy extends utils.Adapter {
             );
 
             for (const group of groups) {
+                if (this._stopped) {
+                    return;
+                }
                 try {
                     const raw = await this.modbus.readInputRegisters(device.slaveId, group.startAddr, group.totalQty);
                     await this._processReadGroup(group, raw, `sigenmicro.${device.slaveId}`);
@@ -387,6 +467,9 @@ class Sigenergy extends utils.Adapter {
      */
     async _processReadGroup(group, rawData, _section) {
         for (const reg of group.registers) {
+            if (this._stopped) {
+                return;
+            }
             try {
                 const slice = rawData.slice(reg.offset, reg.offset + reg.qty);
                 if (slice.length < reg.qty) {
@@ -435,6 +518,9 @@ class Sigenergy extends utils.Adapter {
      * Update and write statistics states
      */
     async _updateStatistics() {
+        if (this._stopped) {
+            return;
+        }
         this.stats.update(this._currentData);
         const statsValues = this.stats.getStats(this._currentData, this.config);
 
@@ -451,6 +537,9 @@ class Sigenergy extends utils.Adapter {
         };
 
         for (const [id, val] of Object.entries(mapping)) {
+            if (this._stopped) {
+                return;
+            }
             if (val !== undefined && val !== null) {
                 await this.setStateAsync(id, { val, ack: true });
             }
@@ -461,6 +550,9 @@ class Sigenergy extends utils.Adapter {
      * Calculate and write PV string powers (voltage × current / 1000)
      */
     async _updatePvStringPowers() {
+        if (this._stopped) {
+            return;
+        }
         const strings = [
             { id: 'plant.pv1Power', v: 'pv1Voltage', i: 'pv1Current' },
             { id: 'plant.pv2Power', v: 'pv2Voltage', i: 'pv2Current' },
@@ -468,6 +560,9 @@ class Sigenergy extends utils.Adapter {
         ];
 
         for (const s of strings) {
+            if (this._stopped) {
+                return;
+            }
             const voltage = this._currentData[s.v];
             const current = this._currentData[s.i];
             if (voltage !== undefined && current !== undefined) {
@@ -484,66 +579,86 @@ class Sigenergy extends utils.Adapter {
         if (this._objectsCreated) {
             return;
         }
-        this._objectsCreated = true;
         this.log.debug('Creating ioBroker objects...');
 
-        await this._createChannel('plant', 'Power Plant Data');
-        await this._createChannel('plant.control', 'Plant Control');
-        await this._createChannel('inverter', 'Hybrid Inverter');
-        await this._createChannel('inverter.control', 'Inverter Control');
-        await this._createChannel('statistics', 'Calculated Statistics');
+        try {
+            await this._createChannel('plant', 'Power Plant Data');
+            await this._createChannel('inverter', 'Hybrid Inverter');
+            await this._createChannel('statistics', 'Calculated Statistics');
 
-        for (const reg of PLANT_READ_REGISTERS) {
-            await this._createStateFromRegister(reg);
-        }
-
-        // Virtual PV string power states (calculated from voltage × current)
-        for (const pvState of [
-            { id: 'plant.pv1Power', desc: 'PV string 1 power' },
-            { id: 'plant.pv2Power', desc: 'PV string 2 power' },
-            { id: 'plant.pv3Power', desc: 'PV string 3 power' },
-        ]) {
-            await this.setObjectNotExistsAsync(pvState.id, {
-                type: 'state',
-                common: {
-                    name: pvState.desc,
-                    type: 'number',
-                    role: 'value.power',
-                    unit: 'kW',
-                    read: true,
-                    write: false,
-                },
-                native: {},
-            });
-        }
-
-        for (const reg of INVERTER_READ_REGISTERS) {
-            await this._createStateFromRegister(reg);
-        }
-
-        if (this.config.hasAcCharger) {
-            this.log.debug('Creating AC charger objects');
-            await this._createChannel('acCharger', 'AC Charger');
-            await this._createChannel('acCharger.control', 'AC Charger Control');
-            for (const reg of AC_CHARGER_READ_REGISTERS) {
+            for (const reg of PLANT_READ_REGISTERS) {
+                if (this._stopped) {
+                    return;
+                }
                 await this._createStateFromRegister(reg);
             }
-        }
 
-        if (this.config.hasDcCharger) {
-            this.log.debug('Creating DC charger objects');
-            await this._createChannel('dcCharger', 'DC Charger');
-            for (const reg of DC_CHARGER_READ_REGISTERS) {
+            // Virtual PV string power states (calculated from voltage × current)
+            for (const pvState of [
+                { id: 'plant.pv1Power', desc: 'PV string 1 power' },
+                { id: 'plant.pv2Power', desc: 'PV string 2 power' },
+                { id: 'plant.pv3Power', desc: 'PV string 3 power' },
+            ]) {
+                if (this._stopped) {
+                    return;
+                }
+                await this.setObjectNotExistsAsync(pvState.id, {
+                    type: 'state',
+                    common: {
+                        name: pvState.desc,
+                        type: 'number',
+                        role: 'value.power',
+                        unit: 'kW',
+                        read: true,
+                        write: false,
+                    },
+                    native: {},
+                });
+            }
+
+            for (const reg of INVERTER_READ_REGISTERS) {
+                if (this._stopped) {
+                    return;
+                }
                 await this._createStateFromRegister(reg);
             }
-        }
 
-        if (this.config.hasSigenMicro) {
-            await this._createSigenMicroObjects();
-        }
+            if (this.config.hasAcCharger) {
+                this.log.debug('Creating AC charger objects');
+                await this._createChannel('acCharger', 'AC Charger');
+                for (const reg of AC_CHARGER_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createStateFromRegister(reg);
+                }
+            }
 
-        await this._createStatisticsStates();
-        this.log.debug('All ioBroker objects created successfully');
+            if (this.config.hasDcCharger) {
+                this.log.debug('Creating DC charger objects');
+                await this._createChannel('dcCharger', 'DC Charger');
+                for (const reg of DC_CHARGER_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createStateFromRegister(reg);
+                }
+            }
+
+            if (this.config.hasSigenMicro) {
+                await this._createSigenMicroObjects();
+            }
+
+            await this._createStatisticsStates();
+            // Set the flag ONLY after every object has been created successfully.
+            // If creation failed partway, the flag stays false so the next call retries.
+            this._objectsCreated = true;
+            this.log.debug('All ioBroker objects created successfully');
+        } catch (err) {
+            this._objectsCreated = false;
+            this.log.error(`Error creating objects: ${err.message}`);
+            throw err;
+        }
     }
 
     /**
@@ -715,6 +830,18 @@ class Sigenergy extends utils.Adapter {
 
         if (obj.command === 'testConnection') {
             this.log.info(`[testConnection] received from=${obj.from}, hasCallback=${obj.callback != null}`);
+
+            // Sigenergy devices typically accept only ONE simultaneous TCP connection
+            // on port 502. Opening a second connection while polling is active causes
+            // the existing connection to be dropped. We therefore pause the poll timer
+            // for the duration of the test, the same way _handleScanSigenMicro does it.
+            const wasPolling = !!this._pollTimer;
+            if (wasPolling) {
+                this.log.debug('[testConnection] Pausing poll timer for test duration');
+                this.clearTimeout(this._pollTimer);
+                this._pollTimer = null;
+            }
+
             const testModbus = new ModbusConnection(obj.message, {
                 debug: m => this.log.debug(m),
                 info: m => this.log.info(m),
@@ -737,6 +864,18 @@ class Sigenergy extends utils.Adapter {
                 ]);
             } catch (e) {
                 result = { success: false, message: e.message };
+            } finally {
+                // Always clean up the test connection — even if the outer Promise.race
+                // rejected on timeout, the underlying connectTCP may still be pending.
+                try {
+                    await testModbus.disconnect();
+                } catch {
+                    // ignore
+                }
+                if (wasPolling && !this._stopped) {
+                    this.log.debug('[testConnection] Resuming poll timer');
+                    this._scheduleNextPoll();
+                }
             }
             this.log.info(`[testConnection] result: success=${result.success}, msg='${result.message}'`);
             this.sendTo(obj.from, obj.command, result, obj.callback);
@@ -801,17 +940,24 @@ class Sigenergy extends utils.Adapter {
             this._pollTimer = null;
         }
 
+        // Pass a getter so the scanner can check the adapter shutdown state on every ID.
+        // This allows a long-running scan to abort immediately when onUnload is triggered,
+        // instead of continuing for several minutes and calling setStateAsync on a dead adapter.
         const scanner = new SigenMicroScanner(this.config, {
             debug: m => this.log.debug(m),
             info: m => this.log.info(m),
             warn: m => this.log.warn(m),
             error: m => this.log.error(m),
             setTimeout: (fn, ms) => this.setTimeout(fn, ms),
+            isStopped: () => this._stopped,
         });
 
         try {
             // Progress callback: writes to info.scanProgress state so admin UI can subscribe
             const progressCb = async text => {
+                if (this._stopped) {
+                    return;
+                }
                 try {
                     await this.setStateAsync('info.scanProgress', { val: text, ack: true });
                 } catch {
@@ -823,6 +969,9 @@ class Sigenergy extends utils.Adapter {
             await this.setStateAsync('info.scanProgress', { val: `Starting scan IDs ${from}–${to}…`, ack: true });
 
             const found = await scanner.scan(from, to, this.modbus, progressCb);
+            if (this._stopped) {
+                return;
+            }
             const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
             const merged = found.map(dev => {
                 const prev = existing.find(e => e.slaveId === dev.slaveId);
@@ -835,11 +984,11 @@ class Sigenergy extends utils.Adapter {
             if (fromJsonConfig) {
                 this._sigenMicroDevices = merged;
                 try {
-                    const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
-                    if (adapterObj) {
-                        adapterObj.native.sigenMicroDevices = JSON.stringify(merged);
-                        await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
-                    }
+                    // Use extendForeignObjectAsync (merge) instead of setForeignObjectAsync
+                    // (overwrite) to avoid clobbering concurrent changes from the admin UI.
+                    await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                        native: { sigenMicroDevices: JSON.stringify(merged) },
+                    });
                 } catch (saveErr) {
                     this.log.warn(`[scanSigenMicro] Could not auto-save: ${saveErr.message}`);
                 }
@@ -868,7 +1017,7 @@ class Sigenergy extends utils.Adapter {
                 this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
             }
         } finally {
-            if (wasPolling) {
+            if (wasPolling && !this._stopped) {
                 this.log.info('[scanSigenMicro] Resuming poll timer after scan');
                 this._scheduleNextPoll();
             }
@@ -886,14 +1035,15 @@ class Sigenergy extends utils.Adapter {
         this._sigenMicroDevices = devices;
 
         try {
-            // Persist into adapter native config
-            const adapterObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
-            if (adapterObj) {
-                adapterObj.native.sigenMicroDevices = JSON.stringify(devices);
-                await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, adapterObj);
-            }
+            // Use extendForeignObjectAsync instead of get+set to avoid a read-modify-write
+            // race with concurrent changes from the admin UI.
+            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                native: { sigenMicroDevices: JSON.stringify(devices) },
+            });
 
-            // Re-create objects for newly activated devices
+            // Re-create objects for newly activated devices. Reset flag BEFORE calling
+            // _createObjects so it actually runs through; _createObjects will set the
+            // flag at the end on success, or leave it false on partial failure.
             this._objectsCreated = false;
             await this._createObjects();
 
@@ -925,7 +1075,11 @@ class Sigenergy extends utils.Adapter {
                 value: p.path,
                 label: `${p.path}${p.manufacturer ? ` (${p.manufacturer})` : ''}`,
             }));
-        } catch {
+        } catch (err) {
+            // The 'serialport' package relies on a native build which can fail on some
+            // platforms. Surface the reason instead of silently returning an empty list,
+            // so the user sees why no ports appear in the admin dropdown.
+            this.log.warn(`Could not enumerate serial ports: ${err.message}`);
             return [];
         }
     }
@@ -936,6 +1090,10 @@ class Sigenergy extends utils.Adapter {
      * @param {Function} callback - Completion callback
      */
     async onUnload(callback) {
+        // Set the shutdown flag FIRST, before any async work, so any in-flight
+        // async operation (modbus read, scan, setTimeout chain) can see it and abort
+        // on its next loop iteration or guard check.
+        this._stopped = true;
         try {
             this.log.info('Sigenergy adapter shutting down...');
             if (this._pollTimer) {
@@ -947,7 +1105,11 @@ class Sigenergy extends utils.Adapter {
                 await this.modbus.disconnect();
                 this.log.debug('Modbus disconnected');
             }
-            this.setState('info.connection', false, true);
+            try {
+                await this.setStateAsync('info.connection', { val: false, ack: true });
+            } catch {
+                // Adapter may already be disconnected from the DB at this point — ignore.
+            }
             this.log.info('Sigenergy adapter stopped');
         } catch (e) {
             this.log.error(`Unload error: ${e.message}`);

@@ -150,6 +150,12 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) Poprawka: deduplikowane logi błędów połączenia/odpytywania zapobiegają zalewaniu logów i poprawiają gotowość do Sentry
+- (ssbingo) Poprawka: zabezpieczenia zamykania i extendForeignObject zapobiegają wyścigom przy wyładowaniu i z interfejsem admina
+- (ssbingo) Poprawka: naprawiony wyciek gniazda przy przekroczeniu limitu czasu Modbus; testConnection wstrzymuje teraz odpytywanie; usunięto puste kanały control
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nowość: dodano obliczone stany plant.pv1Power, plant.pv2Power, plant.pv3Power
 

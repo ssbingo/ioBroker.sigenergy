@@ -141,6 +141,12 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) Correctif : journaux d'erreurs de connexion/polling dédupliqués pour éviter l'inondation des logs et améliorer la compatibilité Sentry
+- (ssbingo) Correctif : protections à l'arrêt et extendForeignObject évitent les conditions de concurrence au déchargement et avec l'UI admin
+- (ssbingo) Correctif : fuite de socket corrigée sur timeout Modbus ; testConnection met maintenant le polling en pause ; canaux de contrôle vides supprimés
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power
 

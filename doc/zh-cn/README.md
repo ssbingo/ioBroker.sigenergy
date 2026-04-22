@@ -150,6 +150,12 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) 修复：去重连接/轮询错误日志以防止日志泛滥并改进 Sentry 兼容性
+- (ssbingo) 修复：关闭保护和 extendForeignObject 可防止卸载时以及与管理界面的竞争条件
+- (ssbingo) 修复：修复 Modbus 超时时的套接字泄漏；testConnection 现在会暂停轮询；移除空的 control 通道
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power
 

@@ -141,6 +141,12 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) Fix: Deduplizierte Connection-/Poll-Fehler-Logs verhindern Log-Flooding und verbessern die Sentry-Readiness
+- (ssbingo) Fix: Shutdown-Guards und extendForeignObject verhindern Race-Conditions beim Unload und mit der Admin-UI
+- (ssbingo) Fix: Socket-Leak bei Modbus-Timeout behoben; testConnection pausiert jetzt das Polling; leere Control-Channels entfernt
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt
 

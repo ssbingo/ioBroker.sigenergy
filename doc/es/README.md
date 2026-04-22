@@ -150,6 +150,12 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) Corrección: registros de error de conexión/polling deduplicados evitan inundación de logs y mejoran la compatibilidad con Sentry
+- (ssbingo) Corrección: protecciones de cierre y extendForeignObject previenen condiciones de carrera al descargar y con la UI de admin
+- (ssbingo) Corrección: fuga de socket en timeout de Modbus solucionada; testConnection ahora pausa el polling; canales de control vacíos eliminados
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nuevo: añadidos estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power
 

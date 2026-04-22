@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.7",
+    "version": "1.9.8",
     "news": {
-      "1.9.7": {
-        "en": "(ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "de": "(ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt",
-        "ru": "(ssbingo) Новое: добавлены вычисляемые состояния plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "pt": "(ssbingo) Novo: adicionados estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "nl": "(ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd",
-        "fr": "(ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "it": "(ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "es": "(ssbingo) Nuevo: añadidos estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "pl": "(ssbingo) Nowość: dodano obliczone stany plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "uk": "(ssbingo) Нове: додано обчислювані стани plant.pv1Power, plant.pv2Power, plant.pv3Power",
-        "zh-cn": "(ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power"
+      "1.9.8": {
+        "en": "(ssbingo) fix: error handling hardening for Sentry-readiness — deduplicated logs, shutdown guards, Modbus socket leak fix",
+        "de": "(ssbingo) Fix: Error-Handling gehärtet für Sentry-Readiness — deduplizierte Logs, Shutdown-Guards, Modbus-Socket-Leak behoben",
+        "ru": "(ssbingo) Исправление: улучшена обработка ошибок для готовности к Sentry — дедупликация логов, защита при выгрузке, устранена утечка сокета Modbus",
+        "pt": "(ssbingo) Correção: tratamento de erros reforçado para prontidão com Sentry — logs deduplicados, proteções de encerramento, correção de vazamento de socket Modbus",
+        "nl": "(ssbingo) Fix: foutafhandeling versterkt voor Sentry-gereedheid — gedupliceerde logs, shutdown-guards, Modbus-socket-lek verholpen",
+        "fr": "(ssbingo) Correctif : gestion des erreurs renforcée pour la compatibilité Sentry — journaux dédupliqués, protections à l'arrêt, correction de fuite de socket Modbus",
+        "it": "(ssbingo) Correzione: gestione errori rafforzata per la compatibilità Sentry — log deduplicati, protezioni di shutdown, correzione leak socket Modbus",
+        "es": "(ssbingo) Corrección: gestión de errores reforzada para compatibilidad con Sentry — registros deduplicados, protecciones de cierre, corrección de fuga de socket Modbus",
+        "pl": "(ssbingo) Poprawka: wzmocniona obsługa błędów z myślą o Sentry — deduplikowane logi, zabezpieczenia zamykania, naprawiony wyciek gniazda Modbus",
+        "uk": "(ssbingo) Виправлення: посилена обробка помилок для сумісності з Sentry — дедупліковані журнали, захист при зупинці, виправлено витік сокета Modbus",
+        "zh-cn": "(ssbingo) 修复：强化错误处理以适配 Sentry — 日志去重、关闭保护、修复 Modbus 套接字泄漏"
       }
     },
     "titleLang": {

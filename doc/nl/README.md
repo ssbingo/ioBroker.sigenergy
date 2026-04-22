@@ -150,6 +150,12 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) Fix: gedupliceerde connectie-/poll-foutlogs voorkomen log-flooding en verbeteren Sentry-gereedheid
+- (ssbingo) Fix: shutdown-guards en extendForeignObject voorkomen race-condities bij unload en met de admin UI
+- (ssbingo) Fix: socket-lek bij Modbus-timeout verholpen; testConnection pauzeert nu het polling; lege control-channels verwijderd
+
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd
 
