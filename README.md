@@ -181,6 +181,8 @@ Status and power readings for the DC charger.
 
 ---
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## Documentation
 
 - 🇩🇪 [Deutsche Dokumentation](doc/de/README.md)
