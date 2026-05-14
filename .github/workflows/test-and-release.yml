@@ -15,12 +15,26 @@ on:
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
+
+# npm 11.x bundled with Node.js 22.22.x is missing promise-retry from its
+# bundled deps, which breaks npm publish, npx, and any npm operation that
+# triggers arborist/rebuild. We replace it with npm@10.9.2 in every job
+# that uses Node 22.x on Linux before the ioBroker composite actions run.
 jobs:
   # Performs quick checks before the expensive test runs
   check-and-lint:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
+        run: |
+          NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
+          curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
+            | tar xz --strip-components=1 -C "$NPM_GLOBAL"
+          echo "npm version: $(npm --version)"
       - uses: ioBroker/testing-action-check@v1
         with:
           node-version: '22.x'
@@ -37,6 +51,16 @@ jobs:
         node-version: [22.x, 24.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Replace broken npm with npm@10 (Linux + Node 22.x only)
+        if: runner.os == 'Linux' && matrix.node-version == '22.x'
+        run: |
+          NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
+          curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
+            | tar xz --strip-components=1 -C "$NPM_GLOBAL"
+          echo "npm version: $(npm --version)"
       - uses: ioBroker/testing-action-adapter@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -63,7 +87,6 @@ jobs:
       - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
         run: |
           NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
-          echo "Replacing npm at $NPM_GLOBAL with npm@10.9.2..."
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
