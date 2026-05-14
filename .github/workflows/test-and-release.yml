@@ -60,8 +60,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-      - name: Fix npm (promise-retry MODULE_NOT_FOUND regression in Node 22.22.x)
-        run: npm install -g npm@latest
+      - name: Fix npm (promise-retry missing in Node 22.22.x bundle)
+        run: |
+          NODE_PREFIX=$(dirname $(dirname $(which node)))
+          NPM_MODS="$NODE_PREFIX/lib/node_modules/npm/node_modules"
+          if [ ! -d "$NPM_MODS/promise-retry" ]; then
+            echo "Patching npm: installing missing promise-retry..."
+            mkdir -p "$NPM_MODS/promise-retry"
+            curl -fsSL "https://registry.npmjs.org/promise-retry/-/promise-retry-2.0.1.tgz" \
+              | tar xz --strip-components=1 -C "$NPM_MODS/promise-retry"
+            if [ ! -d "$NPM_MODS/retry" ]; then
+              mkdir -p "$NPM_MODS/retry"
+              curl -fsSL "https://registry.npmjs.org/retry/-/retry-0.13.1.tgz" \
+                | tar xz --strip-components=1 -C "$NPM_MODS/retry"
+            fi
+            echo "npm patched"
+          fi
       - uses: ioBroker/testing-action-deploy@v1.4.3
         with:
           node-version: '22.x'
