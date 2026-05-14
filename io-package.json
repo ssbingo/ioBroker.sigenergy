@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.8",
+    "version": "1.9.9",
     "news": {
+      "1.9.9": {
+        "en": "(ssbingo) chore: dependency bumps (protobufjs, @protobufjs/utf8, fast-uri); requires Node.js >= 22 now",
+        "de": "(ssbingo) Abhängigkeits-Updates (protobufjs, @protobufjs/utf8, fast-uri); benötigt nun Node.js >= 22",
+        "ru": "(ssbingo) Обновление зависимостей (protobufjs, @protobufjs/utf8, fast-uri); теперь требуется Node.js >= 22",
+        "pt": "(ssbingo) Atualização de dependências (protobufjs, @protobufjs/utf8, fast-uri); agora requer Node.js >= 22",
+        "nl": "(ssbingo) Dependency-updates (protobufjs, @protobufjs/utf8, fast-uri); vereist nu Node.js >= 22",
+        "fr": "(ssbingo) Mises à jour des dépendances (protobufjs, @protobufjs/utf8, fast-uri) ; Node.js >= 22 requis désormais",
+        "it": "(ssbingo) Aggiornamento dipendenze (protobufjs, @protobufjs/utf8, fast-uri); ora richiede Node.js >= 22",
+        "es": "(ssbingo) Actualizaciones de dependencias (protobufjs, @protobufjs/utf8, fast-uri); ahora requiere Node.js >= 22",
+        "pl": "(ssbingo) Aktualizacje zależności (protobufjs, @protobufjs/utf8, fast-uri); wymagany teraz Node.js >= 22",
+        "uk": "(ssbingo) Оновлення залежностей (protobufjs, @protobufjs/utf8, fast-uri); тепер вимагає Node.js >= 22",
+        "zh-cn": "(ssbingo) 依赖更新（protobufjs、@protobufjs/utf8、fast-uri）；现在需要 Node.js >= 22"
+      },
       "1.9.8": {
         "en": "(ssbingo) fix: error handling hardening for Sentry-readiness — deduplicated logs, shutdown guards, Modbus socket leak fix",
         "de": "(ssbingo) Fix: Error-Handling gehärtet für Sentry-Readiness — deduplizierte Logs, Shutdown-Guards, Modbus-Socket-Leak behoben",

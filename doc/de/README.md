@@ -142,6 +142,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.9 (2026-05-14)
+- (ssbingo) Abhängigkeits-Updates via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) Benötigt nun Node.js >= 22
+
 ### 1.9.8 (2026-04-22)
 - (ssbingo) Fix: Deduplizierte Connection-/Poll-Fehler-Logs verhindern Log-Flooding und verbessern die Sentry-Readiness
 - (ssbingo) Fix: Shutdown-Guards und extendForeignObject verhindern Race-Conditions beim Unload und mit der Admin-UI

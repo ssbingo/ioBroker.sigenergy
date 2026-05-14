@@ -151,6 +151,10 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.9 (2026-05-14)
+- (ssbingo) 依赖更新 via Dependabot：protobufjs、@protobufjs/utf8、fast-uri
+- (ssbingo) 现在需要 Node.js >= 22
+
 ### 1.9.8 (2026-04-22)
 - (ssbingo) 修复：去重连接/轮询错误日志以防止日志泛滥并改进 Sentry 兼容性
 - (ssbingo) 修复：关闭保护和 extendForeignObject 可防止卸载时以及与管理界面的竞争条件

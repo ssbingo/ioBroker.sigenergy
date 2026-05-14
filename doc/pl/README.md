@@ -151,6 +151,10 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.9 (2026-05-14)
+- (ssbingo) Aktualizacje zależności via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) Wymagany teraz Node.js >= 22
+
 ### 1.9.8 (2026-04-22)
 - (ssbingo) Poprawka: deduplikowane logi błędów połączenia/odpytywania zapobiegają zalewaniu logów i poprawiają gotowość do Sentry
 - (ssbingo) Poprawka: zabezpieczenia zamykania i extendForeignObject zapobiegają wyścigom przy wyładowaniu i z interfejsem admina

@@ -142,8 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
-### **WORK IN PROGRESS**
-- (copilot) Adapter requires node.js >= 22 now
+### 1.9.9 (2026-05-14)
+- (ssbingo) chore: dependency bumps via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) chore: requires Node.js >= 22 now
 
 ### 1.9.8 (2026-04-22)
 - (ssbingo) fix: deduplicated connection/poll error logs to prevent log flooding and improve Sentry-readiness

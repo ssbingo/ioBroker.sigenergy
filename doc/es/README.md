@@ -151,6 +151,10 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 1.9.9 (2026-05-14)
+- (ssbingo) Actualizaciones de dependencias via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) Ahora requiere Node.js >= 22
+
 ### 1.9.8 (2026-04-22)
 - (ssbingo) Corrección: registros de error de conexión/polling deduplicados evitan inundación de logs y mejoran la compatibilidad con Sentry
 - (ssbingo) Corrección: protecciones de cierre y extendForeignObject previenen condiciones de carrera al descargar y con la UI de admin

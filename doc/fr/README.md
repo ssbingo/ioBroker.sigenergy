@@ -142,6 +142,10 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.9 (2026-05-14)
+- (ssbingo) Mises à jour des dépendances via Dependabot : protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) Node.js >= 22 requis désormais
+
 ### 1.9.8 (2026-04-22)
 - (ssbingo) Correctif : journaux d'erreurs de connexion/polling dédupliqués pour éviter l'inondation des logs et améliorer la compatibilité Sentry
 - (ssbingo) Correctif : protections à l'arrêt et extendForeignObject évitent les conditions de concurrence au déchargement et avec l'UI admin
