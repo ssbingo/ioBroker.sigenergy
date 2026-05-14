@@ -32,6 +32,7 @@ jobs:
       - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
         run: |
           NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
+          rm -rf "$NPM_GLOBAL" && mkdir -p "$NPM_GLOBAL"
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
@@ -58,6 +59,7 @@ jobs:
         if: runner.os == 'Linux' && matrix.node-version == '22.x'
         run: |
           NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
+          rm -rf "$NPM_GLOBAL" && mkdir -p "$NPM_GLOBAL"
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
@@ -87,6 +89,7 @@ jobs:
       - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
         run: |
           NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
+          rm -rf "$NPM_GLOBAL" && mkdir -p "$NPM_GLOBAL"
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
