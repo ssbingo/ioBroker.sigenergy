@@ -93,7 +93,7 @@ jobs:
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
-      - uses: ioBroker/testing-action-deploy@v1.4.3
+      - uses: ioBroker/testing-action-deploy@v1.5.0
         with:
           node-version: '22.x'
           github-token: ${{ secrets.GITHUB_TOKEN }}
