@@ -151,6 +151,10 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Atualização de dependências via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) Atualizações de CI — actions/setup-node@v6, testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) Atualização de dependências via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
 - (ssbingo) Agora requer Node.js >= 22

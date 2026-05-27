@@ -151,6 +151,10 @@
 
 ## Changelog
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Оновлення залежностей via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) Оновлення CI — actions/setup-node@v6, testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) Оновлення залежностей via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
 - (ssbingo) Тепер вимагає Node.js >= 22

@@ -142,6 +142,10 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Mises à jour des dépendances via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) Mises à jour CI — actions/setup-node@v6, testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) Mises à jour des dépendances via Dependabot : protobufjs, @protobufjs/utf8, fast-uri
 - (ssbingo) Node.js >= 22 requis désormais

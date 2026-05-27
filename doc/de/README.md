@@ -142,6 +142,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Abhängigkeits-Updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) CI-Aktualisierungen — actions/setup-node@v6, testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) Abhängigkeits-Updates via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
 - (ssbingo) Benötigt nun Node.js >= 22

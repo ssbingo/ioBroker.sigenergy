@@ -151,6 +151,10 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Dependabot 依赖更新 — @alcalzone/release-script* 5.2.0、@iobroker/eslint-config 2.3.4
+- (ssbingo) CI 更新 — actions/setup-node@v6、testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) 依赖更新 via Dependabot：protobufjs、@protobufjs/utf8、fast-uri
 - (ssbingo) 现在需要 Node.js >= 22

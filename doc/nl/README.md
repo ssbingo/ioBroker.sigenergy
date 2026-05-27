@@ -151,6 +151,10 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.10 (2026-05-27)
+- (ssbingo) Dependency-updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) CI-updates — actions/setup-node@v6, testing-action-deploy@v1
+
 ### 1.9.9 (2026-05-14)
 - (ssbingo) Dependency-updates via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
 - (ssbingo) Vereist nu Node.js >= 22
