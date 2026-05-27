@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) fix: CI pipeline fixes — Node.js 24, @types/node ^22.0.0, corrected package-lock.json; only latest entry in common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)
 

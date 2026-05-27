@@ -151,6 +151,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) Correção: ajustes no CI — Node.js 24, @types/node ^22.0.0, package-lock.json corrigido; apenas a entrada mais recente em common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) Correção: package-lock.json atualizado para @types/node ^22.0.0 (estava travado em 25.x)
 

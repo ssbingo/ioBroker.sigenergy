@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) Fix: CI-Pipeline-Korrekturen — Node.js 24, @types/node ^22.0.0, package-lock.json korrigiert; nur neuester Eintrag in common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) Fix: package-lock.json aktualisiert für @types/node ^22.0.0 (war auf 25.x eingefroren)
 

@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) Fix: CI-pipeline-correcties — Node.js 24, @types/node ^22.0.0, package-lock.json gecorrigeerd; alleen nieuwste vermelding in common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) Fix: package-lock.json bijgewerkt voor @types/node ^22.0.0 (was vergrendeld op 25.x)
 

@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) Poprawka: korekty potoku CI — Node.js 24, @types/node ^22.0.0, poprawiony package-lock.json; tylko najnowszy wpis w common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) Poprawka: package-lock.json zaktualizowany dla @types/node ^22.0.0 (był zablokowany na 25.x)
 

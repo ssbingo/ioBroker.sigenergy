@@ -1,85 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.13",
+    "version": "1.9.14",
     "news": {
-      "1.9.13": {
-        "en": "(ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)",
-        "de": "(ssbingo) Fix: package-lock.json aktualisiert für @types/node ^22.0.0 (war auf 25.x eingefroren)",
-        "ru": "(ssbingo) Исправление: обновлён package-lock.json для @types/node ^22.0.0 (был зафиксирован на 25.x)",
-        "pt": "(ssbingo) Correção: package-lock.json atualizado para @types/node ^22.0.0 (estava travado em 25.x)",
-        "nl": "(ssbingo) Fix: package-lock.json bijgewerkt voor @types/node ^22.0.0 (was vergrendeld op 25.x)",
-        "fr": "(ssbingo) Correctif : package-lock.json mis à jour pour @types/node ^22.0.0 (était verrouillé sur 25.x)",
-        "it": "(ssbingo) Fix: package-lock.json aggiornato per @types/node ^22.0.0 (era bloccato su 25.x)",
-        "es": "(ssbingo) Corrección: package-lock.json actualizado para @types/node ^22.0.0 (estaba bloqueado en 25.x)",
-        "pl": "(ssbingo) Poprawka: package-lock.json zaktualizowany dla @types/node ^22.0.0 (był zablokowany na 25.x)",
-        "uk": "(ssbingo) Виправлення: оновлено package-lock.json для @types/node ^22.0.0 (був зафіксований на 25.x)",
-        "zh-cn": "(ssbingo) 修复：更新 package-lock.json 以解析 @types/node ^22.0.0（之前锁定在 25.x）"
-      },
-      "1.9.12": {
-        "en": "(ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies",
-        "de": "(ssbingo) Fix: @types/node auf ^22.0.0 in devDependencies gepinnt",
-        "ru": "(ssbingo) Исправление: @types/node зафиксирован на ^22.0.0 в devDependencies",
-        "pt": "(ssbingo) Correção: @types/node fixado em ^22.0.0 nas devDependencies",
-        "nl": "(ssbingo) Fix: @types/node vastgezet op ^22.0.0 in devDependencies",
-        "fr": "(ssbingo) Correctif : @types/node épinglé à ^22.0.0 dans les devDependencies",
-        "it": "(ssbingo) Fix: @types/node fissato a ^22.0.0 nelle devDependencies",
-        "es": "(ssbingo) Corrección: @types/node fijado en ^22.0.0 en devDependencies",
-        "pl": "(ssbingo) Poprawka: @types/node przypięty do ^22.0.0 w devDependencies",
-        "uk": "(ssbingo) Виправлення: @types/node зафіксовано на ^22.0.0 у devDependencies",
-        "zh-cn": "(ssbingo) 修复：在 devDependencies 中将 @types/node 固定为 ^22.0.0"
-      },
-      "1.9.11": {
-        "en": "(ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs; add @types/node devDependency",
-        "de": "(ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs; @types/node als devDependency hinzugefügt",
-        "ru": "(ssbingo) Исправление: Node.js 24 для CI-заданий check-and-lint и deploy; добавлена devDependency @types/node",
-        "pt": "(ssbingo) Correção: Node.js 24 para jobs CI check-and-lint e deploy; adicionado @types/node como devDependency",
-        "nl": "(ssbingo) Fix: Node.js 24 voor CI-jobs check-and-lint en deploy; @types/node toegevoegd als devDependency",
-        "fr": "(ssbingo) Correctif : Node.js 24 pour les jobs CI check-and-lint et deploy ; ajout de @types/node en devDependency",
-        "it": "(ssbingo) Fix: Node.js 24 per i job CI check-and-lint e deploy; aggiunto @types/node come devDependency",
-        "es": "(ssbingo) Corrección: Node.js 24 para jobs CI check-and-lint y deploy; añadido @types/node como devDependency",
-        "pl": "(ssbingo) Poprawka: Node.js 24 dla zadań CI check-and-lint i deploy; dodano @types/node jako devDependency",
-        "uk": "(ssbingo) Виправлення: Node.js 24 для CI-задач check-and-lint і deploy; додано @types/node як devDependency",
-        "zh-cn": "(ssbingo) 修复：CI 的 check-and-lint 和 deploy 任务改用 Node.js 24；添加 @types/node devDependency"
-      },
-      "1.9.10": {
-        "en": "(ssbingo) chore: Dependabot bumps (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "de": "(ssbingo) Abhängigkeits-Updates via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "ru": "(ssbingo) Обновления зависимостей via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "pt": "(ssbingo) Atualizações de dependências via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "nl": "(ssbingo) Dependency-updates via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "fr": "(ssbingo) Mises à jour des dépendances via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4) ; CI : actions/setup-node@v6, testing-action-deploy@v1",
-        "it": "(ssbingo) Aggiornamento dipendenze via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "es": "(ssbingo) Actualizaciones de dependencias via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "pl": "(ssbingo) Aktualizacje zależności via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "uk": "(ssbingo) Оновлення залежностей via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
-        "zh-cn": "(ssbingo) Dependabot 依赖更新（@alcalzone/release-script* 5.2.0、@iobroker/eslint-config 2.3.4）；CI：actions/setup-node@v6、testing-action-deploy@v1"
-      },
-      "1.9.9": {
-        "en": "(ssbingo) chore: dependency bumps (protobufjs, @protobufjs/utf8, fast-uri); requires Node.js >= 22 now",
-        "de": "(ssbingo) Abhängigkeits-Updates (protobufjs, @protobufjs/utf8, fast-uri); benötigt nun Node.js >= 22",
-        "ru": "(ssbingo) Обновление зависимостей (protobufjs, @protobufjs/utf8, fast-uri); теперь требуется Node.js >= 22",
-        "pt": "(ssbingo) Atualização de dependências (protobufjs, @protobufjs/utf8, fast-uri); agora requer Node.js >= 22",
-        "nl": "(ssbingo) Dependency-updates (protobufjs, @protobufjs/utf8, fast-uri); vereist nu Node.js >= 22",
-        "fr": "(ssbingo) Mises à jour des dépendances (protobufjs, @protobufjs/utf8, fast-uri) ; Node.js >= 22 requis désormais",
-        "it": "(ssbingo) Aggiornamento dipendenze (protobufjs, @protobufjs/utf8, fast-uri); ora richiede Node.js >= 22",
-        "es": "(ssbingo) Actualizaciones de dependencias (protobufjs, @protobufjs/utf8, fast-uri); ahora requiere Node.js >= 22",
-        "pl": "(ssbingo) Aktualizacje zależności (protobufjs, @protobufjs/utf8, fast-uri); wymagany teraz Node.js >= 22",
-        "uk": "(ssbingo) Оновлення залежностей (protobufjs, @protobufjs/utf8, fast-uri); тепер вимагає Node.js >= 22",
-        "zh-cn": "(ssbingo) 依赖更新（protobufjs、@protobufjs/utf8、fast-uri）；现在需要 Node.js >= 22"
-      },
-      "1.9.8": {
-        "en": "(ssbingo) fix: error handling hardening for Sentry-readiness — deduplicated logs, shutdown guards, Modbus socket leak fix",
-        "de": "(ssbingo) Fix: Error-Handling gehärtet für Sentry-Readiness — deduplizierte Logs, Shutdown-Guards, Modbus-Socket-Leak behoben",
-        "ru": "(ssbingo) Исправление: улучшена обработка ошибок для готовности к Sentry — дедупликация логов, защита при выгрузке, устранена утечка сокета Modbus",
-        "pt": "(ssbingo) Correção: tratamento de erros reforçado para prontidão com Sentry — logs deduplicados, proteções de encerramento, correção de vazamento de socket Modbus",
-        "nl": "(ssbingo) Fix: foutafhandeling versterkt voor Sentry-gereedheid — gedupliceerde logs, shutdown-guards, Modbus-socket-lek verholpen",
-        "fr": "(ssbingo) Correctif : gestion des erreurs renforcée pour la compatibilité Sentry — journaux dédupliqués, protections à l'arrêt, correction de fuite de socket Modbus",
-        "it": "(ssbingo) Correzione: gestione errori rafforzata per la compatibilità Sentry — log deduplicati, protezioni di shutdown, correzione leak socket Modbus",
-        "es": "(ssbingo) Corrección: gestión de errores reforzada para compatibilidad con Sentry — registros deduplicados, protecciones de cierre, corrección de fuga de socket Modbus",
-        "pl": "(ssbingo) Poprawka: wzmocniona obsługa błędów z myślą o Sentry — deduplikowane logi, zabezpieczenia zamykania, naprawiony wyciek gniazda Modbus",
-        "uk": "(ssbingo) Виправлення: посилена обробка помилок для сумісності з Sentry — дедупліковані журнали, захист при зупинці, виправлено витік сокета Modbus",
-        "zh-cn": "(ssbingo) 修复：强化错误处理以适配 Sentry — 日志去重、关闭保护、修复 Modbus 套接字泄漏"
+      "1.9.14": {
+        "en": "(ssbingo) fix: CI pipeline fixes — Node.js 24, @types/node ^22.0.0, corrected package-lock.json; only latest entry in common.news",
+        "de": "(ssbingo) Fix: CI-Pipeline-Korrekturen — Node.js 24, @types/node ^22.0.0, package-lock.json korrigiert; nur neuester Eintrag in common.news",
+        "ru": "(ssbingo) Исправление: исправления CI — Node.js 24, @types/node ^22.0.0, исправлен package-lock.json; только последняя запись в common.news",
+        "pt": "(ssbingo) Correção: ajustes no CI — Node.js 24, @types/node ^22.0.0, package-lock.json corrigido; apenas a entrada mais recente em common.news",
+        "nl": "(ssbingo) Fix: CI-pipeline-correcties — Node.js 24, @types/node ^22.0.0, package-lock.json gecorrigeerd; alleen nieuwste vermelding in common.news",
+        "fr": "(ssbingo) Correctif : corrections pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corrigé ; seule la dernière entrée dans common.news",
+        "it": "(ssbingo) Fix: correzioni pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corretto; solo l'ultima voce in common.news",
+        "es": "(ssbingo) Corrección: ajustes en el pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corregido; solo la entrada más reciente en common.news",
+        "pl": "(ssbingo) Poprawka: korekty potoku CI — Node.js 24, @types/node ^22.0.0, poprawiony package-lock.json; tylko najnowszy wpis w common.news",
+        "uk": "(ssbingo) Виправлення: виправлення CI-конвеєра — Node.js 24, @types/node ^22.0.0, виправлено package-lock.json; лише останній запис у common.news",
+        "zh-cn": "(ssbingo) 修复：CI 流水线修复 — Node.js 24、@types/node ^22.0.0、修正 package-lock.json；common.news 仅保留最新条目"
       }
     },
     "titleLang": {

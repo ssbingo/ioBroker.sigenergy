@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 1.9.14 (2026-05-27)
+- (ssbingo) Виправлення: виправлення CI-конвеєра — Node.js 24, @types/node ^22.0.0, виправлено package-lock.json; лише останній запис у common.news
+
 ### 1.9.13 (2026-05-27)
 - (ssbingo) Виправлення: оновлено package-lock.json для @types/node ^22.0.0 (був зафіксований на 25.x)
 
