@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) Fix: package-lock.json bijgewerkt voor @types/node ^22.0.0 (was vergrendeld op 25.x)
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) Fix: @types/node vastgezet op ^22.0.0 in devDependencies
 

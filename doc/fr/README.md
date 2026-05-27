@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) Correctif : package-lock.json mis à jour pour @types/node ^22.0.0 (était verrouillé sur 25.x)
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) Correctif : @types/node épinglé à ^22.0.0 dans les devDependencies
 

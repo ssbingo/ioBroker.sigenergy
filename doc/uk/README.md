@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) Виправлення: оновлено package-lock.json для @types/node ^22.0.0 (був зафіксований на 25.x)
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) Виправлення: @types/node зафіксовано на ^22.0.0 у devDependencies
 

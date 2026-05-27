@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.12",
+    "version": "1.9.13",
     "news": {
+      "1.9.13": {
+        "en": "(ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)",
+        "de": "(ssbingo) Fix: package-lock.json aktualisiert für @types/node ^22.0.0 (war auf 25.x eingefroren)",
+        "ru": "(ssbingo) Исправление: обновлён package-lock.json для @types/node ^22.0.0 (был зафиксирован на 25.x)",
+        "pt": "(ssbingo) Correção: package-lock.json atualizado para @types/node ^22.0.0 (estava travado em 25.x)",
+        "nl": "(ssbingo) Fix: package-lock.json bijgewerkt voor @types/node ^22.0.0 (was vergrendeld op 25.x)",
+        "fr": "(ssbingo) Correctif : package-lock.json mis à jour pour @types/node ^22.0.0 (était verrouillé sur 25.x)",
+        "it": "(ssbingo) Fix: package-lock.json aggiornato per @types/node ^22.0.0 (era bloccato su 25.x)",
+        "es": "(ssbingo) Corrección: package-lock.json actualizado para @types/node ^22.0.0 (estaba bloqueado en 25.x)",
+        "pl": "(ssbingo) Poprawka: package-lock.json zaktualizowany dla @types/node ^22.0.0 (był zablokowany na 25.x)",
+        "uk": "(ssbingo) Виправлення: оновлено package-lock.json для @types/node ^22.0.0 (був зафіксований на 25.x)",
+        "zh-cn": "(ssbingo) 修复：更新 package-lock.json 以解析 @types/node ^22.0.0（之前锁定在 25.x）"
+      },
       "1.9.12": {
         "en": "(ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies",
         "de": "(ssbingo) Fix: @types/node auf ^22.0.0 in devDependencies gepinnt",

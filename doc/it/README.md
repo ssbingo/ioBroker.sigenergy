@@ -151,6 +151,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) Fix: package-lock.json aggiornato per @types/node ^22.0.0 (era bloccato su 25.x)
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) Fix: @types/node fissato a ^22.0.0 nelle devDependencies
 

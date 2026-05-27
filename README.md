@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies
 

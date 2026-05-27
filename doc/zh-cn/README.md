@@ -151,6 +151,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.13 (2026-05-27)
+- (ssbingo) 修复：更新 package-lock.json 以解析 @types/node ^22.0.0（之前锁定在 25.x）
+
 ### 1.9.12 (2026-05-27)
 - (ssbingo) 修复：在 devDependencies 中将 @types/node 固定为 ^22.0.0
 
