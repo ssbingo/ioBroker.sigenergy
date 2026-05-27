@@ -151,6 +151,10 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) 修复：CI 的 check-and-lint 和 deploy 任务改用 Node.js 24
+- (ssbingo) Chore：添加 @types/node devDependency
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) Dependabot 依赖更新 — @alcalzone/release-script* 5.2.0、@iobroker/eslint-config 2.3.4
 - (ssbingo) CI 更新 — actions/setup-node@v6、testing-action-deploy@v1

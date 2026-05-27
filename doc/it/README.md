@@ -151,6 +151,10 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) Fix: Node.js 24 per i job CI check-and-lint e deploy
+- (ssbingo) Chore: aggiunto @types/node come devDependency
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) Aggiornamento dipendenze via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
 - (ssbingo) Aggiornamenti CI — actions/setup-node@v6, testing-action-deploy@v1

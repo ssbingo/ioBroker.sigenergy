@@ -151,6 +151,10 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) Poprawka: Node.js 24 dla zadań CI check-and-lint i deploy
+- (ssbingo) Chore: dodano @types/node jako devDependency
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) Aktualizacje zależności via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
 - (ssbingo) Aktualizacje CI — actions/setup-node@v6, testing-action-deploy@v1

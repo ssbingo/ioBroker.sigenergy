@@ -151,6 +151,10 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) Fix: Node.js 24 voor CI-jobs check-and-lint en deploy
+- (ssbingo) Chore: @types/node toegevoegd als devDependency
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) Dependency-updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
 - (ssbingo) CI-updates — actions/setup-node@v6, testing-action-deploy@v1

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.10",
+    "version": "1.9.11",
     "news": {
+      "1.9.11": {
+        "en": "(ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs; add @types/node devDependency",
+        "de": "(ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs; @types/node als devDependency hinzugefügt",
+        "ru": "(ssbingo) Исправление: Node.js 24 для CI-заданий check-and-lint и deploy; добавлена devDependency @types/node",
+        "pt": "(ssbingo) Correção: Node.js 24 para jobs CI check-and-lint e deploy; adicionado @types/node como devDependency",
+        "nl": "(ssbingo) Fix: Node.js 24 voor CI-jobs check-and-lint en deploy; @types/node toegevoegd als devDependency",
+        "fr": "(ssbingo) Correctif : Node.js 24 pour les jobs CI check-and-lint et deploy ; ajout de @types/node en devDependency",
+        "it": "(ssbingo) Fix: Node.js 24 per i job CI check-and-lint e deploy; aggiunto @types/node come devDependency",
+        "es": "(ssbingo) Corrección: Node.js 24 para jobs CI check-and-lint y deploy; añadido @types/node como devDependency",
+        "pl": "(ssbingo) Poprawka: Node.js 24 dla zadań CI check-and-lint i deploy; dodano @types/node jako devDependency",
+        "uk": "(ssbingo) Виправлення: Node.js 24 для CI-задач check-and-lint і deploy; додано @types/node як devDependency",
+        "zh-cn": "(ssbingo) 修复：CI 的 check-and-lint 和 deploy 任务改用 Node.js 24；添加 @types/node devDependency"
+      },
       "1.9.10": {
         "en": "(ssbingo) chore: Dependabot bumps (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",
         "de": "(ssbingo) Abhängigkeits-Updates via Dependabot (@alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4); CI: actions/setup-node@v6, testing-action-deploy@v1",

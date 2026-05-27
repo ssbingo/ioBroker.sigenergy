@@ -142,6 +142,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs
+- (ssbingo) Chore: @types/node als devDependency hinzugefügt
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) Abhängigkeits-Updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
 - (ssbingo) CI-Aktualisierungen — actions/setup-node@v6, testing-action-deploy@v1

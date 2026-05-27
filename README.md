@@ -142,6 +142,10 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.11 (2026-05-27)
+- (ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs
+- (ssbingo) chore: add @types/node devDependency
+
 ### 1.9.10 (2026-05-27)
 - (ssbingo) chore: Dependabot bumps — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
 - (ssbingo) chore: CI updates — actions/setup-node@v6, testing-action-deploy@v1
