@@ -18,8 +18,9 @@ concurrency:
 
 # npm 11.x bundled with Node.js 22.22.x is missing promise-retry from its
 # bundled deps, which breaks npm publish, npx, and any npm operation that
-# triggers arborist/rebuild. We replace it with npm@10.9.2 in every job
-# that uses Node 22.x on Linux before the ioBroker composite actions run.
+# triggers arborist/rebuild. The workaround (replacing npm with npm@10.9.2)
+# is applied in adapter-tests for Linux + Node 22.x only. Jobs using
+# Node 24.x (check-and-lint, deploy) are unaffected and need no workaround.
 jobs:
   # Performs quick checks before the expensive test runs
   check-and-lint:
@@ -28,17 +29,10 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
-      - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
-        run: |
-          NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
-          rm -rf "$NPM_GLOBAL" && mkdir -p "$NPM_GLOBAL"
-          curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
-            | tar xz --strip-components=1 -C "$NPM_GLOBAL"
-          echo "npm version: $(npm --version)"
+          node-version: '24.x'
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           # Uncomment the following line if your adapter cannot be installed using 'npm ci'
           # install-command: 'npm install'
           lint: true
@@ -85,17 +79,10 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
-      - name: Replace broken npm with npm@10 (promise-retry bug in Node 22.22.x)
-        run: |
-          NPM_GLOBAL="$(dirname $(dirname $(which npm)))/lib/node_modules/npm"
-          rm -rf "$NPM_GLOBAL" && mkdir -p "$NPM_GLOBAL"
-          curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
-            | tar xz --strip-components=1 -C "$NPM_GLOBAL"
-          echo "npm version: $(npm --version)"
+          node-version: '24.x'
       - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           github-token: ${{ secrets.GITHUB_TOKEN }}
         # When using Sentry for error reporting, Sentry can be informed about new releases
         # To enable create a API-Token in Sentry (User settings, API keys)
