@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Fix: @types/node auf ^22.0.0 in devDependencies gepinnt
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs
 - (ssbingo) Chore: @types/node als devDependency hinzugefügt

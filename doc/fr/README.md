@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Correctif : @types/node épinglé à ^22.0.0 dans les devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Correctif : Node.js 24 pour les jobs CI check-and-lint et deploy
 - (ssbingo) Chore : ajout de @types/node en devDependency

@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs
 - (ssbingo) chore: add @types/node devDependency

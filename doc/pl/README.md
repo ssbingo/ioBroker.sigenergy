@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Poprawka: @types/node przypięty do ^22.0.0 w devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Poprawka: Node.js 24 dla zadań CI check-and-lint i deploy
 - (ssbingo) Chore: dodano @types/node jako devDependency

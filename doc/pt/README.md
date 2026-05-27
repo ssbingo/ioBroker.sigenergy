@@ -151,6 +151,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Correção: @types/node fixado em ^22.0.0 nas devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Correção: Node.js 24 para jobs CI check-and-lint e deploy
 - (ssbingo) Chore: adicionado @types/node como devDependency

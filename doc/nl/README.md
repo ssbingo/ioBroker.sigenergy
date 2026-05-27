@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Fix: @types/node vastgezet op ^22.0.0 in devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Fix: Node.js 24 voor CI-jobs check-and-lint en deploy
 - (ssbingo) Chore: @types/node toegevoegd als devDependency

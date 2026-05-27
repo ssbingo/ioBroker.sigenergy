@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.11",
+    "version": "1.9.12",
     "news": {
+      "1.9.12": {
+        "en": "(ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies",
+        "de": "(ssbingo) Fix: @types/node auf ^22.0.0 in devDependencies gepinnt",
+        "ru": "(ssbingo) Исправление: @types/node зафиксирован на ^22.0.0 в devDependencies",
+        "pt": "(ssbingo) Correção: @types/node fixado em ^22.0.0 nas devDependencies",
+        "nl": "(ssbingo) Fix: @types/node vastgezet op ^22.0.0 in devDependencies",
+        "fr": "(ssbingo) Correctif : @types/node épinglé à ^22.0.0 dans les devDependencies",
+        "it": "(ssbingo) Fix: @types/node fissato a ^22.0.0 nelle devDependencies",
+        "es": "(ssbingo) Corrección: @types/node fijado en ^22.0.0 en devDependencies",
+        "pl": "(ssbingo) Poprawka: @types/node przypięty do ^22.0.0 w devDependencies",
+        "uk": "(ssbingo) Виправлення: @types/node зафіксовано на ^22.0.0 у devDependencies",
+        "zh-cn": "(ssbingo) 修复：在 devDependencies 中将 @types/node 固定为 ^22.0.0"
+      },
       "1.9.11": {
         "en": "(ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs; add @types/node devDependency",
         "de": "(ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs; @types/node als devDependency hinzugefügt",

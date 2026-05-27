@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 1.9.12 (2026-05-27)
+- (ssbingo) Исправление: @types/node зафиксирован на ^22.0.0 в devDependencies
+
 ### 1.9.11 (2026-05-27)
 - (ssbingo) Исправление: Node.js 24 для CI-заданий check-and-lint и deploy
 - (ssbingo) Chore: добавлена devDependency @types/node
