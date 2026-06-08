@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.15",
+    "version": "1.9.16",
     "news": {
-      "1.9.15": {
-        "en": "(ssbingo) chore: add @tsconfig/node22 devDep; update testing-action-check to @v2; bump axios (security)",
-        "de": "(ssbingo) Chore: @tsconfig/node22 als devDep hinzugefügt; testing-action-check auf @v2 aktualisiert; axios-Sicherheits-Update",
-        "ru": "(ssbingo) Обслуживание: добавлена devDep @tsconfig/node22; testing-action-check обновлён до @v2; обновление безопасности axios",
-        "pt": "(ssbingo) Chore: adicionado @tsconfig/node22 como devDep; testing-action-check atualizado para @v2; atualização de segurança do axios",
-        "nl": "(ssbingo) Chore: @tsconfig/node22 toegevoegd als devDep; testing-action-check bijgewerkt naar @v2; axios beveiligingsupdate",
-        "fr": "(ssbingo) Chore : ajout de @tsconfig/node22 en devDep ; testing-action-check mis à jour vers @v2 ; mise à jour de sécurité axios",
-        "it": "(ssbingo) Chore: aggiunto @tsconfig/node22 come devDep; testing-action-check aggiornato a @v2; aggiornamento sicurezza axios",
-        "es": "(ssbingo) Chore: añadido @tsconfig/node22 como devDep; testing-action-check actualizado a @v2; actualización de seguridad de axios",
-        "pl": "(ssbingo) Chore: dodano @tsconfig/node22 jako devDep; testing-action-check zaktualizowany do @v2; aktualizacja bezpieczeństwa axios",
-        "uk": "(ssbingo) Обслуговування: додано @tsconfig/node22 як devDep; testing-action-check оновлено до @v2; оновлення безпеки axios",
-        "zh-cn": "(ssbingo) 维护：添加 @tsconfig/node22 devDep；testing-action-check 更新至 @v2；axios 安全更新"
+      "1.9.16": {
+        "en": "(ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1",
+        "de": "(ssbingo) Chore: devDependency @alcalzone/release-script auf ^5.2.1 aktualisiert",
+        "ru": "(ssbingo) Обслуживание: devDependency @alcalzone/release-script обновлена до ^5.2.1",
+        "pt": "(ssbingo) Chore: devDependency @alcalzone/release-script atualizada para ^5.2.1",
+        "nl": "(ssbingo) Chore: devDependency @alcalzone/release-script bijgewerkt naar ^5.2.1",
+        "fr": "(ssbingo) Chore : devDependency @alcalzone/release-script mise à jour vers ^5.2.1",
+        "it": "(ssbingo) Chore: devDependency @alcalzone/release-script aggiornata a ^5.2.1",
+        "es": "(ssbingo) Chore: devDependency @alcalzone/release-script actualizada a ^5.2.1",
+        "pl": "(ssbingo) Chore: devDependency @alcalzone/release-script zaktualizowana do ^5.2.1",
+        "uk": "(ssbingo) Обслуговування: devDependency @alcalzone/release-script оновлено до ^5.2.1",
+        "zh-cn": "(ssbingo) 维护：devDependency @alcalzone/release-script 更新至 ^5.2.1"
       }
     },
     "titleLang": {

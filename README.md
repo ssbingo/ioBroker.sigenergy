@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) chore: add @tsconfig/node22 devDependency (ioBroker template update)
 - (ssbingo) chore: update testing-action-check to @v2

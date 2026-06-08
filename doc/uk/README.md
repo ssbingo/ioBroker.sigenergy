@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Обслуговування: devDependency @alcalzone/release-script оновлено до ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Обслуговування: додано @tsconfig/node22 як devDependency (оновлення шаблону ioBroker)
 - (ssbingo) Обслуговування: testing-action-check оновлено до @v2

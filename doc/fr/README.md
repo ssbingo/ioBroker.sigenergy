@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Chore : devDependency @alcalzone/release-script mise à jour vers ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Chore : ajout de @tsconfig/node22 en devDependency (mise à jour du template ioBroker)
 - (ssbingo) Chore : testing-action-check mis à jour vers @v2

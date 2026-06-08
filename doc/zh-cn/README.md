@@ -151,6 +151,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) 维护：devDependency @alcalzone/release-script 更新至 ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) 维护：添加 @tsconfig/node22 devDependency（ioBroker 模板更新）
 - (ssbingo) 维护：testing-action-check 更新至 @v2

@@ -151,6 +151,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Chore: devDependency @alcalzone/release-script atualizada para ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Chore: adicionado @tsconfig/node22 como devDependency (atualização de template ioBroker)
 - (ssbingo) Chore: testing-action-check atualizado para @v2

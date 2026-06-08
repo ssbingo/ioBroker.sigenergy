@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Chore: devDependency @alcalzone/release-script bijgewerkt naar ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Chore: @tsconfig/node22 toegevoegd als devDependency (ioBroker template-update)
 - (ssbingo) Chore: testing-action-check bijgewerkt naar @v2

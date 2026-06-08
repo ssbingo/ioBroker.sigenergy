@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Chore: devDependency @alcalzone/release-script zaktualizowana do ^5.2.1
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Chore: dodano @tsconfig/node22 jako devDependency (aktualizacja szablonu ioBroker)
 - (ssbingo) Chore: testing-action-check zaktualizowany do @v2

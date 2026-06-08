@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.16 (2026-06-08)
+- (ssbingo) Chore: devDependency @alcalzone/release-script auf ^5.2.1 aktualisiert
+
 ### 1.9.15 (2026-06-08)
 - (ssbingo) Chore: @tsconfig/node22 als devDependency hinzugefügt (ioBroker Template-Update)
 - (ssbingo) Chore: testing-action-check auf @v2 aktualisiert
