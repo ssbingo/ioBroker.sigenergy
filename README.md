@@ -142,6 +142,11 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) chore: add @tsconfig/node22 devDependency (ioBroker template update)
+- (ssbingo) chore: update testing-action-check to @v2
+- (ssbingo) chore: bump axios (security fix)
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) fix: CI pipeline fixes — Node.js 24, @types/node ^22.0.0, corrected package-lock.json; only latest entry in common.news
 

@@ -151,6 +151,11 @@
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Обслуживание: добавлена devDependency @tsconfig/node22 (обновление шаблона ioBroker)
+- (ssbingo) Обслуживание: testing-action-check обновлён до @v2
+- (ssbingo) Обслуживание: обновление безопасности axios
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Исправление: исправления CI — Node.js 24, @types/node ^22.0.0, исправлен package-lock.json; только последняя запись в common.news
 

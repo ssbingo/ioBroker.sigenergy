@@ -142,6 +142,11 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Chore : ajout de @tsconfig/node22 en devDependency (mise à jour du template ioBroker)
+- (ssbingo) Chore : testing-action-check mis à jour vers @v2
+- (ssbingo) Chore : mise à jour de sécurité axios
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Correctif : corrections pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corrigé ; seule la dernière entrée dans common.news
 

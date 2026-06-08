@@ -151,6 +151,11 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Chore: aggiunto @tsconfig/node22 come devDependency (aggiornamento template ioBroker)
+- (ssbingo) Chore: testing-action-check aggiornato a @v2
+- (ssbingo) Chore: aggiornamento sicurezza axios
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Fix: correzioni pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corretto; solo l'ultima voce in common.news
 

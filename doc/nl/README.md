@@ -151,6 +151,11 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Chore: @tsconfig/node22 toegevoegd als devDependency (ioBroker template-update)
+- (ssbingo) Chore: testing-action-check bijgewerkt naar @v2
+- (ssbingo) Chore: axios beveiligingsupdate
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Fix: CI-pipeline-correcties — Node.js 24, @types/node ^22.0.0, package-lock.json gecorrigeerd; alleen nieuwste vermelding in common.news
 

@@ -151,6 +151,11 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Chore: dodano @tsconfig/node22 jako devDependency (aktualizacja szablonu ioBroker)
+- (ssbingo) Chore: testing-action-check zaktualizowany do @v2
+- (ssbingo) Chore: aktualizacja bezpieczeństwa axios
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Poprawka: korekty potoku CI — Node.js 24, @types/node ^22.0.0, poprawiony package-lock.json; tylko najnowszy wpis w common.news
 

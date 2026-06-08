@@ -142,6 +142,11 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.15 (2026-06-08)
+- (ssbingo) Chore: @tsconfig/node22 als devDependency hinzugefügt (ioBroker Template-Update)
+- (ssbingo) Chore: testing-action-check auf @v2 aktualisiert
+- (ssbingo) Chore: axios-Sicherheits-Update
+
 ### 1.9.14 (2026-05-27)
 - (ssbingo) Fix: CI-Pipeline-Korrekturen — Node.js 24, @types/node ^22.0.0, package-lock.json korrigiert; nur neuester Eintrag in common.news
 
