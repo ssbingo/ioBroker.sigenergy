@@ -96,4 +96,6 @@
     "💾 Save selection": "💾 Auswahl speichern",
     "Micro-inverter (MLPE) devices": "Mikro-Wechselrichter (MLPE)",
     "Define the Modbus slave-ID range to search for SigenMicro micro-inverters. Slave IDs already occupied by Plant, Inverter, or Charger are skipped automatically.": "Den Modbus-Slave-ID-Bereich für die SigenMicro-Suche festlegen. Bereits belegte IDs von Anlage, Wechselrichter und Ladegeräten werden automatisch übersprungen."
+,
+    "/dev/ttyUSB0": "/dev/ttyUSB0"
 }

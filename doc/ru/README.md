@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Исправление: удалён дублирующий длинный формат i18n (admin/i18n), добавлен ключ перевода /dev/ttyUSB0
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Обслуживание: devDependency @alcalzone/release-script обновлена до ^5.2.1
 

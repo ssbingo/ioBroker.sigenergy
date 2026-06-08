@@ -151,6 +151,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) 修复：删除重复的 i18n 长格式 (admin/i18n)，添加 /dev/ttyUSB0 翻译键
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) 维护：devDependency @alcalzone/release-script 更新至 ^5.2.1
 

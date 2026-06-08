@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Fix: dubbel i18n-lang formaat verwijderd (admin/i18n), vertaalsleutel /dev/ttyUSB0 toegevoegd
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore: devDependency @alcalzone/release-script bijgewerkt naar ^5.2.1
 

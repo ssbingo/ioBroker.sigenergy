@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) fix: remove duplicate i18n long format (admin/i18n), add /dev/ttyUSB0 translation key
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1
 

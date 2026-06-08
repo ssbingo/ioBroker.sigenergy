@@ -151,6 +151,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Corrección: eliminado formato largo i18n duplicado (admin/i18n), añadida clave de traducción /dev/ttyUSB0
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore: devDependency @alcalzone/release-script actualizada a ^5.2.1
 

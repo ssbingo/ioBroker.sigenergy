@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Correctif : suppression du format long i18n dupliqué (admin/i18n), ajout de la clé de traduction /dev/ttyUSB0
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore : devDependency @alcalzone/release-script mise à jour vers ^5.2.1
 

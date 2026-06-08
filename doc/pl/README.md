@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Poprawka: usunięty zduplikowany długi format i18n (admin/i18n), dodany klucz tłumaczenia /dev/ttyUSB0
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore: devDependency @alcalzone/release-script zaktualizowana do ^5.2.1
 

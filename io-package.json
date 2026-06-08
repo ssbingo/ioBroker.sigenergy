@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.16",
+    "version": "1.9.17",
     "news": {
-      "1.9.16": {
-        "en": "(ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1",
-        "de": "(ssbingo) Chore: devDependency @alcalzone/release-script auf ^5.2.1 aktualisiert",
-        "ru": "(ssbingo) Обслуживание: devDependency @alcalzone/release-script обновлена до ^5.2.1",
-        "pt": "(ssbingo) Chore: devDependency @alcalzone/release-script atualizada para ^5.2.1",
-        "nl": "(ssbingo) Chore: devDependency @alcalzone/release-script bijgewerkt naar ^5.2.1",
-        "fr": "(ssbingo) Chore : devDependency @alcalzone/release-script mise à jour vers ^5.2.1",
-        "it": "(ssbingo) Chore: devDependency @alcalzone/release-script aggiornata a ^5.2.1",
-        "es": "(ssbingo) Chore: devDependency @alcalzone/release-script actualizada a ^5.2.1",
-        "pl": "(ssbingo) Chore: devDependency @alcalzone/release-script zaktualizowana do ^5.2.1",
-        "uk": "(ssbingo) Обслуговування: devDependency @alcalzone/release-script оновлено до ^5.2.1",
-        "zh-cn": "(ssbingo) 维护：devDependency @alcalzone/release-script 更新至 ^5.2.1"
+      "1.9.17": {
+        "en": "(ssbingo) fix: remove duplicate i18n long format, add /dev/ttyUSB0 translation key (resolves E5600, W5612)",
+        "de": "(ssbingo) Fix: doppeltes i18n-Langformat entfernt, /dev/ttyUSB0-Übersetzungsschlüssel hinzugefügt (löst E5600, W5612)",
+        "ru": "(ssbingo) Исправление: удалён дублирующий длинный формат i18n, добавлен ключ перевода /dev/ttyUSB0 (исправляет E5600, W5612)",
+        "pt": "(ssbingo) Correção: removido formato longo i18n duplicado, adicionada chave de tradução /dev/ttyUSB0 (resolve E5600, W5612)",
+        "nl": "(ssbingo) Fix: dubbel i18n-lang formaat verwijderd, vertaalsleutel /dev/ttyUSB0 toegevoegd (lost E5600, W5612 op)",
+        "fr": "(ssbingo) Correctif : suppression du format long i18n en double, ajout de la clé de traduction /dev/ttyUSB0 (résout E5600, W5612)",
+        "it": "(ssbingo) Fix: rimosso formato lungo i18n duplicato, aggiunta chiave di traduzione /dev/ttyUSB0 (risolve E5600, W5612)",
+        "es": "(ssbingo) Corrección: eliminado formato largo i18n duplicado, añadida clave de traducción /dev/ttyUSB0 (resuelve E5600, W5612)",
+        "pl": "(ssbingo) Poprawka: usunięty zduplikowany długi format i18n, dodany klucz tłumaczenia /dev/ttyUSB0 (rozwiązuje E5600, W5612)",
+        "uk": "(ssbingo) Виправлення: видалено дублюючий довгий формат i18n, додано ключ перекладу /dev/ttyUSB0 (вирішує E5600, W5612)",
+        "zh-cn": "(ssbingo) 修复：删除重复的 i18n 长格式，添加 /dev/ttyUSB0 翻译键（解决 E5600、W5612）"
       }
     },
     "titleLang": {

@@ -151,6 +151,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Fix: rimosso formato lungo i18n duplicato (admin/i18n), aggiunta chiave di traduzione /dev/ttyUSB0
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore: devDependency @alcalzone/release-script aggiornata a ^5.2.1
 

@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) Fix: doppeltes i18n-Langformat entfernt (admin/i18n), /dev/ttyUSB0-Übersetzungsschlüssel hinzugefügt
+
 ### 1.9.16 (2026-06-08)
 - (ssbingo) Chore: devDependency @alcalzone/release-script auf ^5.2.1 aktualisiert
 
