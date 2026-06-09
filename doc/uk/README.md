@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 2.1.1 (2026-06-09)
+- (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
+
 ### 2.1.0 (2026-06-09)
 - (ssbingo) Функція: розширена статистика — статистика установки (30088–30097), розумні навантаження 1–24 (30098–30193), накопичена енергія (30194–30271), зворотний зв'язок регулювання (30613–30619), параметри коду мережі (40049–40068)
 

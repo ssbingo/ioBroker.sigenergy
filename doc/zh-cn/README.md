@@ -151,6 +151,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.1.1 (2026-06-09)
+- (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
+
 ### 2.1.0 (2026-06-09)
 - (ssbingo) 功能：扩展统计 — 电站统计（30088–30097），智能负载 1–24（30098–30193），累计能量（30194–30271），调节反馈（30613–30619），电网代码参数（40049–40068）
 

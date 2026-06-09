@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.1.1 (2026-06-09)
+- (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
+
 ### 2.1.0 (2026-06-09)
 - (ssbingo) Functie: uitgebreide statistieken — installatiestatistieken (30088–30097), slimme belastingen 1–24 (30098–30193), gecumuleerde energie (30194–30271), regelingsfeedback (30613–30619), netcodeparameters (40049–40068)
 

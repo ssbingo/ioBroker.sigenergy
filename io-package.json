@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "news": {
-      "2.1.0": {
+      "2.1.1": {
+        "en": "(ssbingo) fix: wire feature flags enableSmartLoads, enableCumulativeEnergy, enableGridCode into polling and object creation; add Extended Registers admin tab",
+        "de": "(ssbingo) Fix: Feature-Flags enableSmartLoads, enableCumulativeEnergy, enableGridCode in Polling und Objekt-Erstellung verdrahtet; Admin-Tab 'Erweiterte Register' hinzugefügt",
+        "ru": "(ssbingo) Исправление: флаги функций enableSmartLoads, enableCumulativeEnergy, enableGridCode подключены к опросу и созданию объектов; добавлена вкладка 'Расширенные регистры'",
+        "pt": "(ssbingo) Correção: flags de funcionalidade enableSmartLoads, enableCumulativeEnergy, enableGridCode integradas no polling e criação de objetos; separador 'Registos Avançados' adicionado",
+        "nl": "(ssbingo) Fix: feature flags enableSmartLoads, enableCumulativeEnergy, enableGridCode gekoppeld aan polling en objectcreatie; tabblad 'Uitgebreide registers' toegevoegd",
+        "fr": "(ssbingo) Correctif : indicateurs de fonctionnalité enableSmartLoads, enableCumulativeEnergy, enableGridCode intégrés au polling et à la création d'objets ; onglet 'Registres étendus' ajouté",
+        "it": "(ssbingo) Fix: flag di funzionalità enableSmartLoads, enableCumulativeEnergy, enableGridCode collegati al polling e alla creazione di oggetti; scheda 'Registri estesi' aggiunta",
+        "es": "(ssbingo) Corrección: marcadores de función enableSmartLoads, enableCumulativeEnergy, enableGridCode integrados en el sondeo y la creación de objetos; pestaña 'Registros extendidos' añadida",
+        "pl": "(ssbingo) Poprawka: flagi funkcji enableSmartLoads, enableCumulativeEnergy, enableGridCode podłączone do odpytywania i tworzenia obiektów; dodano zakładkę 'Rozszerzone rejestry'",
+        "uk": "(ssbingo) Виправлення: прапорці функцій enableSmartLoads, enableCumulativeEnergy, enableGridCode підключені до опитування та створення об'єктів; додано вкладку 'Розширені регістри'",
+        "zh-cn": "(ssbingo) 修复：将功能标志 enableSmartLoads、enableCumulativeEnergy、enableGridCode 接入轮询和对象创建；添加"扩展寄存器"管理选项卡"
+      }
+    },
         "en": "(ssbingo) feat: extended statistics — plant statistics 30088–30097, smart loads 1–24 (30098–30193), cumulative energy (30194–30271), adjustment feedback (30613–30619), grid code parameters (40049–40068)",
         "de": "(ssbingo) Feat: Erweiterte Statistik — Plant-Statistik 30088–30097, Smart-Loads 1–24 (30098–30193), Kumulierte Energie (30194–30271), Regelungs-Feedback (30613–30619), Grid-Code-Parameter (40049–40068)",
         "ru": "(ssbingo) Функция: расширенная статистика — статистика установки 30088–30097, умные нагрузки 1–24 (30098–30193), накопленная энергия (30194–30271), обратная связь регулировки (30613–30619), параметры кода сети (40049–40068)",

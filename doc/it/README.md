@@ -151,6 +151,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.1.1 (2026-06-09)
+- (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
+
 ### 2.1.0 (2026-06-09)
 - (ssbingo) Funzionalità: statistiche estese — statistiche impianto (30088–30097), carichi intelligenti 1–24 (30098–30193), energia cumulata (30194–30271), feedback regolazione (30613–30619), parametri codice rete (40049–40068)
 

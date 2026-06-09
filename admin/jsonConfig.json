@@ -467,6 +467,62 @@
         }
       }
     },
+    "extended": {
+      "type": "panel",
+      "label": "Extended Registers",
+      "items": {
+        "_extHeader": {
+          "type": "staticText",
+          "text": "Optional register groups for V2.6–V2.9 features. Enable only if your Sigenergy firmware version supports the corresponding registers. Enabling unsupported registers may cause harmless Modbus warnings.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_divider_ext1": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "enableSmartLoads": {
+          "type": "checkbox",
+          "label": "Smart Loads 1–24 (V2.6)",
+          "help": "Read total consumption and power for up to 24 smart load outputs (registers 30098–30193)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "enableCumulativeEnergy": {
+          "type": "checkbox",
+          "label": "Cumulative Energy Statistics (V2.7/V2.8)",
+          "help": "Read cumulative energy totals for ESS, EVDC, grid import/export, 3rd party inverter (registers 30194–30271)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "enableGridCode": {
+          "type": "checkbox",
+          "label": "Grid Code Parameters (V2.8)",
+          "help": "Read/write LVRT, HVRT and frequency response settings (registers 40049–40068)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        }
+      }
+    },
     "statistics": {
       "type": "panel",
       "label": "Statistics",

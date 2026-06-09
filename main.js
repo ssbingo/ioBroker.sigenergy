@@ -3,7 +3,7 @@
 /*
  * ioBroker Sigenergy Adapter
  * Modbus TCP/RTU adapter for Sigenergy solar energy systems
- * Protocol: Sigenergy Modbus V2.5
+ * Protocol: Sigenergy Modbus V2.9
  */
 
 const utils = require('@iobroker/adapter-core');
@@ -60,6 +60,11 @@ class Sigenergy extends utils.Adapter {
             `Components: battery=${this.config.hasBattery}, pv=${this.config.hasPv}, ` +
                 `acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}, ` +
                 `sigenMicro=${this.config.hasSigenMicro}`,
+        );
+        this.log.debug(
+            `V2.x features: smartLoads=${this.config.enableSmartLoads}, ` +
+                `cumulativeEnergy=${this.config.enableCumulativeEnergy}, ` +
+                `gridCode=${this.config.enableGridCode}`,
         );
         await this.setStateAsync('info.connection', { val: false, ack: true });
 
@@ -281,9 +286,10 @@ class Sigenergy extends utils.Adapter {
     async _readPlant() {
         const plantId = this.config.plantId || 247;
         const batchSize = 120;
-        const groups = this._buildReadGroups(PLANT_READ_REGISTERS, batchSize);
+        const activeRegs = PLANT_READ_REGISTERS.filter(r => !r.feature || this.config[r.feature]);
+        const groups = this._buildReadGroups(activeRegs, batchSize);
         this.log.debug(
-            `Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${PLANT_READ_REGISTERS.length} registers`,
+            `Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${activeRegs.length} registers`,
         );
 
         for (const group of groups) {
@@ -583,12 +589,23 @@ class Sigenergy extends utils.Adapter {
 
         try {
             await this._createChannel('plant', 'Power Plant Data');
+            await this._createChannel('plant.statistics', 'Plant Statistics');
             await this._createChannel('inverter', 'Hybrid Inverter');
             await this._createChannel('statistics', 'Calculated Statistics');
+
+            if (this.config.enableSmartLoads) {
+                await this._createChannel('plant.smartLoad', 'Smart Loads');
+                for (let i = 1; i <= 24; i++) {
+                    await this._createChannel(`plant.smartLoad.${i}`, `Smart Load ${i}`);
+                }
+            }
 
             for (const reg of PLANT_READ_REGISTERS) {
                 if (this._stopped) {
                     return;
+                }
+                if (reg.feature && !this.config[reg.feature]) {
+                    continue;
                 }
                 await this._createStateFromRegister(reg);
             }

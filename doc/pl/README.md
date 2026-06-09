@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.1.1 (2026-06-09)
+- (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
+
 ### 2.1.0 (2026-06-09)
 - (ssbingo) Funkcja: rozszerzone statystyki — statystyki instalacji (30088–30097), inteligentne obciążenia 1–24 (30098–30193), energia skumulowana (30194–30271), sprzężenie zwrotne regulacji (30613–30619), parametry kodu sieci (40049–40068)
 
