@@ -1,180 +1,180 @@
 {
-  "common": {
-    "name": "sigenergy",
-    "version": "2.2.1",
-    "news": {
-      "2.2.1": {
-        "en": "(ssbingo) fix: correct PSS register table to 122 entries per official spec V2.9 (addresses, gains, types); fix PSS write registers to 6 WO entries; fix PID registers 33055-33060 (types, gains, 2 missing entries)",
-        "de": "(ssbingo) fix: PSS-Register-Tabelle auf 122 Einträge gemäß offiziellem Spec V2.9 korrigiert (Adressen, Gains, Typen); PSS-Schreibregister auf 6 WO-Einträge korrigiert; PID-Register 33055-33060 korrigiert (Typen, Gains, 2 fehlende Einträge)",
-        "ru": "(ssbingo) fix: таблица регистров PSS исправлена до 122 записей по официальной спецификации V2.9 (адреса, коэффициенты, типы); регистры записи PSS исправлены до 6 WO-записей; регистры PID 33055-33060 исправлены (типы, коэффициенты, 2 недостающие записи)",
-        "pt": "(ssbingo) fix: tabela de registos PSS corrigida para 122 entradas conforme especificação oficial V2.9 (endereços, ganhos, tipos); registos de escrita PSS corrigidos para 6 entradas WO; registos PID 33055-33060 corrigidos (tipos, ganhos, 2 entradas em falta)",
-        "nl": "(ssbingo) fix: PSS-registertabel gecorrigeerd naar 122 vermeldingen per officiële spec V2.9 (adressen, gains, types); PSS-schrijfregisters gecorrigeerd naar 6 WO-vermeldingen; PID-registers 33055-33060 gecorrigeerd (types, gains, 2 ontbrekende vermeldingen)",
-        "fr": "(ssbingo) fix : table de registres PSS corrigée à 122 entrées selon la spec officielle V2.9 (adresses, gains, types) ; registres d'écriture PSS corrigés à 6 entrées WO ; registres PID 33055-33060 corrigés (types, gains, 2 entrées manquantes)",
-        "it": "(ssbingo) fix: tabella registri PSS corretta a 122 voci secondo spec ufficiale V2.9 (indirizzi, gain, tipi); registri scrittura PSS corretti a 6 voci WO; registri PID 33055-33060 corretti (tipi, gain, 2 voci mancanti)",
-        "es": "(ssbingo) fix: tabla de registros PSS corregida a 122 entradas según especificación oficial V2.9 (direcciones, ganancias, tipos); registros de escritura PSS corregidos a 6 entradas WO; registros PID 33055-33060 corregidos (tipos, ganancias, 2 entradas faltantes)",
-        "pl": "(ssbingo) fix: tabela rejestrów PSS poprawiona do 122 wpisów zgodnie z oficjalną specyfikacją V2.9 (adresy, wzmocnienia, typy); rejestry zapisu PSS poprawione do 6 wpisów WO; rejestry PID 33055-33060 poprawione (typy, wzmocnienia, 2 brakujące wpisy)",
-        "uk": "(ssbingo) fix: таблицю регістрів PSS виправлено до 122 записів відповідно до офіційної специфікації V2.9 (адреси, коефіцієнти, типи); регістри запису PSS виправлено до 6 WO-записів; регістри PID 33055-33060 виправлено (типи, коефіцієнти, 2 відсутні записи)",
-        "zh-cn": "(ssbingo) 修复：根据官方规格V2.9将PSS寄存器表修正为122个条目（地址、增益、类型）；PSS写入寄存器修正为6个WO条目；PID寄存器33055-33060修正（类型、增益、2个缺失条目）"
-      }
+    "common": {
+        "name": "sigenergy",
+        "version": "2.2.2",
+        "news": {
+            "2.2.2": {
+                "en": "(ssbingo) docs: update all READMEs to Modbus Protocol V2.9 — add PSS, PID, ESS Preheating, Extended Registers, SigenMicro; correct protocol version reference",
+                "de": "(ssbingo) docs: alle READMEs auf Modbus-Protokoll V2.9 aktualisiert — PSS, PID, ESS-Vorheizung, Erweiterte Register, SigenMicro ergänzt; Protokollversionsangabe korrigiert",
+                "ru": "(ssbingo) docs: обновление всех README для протокола Modbus V2.9 — добавлены PSS, PID, предварительный нагрев ESS, расширенные регистры, SigenMicro; исправлена ссылка на версию протокола",
+                "pt": "(ssbingo) docs: atualização de todos os READMEs para o protocolo Modbus V2.9 — adicionados PSS, PID, pré-aquecimento ESS, registos alargados, SigenMicro; referência de versão do protocolo corrigida",
+                "nl": "(ssbingo) docs: alle READMEs bijgewerkt naar Modbus Protocol V2.9 — PSS, PID, ESS-voorverwarming, uitgebreide registers, SigenMicro toegevoegd; protocolversionreferentie gecorrigeerd",
+                "fr": "(ssbingo) docs: mise à jour de tous les READMEs pour le protocole Modbus V2.9 — ajout de PSS, PID, préchauffage ESS, registres étendus, SigenMicro ; correction de la référence de version du protocole",
+                "it": "(ssbingo) docs: aggiornamento di tutti i README al protocollo Modbus V2.9 — aggiunti PSS, PID, preriscaldamento ESS, registri estesi, SigenMicro; corretta la versione del protocollo",
+                "es": "(ssbingo) docs: actualización de todos los READMEs al protocolo Modbus V2.9 — añadidos PSS, PID, precalentamiento ESS, registros extendidos, SigenMicro; corregida la referencia de versión del protocolo",
+                "pl": "(ssbingo) docs: aktualizacja wszystkich README do protokołu Modbus V2.9 — dodano PSS, PID, podgrzewanie wstępne ESS, rejestry rozszerzone, SigenMicro; poprawiono odniesienie do wersji protokołu",
+                "uk": "(ssbingo) docs: оновлення всіх README для протоколу Modbus V2.9 — додано PSS, PID, попереднє нагрівання ESS, розширені регістри, SigenMicro; виправлено посилання на версію протоколу",
+                "zh-cn": "(ssbingo) docs: 更新所有 README 至 Modbus 协议 V2.9 — 添加 PSS、PID、ESS 预热、扩展寄存器、SigenMicro；修正协议版本引用"
+            }
+        },
+        "titleLang": {
+            "en": "Sigenergy Solar System",
+            "de": "Sigenergy Solaranlage",
+            "ru": "Солнечная система Sigenergy",
+            "pt": "Sistema Solar Sigenergy",
+            "nl": "Sigenergy Zonne-energiesysteem",
+            "fr": "Système Solaire Sigenergy",
+            "it": "Sistema Solare Sigenergy",
+            "es": "Sistema Solar Sigenergy",
+            "pl": "System Słoneczny Sigenergy",
+            "uk": "Сонячна система Sigenergy",
+            "zh-cn": "Sigenergy 太阳能系统"
+        },
+        "desc": {
+            "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
+            "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
+            "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
+            "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
+            "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
+            "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
+            "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
+            "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
+            "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
+            "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
+            "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
+        },
+        "authors": [
+            "ioBroker Community"
+        ],
+        "keywords": [
+            "sigenergy",
+            "solar",
+            "modbus",
+            "energy",
+            "inverter",
+            "battery",
+            "pv"
+        ],
+        "platform": "Javascript/Node.js",
+        "icon": "sigenergy.png",
+        "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
+        "enabled": true,
+        "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "energy",
+        "compact": true,
+        "adminUI": {
+            "config": "json"
+        },
+        "supportCustoms": false,
+        "subscribable": false,
+        "supportedMessages": {
+            "custom": true
+        },
+        "tier": 2,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=7.6.20"
+            }
+        ],
+        "licenseInformation": {
+            "license": "MIT",
+            "type": "free"
+        }
     },
-    "titleLang": {
-      "en": "Sigenergy Solar System",
-      "de": "Sigenergy Solaranlage",
-      "ru": "Солнечная система Sigenergy",
-      "pt": "Sistema Solar Sigenergy",
-      "nl": "Sigenergy Zonne-energiesysteem",
-      "fr": "Système Solaire Sigenergy",
-      "it": "Sistema Solare Sigenergy",
-      "es": "Sistema Solar Sigenergy",
-      "pl": "System Słoneczny Sigenergy",
-      "uk": "Сонячна система Sigenergy",
-      "zh-cn": "Sigenergy 太阳能系统"
+    "native": {
+        "connectionType": "tcp",
+        "tcpHost": "192.168.1.100",
+        "tcpPort": 502,
+        "serialPort": "/dev/ttyUSB0",
+        "serialBaudRate": 9600,
+        "serialDataBits": 8,
+        "serialParity": "none",
+        "serialStopBits": 1,
+        "plantId": 247,
+        "inverterId": 1,
+        "acChargerId": 2,
+        "dcChargerId": 3,
+        "pollInterval": 10000,
+        "timeout": 5000,
+        "hasAcCharger": false,
+        "hasDcCharger": false,
+        "hasBattery": true,
+        "hasPv": true,
+        "calcBatteryTimeToFull": true,
+        "calcBatteryTimeRemaining": true,
+        "calcBatteryDailyFull": true,
+        "calcBatteryCoverageTime": true,
+        "calcSelfConsumptionRate": true,
+        "calcAutarkyRate": true,
+        "calcPvYield": true,
+        "calcGridFeedIn": true,
+        "hasSigenMicro": false,
+        "sigenMicroScanFrom": 10,
+        "sigenMicroScanTo": 30,
+        "sigenMicroDevices": "[]",
+        "enablePss": false,
+        "pssSlaveId": 5,
+        "enablePid": false,
+        "pidSlaveId": 6,
+        "enableEssPreheating": false
     },
-    "desc": {
-      "en": "Adapter for Sigenergy solar energy systems (Hybrid Inverter, Battery, AC/DC Charger) via Modbus TCP/RTU",
-      "de": "Adapter für Sigenergy Solarenergieanlagen (Hybrid Wechselrichter, Batterie, AC/DC Ladegerät) via Modbus TCP/RTU",
-      "ru": "Адаптер для солнечных систем Sigenergy (гибридный инвертор, аккумулятор, зарядное устройство AC/DC) через Modbus TCP/RTU",
-      "pt": "Adaptador para sistemas de energia solar Sigenergy (Inversor Híbrido, Bateria, Carregador AC/DC) via Modbus TCP/RTU",
-      "nl": "Adapter voor Sigenergy zonne-energiesystemen (hybride omvormer, batterij, AC/DC-lader) via Modbus TCP/RTU",
-      "fr": "Adaptateur pour les systèmes d'énergie solaire Sigenergy (onduleur hybride, batterie, chargeur AC/DC) via Modbus TCP/RTU",
-      "it": "Adattatore per sistemi di energia solare Sigenergy (inverter ibrido, batteria, caricatore AC/DC) tramite Modbus TCP/RTU",
-      "es": "Adaptador para sistemas de energía solar Sigenergy (inversor híbrido, batería, cargador AC/DC) a través de Modbus TCP/RTU",
-      "pl": "Adapter dla systemów energii słonecznej Sigenergy (falownik hybrydowy, akumulator, ładowarka AC/DC) przez Modbus TCP/RTU",
-      "uk": "Адаптер для сонячних енергетичних систем Sigenergy (гібридний інвертор, акумулятор, зарядний пристрій AC/DC) через Modbus TCP/RTU",
-      "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
-    },
-    "authors": [
-      "ioBroker Community"
-    ],
-    "keywords": [
-      "sigenergy",
-      "solar",
-      "modbus",
-      "energy",
-      "inverter",
-      "battery",
-      "pv"
-    ],
-    "platform": "Javascript/Node.js",
-    "icon": "sigenergy.png",
-    "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
-    "enabled": true,
-    "readme": "https://github.com/ssbingo/ioBroker.sigenergy/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "energy",
-    "compact": true,
-    "adminUI": {
-      "config": "json"
-    },
-    "supportCustoms": false,
-    "subscribable": false,
-    "supportedMessages": {
-      "custom": true
-    },
-    "tier": 2,
-    "connectionType": "local",
-    "dataSource": "poll",
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=7.6.20"
-      }
-    ],
-    "licenseInformation": {
-      "license": "MIT",
-      "type": "free"
-    }
-  },
-  "native": {
-    "connectionType": "tcp",
-    "tcpHost": "192.168.1.100",
-    "tcpPort": 502,
-    "serialPort": "/dev/ttyUSB0",
-    "serialBaudRate": 9600,
-    "serialDataBits": 8,
-    "serialParity": "none",
-    "serialStopBits": 1,
-    "plantId": 247,
-    "inverterId": 1,
-    "acChargerId": 2,
-    "dcChargerId": 3,
-    "pollInterval": 10000,
-    "timeout": 5000,
-    "hasAcCharger": false,
-    "hasDcCharger": false,
-    "hasBattery": true,
-    "hasPv": true,
-    "calcBatteryTimeToFull": true,
-    "calcBatteryTimeRemaining": true,
-    "calcBatteryDailyFull": true,
-    "calcBatteryCoverageTime": true,
-    "calcSelfConsumptionRate": true,
-    "calcAutarkyRate": true,
-    "calcPvYield": true,
-    "calcGridFeedIn": true,
-    "hasSigenMicro": false,
-    "sigenMicroScanFrom": 10,
-    "sigenMicroScanTo": 30,
-    "sigenMicroDevices": "[]",
-    "enablePss": false,
-    "pssSlaveId": 5,
-    "enablePid": false,
-    "pidSlaveId": 6,
-    "enableEssPreheating": false
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "name": "Connection status",
-        "type": "boolean",
-        "role": "indicator.connected",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.scanProgress",
-      "type": "state",
-      "common": {
-        "name": "SigenMicro scan progress",
-        "type": "string",
-        "role": "text",
-        "read": true,
-        "write": false,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.scanStatus",
-      "type": "state",
-      "common": {
-        "name": "SigenMicro scan status",
-        "type": "string",
-        "role": "text",
-        "read": true,
-        "write": false,
-        "def": "idle"
-      },
-      "native": {}
-    }
-  ]
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "name": "Connection status",
+                "type": "boolean",
+                "role": "indicator.connected",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.scanProgress",
+            "type": "state",
+            "common": {
+                "name": "SigenMicro scan progress",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.scanStatus",
+            "type": "state",
+            "common": {
+                "name": "SigenMicro scan status",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false,
+                "def": "idle"
+            },
+            "native": {}
+        }
+    ]
 }

@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.2 (2026-06-09)
+- (ssbingo) docs: alle READMEs bijgewerkt naar Modbus Protocol V2.9 — PSS, PID, ESS-voorverwarming, uitgebreide registers, SigenMicro toegevoegd
+
 ### 2.2.1 (2026-06-09)
 - (ssbingo) fix: PSS-registertabel gecorrigeerd naar 122 vermeldingen per officiële spec V2.9 (adressen, gains, types); PSS-schrijfregisters gecorrigeerd naar 6 WO-vermeldingen; PID-registers 33055-33060 gecorrigeerd (types, gains, 2 ontbrekende vermeldingen)
 

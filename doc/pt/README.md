@@ -160,6 +160,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.2.2 (2026-06-09)
+- (ssbingo) docs: atualização de todos os READMEs para o protocolo Modbus V2.9 — adicionados PSS, PID, pré-aquecimento ESS, registos alargados, SigenMicro
+
 ### 2.2.1 (2026-06-09)
 - (ssbingo) fix: tabela de registos PSS corrigida para 122 entradas conforme especificação oficial V2.9 (endereços, ganhos, tipos); registos de escrita PSS corrigidos para 6 entradas WO; registos PID 33055-33060 corrigidos (tipos, ganhos, 2 entradas em falta)
 

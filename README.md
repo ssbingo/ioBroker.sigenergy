@@ -153,6 +153,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.2.2 (2026-06-09)
+- (ssbingo) docs: update all READMEs to Modbus Protocol V2.9 — add PSS, PID, ESS Preheating, Extended Registers, SigenMicro; correct protocol version reference
+
 ### 2.2.1 (2026-06-09)
 - (ssbingo) fix: correct PSS register table to 122 entries per official spec V2.9 (addresses, gains, types); fix PSS write registers to 6 WO entries; fix PID registers 33055-33060 (types, gains, 2 missing entries)
 

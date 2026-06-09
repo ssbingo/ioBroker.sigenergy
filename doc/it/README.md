@@ -155,6 +155,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.2.2 (2026-06-09)
+- (ssbingo) docs: aggiornamento di tutti i README al protocollo Modbus V2.9 — aggiunti PSS, PID, preriscaldamento ESS, registri estesi, SigenMicro
+
 ### 2.2.1 (2026-06-09)
 - (ssbingo) fix: tabella registri PSS corretta a 122 voci secondo spec ufficiale V2.9 (indirizzi, gain, tipi); registri scrittura PSS corretti a 6 voci WO; registri PID 33055-33060 corretti (tipi, gain, 2 voci mancanti)
 

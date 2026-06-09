@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.2.2 (2026-06-09)
+- (ssbingo) docs: mise à jour de tous les READMEs pour le protocole Modbus V2.9 — ajout de PSS, PID, préchauffage ESS, registres étendus, SigenMicro
+
 ### 2.2.1 (2026-06-09)
 - (ssbingo) fix : table de registres PSS corrigée à 122 entrées selon la spec officielle V2.9 (adresses, gains, types) ; registres d'écriture PSS corrigés à 6 entrées WO ; registres PID 33055-33060 corrigés (types, gains, 2 entrées manquantes)
 
