@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.1.0 (2026-06-09)
+- (ssbingo) Functie: uitgebreide statistieken — installatiestatistieken (30088–30097), slimme belastingen 1–24 (30098–30193), gecumuleerde energie (30194–30271), regelingsfeedback (30613–30619), netcodeparameters (40049–40068)
+
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Functie: Modbus-protocol V2.9 — nieuwe registers voor installatie/omvormer/DC-lader, verouderde registers verwijderd, enumeraties uitgebreid
 

@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "news": {
-      "2.0.0": {
-        "en": "(ssbingo) feat: Modbus Protocol V2.9 — new plant/inverter/DC charger registers, remove deprecated registers, extend enums",
-        "de": "(ssbingo) Feat: Modbus-Protokoll V2.9 — neue Plant/Wechselrichter/DC-Laderegler-Register, veraltete Register entfernt, Enums erweitert",
-        "ru": "(ssbingo) Функция: протокол Modbus V2.9 — новые регистры установки/инвертора/DC-зарядного устройства, удалены устаревшие регистры, расширены перечисления",
-        "pt": "(ssbingo) Funcionalidade: Protocolo Modbus V2.9 — novos registos de instalação/inversor/carregador DC, registos obsoletos removidos, enumerações expandidas",
-        "nl": "(ssbingo) Functie: Modbus-protocol V2.9 — nieuwe registers voor installatie/omvormer/DC-lader, verouderde registers verwijderd, enumeraties uitgebreid",
-        "fr": "(ssbingo) Fonctionnalité : protocole Modbus V2.9 — nouveaux registres installation/onduleur/chargeur DC, registres obsolètes supprimés, énumérations étendues",
-        "it": "(ssbingo) Funzionalità: Protocollo Modbus V2.9 — nuovi registri impianto/inverter/caricatore DC, registri obsoleti rimossi, enumerazioni estese",
-        "es": "(ssbingo) Función: Protocolo Modbus V2.9 — nuevos registros de planta/inversor/cargador DC, registros obsoletos eliminados, enumeraciones ampliadas",
-        "pl": "(ssbingo) Funkcja: Protokół Modbus V2.9 — nowe rejestry instalacji/falownika/ładowarki DC, usunięto przestarzałe rejestry, rozszerzono wyliczenia",
-        "uk": "(ssbingo) Функція: протокол Modbus V2.9 — нові регістри установки/інвертора/DC-зарядного пристрою, видалено застарілі регістри, розширено перерахування",
-        "zh-cn": "(ssbingo) 功能：Modbus 协议 V2.9 — 新增电站/逆变器/直流充电桩寄存器，删除已废弃寄存器，扩展枚举"
+      "2.1.0": {
+        "en": "(ssbingo) feat: extended statistics — plant statistics 30088–30097, smart loads 1–24 (30098–30193), cumulative energy (30194–30271), adjustment feedback (30613–30619), grid code parameters (40049–40068)",
+        "de": "(ssbingo) Feat: Erweiterte Statistik — Plant-Statistik 30088–30097, Smart-Loads 1–24 (30098–30193), Kumulierte Energie (30194–30271), Regelungs-Feedback (30613–30619), Grid-Code-Parameter (40049–40068)",
+        "ru": "(ssbingo) Функция: расширенная статистика — статистика установки 30088–30097, умные нагрузки 1–24 (30098–30193), накопленная энергия (30194–30271), обратная связь регулировки (30613–30619), параметры кода сети (40049–40068)",
+        "pt": "(ssbingo) Funcionalidade: estatísticas alargadas — estatísticas de instalação 30088–30097, cargas inteligentes 1–24 (30098–30193), energia acumulada (30194–30271), feedback de ajuste (30613–30619), parâmetros de código de rede (40049–40068)",
+        "nl": "(ssbingo) Functie: uitgebreide statistieken — installatiestatistieken 30088–30097, slimme belastingen 1–24 (30098–30193), gecumuleerde energie (30194–30271), regelingsfeedback (30613–30619), netcodeparameters (40049–40068)",
+        "fr": "(ssbingo) Fonctionnalité : statistiques étendues — statistiques installation 30088–30097, charges intelligentes 1–24 (30098–30193), énergie cumulée (30194–30271), retour de régulation (30613–30619), paramètres code réseau (40049–40068)",
+        "it": "(ssbingo) Funzionalità: statistiche estese — statistiche impianto 30088–30097, carichi intelligenti 1–24 (30098–30193), energia cumulata (30194–30271), feedback regolazione (30613–30619), parametri codice rete (40049–40068)",
+        "es": "(ssbingo) Función: estadísticas ampliadas — estadísticas de planta 30088–30097, cargas inteligentes 1–24 (30098–30193), energía acumulada (30194–30271), retroalimentación de ajuste (30613–30619), parámetros de código de red (40049–40068)",
+        "pl": "(ssbingo) Funkcja: rozszerzone statystyki — statystyki instalacji 30088–30097, inteligentne obciążenia 1–24 (30098–30193), energia skumulowana (30194–30271), sprzężenie zwrotne regulacji (30613–30619), parametry kodu sieci (40049–40068)",
+        "uk": "(ssbingo) Функція: розширена статистика — статистика установки 30088–30097, розумні навантаження 1–24 (30098–30193), накопичена енергія (30194–30271), зворотний зв'язок регулювання (30613–30619), параметри коду мережі (40049–40068)",
+        "zh-cn": "(ssbingo) 功能：扩展统计 — 电站统计 30088–30097，智能负载 1–24（30098–30193），累计能量（30194–30271），调节反馈（30613–30619），电网代码参数（40049–40068）"
       }
     },
     "titleLang": {

@@ -151,6 +151,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.1.0 (2026-06-09)
+- (ssbingo) Función: estadísticas ampliadas — estadísticas de planta (30088–30097), cargas inteligentes 1–24 (30098–30193), energía acumulada (30194–30271), retroalimentación de ajuste (30613–30619), parámetros de código de red (40049–40068)
+
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Función: Protocolo Modbus V2.9 — nuevos registros de planta/inversor/cargador DC, registros obsoletos eliminados, enumeraciones ampliadas
 

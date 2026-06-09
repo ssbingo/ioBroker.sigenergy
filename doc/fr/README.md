@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.1.0 (2026-06-09)
+- (ssbingo) Fonctionnalité : statistiques étendues — statistiques installation (30088–30097), charges intelligentes 1–24 (30098–30193), énergie cumulée (30194–30271), retour de régulation (30613–30619), paramètres code réseau (40049–40068)
+
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Fonctionnalité : protocole Modbus V2.9 — nouveaux registres installation/onduleur/chargeur DC, registres obsolètes supprimés, énumérations étendues
 

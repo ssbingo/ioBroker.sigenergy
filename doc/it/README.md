@@ -151,6 +151,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.1.0 (2026-06-09)
+- (ssbingo) Funzionalità: statistiche estese — statistiche impianto (30088–30097), carichi intelligenti 1–24 (30098–30193), energia cumulata (30194–30271), feedback regolazione (30613–30619), parametri codice rete (40049–40068)
+
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Funzionalità: Protocollo Modbus V2.9 — nuovi registri impianto/inverter/caricatore DC, registri obsoleti rimossi, enumerazioni estese
 
