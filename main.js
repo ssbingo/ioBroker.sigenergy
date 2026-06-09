@@ -304,9 +304,7 @@ class Sigenergy extends utils.Adapter {
         const batchSize = 120;
         const activeRegs = PLANT_READ_REGISTERS.filter(r => !r.feature || this.config[r.feature]);
         const groups = this._buildReadGroups(activeRegs, batchSize);
-        this.log.debug(
-            `Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${activeRegs.length} registers`,
-        );
+        this.log.debug(`Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${activeRegs.length} registers`);
 
         for (const group of groups) {
             if (this._stopped) {
