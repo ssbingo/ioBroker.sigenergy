@@ -151,6 +151,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) Función: Protocolo Modbus V2.9 — nuevos registros de planta/inversor/cargador DC, registros obsoletos eliminados, enumeraciones ampliadas
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) Corrección: eliminado formato largo i18n duplicado (admin/i18n), añadida clave de traducción /dev/ttyUSB0
 

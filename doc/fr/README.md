@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) Fonctionnalité : protocole Modbus V2.9 — nouveaux registres installation/onduleur/chargeur DC, registres obsolètes supprimés, énumérations étendues
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) Correctif : suppression du format long i18n dupliqué (admin/i18n), ajout de la clé de traduction /dev/ttyUSB0
 

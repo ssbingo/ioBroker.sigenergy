@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) Feat: Modbus-Protokoll V2.9 — neue Plant/Wechselrichter/DC-Laderegler-Register, veraltete Register entfernt, Enums erweitert
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) Fix: doppeltes i18n-Langformat entfernt (admin/i18n), /dev/ttyUSB0-Übersetzungsschlüssel hinzugefügt
 

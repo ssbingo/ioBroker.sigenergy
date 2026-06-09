@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "1.9.17",
+    "version": "2.0.0",
     "news": {
-      "1.9.17": {
-        "en": "(ssbingo) fix: remove duplicate i18n long format, add /dev/ttyUSB0 translation key (resolves E5600, W5612)",
-        "de": "(ssbingo) Fix: doppeltes i18n-Langformat entfernt, /dev/ttyUSB0-Übersetzungsschlüssel hinzugefügt (löst E5600, W5612)",
-        "ru": "(ssbingo) Исправление: удалён дублирующий длинный формат i18n, добавлен ключ перевода /dev/ttyUSB0 (исправляет E5600, W5612)",
-        "pt": "(ssbingo) Correção: removido formato longo i18n duplicado, adicionada chave de tradução /dev/ttyUSB0 (resolve E5600, W5612)",
-        "nl": "(ssbingo) Fix: dubbel i18n-lang formaat verwijderd, vertaalsleutel /dev/ttyUSB0 toegevoegd (lost E5600, W5612 op)",
-        "fr": "(ssbingo) Correctif : suppression du format long i18n en double, ajout de la clé de traduction /dev/ttyUSB0 (résout E5600, W5612)",
-        "it": "(ssbingo) Fix: rimosso formato lungo i18n duplicato, aggiunta chiave di traduzione /dev/ttyUSB0 (risolve E5600, W5612)",
-        "es": "(ssbingo) Corrección: eliminado formato largo i18n duplicado, añadida clave de traducción /dev/ttyUSB0 (resuelve E5600, W5612)",
-        "pl": "(ssbingo) Poprawka: usunięty zduplikowany długi format i18n, dodany klucz tłumaczenia /dev/ttyUSB0 (rozwiązuje E5600, W5612)",
-        "uk": "(ssbingo) Виправлення: видалено дублюючий довгий формат i18n, додано ключ перекладу /dev/ttyUSB0 (вирішує E5600, W5612)",
-        "zh-cn": "(ssbingo) 修复：删除重复的 i18n 长格式，添加 /dev/ttyUSB0 翻译键（解决 E5600、W5612）"
+      "2.0.0": {
+        "en": "(ssbingo) feat: Modbus Protocol V2.9 — new plant/inverter/DC charger registers, remove deprecated registers, extend enums",
+        "de": "(ssbingo) Feat: Modbus-Protokoll V2.9 — neue Plant/Wechselrichter/DC-Laderegler-Register, veraltete Register entfernt, Enums erweitert",
+        "ru": "(ssbingo) Функция: протокол Modbus V2.9 — новые регистры установки/инвертора/DC-зарядного устройства, удалены устаревшие регистры, расширены перечисления",
+        "pt": "(ssbingo) Funcionalidade: Protocolo Modbus V2.9 — novos registos de instalação/inversor/carregador DC, registos obsoletos removidos, enumerações expandidas",
+        "nl": "(ssbingo) Functie: Modbus-protocol V2.9 — nieuwe registers voor installatie/omvormer/DC-lader, verouderde registers verwijderd, enumeraties uitgebreid",
+        "fr": "(ssbingo) Fonctionnalité : protocole Modbus V2.9 — nouveaux registres installation/onduleur/chargeur DC, registres obsolètes supprimés, énumérations étendues",
+        "it": "(ssbingo) Funzionalità: Protocollo Modbus V2.9 — nuovi registri impianto/inverter/caricatore DC, registri obsoleti rimossi, enumerazioni estese",
+        "es": "(ssbingo) Función: Protocolo Modbus V2.9 — nuevos registros de planta/inversor/cargador DC, registros obsoletos eliminados, enumeraciones ampliadas",
+        "pl": "(ssbingo) Funkcja: Protokół Modbus V2.9 — nowe rejestry instalacji/falownika/ładowarki DC, usunięto przestarzałe rejestry, rozszerzono wyliczenia",
+        "uk": "(ssbingo) Функція: протокол Modbus V2.9 — нові регістри установки/інвертора/DC-зарядного пристрою, видалено застарілі регістри, розширено перерахування",
+        "zh-cn": "(ssbingo) 功能：Modbus 协议 V2.9 — 新增电站/逆变器/直流充电桩寄存器，删除已废弃寄存器，扩展枚举"
       }
     },
     "titleLang": {

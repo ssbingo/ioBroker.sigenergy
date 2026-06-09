@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) Functie: Modbus-protocol V2.9 — nieuwe registers voor installatie/omvormer/DC-lader, verouderde registers verwijderd, enumeraties uitgebreid
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) Fix: dubbel i18n-lang formaat verwijderd (admin/i18n), vertaalsleutel /dev/ttyUSB0 toegevoegd
 

@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) Funkcja: Protokół Modbus V2.9 — nowe rejestry instalacji/falownika/ładowarki DC, usunięto przestarzałe rejestry, rozszerzono wyliczenia
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) Poprawka: usunięty zduplikowany długi format i18n (admin/i18n), dodany klucz tłumaczenia /dev/ttyUSB0
 

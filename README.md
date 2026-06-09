@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.0.0 (2026-06-09)
+- (ssbingo) feat: Modbus Protocol V2.9 — new plant/inverter/DC charger registers, remove deprecated registers, extend enums
+
 ### 1.9.17 (2026-06-08)
 - (ssbingo) fix: remove duplicate i18n long format (admin/i18n), add /dev/ttyUSB0 translation key
 
