@@ -151,6 +151,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: tabla de registros PSS corregida a 122 entradas según especificación oficial V2.9 (direcciones, ganancias, tipos); registros de escritura PSS corregidos a 6 entradas WO; registros PID 33055-33060 corregidos (tipos, ganancias, 2 entradas faltantes)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) Función: compatibilidad con PSS (conmutador de alimentación) y PID (detección de aislamiento PV); registros de programación TOU de precalentamiento ESS; nuevas opciones admin para ID esclavos PSS/PID
 

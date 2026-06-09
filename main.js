@@ -725,6 +725,12 @@ class Sigenergy extends utils.Adapter {
             if (this.config.enablePss) {
                 this.log.debug('Creating PSS objects');
                 await this._createChannel('pss', 'Power Station Switch');
+                await this._createChannel('pss.mv', 'MV Cabinet');
+                await this._createChannel('pss.la', 'LA LV Switchgear');
+                await this._createChannel('pss.lb', 'LB LV Switchgear');
+                await this._createChannel('pss.transformer', 'Transformer');
+                await this._createChannel('pss.dist', 'Distribution Cabinet');
+                await this._createChannel('pss.control', 'PSS Control');
                 for (const reg of PSS_READ_REGISTERS) {
                     if (this._stopped) {
                         return;

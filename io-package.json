@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "news": {
-      "2.2.0": {
-        "en": "(ssbingo) feat: PSS (Power Station Switch) and PID (PV Insulation Detection) support; ESS Preheating TOU schedule registers; new admin options for PSS/PID slave IDs",
-        "de": "(ssbingo) Feat: PSS (Power Station Switch) und PID (PV-Isolationsüberwachung) Unterstützung; ESS-Vorheizung TOU-Zeitplan-Register; neue Admin-Optionen für PSS/PID Slave-IDs",
-        "ru": "(ssbingo) Функция: поддержка PSS (силовой коммутатор) и PID (контроль изоляции PV); регистры расписания предварительного нагрева ESS TOU; новые параметры admin для ID ведомых PSS/PID",
-        "pt": "(ssbingo) Funcionalidade: suporte PSS (comutador de potência) e PID (detecção de isolamento PV); registros de agendamento TOU de pré-aquecimento ESS; novas opções admin para IDs escravos PSS/PID",
-        "nl": "(ssbingo) Functie: ondersteuning PSS (vermogensschakelaar) en PID (PV-isolatiebewaking); ESS-voorverwarmingsregeling TOU-schema-registers; nieuwe admin-opties voor PSS/PID-slave-ID's",
-        "fr": "(ssbingo) Fonctionnalité : prise en charge PSS (commutateur de puissance) et PID (détection d'isolation PV) ; registres de planification TOU de préchauffage ESS ; nouvelles options admin pour les ID esclaves PSS/PID",
-        "it": "(ssbingo) Funzionalità: supporto PSS (commutatore di potenza) e PID (rilevamento isolamento PV); registri programma TOU preriscaldamento ESS; nuove opzioni admin per ID slave PSS/PID",
-        "es": "(ssbingo) Función: compatibilidad con PSS (conmutador de alimentación) y PID (detección de aislamiento PV); registros de programación TOU de precalentamiento ESS; nuevas opciones admin para ID esclavos PSS/PID",
-        "pl": "(ssbingo) Funkcja: obsługa PSS (przełącznik zasilania) i PID (wykrywanie izolacji PV); rejestry harmonogramu TOU podgrzewania wstępnego ESS; nowe opcje admin dla ID slave PSS/PID",
-        "uk": "(ssbingo) Функція: підтримка PSS (силовий перемикач) та PID (контроль ізоляції PV); регістри розкладу попереднього нагріву ESS TOU; нові параметри admin для ID підлеглих PSS/PID",
-        "zh-cn": "(ssbingo) 功能：支持PSS（电力站开关）和PID（PV绝缘检测）；ESS预热TOU时间表寄存器；PSS/PID从机ID的新管理选项"
+      "2.2.1": {
+        "en": "(ssbingo) fix: correct PSS register table to 122 entries per official spec V2.9 (addresses, gains, types); fix PSS write registers to 6 WO entries; fix PID registers 33055-33060 (types, gains, 2 missing entries)",
+        "de": "(ssbingo) fix: PSS-Register-Tabelle auf 122 Einträge gemäß offiziellem Spec V2.9 korrigiert (Adressen, Gains, Typen); PSS-Schreibregister auf 6 WO-Einträge korrigiert; PID-Register 33055-33060 korrigiert (Typen, Gains, 2 fehlende Einträge)",
+        "ru": "(ssbingo) fix: таблица регистров PSS исправлена до 122 записей по официальной спецификации V2.9 (адреса, коэффициенты, типы); регистры записи PSS исправлены до 6 WO-записей; регистры PID 33055-33060 исправлены (типы, коэффициенты, 2 недостающие записи)",
+        "pt": "(ssbingo) fix: tabela de registos PSS corrigida para 122 entradas conforme especificação oficial V2.9 (endereços, ganhos, tipos); registos de escrita PSS corrigidos para 6 entradas WO; registos PID 33055-33060 corrigidos (tipos, ganhos, 2 entradas em falta)",
+        "nl": "(ssbingo) fix: PSS-registertabel gecorrigeerd naar 122 vermeldingen per officiële spec V2.9 (adressen, gains, types); PSS-schrijfregisters gecorrigeerd naar 6 WO-vermeldingen; PID-registers 33055-33060 gecorrigeerd (types, gains, 2 ontbrekende vermeldingen)",
+        "fr": "(ssbingo) fix : table de registres PSS corrigée à 122 entrées selon la spec officielle V2.9 (adresses, gains, types) ; registres d'écriture PSS corrigés à 6 entrées WO ; registres PID 33055-33060 corrigés (types, gains, 2 entrées manquantes)",
+        "it": "(ssbingo) fix: tabella registri PSS corretta a 122 voci secondo spec ufficiale V2.9 (indirizzi, gain, tipi); registri scrittura PSS corretti a 6 voci WO; registri PID 33055-33060 corretti (tipi, gain, 2 voci mancanti)",
+        "es": "(ssbingo) fix: tabla de registros PSS corregida a 122 entradas según especificación oficial V2.9 (direcciones, ganancias, tipos); registros de escritura PSS corregidos a 6 entradas WO; registros PID 33055-33060 corregidos (tipos, ganancias, 2 entradas faltantes)",
+        "pl": "(ssbingo) fix: tabela rejestrów PSS poprawiona do 122 wpisów zgodnie z oficjalną specyfikacją V2.9 (adresy, wzmocnienia, typy); rejestry zapisu PSS poprawione do 6 wpisów WO; rejestry PID 33055-33060 poprawione (typy, wzmocnienia, 2 brakujące wpisy)",
+        "uk": "(ssbingo) fix: таблицю регістрів PSS виправлено до 122 записів відповідно до офіційної специфікації V2.9 (адреси, коефіцієнти, типи); регістри запису PSS виправлено до 6 WO-записів; регістри PID 33055-33060 виправлено (типи, коефіцієнти, 2 відсутні записи)",
+        "zh-cn": "(ssbingo) 修复：根据官方规格V2.9将PSS寄存器表修正为122个条目（地址、增益、类型）；PSS写入寄存器修正为6个WO条目；PID寄存器33055-33060修正（类型、增益、2个缺失条目）"
       }
     },
     "titleLang": {

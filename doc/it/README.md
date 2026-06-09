@@ -151,6 +151,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: tabella registri PSS corretta a 122 voci secondo spec ufficiale V2.9 (indirizzi, gain, tipi); registri scrittura PSS corretti a 6 voci WO; registri PID 33055-33060 corretti (tipi, gain, 2 voci mancanti)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) Funzionalità: supporto PSS (commutatore di potenza) e PID (rilevamento isolamento PV); registri programma TOU preriscaldamento ESS; nuove opzioni admin per ID slave PSS/PID
 

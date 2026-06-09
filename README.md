@@ -142,6 +142,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: correct PSS register table to 122 entries per official spec V2.9 (addresses, gains, types); fix PSS write registers to 6 WO entries; fix PID registers 33055-33060 (types, gains, 2 missing entries)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) feat: PSS (Power Station Switch) and PID (PV Insulation Detection) support; ESS Preheating TOU schedule registers; new admin options for PSS/PID slave IDs
 

@@ -142,6 +142,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: PSS-Register-Tabelle auf 122 Einträge gemäß offiziellem Spec V2.9 korrigiert (Adressen, Gains, Typen); PSS-Schreibregister auf 6 WO-Einträge korrigiert; PID-Register 33055-33060 korrigiert (Typen, Gains, 2 fehlende Einträge)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) Feat: PSS (Power Station Switch) und PID (PV-Isolationsüberwachung) Unterstützung; ESS-Vorheizung TOU-Zeitplan-Register; neue Admin-Optionen für PSS/PID Slave-IDs
 

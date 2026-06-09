@@ -151,6 +151,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: PSS-registertabel gecorrigeerd naar 122 vermeldingen per officiële spec V2.9 (adressen, gains, types); PSS-schrijfregisters gecorrigeerd naar 6 WO-vermeldingen; PID-registers 33055-33060 gecorrigeerd (types, gains, 2 ontbrekende vermeldingen)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) Functie: ondersteuning PSS (vermogensschakelaar) en PID (PV-isolatiebewaking); ESS-voorverwarmingsregeling TOU-schema-registers; nieuwe admin-opties voor PSS/PID-slave-ID's
 

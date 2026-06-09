@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.2.1 (2026-06-09)
+- (ssbingo) fix: tabela rejestrów PSS poprawiona do 122 wpisów zgodnie z oficjalną specyfikacją V2.9 (adresy, wzmocnienia, typy); rejestry zapisu PSS poprawione do 6 wpisów WO; rejestry PID 33055-33060 poprawione (typy, wzmocnienia, 2 brakujące wpisy)
+
 ### 2.2.0 (2026-06-09)
 - (ssbingo) Funkcja: obsługa PSS (przełącznik zasilania) i PID (wykrywanie izolacji PV); rejestry harmonogramu TOU podgrzewania wstępnego ESS; nowe opcje admin dla ID slave PSS/PID
 
