@@ -5,7 +5,7 @@
 
 **Adapter für Sigenergy Solarenergieanlagen via Modbus TCP/RTU**
 
-Unterstützt das Sigenergy Modbus Protokoll V2.5 (veröffentlicht 2025-02-19).
+Unterstützt das Sigenergy Modbus Protokoll V2.9 (veröffentlicht 2026-05-13).
 
 ---
 
@@ -13,11 +13,16 @@ Unterstützt das Sigenergy Modbus Protokoll V2.5 (veröffentlicht 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / Glasfaser / 4G) — Port 502
 - 🔗 **Modbus RTU** (RS485 seriell)
-- ⚡ **Vollständige Registerunterstützung** — Alle Anlagen- und Wechselrichterregister gemäß V2.5-Spezifikation
+- ⚡ **Vollständige Registerunterstützung** — Alle Anlagen-, Wechselrichter-, PSS- und PID-Register gemäß V2.9-Spezifikation
 - 🔋 **Batteriestatistiken** — Zeit bis zur vollen Ladung, verbleibende Zeit, tägliche Abdeckung
 - ☀️ **PV-Statistiken** — Eigenverbrauchsquote, Autarkiegrad
 - 🔌 **AC-Ladegerät** (Sigen EVAC) — Optional
 - ⚡ **DC-Ladegerät** — Optional
+- 🏗️ **PSS** (Power Station Switch) — Optional, MV/NS-Schaltanlagen- und Verteilerüberwachung
+- 🔍 **PID** (PV-Isolationsüberwachung) — Optional
+- 🌡️ **ESS-Vorheizung** — TOU-Zeitplan, 30 konfigurierbare Zeitfenster (M1-HYA/HYB)
+- 📈 **Erweiterte Register** — Smart Loads 1–24, Energiezähler, Netzcode-Parameter
+- ☀️ **SigenMicro** — Mikrowechselrichter-Unterstützung (Auto-Scan)
 - 📊 **Berechnete Werte** — Abgeleitete Statistiken werden bei jedem Abfragezyklus aktualisiert
 - 🖥️ **VIS-Widgets** — Energiefluss, Batteriestatus, Statistikpanels
 
@@ -59,6 +64,10 @@ Auswahl der installierten Geräte:
 - PV-Panele
 - AC-Ladegerät (EVAC)
 - DC-Ladegerät
+- PSS (Power Station Switch)
+- PID (PV-Isolationsüberwachung)
+- ESS-Vorheizung (nur M1-HYA/HYB)
+- SigenMicro (Mikrowechselrichter)
 
 ### Reiter Statistiken
 Auswahl der zu berechnenden Statistikwerte:

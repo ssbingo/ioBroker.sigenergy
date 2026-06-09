@@ -5,7 +5,7 @@
 
 **Adapter voor Sigenergy zonne-energiesystemen via Modbus TCP/RTU**
 
-Ondersteunt het Sigenergy Modbus Protocol V2.5 (uitgebracht 2025-02-19).
+Ondersteunt het Sigenergy Modbus Protocol V2.9 (uitgebracht 2026-05-13).
 
 ---
 
@@ -13,7 +13,7 @@ Ondersteunt het Sigenergy Modbus Protocol V2.5 (uitgebracht 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / glasvezel / 4G) — poort 502
 - 🔗 **Modbus RTU** (RS485 serieel)
-- ⚡ **Volledige registerondersteuning** — alle installatie- en omvormerregisters per V2.5-specificatie
+- ⚡ **Volledige registerondersteuning** — alle installatie-, omvormer-, PSS- en PID-registers per V2.9-specificatie
 - 🔋 **Batterijstatistieken** — tijd tot volledig opladen, resterende tijd, dagelijkse dekking
 - ☀️ **PV-statistieken** — eigenverbruiksgraad, autarkiegraad
 - 🔌 **AC-oplader** (Sigen EVAC) — optioneel
@@ -68,6 +68,10 @@ Selecteer welke apparaten zijn geïnstalleerd:
 - PV-panelen
 - AC-oplader (EVAC)
 - DC-oplader
+- PSS (vermogensschakelaar)
+- PID (PV-isolatiebewaking)
+- ESS-voorverwarming (alleen M1-HYA/HYB)
+- SigenMicro (micro-omvormers)
 
 ### Tabblad Statistieken
 Kies welke statistische waarden berekend moeten worden:

@@ -5,7 +5,7 @@
 
 **Adaptateur pour les systèmes d'énergie solaire Sigenergy via Modbus TCP/RTU**
 
-Supporte le protocole Sigenergy Modbus V2.5 (publié le 2025-02-19).
+Supporte le protocole Sigenergy Modbus V2.9 (publié le 2026-05-13).
 
 ---
 
@@ -13,7 +13,7 @@ Supporte le protocole Sigenergy Modbus V2.5 (publié le 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / fibre optique / 4G) — port 502
 - 🔗 **Modbus RTU** (RS485 série)
-- ⚡ **Support complet des registres** — tous les registres d'installation et d'onduleur selon la spécification V2.5
+- ⚡ **Support complet des registres** — tous les registres d'installation, d'onduleur, PSS et PID selon la spécification V2.9
 - 🔋 **Statistiques de batterie** — temps de charge complète, temps restant, couverture journalière
 - ☀️ **Statistiques PV** — taux d'autoconsommation, taux d'autarcie
 - 🔌 **Chargeur AC** (Sigen EVAC) — optionnel
@@ -59,6 +59,10 @@ Sélectionner les appareils installés :
 - Panneaux PV
 - Chargeur AC (EVAC)
 - Chargeur DC
+- PSS (commutateur de puissance)
+- PID (détection d'isolation PV)
+- Préchauffage ESS (M1-HYA/HYB uniquement)
+- SigenMicro (micro-onduleurs)
 
 ### Onglet Statistiques
 Choisir les valeurs statistiques à calculer :

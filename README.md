@@ -5,7 +5,7 @@
 
 **Adapter for Sigenergy solar energy systems via Modbus TCP/RTU**
 
-Supports the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
+Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 
 ---
 
@@ -13,11 +13,16 @@ Supports the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / Optical fiber / 4G) — Port 502
 - 🔗 **Modbus RTU** (RS485 Serial)
-- ⚡ **Full register support** — All plant and inverter registers per V2.5 spec
+- ⚡ **Full register support** — All plant, inverter, PSS and PID registers per V2.9 spec
 - 🔋 **Battery statistics** — Time to full, time remaining, daily coverage
 - ☀️ **PV statistics** — Self-consumption rate, autarky rate
 - 🔌 **AC Charger** (Sigen EVAC) — Optional
 - ⚡ **DC Charger** — Optional
+- 🏗️ **PSS** (Power Station Switch) — Optional, MV/LV switchgear and distribution cabinet monitoring
+- 🔍 **PID** (PV Insulation Detection) — Optional
+- 🌡️ **ESS Preheating** — TOU schedule, 30 configurable time windows (M1-HYA/HYB)
+- 📈 **Extended registers** — Smart loads 1–24, cumulative energy, grid code parameters
+- ☀️ **SigenMicro** — Micro-inverter support (auto-scan)
 - 📊 **Calculated values** — Derived statistics updated each poll cycle
 - 🖥️ **VIS Widgets** — Energy flow, battery status, statistics panels
 
@@ -41,6 +46,8 @@ Supports the Sigenergy Modbus Protocol V2.5 (released 2025-02-19).
 | Plant broadcast (write, no reply) | **0** |
 | Inverter | **1** |
 | AC Charger (EVAC) | **2** |
+| PSS (Power Station Switch) | **5** (default, configurable) |
+| PID (PV Insulation Detection) | **6** (default, configurable) |
 
 ---
 
@@ -59,6 +66,10 @@ Select which devices are installed:
 - PV Panels
 - AC Charger (EVAC)
 - DC Charger
+- PSS (Power Station Switch)
+- PID (PV Insulation Detection)
+- ESS Preheating (M1-HYA/HYB only)
+- SigenMicro (micro-inverters)
 
 ### Statistics Tab
 Choose which statistical values to calculate:

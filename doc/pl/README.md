@@ -5,7 +5,7 @@
 
 **Adapter dla systemów energii słonecznej Sigenergy przez Modbus TCP/RTU**
 
-Obsługuje protokół Sigenergy Modbus V2.5 (wydany 2025-02-19).
+Obsługuje protokół Sigenergy Modbus V2.9 (wydany 2026-05-13).
 
 ---
 
@@ -13,11 +13,16 @@ Obsługuje protokół Sigenergy Modbus V2.5 (wydany 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / światłowód / 4G) — port 502
 - 🔗 **Modbus RTU** (RS485 szeregowy)
-- ⚡ **Pełna obsługa rejestrów** — wszystkie rejestry instalacji i falownika według specyfikacji V2.5
+- ⚡ **Pełna obsługa rejestrów** — wszystkie rejestry instalacji, falownika, PSS i PID według specyfikacji V2.9
 - 🔋 **Statystyki baterii** — czas do pełnego naładowania, czas pozostały, dzienna pokrycie
 - ☀️ **Statystyki PV** — wskaźnik autokonsumpcji, wskaźnik autarkii
 - 🔌 **Ładowarka AC** (Sigen EVAC) — opcjonalna
 - ⚡ **Ładowarka DC** — opcjonalna
+- 🏗️ **PSS** (przełącznik zasilania) — Opcjonalny, monitoring rozdzielnic SN/nN i szaf rozdzielczych
+- 🔍 **PID** (wykrywanie izolacji PV) — Opcjonalny
+- 🌡️ **Podgrzewanie wstępne ESS** — Harmonogram TOU, 30 konfigurowalnych okien czasowych (M1-HYA/HYB)
+- 📈 **Rejestry rozszerzone** — Inteligentne obciążenia 1–24, liczniki energii, parametry kodu sieci
+- ☀️ **SigenMicro** — Wsparcie mikrofalowników (automatyczne wykrywanie)
 - 📊 **Wartości obliczone** — statystyki pochodne aktualizowane przy każdym cyklu odpytywania
 - 🖥️ **Widżety VIS** — przepływ energii, stan baterii, panele statystyk
 
@@ -68,6 +73,10 @@ Wybierz zainstalowane urządzenia:
 - Panele PV
 - Ładowarka AC (EVAC)
 - Ładowarka DC
+- PSS (przełącznik zasilania)
+- PID (wykrywanie izolacji PV)
+- Podgrzewanie wstępne ESS (tylko M1-HYA/HYB)
+- SigenMicro (mikrofalowniki)
 
 ### Zakładka Statystyki
 Wybierz wartości statystyczne do obliczenia:

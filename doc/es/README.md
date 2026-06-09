@@ -5,7 +5,7 @@
 
 **Adaptador para sistemas de energía solar Sigenergy a través de Modbus TCP/RTU**
 
-Compatible con el protocolo Sigenergy Modbus V2.5 (publicado el 2025-02-19).
+Compatible con el protocolo Sigenergy Modbus V2.9 (publicado el 2026-05-13).
 
 ---
 
@@ -13,11 +13,16 @@ Compatible con el protocolo Sigenergy Modbus V2.5 (publicado el 2025-02-19).
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / fibra óptica / 4G) — puerto 502
 - 🔗 **Modbus RTU** (RS485 serie)
-- ⚡ **Soporte completo de registros** — todos los registros de instalación e inversor según la especificación V2.5
+- ⚡ **Soporte completo de registros** — todos los registros de instalación, inversor, PSS y PID según la especificación V2.9
 - 🔋 **Estadísticas de batería** — tiempo hasta carga completa, tiempo restante, cobertura diaria
 - ☀️ **Estadísticas PV** — tasa de autoconsumo, tasa de autarquía
 - 🔌 **Cargador AC** (Sigen EVAC) — opcional
 - ⚡ **Cargador DC** — opcional
+- 🏗️ **PSS** (conmutador de alimentación) — Opcional, monitorización de celdas MV/BT y armario de distribución
+- 🔍 **PID** (detección de aislamiento PV) — Opcional
+- 🌡️ **Precalentamiento ESS** — Programación TOU, 30 ventanas de tiempo configurables (M1-HYA/HYB)
+- 📈 **Registros extendidos** — Cargas inteligentes 1–24, contadores de energía, parámetros de código de red
+- ☀️ **SigenMicro** — Soporte de micro-inversores (detección automática)
 - 📊 **Valores calculados** — estadísticas derivadas actualizadas en cada ciclo de sondeo
 - 🖥️ **Widgets VIS** — flujo de energía, estado de batería, paneles de estadísticas
 
@@ -68,6 +73,10 @@ Seleccionar los dispositivos instalados:
 - Paneles PV
 - Cargador AC (EVAC)
 - Cargador DC
+- PSS (conmutador de alimentación)
+- PID (detección de aislamiento PV)
+- Precalentamiento ESS (solo M1-HYA/HYB)
+- SigenMicro (micro-inversores)
 
 ### Pestaña Estadísticas
 Elegir los valores estadísticos a calcular:
