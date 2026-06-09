@@ -151,6 +151,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.2.0 (2026-06-09)
+- (ssbingo) Funcionalidade: suporte PSS (comutador de potência) e PID (detecção de isolamento PV); registros de agendamento TOU de pré-aquecimento ESS; novas opções admin para IDs escravos PSS/PID
+
 ### 2.1.1 (2026-06-09)
 - (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
 

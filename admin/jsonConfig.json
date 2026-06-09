@@ -520,6 +520,118 @@
           "xs": 12,
           "lg": 4,
           "xl": 4
+        },
+        "_divider_ext2": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_pssHeader": {
+          "type": "staticText",
+          "text": "PSS (Power Station Switch, V2.9) — external MV/LV switchgear unit with its own Modbus slave ID.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "enablePss": {
+          "type": "checkbox",
+          "label": "PSS — Power Station Switch (V2.9)",
+          "help": "Poll PSS input registers 32500–32631 (MV/LV switchgear, transformer, distribution cabinet)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "pssSlaveId": {
+          "type": "number",
+          "label": "PSS Modbus Slave ID",
+          "help": "Modbus slave ID of the PSS device (default: 5)",
+          "default": 5,
+          "min": 1,
+          "max": 246,
+          "hidden": "!data.enablePss",
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_ext3": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_pidHeader": {
+          "type": "staticText",
+          "text": "PID (PV Insulation Detection, V2.9) — standalone insulation monitoring device with its own Modbus slave ID.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "enablePid": {
+          "type": "checkbox",
+          "label": "PID — PV Insulation Detection (V2.9)",
+          "help": "Poll PID input registers 33000–33067 (voltages, currents, temperatures, alarms)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "pidSlaveId": {
+          "type": "number",
+          "label": "PID Modbus Slave ID",
+          "help": "Modbus slave ID of the PID device (default: 6)",
+          "default": 6,
+          "min": 1,
+          "max": 246,
+          "hidden": "!data.enablePid",
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_ext4": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_essPreheatingHeader": {
+          "type": "staticText",
+          "text": "ESS Preheating (V2.9, M1-HYA/HYB only) — TOU schedule for battery preheating (holding registers 50000–50183, plant slave 247).",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "enableEssPreheating": {
+          "type": "checkbox",
+          "label": "ESS Preheating TOU Schedules (V2.9)",
+          "help": "Create ioBroker objects for ESS preheating control and 30 TOU time windows (registers 50000–50183)",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
         }
       }
     },

@@ -151,6 +151,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.2.0 (2026-06-09)
+- (ssbingo) Funkcja: obsługa PSS (przełącznik zasilania) i PID (wykrywanie izolacji PV); rejestry harmonogramu TOU podgrzewania wstępnego ESS; nowe opcje admin dla ID slave PSS/PID
+
 ### 2.1.1 (2026-06-09)
 - (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
 

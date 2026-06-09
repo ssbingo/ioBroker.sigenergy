@@ -1,33 +1,20 @@
 {
   "common": {
     "name": "sigenergy",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "news": {
-      "2.1.1": {
-        "en": "(ssbingo) fix: wire feature flags enableSmartLoads, enableCumulativeEnergy, enableGridCode into polling and object creation; add Extended Registers admin tab",
-        "de": "(ssbingo) Fix: Feature-Flags enableSmartLoads, enableCumulativeEnergy, enableGridCode in Polling und Objekt-Erstellung verdrahtet; Admin-Tab 'Erweiterte Register' hinzugefügt",
-        "ru": "(ssbingo) Исправление: флаги функций enableSmartLoads, enableCumulativeEnergy, enableGridCode подключены к опросу и созданию объектов; добавлена вкладка 'Расширенные регистры'",
-        "pt": "(ssbingo) Correção: flags de funcionalidade enableSmartLoads, enableCumulativeEnergy, enableGridCode integradas no polling e criação de objetos; separador 'Registos Avançados' adicionado",
-        "nl": "(ssbingo) Fix: feature flags enableSmartLoads, enableCumulativeEnergy, enableGridCode gekoppeld aan polling en objectcreatie; tabblad 'Uitgebreide registers' toegevoegd",
-        "fr": "(ssbingo) Correctif : indicateurs de fonctionnalité enableSmartLoads, enableCumulativeEnergy, enableGridCode intégrés au polling et à la création d'objets ; onglet 'Registres étendus' ajouté",
-        "it": "(ssbingo) Fix: flag di funzionalità enableSmartLoads, enableCumulativeEnergy, enableGridCode collegati al polling e alla creazione di oggetti; scheda 'Registri estesi' aggiunta",
-        "es": "(ssbingo) Corrección: marcadores de función enableSmartLoads, enableCumulativeEnergy, enableGridCode integrados en el sondeo y la creación de objetos; pestaña 'Registros extendidos' añadida",
-        "pl": "(ssbingo) Poprawka: flagi funkcji enableSmartLoads, enableCumulativeEnergy, enableGridCode podłączone do odpytywania i tworzenia obiektów; dodano zakładkę 'Rozszerzone rejestry'",
-        "uk": "(ssbingo) Виправлення: прапорці функцій enableSmartLoads, enableCumulativeEnergy, enableGridCode підключені до опитування та створення об'єктів; додано вкладку 'Розширені регістри'",
-        "zh-cn": "(ssbingo) 修复：将功能标志 enableSmartLoads、enableCumulativeEnergy、enableGridCode 接入轮询和对象创建；添加"扩展寄存器"管理选项卡"
-      }
-    },
-        "en": "(ssbingo) feat: extended statistics — plant statistics 30088–30097, smart loads 1–24 (30098–30193), cumulative energy (30194–30271), adjustment feedback (30613–30619), grid code parameters (40049–40068)",
-        "de": "(ssbingo) Feat: Erweiterte Statistik — Plant-Statistik 30088–30097, Smart-Loads 1–24 (30098–30193), Kumulierte Energie (30194–30271), Regelungs-Feedback (30613–30619), Grid-Code-Parameter (40049–40068)",
-        "ru": "(ssbingo) Функция: расширенная статистика — статистика установки 30088–30097, умные нагрузки 1–24 (30098–30193), накопленная энергия (30194–30271), обратная связь регулировки (30613–30619), параметры кода сети (40049–40068)",
-        "pt": "(ssbingo) Funcionalidade: estatísticas alargadas — estatísticas de instalação 30088–30097, cargas inteligentes 1–24 (30098–30193), energia acumulada (30194–30271), feedback de ajuste (30613–30619), parâmetros de código de rede (40049–40068)",
-        "nl": "(ssbingo) Functie: uitgebreide statistieken — installatiestatistieken 30088–30097, slimme belastingen 1–24 (30098–30193), gecumuleerde energie (30194–30271), regelingsfeedback (30613–30619), netcodeparameters (40049–40068)",
-        "fr": "(ssbingo) Fonctionnalité : statistiques étendues — statistiques installation 30088–30097, charges intelligentes 1–24 (30098–30193), énergie cumulée (30194–30271), retour de régulation (30613–30619), paramètres code réseau (40049–40068)",
-        "it": "(ssbingo) Funzionalità: statistiche estese — statistiche impianto 30088–30097, carichi intelligenti 1–24 (30098–30193), energia cumulata (30194–30271), feedback regolazione (30613–30619), parametri codice rete (40049–40068)",
-        "es": "(ssbingo) Función: estadísticas ampliadas — estadísticas de planta 30088–30097, cargas inteligentes 1–24 (30098–30193), energía acumulada (30194–30271), retroalimentación de ajuste (30613–30619), parámetros de código de red (40049–40068)",
-        "pl": "(ssbingo) Funkcja: rozszerzone statystyki — statystyki instalacji 30088–30097, inteligentne obciążenia 1–24 (30098–30193), energia skumulowana (30194–30271), sprzężenie zwrotne regulacji (30613–30619), parametry kodu sieci (40049–40068)",
-        "uk": "(ssbingo) Функція: розширена статистика — статистика установки 30088–30097, розумні навантаження 1–24 (30098–30193), накопичена енергія (30194–30271), зворотний зв'язок регулювання (30613–30619), параметри коду мережі (40049–40068)",
-        "zh-cn": "(ssbingo) 功能：扩展统计 — 电站统计 30088–30097，智能负载 1–24（30098–30193），累计能量（30194–30271），调节反馈（30613–30619），电网代码参数（40049–40068）"
+      "2.2.0": {
+        "en": "(ssbingo) feat: PSS (Power Station Switch) and PID (PV Insulation Detection) support; ESS Preheating TOU schedule registers; new admin options for PSS/PID slave IDs",
+        "de": "(ssbingo) Feat: PSS (Power Station Switch) und PID (PV-Isolationsüberwachung) Unterstützung; ESS-Vorheizung TOU-Zeitplan-Register; neue Admin-Optionen für PSS/PID Slave-IDs",
+        "ru": "(ssbingo) Функция: поддержка PSS (силовой коммутатор) и PID (контроль изоляции PV); регистры расписания предварительного нагрева ESS TOU; новые параметры admin для ID ведомых PSS/PID",
+        "pt": "(ssbingo) Funcionalidade: suporte PSS (comutador de potência) e PID (detecção de isolamento PV); registros de agendamento TOU de pré-aquecimento ESS; novas opções admin para IDs escravos PSS/PID",
+        "nl": "(ssbingo) Functie: ondersteuning PSS (vermogensschakelaar) en PID (PV-isolatiebewaking); ESS-voorverwarmingsregeling TOU-schema-registers; nieuwe admin-opties voor PSS/PID-slave-ID's",
+        "fr": "(ssbingo) Fonctionnalité : prise en charge PSS (commutateur de puissance) et PID (détection d'isolation PV) ; registres de planification TOU de préchauffage ESS ; nouvelles options admin pour les ID esclaves PSS/PID",
+        "it": "(ssbingo) Funzionalità: supporto PSS (commutatore di potenza) e PID (rilevamento isolamento PV); registri programma TOU preriscaldamento ESS; nuove opzioni admin per ID slave PSS/PID",
+        "es": "(ssbingo) Función: compatibilidad con PSS (conmutador de alimentación) y PID (detección de aislamiento PV); registros de programación TOU de precalentamiento ESS; nuevas opciones admin para ID esclavos PSS/PID",
+        "pl": "(ssbingo) Funkcja: obsługa PSS (przełącznik zasilania) i PID (wykrywanie izolacji PV); rejestry harmonogramu TOU podgrzewania wstępnego ESS; nowe opcje admin dla ID slave PSS/PID",
+        "uk": "(ssbingo) Функція: підтримка PSS (силовий перемикач) та PID (контроль ізоляції PV); регістри розкладу попереднього нагріву ESS TOU; нові параметри admin для ID підлеглих PSS/PID",
+        "zh-cn": "(ssbingo) 功能：支持PSS（电力站开关）和PID（PV绝缘检测）；ESS预热TOU时间表寄存器；PSS/PID从机ID的新管理选项"
       }
     },
     "titleLang": {
@@ -133,7 +120,12 @@
     "hasSigenMicro": false,
     "sigenMicroScanFrom": 10,
     "sigenMicroScanTo": 30,
-    "sigenMicroDevices": "[]"
+    "sigenMicroDevices": "[]",
+    "enablePss": false,
+    "pssSlaveId": 5,
+    "enablePid": false,
+    "pidSlaveId": 6,
+    "enableEssPreheating": false
   },
   "objects": [],
   "instanceObjects": [

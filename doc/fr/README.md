@@ -142,6 +142,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.2.0 (2026-06-09)
+- (ssbingo) Fonctionnalité : prise en charge PSS (commutateur de puissance) et PID (détection d'isolation PV) ; registres de planification TOU de préchauffage ESS ; nouvelles options admin pour les ID esclaves PSS/PID
+
 ### 2.1.1 (2026-06-09)
 - (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
 

@@ -14,6 +14,8 @@ const {
     INVERTER_READ_REGISTERS,
     DC_CHARGER_READ_REGISTERS,
     AC_CHARGER_READ_REGISTERS,
+    PSS_READ_REGISTERS,
+    PID_READ_REGISTERS,
 } = require('./lib/registers');
 const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
@@ -64,7 +66,9 @@ class Sigenergy extends utils.Adapter {
         this.log.debug(
             `V2.x features: smartLoads=${this.config.enableSmartLoads}, ` +
                 `cumulativeEnergy=${this.config.enableCumulativeEnergy}, ` +
-                `gridCode=${this.config.enableGridCode}`,
+                `gridCode=${this.config.enableGridCode}, ` +
+                `pss=${this.config.enablePss}, pid=${this.config.enablePid}, ` +
+                `essPreheating=${this.config.enableEssPreheating}`,
         );
         await this.setStateAsync('info.connection', { val: false, ack: true });
 
@@ -247,6 +251,18 @@ class Sigenergy extends utils.Adapter {
                     return;
                 }
             }
+            if (this.config.enablePss) {
+                await this._readPss();
+                if (this._stopped) {
+                    return;
+                }
+            }
+            if (this.config.enablePid) {
+                await this._readPid();
+                if (this._stopped) {
+                    return;
+                }
+            }
 
             await this._updateStatistics();
             await this._updatePvStringPowers();
@@ -375,6 +391,46 @@ class Sigenergy extends utils.Adapter {
                 await this._sleep(100);
             } catch (err) {
                 this.log.warn(`DC Charger register read error: ${err.message}`);
+            }
+        }
+    }
+
+    async _readPss() {
+        const pssId = this.config.pssSlaveId || 5;
+        const batchSize = 50;
+        const groups = this._buildReadGroups(PSS_READ_REGISTERS, batchSize);
+        this.log.debug(`Reading PSS (slaveId=${pssId}): ${groups.length} group(s)`);
+
+        for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
+            try {
+                const raw = await this.modbus.readInputRegisters(pssId, group.startAddr, group.totalQty);
+                await this._processReadGroup(group, raw, 'pss');
+                await this._sleep(100);
+            } catch (err) {
+                this.log.warn(`PSS register read error: ${err.message}`);
+            }
+        }
+    }
+
+    async _readPid() {
+        const pidId = this.config.pidSlaveId || 6;
+        const batchSize = 50;
+        const groups = this._buildReadGroups(PID_READ_REGISTERS, batchSize);
+        this.log.debug(`Reading PID (slaveId=${pidId}): ${groups.length} group(s)`);
+
+        for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
+            try {
+                const raw = await this.modbus.readInputRegisters(pidId, group.startAddr, group.totalQty);
+                await this._processReadGroup(group, raw, 'pid');
+                await this._sleep(100);
+            } catch (err) {
+                this.log.warn(`PID register read error: ${err.message}`);
             }
         }
     }
@@ -664,6 +720,36 @@ class Sigenergy extends utils.Adapter {
 
             if (this.config.hasSigenMicro) {
                 await this._createSigenMicroObjects();
+            }
+
+            if (this.config.enablePss) {
+                this.log.debug('Creating PSS objects');
+                await this._createChannel('pss', 'Power Station Switch');
+                for (const reg of PSS_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createStateFromRegister(reg);
+                }
+            }
+
+            if (this.config.enablePid) {
+                this.log.debug('Creating PID objects');
+                await this._createChannel('pid', 'PV Insulation Detection');
+                for (const reg of PID_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createStateFromRegister(reg);
+                }
+            }
+
+            if (this.config.enableEssPreheating) {
+                this.log.debug('Creating ESS Preheating objects');
+                await this._createChannel('plant.essPreheating', 'ESS Preheating');
+                for (let n = 1; n <= 30; n++) {
+                    await this._createChannel(`plant.essPreheating.tou${n}`, `TOU Window ${n}`);
+                }
             }
 
             await this._createStatisticsStates();

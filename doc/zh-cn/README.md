@@ -151,6 +151,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.2.0 (2026-06-09)
+- (ssbingo) 功能：支持PSS（电力站开关）和PID（PV绝缘检测）；ESS预热TOU时间表寄存器；PSS/PID从机ID的新管理选项
+
 ### 2.1.1 (2026-06-09)
 - (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
 

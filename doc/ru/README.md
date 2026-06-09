@@ -151,6 +151,9 @@
 
 ## Changelog
 
+### 2.2.0 (2026-06-09)
+- (ssbingo) Функция: поддержка PSS (силовой коммутатор) и PID (контроль изоляции PV); регистры расписания предварительного нагрева ESS TOU; новые параметры admin для ID ведомых PSS/PID
+
 ### 2.1.1 (2026-06-09)
 - (ssbingo) fix: wire feature flags (enableSmartLoads, enableCumulativeEnergy, enableGridCode) into polling and object creation; add Extended Registers admin tab
 
