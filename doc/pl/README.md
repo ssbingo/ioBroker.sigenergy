@@ -160,6 +160,10 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Poprawka: brakujące domyślne native enableSmartLoads/enableCumulativeEnergy/enableGridCode dodane do io-package.json
+- (ssbingo) Poprawka: opis rejestru 30003 zaktualizowany o tryby EMS V2.7 5 (FullFeedIn) i 9 (Custom)
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Nowe: audyt rejestrów V2.9 — dodano brakujący rejestr 30279, rejestry PV DC Charger 31509/31511 przeniesione do przestrzeni nazw dcCharger, gain TOU ESS Preheating poprawiony
 - (ssbingo) Nowe: zapis powrotny rejestrów sterujących plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); rejestry RW odczytywane przy starcie

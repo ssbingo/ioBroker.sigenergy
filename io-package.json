@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.2.6",
+        "version": "2.2.7",
         "news": {
-            "2.2.6": {
-                "en": "(ssbingo) feat: V2.9 register audit — add register 30279, move DC Charger PV regs 31509/31511 to dcCharger, implement control write-back (FC06/FC10); fix: suppress ESS Preheating log flood; downgrade control startup read errors to debug",
-                "de": "(ssbingo) feat: V2.9 Register-Audit — Register 30279 ergänzt, DC-Charger PV-Register 31509/31511 in dcCharger-Namespace; Steuerungs-Rückschreiben (FC06/FC10); fix: ESS-Vorheizungs-Warn-Flooding unterdrückt; Startup-Lesefehler auf Debug herabgestuft",
-                "ru": "(ssbingo) feat: аудит регистров V2.9 — регистр 30279, PV-регистры DC 31509/31511 в dcCharger, обратная запись управляющих регистров; fix: подавление повторяющихся предупреждений ESS; ошибки чтения при старте понижены до debug",
-                "pt": "(ssbingo) feat: auditoria V2.9 — registo 30279, registos PV DC Charger 31509/31511 para dcCharger, escrita de controlo (FC06/FC10); fix: avisos ESS Preheating suprimidos; erros de leitura ao arranque em debug",
-                "nl": "(ssbingo) feat: V2.9 register-audit — register 30279, PV-registers DC Charger 31509/31511 naar dcCharger, terugschrijven besturingsregisters; fix: ESS-voorverwarmingswaarschuwingen onderdrukt; opstartleesfouten naar debug",
-                "fr": "(ssbingo) feat: audit V2.9 — registre 30279, registres PV DC 31509/31511 vers dcCharger, rétro-écriture contrôle (FC06/FC10) ; fix: avertissements ESS Preheating supprimés ; erreurs lecture démarrage en debug",
-                "it": "(ssbingo) feat: audit V2.9 — registro 30279, registri PV DC 31509/31511 in dcCharger, scrittura controllo (FC06/FC10); fix: avvisi ESS Preheating soppressi; errori lettura avvio in debug",
-                "es": "(ssbingo) feat: auditoría V2.9 — registro 30279, registros PV DC 31509/31511 a dcCharger, escritura control (FC06/FC10); fix: avisos ESS Preheating suprimidos; errores lectura inicio en debug",
-                "pl": "(ssbingo) feat: audyt V2.9 — rejestr 30279, rejestry PV DC 31509/31511 do dcCharger, zapis sterujący (FC06/FC10); fix: ostrzeżenia ESS Preheating wyciszone; błędy odczytu przy starcie w debug",
-                "uk": "(ssbingo) feat: аудит V2.9 — регістр 30279, PV-регістри DC 31509/31511 у dcCharger, зворотний запис керуючих; fix: попередження ESS Preheating придушені; помилки читання при запуску знижені до debug",
-                "zh-cn": "(ssbingo) feat: V2.9 寄存器审计 — 寄存器 30279，DC 充电机 PV 31509/31511 至 dcCharger，控制寄存器回写；fix: 抑制 ESS 预热重复警告；控制启动读取错误降级为 debug"
+            "2.2.7": {
+                "en": "(ssbingo) fix: add missing native defaults enableSmartLoads/enableCumulativeEnergy/enableGridCode to io-package.json; update register 30003 desc with V2.7 EMS modes 5 (FullFeedIn) and 9 (Custom)",
+                "de": "(ssbingo) fix: fehlende native-Defaults enableSmartLoads/enableCumulativeEnergy/enableGridCode in io-package.json ergänzt; Register 30003 Beschreibung um V2.7 EMS-Modi 5 (FullFeedIn) und 9 (Custom) erweitert",
+                "ru": "(ssbingo) fix: добавлены отсутствующие native-дефолты enableSmartLoads/enableCumulativeEnergy/enableGridCode в io-package.json; обновлено описание регистра 30003 с режимами EMS V2.7: 5 (FullFeedIn) и 9 (Custom)",
+                "pt": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode adicionados ao io-package.json; descrição do registo 30003 atualizada com modos EMS V2.7 5 (FullFeedIn) e 9 (Custom)",
+                "nl": "(ssbingo) fix: ontbrekende native-standaarden enableSmartLoads/enableCumulativeEnergy/enableGridCode toegevoegd aan io-package.json; beschrijving register 30003 bijgewerkt met V2.7 EMS-modi 5 (FullFeedIn) en 9 (Custom)",
+                "fr": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode ajoutés à io-package.json ; description registre 30003 mise à jour avec modes EMS V2.7 5 (FullFeedIn) et 9 (Custom)",
+                "it": "(ssbingo) fix: default native enableSmartLoads/enableCumulativeEnergy/enableGridCode aggiunti a io-package.json; descrizione registro 30003 aggiornata con modalità EMS V2.7 5 (FullFeedIn) e 9 (Custom)",
+                "es": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode añadidos a io-package.json; descripción del registro 30003 actualizada con modos EMS V2.7 5 (FullFeedIn) y 9 (Custom)",
+                "pl": "(ssbingo) fix: brakujące domyślne native enableSmartLoads/enableCumulativeEnergy/enableGridCode dodane do io-package.json; opis rejestru 30003 zaktualizowany o tryby EMS V2.7 5 (FullFeedIn) i 9 (Custom)",
+                "uk": "(ssbingo) fix: відсутні native-дефолти enableSmartLoads/enableCumulativeEnergy/enableGridCode додано до io-package.json; опис регістру 30003 оновлено з режимами EMS V2.7 5 (FullFeedIn) та 9 (Custom)",
+                "zh-cn": "(ssbingo) fix: 在 io-package.json 中添加缺失的 native 默认值 enableSmartLoads/enableCumulativeEnergy/enableGridCode；更新寄存器 30003 描述以包含 V2.7 EMS 模式 5（完全并网）和 9（自定义）"
             }
         },
         "titleLang": {
@@ -121,6 +121,9 @@
         "sigenMicroScanFrom": 10,
         "sigenMicroScanTo": 30,
         "sigenMicroDevices": "[]",
+        "enableSmartLoads": false,
+        "enableCumulativeEnergy": false,
+        "enableGridCode": false,
         "enablePss": false,
         "pssSlaveId": 5,
         "enablePid": false,

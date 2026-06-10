@@ -155,6 +155,10 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Fix: ontbrekende native-standaarden enableSmartLoads/enableCumulativeEnergy/enableGridCode toegevoegd aan io-package.json
+- (ssbingo) Fix: beschrijving register 30003 bijgewerkt met V2.7 EMS-modi 5 (FullFeedIn) en 9 (Custom)
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Nieuw: V2.9 register-audit — ontbrekend register 30279 toegevoegd, DC Charger PV-registers 31509/31511 verplaatst naar dcCharger-namespace, ESS-voorverwarmings-TOU-gain gecorrigeerd
 - (ssbingo) Nieuw: terugschrijven van besturingsregisters voor plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-registers gelezen bij opstarten

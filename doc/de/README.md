@@ -151,6 +151,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Fix: fehlende native-Defaults enableSmartLoads/enableCumulativeEnergy/enableGridCode in io-package.json ergänzt
+- (ssbingo) Fix: Register 30003 Beschreibung um V2.7 EMS-Modi 5 (FullFeedIn) und 9 (Custom) erweitert
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Neu: V2.9 Register-Audit — fehlendes Register 30279 ergänzt, DC-Charger PV-Register 31509/31511 in dcCharger-Namespace verschoben, ESS-Vorheizungs-TOU-Gain korrigiert
 - (ssbingo) Neu: Steuerungs-Rückschreiben für plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-Holding-Register beim Start gelesen

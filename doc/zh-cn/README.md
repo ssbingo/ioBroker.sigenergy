@@ -160,6 +160,10 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) 修复：在 io-package.json 中添加缺失的 native 默认值 enableSmartLoads/enableCumulativeEnergy/enableGridCode
+- (ssbingo) 修复：更新寄存器 30003 描述，包含 V2.7 EMS 模式 5（完全并网）和 9（自定义）
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) 新功能：V2.9 寄存器审计 — 添加缺失寄存器 30279，DC 充电机 PV 寄存器 31509/31511 移至 dcCharger 命名空间，修正 ESS 预热 TOU 时间 gain
 - (ssbingo) 新功能：实现 plant.control.*、plant.gridCode.*、inverter.control.*、dcCharger.control.* 控制寄存器回写（FC06/FC10）；启动时读取 RW 保持寄存器

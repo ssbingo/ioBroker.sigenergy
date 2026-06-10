@@ -160,6 +160,10 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Corrección: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode añadidos a io-package.json
+- (ssbingo) Corrección: descripción del registro 30003 actualizada con modos EMS V2.7 5 (FullFeedIn) y 9 (Custom)
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Nuevo: auditoría de registros V2.9 — registro faltante 30279 añadido, registros PV DC Charger 31509/31511 movidos al namespace dcCharger, gain TOU ESS Preheating corregido
 - (ssbingo) Nuevo: escritura de retorno de registros de control plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); registros RW leídos al inicio

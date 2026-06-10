@@ -160,6 +160,10 @@
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Виправлення: відсутні native-дефолти enableSmartLoads/enableCumulativeEnergy/enableGridCode додано до io-package.json
+- (ssbingo) Виправлення: опис регістру 30003 оновлено з режимами EMS V2.7 5 (FullFeedIn) та 9 (Custom)
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Нове: аудит регістрів V2.9 — додано відсутній регістр 30279, PV-регістри DC зарядного пристрою 31509/31511 переміщено до простору імен dcCharger, gain TOU ESS Preheating виправлено
 - (ssbingo) Нове: зворотний запис керуючих регістрів plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-регістри читаються при запуску

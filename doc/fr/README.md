@@ -146,6 +146,10 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.2.7 (2026-06-10)
+- (ssbingo) Correctif : defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode ajoutés à io-package.json
+- (ssbingo) Correctif : description registre 30003 mise à jour avec modes EMS V2.7 5 (FullFeedIn) et 9 (Custom)
+
 ### 2.2.6 (2026-06-10)
 - (ssbingo) Nouveau : audit des registres V2.9 — registre 30279 manquant ajouté, registres PV DC Charger 31509/31511 déplacés vers le namespace dcCharger, gain TOU ESS Preheating corrigé
 - (ssbingo) Nouveau : rétro-écriture des registres de contrôle plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10) ; registres RW lus au démarrage
