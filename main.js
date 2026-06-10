@@ -17,6 +17,9 @@ const {
     PSS_READ_REGISTERS,
     PID_READ_REGISTERS,
     ESS_PREHEATING_WRITE_REGISTERS,
+    PLANT_WRITE_REGISTERS,
+    INVERTER_WRITE_REGISTERS,
+    DC_CHARGER_WRITE_REGISTERS,
 } = require('./lib/registers');
 const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
@@ -42,6 +45,7 @@ class Sigenergy extends utils.Adapter {
         // (modbus reads, scans, setTimeout-chains) can abort gracefully instead of
         // calling setStateAsync on a stopped adapter.
         this._stopped = false;
+        this._controlRegistersRead = false;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -224,6 +228,11 @@ class Sigenergy extends utils.Adapter {
         this.log.debug('[poll] cycle started');
 
         try {
+            if (!this._controlRegistersRead) {
+                await this._readControlRegisters();
+                this._controlRegistersRead = true;
+            }
+
             const _t0 = Date.now();
             await this._readPlant();
             if (this._stopped) {
@@ -462,6 +471,56 @@ class Sigenergy extends utils.Adapter {
         }
     }
 
+    async _readControlRegisters() {
+        const plantId = this.config.plantId || 247;
+        const inverterId = this.config.inverterId || 1;
+        this.log.debug('[controlRegs] Reading RW holding registers (one-time on startup)');
+
+        const plantRw = PLANT_WRITE_REGISTERS.filter(r => r.perm === 'RW' && (!r.feature || this.config[r.feature]));
+        if (plantRw.length > 0) {
+            for (const group of this._buildReadGroups(plantRw, 50)) {
+                if (this._stopped) return;
+                try {
+                    const raw = await this.modbus.readHoldingRegisters(plantId, group.startAddr, group.totalQty);
+                    await this._processReadGroup(group, raw, 'control');
+                    await this._sleep(100);
+                } catch (err) {
+                    this.log.warn(`Plant control register read error at ${group.startAddr}: ${err.message}`);
+                }
+            }
+        }
+
+        const invRw = INVERTER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
+        if (invRw.length > 0) {
+            for (const group of this._buildReadGroups(invRw, 50)) {
+                if (this._stopped) return;
+                try {
+                    const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
+                    await this._processReadGroup(group, raw, 'control');
+                    await this._sleep(100);
+                } catch (err) {
+                    this.log.warn(`Inverter control register read error at ${group.startAddr}: ${err.message}`);
+                }
+            }
+        }
+
+        if (this.config.hasDcCharger) {
+            const dcRw = DC_CHARGER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
+            if (dcRw.length > 0) {
+                for (const group of this._buildReadGroups(dcRw, 50)) {
+                    if (this._stopped) return;
+                    try {
+                        const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
+                        await this._processReadGroup(group, raw, 'control');
+                        await this._sleep(100);
+                    } catch (err) {
+                        this.log.warn(`DC Charger control register read error at ${group.startAddr}: ${err.message}`);
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Read all active SigenMicro devices
      */
@@ -693,6 +752,25 @@ class Sigenergy extends utils.Adapter {
                 await this._createStateFromRegister(reg);
             }
 
+            // Plant control write states
+            await this._createChannel('plant.control', 'Plant Control');
+            if (this.config.enableGridCode) {
+                await this._createChannel('plant.gridCode', 'Grid Code Parameters');
+            }
+            for (const reg of PLANT_WRITE_REGISTERS) {
+                if (this._stopped) {
+                    return;
+                }
+                if (reg.feature && !this.config[reg.feature]) {
+                    continue;
+                }
+                await this._createWriteStateFromRegister(reg);
+            }
+            this.subscribeStates('plant.control.*');
+            if (this.config.enableGridCode) {
+                this.subscribeStates('plant.gridCode.*');
+            }
+
             // Virtual PV string power states (calculated from voltage × current)
             for (const pvState of [
                 { id: 'plant.pv1Power', desc: 'PV string 1 power' },
@@ -723,6 +801,16 @@ class Sigenergy extends utils.Adapter {
                 await this._createStateFromRegister(reg);
             }
 
+            // Inverter control write states
+            await this._createChannel('inverter.control', 'Inverter Control');
+            for (const reg of INVERTER_WRITE_REGISTERS) {
+                if (this._stopped) {
+                    return;
+                }
+                await this._createWriteStateFromRegister(reg);
+            }
+            this.subscribeStates('inverter.control.*');
+
             if (this.config.hasAcCharger) {
                 this.log.debug('Creating AC charger objects');
                 await this._createChannel('acCharger', 'AC Charger');
@@ -743,6 +831,14 @@ class Sigenergy extends utils.Adapter {
                     }
                     await this._createStateFromRegister(reg);
                 }
+                await this._createChannel('dcCharger.control', 'DC Charger Control');
+                for (const reg of DC_CHARGER_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createWriteStateFromRegister(reg);
+                }
+                this.subscribeStates('dcCharger.control.*');
             }
 
             if (this.config.hasSigenMicro) {
@@ -851,6 +947,27 @@ class Sigenergy extends utils.Adapter {
                 unit: reg.unit || '',
                 read: true,
                 write: false,
+            },
+            native: {
+                addr: reg.addr,
+                qty: reg.qty,
+                dataType: reg.type,
+                gain: reg.gain,
+            },
+        });
+    }
+
+    async _createWriteStateFromRegister(reg) {
+        const type = reg.type === 'STRING' ? 'string' : 'number';
+        await this.setObjectNotExistsAsync(reg.name, {
+            type: 'state',
+            common: {
+                name: reg.desc,
+                type,
+                role: 'value',
+                unit: reg.unit || '',
+                read: reg.perm === 'RW',
+                write: true,
             },
             native: {
                 addr: reg.addr,
@@ -978,27 +1095,64 @@ class Sigenergy extends utils.Adapter {
         if (!state || state.ack) {
             return;
         }
-        // Strip namespace prefix (e.g. "sigenergy.0.")
+        if (!this.modbus || !this.modbus.connected) {
+            this.log.warn(`Cannot write state ${id}: Modbus not connected`);
+            return;
+        }
         const localId = id.replace(/^[^.]+\.\d+\./, '');
-        if (!localId.startsWith('plant.essPreheating.')) {
+
+        // ESS Preheating writes (FC03/FC10)
+        if (localId.startsWith('plant.essPreheating.')) {
+            const reg = ESS_PREHEATING_WRITE_REGISTERS.find(r => r.name === localId);
+            if (!reg) return;
+            const plantId = this.config.plantId || 247;
+            const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
+            try {
+                if (raw.length === 1) {
+                    await this.modbus.writeSingleRegister(plantId, reg.addr, raw[0]);
+                } else {
+                    await this.modbus.writeMultipleRegisters(plantId, reg.addr, raw);
+                }
+                await this.setStateAsync(id, { val: state.val, ack: true });
+                this.log.debug(`[essPreheating] wrote ${localId} = ${state.val} → addr ${reg.addr}`);
+            } catch (err) {
+                this.log.error(`ESS Preheating write error for ${localId}: ${err.message}`);
+            }
             return;
         }
-        const reg = ESS_PREHEATING_WRITE_REGISTERS.find(r => r.name === localId);
-        if (!reg) {
-            return;
+
+        // Plant / Inverter / DC Charger control register writes
+        let reg = null;
+        let slaveId = null;
+        let category = '';
+
+        if (localId.startsWith('plant.control.') || localId.startsWith('plant.gridCode.')) {
+            reg = PLANT_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.plantId || 247;
+            category = 'plant';
+        } else if (localId.startsWith('inverter.control.')) {
+            reg = INVERTER_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.inverterId || 1;
+            category = 'inverter';
+        } else if (localId.startsWith('dcCharger.control.')) {
+            reg = DC_CHARGER_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.inverterId || 1;
+            category = 'dcCharger';
         }
-        const plantId = this.config.plantId || 247;
+
+        if (!reg) return;
+
         const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
         try {
             if (raw.length === 1) {
-                await this.modbus.writeSingleRegister(plantId, reg.addr, raw[0]);
+                await this.modbus.writeSingleRegister(slaveId, reg.addr, raw[0]);
             } else {
-                await this.modbus.writeMultipleRegisters(plantId, reg.addr, raw);
+                await this.modbus.writeMultipleRegisters(slaveId, reg.addr, raw);
             }
             await this.setStateAsync(id, { val: state.val, ack: true });
-            this.log.debug(`[essPreheating] wrote ${localId} = ${state.val} → addr ${reg.addr}`);
+            this.log.debug(`[${category}] wrote ${localId} = ${state.val} → addr ${reg.addr} slave ${slaveId}`);
         } catch (err) {
-            this.log.error(`ESS Preheating write error for ${localId}: ${err.message}`);
+            this.log.error(`Control register write error for ${localId}: ${err.message}`);
         }
     }
 

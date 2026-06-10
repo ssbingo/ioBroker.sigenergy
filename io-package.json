@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.2.4",
+        "version": "2.2.5",
         "news": {
-            "2.2.4": {
-                "en": "(ssbingo) fix: implement ESS Preheating TOU read (FC03 registers 50000–50183) and write-back; 94 states with read+write; subscribe to state changes",
-                "de": "(ssbingo) fix: ESS-Vorheizung TOU-Lesen (FC03 Register 50000–50183) und Rückschreiben implementiert; 94 States mit read+write; Zustandsänderungen werden abonniert",
-                "ru": "(ssbingo) fix: реализовано чтение TOU предварительного нагрева ESS (FC03 регистры 50000–50183) и запись; 94 состояния read+write",
-                "pt": "(ssbingo) fix: implementada leitura TOU de pré-aquecimento ESS (FC03 registos 50000–50183) e escrita; 94 estados read+write",
-                "nl": "(ssbingo) fix: ESS-voorverwarming TOU lezen (FC03 registers 50000–50183) en terugschrijven geïmplementeerd; 94 states read+write",
-                "fr": "(ssbingo) fix: lecture TOU préchauffage ESS (FC03 registres 50000–50183) et écriture implémentées; 94 états read+write",
-                "it": "(ssbingo) fix: implementata lettura TOU preriscaldamento ESS (FC03 registri 50000–50183) e scrittura; 94 stati read+write",
-                "es": "(ssbingo) fix: implementada lectura TOU precalentamiento ESS (FC03 registros 50000–50183) y escritura; 94 estados read+write",
-                "pl": "(ssbingo) fix: zaimplementowano odczyt TOU podgrzewania ESS (FC03 rejestry 50000–50183) i zapis; 94 stany read+write",
-                "uk": "(ssbingo) fix: реалізовано читання TOU попереднього нагрівання ESS (FC03 регістри 50000–50183) та запис; 94 стани read+write",
-                "zh-cn": "(ssbingo) fix: 实现 ESS 预热 TOU 读取（FC03 寄存器 50000–50183）和写回；94 个 read+write 状态"
+            "2.2.5": {
+                "en": "(ssbingo) feat: V2.9 register audit — add missing register 30279, move DC Charger PV registers 31509/31511 to dcCharger namespace, implement plant/inverter/DC Charger control write-back (FC06/FC10), read RW holding registers on startup",
+                "de": "(ssbingo) feat: V2.9 Register-Audit — fehlendes Register 30279 ergänzt, DC-Charger PV-Register 31509/31511 in dcCharger-Namespace verschoben, Steuerungs-Rückschreiben für Anlage/Wechselrichter/DC-Charger (FC06/FC10) implementiert, RW-Holding-Register beim Start gelesen",
+                "ru": "(ssbingo) feat: аудит регистров V2.9 — добавлен отсутствующий регистр 30279, PV-регистры DC зарядного устройства 31509/31511 перемещены в пространство имён dcCharger, реализована обратная запись управляющих регистров завода/инвертора/DC зарядного устройства",
+                "pt": "(ssbingo) feat: auditoria de registos V2.9 — registo 30279 em falta adicionado, registos PV DC Charger 31509/31511 movidos para namespace dcCharger, implementada escrita de retorno de registos de controlo",
+                "nl": "(ssbingo) feat: V2.9 register-audit — ontbrekend register 30279 toegevoegd, DC Charger PV-registers 31509/31511 verplaatst naar dcCharger-namespace, terugschrijven van besturingsregisters voor installatie/omvormer/DC-lader geïmplementeerd",
+                "fr": "(ssbingo) feat: audit registres V2.9 — registre manquant 30279 ajouté, registres PV DC Charger 31509/31511 déplacés vers l'espace de noms dcCharger, rétro-écriture des registres de contrôle implémentée",
+                "it": "(ssbingo) feat: audit registri V2.9 — registro mancante 30279 aggiunto, registri PV DC Charger 31509/31511 spostati nel namespace dcCharger, scrittura di ritorno dei registri di controllo implementata",
+                "es": "(ssbingo) feat: auditoría de registros V2.9 — registro 30279 faltante añadido, registros PV DC Charger 31509/31511 movidos al namespace dcCharger, escritura de retorno de registros de control implementada",
+                "pl": "(ssbingo) feat: audyt rejestrów V2.9 — dodano brakujący rejestr 30279, rejestry PV DC Charger 31509/31511 przeniesione do przestrzeni nazw dcCharger, zaimplementowano zapis powrotny rejestrów sterujących",
+                "uk": "(ssbingo) feat: аудит регістрів V2.9 — додано відсутній регістр 30279, PV-регістри DC зарядного пристрою 31509/31511 переміщено до простору імен dcCharger, реалізовано зворотний запис керуючих регістрів",
+                "zh-cn": "(ssbingo) feat: V2.9 寄存器审计 — 添加缺失寄存器 30279，DC 充电机 PV 寄存器 31509/31511 移至 dcCharger 命名空间，实现设备/逆变器/DC 充电机控制寄存器回写"
             }
         },
         "titleLang": {
