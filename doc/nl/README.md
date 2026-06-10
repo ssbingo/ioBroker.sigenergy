@@ -155,6 +155,11 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) Nieuw: V2.9 register-audit — ontbrekend register 30279 toegevoegd, DC Charger PV-registers 31509/31511 verplaatst naar dcCharger-namespace, ESS-voorverwarmings-TOU-gain gecorrigeerd
+- (ssbingo) Nieuw: terugschrijven van besturingsregisters voor plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-registers gelezen bij opstarten
+- (ssbingo) Fix: herhaalde ESS-voorverwarmingswaarschuwingen onderdrukt; opstartleesfouten van besturingsregisters teruggebracht naar debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: ESS-voorverwarming TOU polling (FC03, 50000–50183) en terugschrijven geïmplementeerd; encodeValue toegevoegd
 
@@ -218,30 +223,3 @@ Status en vermogensmetingen van de DC-oplader.
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) Fix: ongebruikt common.schedule verwijderd uit io-package.json
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) Fix: Changelog / CHANGELOG_OLD.md toegevoegd
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) Bugfix: admin/index.html verwijderd
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) Bugfixes
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Admin-UI gecorrigeerd: verouderde bestanden index.html/index_m.html/words.js verwijderd; jsonData-type in jsonConfig sendTo-knoppen gecorrigeerd
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Test voltooid
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Copyrighljaar gecorrigeerd naar 2026 in LICENSE en README; technische correcties: CI/CD, linting, tests
-

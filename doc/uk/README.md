@@ -160,6 +160,11 @@
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) Нове: аудит регістрів V2.9 — додано відсутній регістр 30279, PV-регістри DC зарядного пристрою 31509/31511 переміщено до простору імен dcCharger, gain TOU ESS Preheating виправлено
+- (ssbingo) Нове: зворотний запис керуючих регістрів plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-регістри читаються при запуску
+- (ssbingo) Виправлення: повторювані попередження ESS Preheating придушені; помилки читання керуючих регістрів при запуску знижені до debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: читання TOU нагрівання ESS (FC03, 50000–50183) та запис реалізовані; додано encodeValue
 
@@ -223,30 +228,3 @@
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Нове: додано обчислювані стани plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) Нове: додано обчислювані стани plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) Виправлення: видалено невикористаний common.schedule з io-package.json
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) Виправлення: Changelog / додано CHANGELOG_OLD.md
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) Виправлення: видалено admin/index.html
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) Виправлення
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Виправлено Admin-UI: видалено застарілі файли index.html/index_m.html/words.js; виправлено тип jsonData у кнопках sendTo конфігурації jsonConfig
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Тестування завершено
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Виправлено рік авторського права на 2026 у LICENSE та README; технічні виправлення: CI/CD, лінтинг, тести
-

@@ -1,5 +1,30 @@
 # Older Changelog
 
+### 1.9.6 (2026-04-16)
+- (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
+
+### 1.9.5 (2026-04-08)
+- (ssbingo) fix: removed unused common.schedule from io-package.json
+
+### 1.9.4 (2026-04-08)
+- (ssbingo) fix: Changelog / adding CHANGELOG_OLD.md
+
+### 1.9.3 (2026-04-08)
+- (ssbingo) fix remove admin/index.html
+
+### 1.9.2 (2026-04-08)
+- (ssbingo) fixes
+
+### 1.9.1 (2026-04-08)
+- (ssbingo) Fixed admin UI: removed legacy index.html/index_m.html/words.js; fixed jsonData type in jsonConfig sendTo buttons
+
+### 1.9.0 (2026-03-26)
+- (ssbingo) Test abgeschlossen
+
+### 1.8.23 (2026-03-26)
+- (ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests
+
+
 ### 1.8.22 (2026-03-26)
 - (ssbingo) Technical corrections: CI/CD workflow (OIDC publish), linting setup, standard tests restored
 

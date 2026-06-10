@@ -146,6 +146,11 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) Nouveau : audit des registres V2.9 — registre 30279 manquant ajouté, registres PV DC Charger 31509/31511 déplacés vers le namespace dcCharger, gain TOU ESS Preheating corrigé
+- (ssbingo) Nouveau : rétro-écriture des registres de contrôle plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10) ; registres RW lus au démarrage
+- (ssbingo) Correctif : avertissements répétés ESS Preheating supprimés ; erreurs de lecture des registres de contrôle au démarrage abaissées en debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: lecture TOU préchauffage ESS (FC03, 50000–50183) et écriture implémentées; encodeValue ajouté
 
@@ -209,30 +214,3 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) Correction : suppression de common.schedule inutilisé dans io-package.json
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) Correction : Changelog / ajout de CHANGELOG_OLD.md
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) Correction : suppression de admin/index.html
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) Corrections
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Interface d'administration corrigée : suppression des fichiers obsolètes index.html/index_m.html/words.js ; correction du type jsonData dans les boutons sendTo de jsonConfig
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Test terminé
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Année de copyright corrigée à 2026 dans LICENSE et README ; corrections techniques : CI/CD, linting, tests
-

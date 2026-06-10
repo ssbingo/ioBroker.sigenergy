@@ -151,6 +151,11 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) Neu: V2.9 Register-Audit — fehlendes Register 30279 ergänzt, DC-Charger PV-Register 31509/31511 in dcCharger-Namespace verschoben, ESS-Vorheizungs-TOU-Gain korrigiert
+- (ssbingo) Neu: Steuerungs-Rückschreiben für plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); RW-Holding-Register beim Start gelesen
+- (ssbingo) Fix: Wiederholte ESS-Vorheizungs-Warnungen nach nicht unterstützten Registern unterdrückt; Startup-Lesefehler der Control-Register auf Debug herabgestuft
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: ESS-Vorheizung TOU-Abfrage (FC03, 50000–50183, 94 Register) und Rückschreiben implementiert; encodeValue in ModbusConnection ergänzt
 
@@ -214,30 +219,3 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) Fix: ungenutztes common.schedule aus io-package.json entfernt
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) Fix: Changelog / CHANGELOG_OLD.md hinzugefügt
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) Korrektur: admin/index.html entfernt
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) Korrekturen
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Admin-UI bereinigt: veraltete index.html/index_m.html/words.js entfernt; jsonData-Typ in jsonConfig sendTo-Buttons korrigiert
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Test abgeschlossen
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Copyright-Jahr auf 2026 korrigiert in LICENSE und README; technische Korrekturen: CI/CD-Workflow, Linting, Tests
-

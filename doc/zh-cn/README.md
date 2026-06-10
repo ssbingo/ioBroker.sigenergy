@@ -160,6 +160,11 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) 新功能：V2.9 寄存器审计 — 添加缺失寄存器 30279，DC 充电机 PV 寄存器 31509/31511 移至 dcCharger 命名空间，修正 ESS 预热 TOU 时间 gain
+- (ssbingo) 新功能：实现 plant.control.*、plant.gridCode.*、inverter.control.*、dcCharger.control.* 控制寄存器回写（FC06/FC10）；启动时读取 RW 保持寄存器
+- (ssbingo) 修复：抑制设备不支持 ESS 预热寄存器时的重复警告；控制寄存器启动读取错误降级为 debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: 实现 ESS 预热 TOU 读取（FC03, 50000–50183）和写回；添加 encodeValue
 
@@ -223,30 +228,3 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) 修复：从 io-package.json 中删除未使用的 common.schedule
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) 修复：Changelog / 添加 CHANGELOG_OLD.md
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) 修复：删除 admin/index.html
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) 修复
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) 修复管理界面：删除过时的 index.html/index_m.html/words.js 文件；修复 jsonConfig sendTo 按钮中的 jsonData 类型
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) 测试完成
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) 修正LICENSE和README中的版权年份为2026；技术修正：CI/CD工作流、代码检查、测试
-

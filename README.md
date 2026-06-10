@@ -153,6 +153,11 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) feat: V2.9 register audit — add missing register 30279 (current control command value), move DC Charger PV registers 31509/31511 to dcCharger namespace, fix ESS Preheating TOU time gain (null→1)
+- (ssbingo) feat: implement control write-back for plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); read RW holding registers on startup
+- (ssbingo) fix: suppress repeated ESS Preheating warn after device reports unsupported registers; downgrade control register startup read errors to debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: implement ESS Preheating TOU polling (FC03, 50000–50183, 94 registers) and write-back via onStateChange; add encodeValue to ModbusConnection
 
@@ -217,31 +222,6 @@ Status and power readings for the DC charger.
 ### 1.9.7 (2026-04-16)
 - (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
 
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) fix: removed unused common.schedule from io-package.json
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) fix: Changelog / adding CHANGELOG_OLD.md
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) fix remove admin/index.html
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) fixes
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Fixed admin UI: removed legacy index.html/index_m.html/words.js; fixed jsonData type in jsonConfig sendTo buttons
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Test abgeschlossen
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Fixed copyright year to 2026 in LICENSE and README; technical corrections: CI/CD workflow, linting, tests
 
 ---
 

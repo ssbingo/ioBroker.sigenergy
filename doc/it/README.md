@@ -155,6 +155,11 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.2.6 (2026-06-10)
+- (ssbingo) Novità: audit registri V2.9 — registro mancante 30279 aggiunto, registri PV DC Charger 31509/31511 spostati nel namespace dcCharger, gain TOU ESS Preheating corretto
+- (ssbingo) Novità: scrittura di ritorno dei registri di controllo plant.control.*, plant.gridCode.*, inverter.control.*, dcCharger.control.* (FC06/FC10); registri RW letti all'avvio
+- (ssbingo) Correzione: avvisi ripetuti ESS Preheating soppressi; errori di lettura dei registri di controllo all'avvio ridotti a debug
+
 ### 2.2.4 (2026-06-10)
 - (ssbingo) fix: lettura TOU preriscaldamento ESS (FC03, 50000–50183) e scrittura implementate; encodeValue aggiunto
 
@@ -218,30 +223,3 @@ Stato e misure di potenza del caricatore DC.
 
 ### 1.9.7 (2026-04-16)
 - (ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.6 (2026-04-16)
-- (ssbingo) Novità: aggiunti stati calcolati plant.pv1Power, plant.pv2Power, plant.pv3Power
-
-
-### 1.9.5 (2026-04-08)
-- (ssbingo) Correzione: rimosso common.schedule inutilizzato da io-package.json
-
-### 1.9.4 (2026-04-08)
-- (ssbingo) Correzione: Changelog / aggiunto CHANGELOG_OLD.md
-
-### 1.9.3 (2026-04-08)
-- (ssbingo) Correzione: rimosso admin/index.html
-
-### 1.9.2 (2026-04-08)
-- (ssbingo) Correzioni
-
-### 1.9.1 (2026-04-08)
-- (ssbingo) Interfaccia di amministrazione corretta: rimossi i file legacy index.html/index_m.html/words.js; corretto il tipo jsonData nei pulsanti sendTo di jsonConfig
-
-### 1.9.0 (2026-03-26)
-- (ssbingo) Test completato
-
-### 1.8.23 (2026-03-26)
-- (ssbingo) Anno di copyright corretto a 2026 in LICENSE e README; correzioni tecniche: CI/CD, linting, test
-
