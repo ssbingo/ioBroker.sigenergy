@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sigenergy",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "ioBroker adapter for Sigenergy solar energy systems via Modbus TCP/RTU",
   "author": {
     "name": "ssbingo",

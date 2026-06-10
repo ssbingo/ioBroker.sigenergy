@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: 25 ontbrekende i18n-sleutels toegevoegd (PSS, PID, ESS-voorverwarming, uitgebreide registers) in alle 11 talen
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: alle READMEs bijgewerkt naar Modbus Protocol V2.9 — PSS, PID, ESS-voorverwarming, uitgebreide registers, SigenMicro toegevoegd
 

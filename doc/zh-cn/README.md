@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: 为所有 11 种语言添加 25 个缺失的 i18n 键（PSS、PID、ESS 预热、扩展寄存器）
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: 更新所有 README 至 Modbus 协议 V2.9 — 添加 PSS、PID、ESS 预热、扩展寄存器、SigenMicro
 

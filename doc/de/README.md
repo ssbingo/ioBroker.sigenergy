@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: 25 fehlende Admin-i18n-Schlüssel in allen 11 Sprachen ergänzt (PSS, PID, ESS-Vorheizung, Erweiterte Register)
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: alle READMEs auf Modbus-Protokoll V2.9 aktualisiert — PSS, PID, ESS-Vorheizung, Erweiterte Register, SigenMicro ergänzt; Protokollversionsangabe korrigiert
 

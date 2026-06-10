@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.2.2",
+        "version": "2.2.3",
         "news": {
-            "2.2.2": {
-                "en": "(ssbingo) docs: update all READMEs to Modbus Protocol V2.9 — add PSS, PID, ESS Preheating, Extended Registers, SigenMicro; correct protocol version reference",
-                "de": "(ssbingo) docs: alle READMEs auf Modbus-Protokoll V2.9 aktualisiert — PSS, PID, ESS-Vorheizung, Erweiterte Register, SigenMicro ergänzt; Protokollversionsangabe korrigiert",
-                "ru": "(ssbingo) docs: обновление всех README для протокола Modbus V2.9 — добавлены PSS, PID, предварительный нагрев ESS, расширенные регистры, SigenMicro; исправлена ссылка на версию протокола",
-                "pt": "(ssbingo) docs: atualização de todos os READMEs para o protocolo Modbus V2.9 — adicionados PSS, PID, pré-aquecimento ESS, registos alargados, SigenMicro; referência de versão do protocolo corrigida",
-                "nl": "(ssbingo) docs: alle READMEs bijgewerkt naar Modbus Protocol V2.9 — PSS, PID, ESS-voorverwarming, uitgebreide registers, SigenMicro toegevoegd; protocolversionreferentie gecorrigeerd",
-                "fr": "(ssbingo) docs: mise à jour de tous les READMEs pour le protocole Modbus V2.9 — ajout de PSS, PID, préchauffage ESS, registres étendus, SigenMicro ; correction de la référence de version du protocole",
-                "it": "(ssbingo) docs: aggiornamento di tutti i README al protocollo Modbus V2.9 — aggiunti PSS, PID, preriscaldamento ESS, registri estesi, SigenMicro; corretta la versione del protocollo",
-                "es": "(ssbingo) docs: actualización de todos los READMEs al protocolo Modbus V2.9 — añadidos PSS, PID, precalentamiento ESS, registros extendidos, SigenMicro; corregida la referencia de versión del protocolo",
-                "pl": "(ssbingo) docs: aktualizacja wszystkich README do protokołu Modbus V2.9 — dodano PSS, PID, podgrzewanie wstępne ESS, rejestry rozszerzone, SigenMicro; poprawiono odniesienie do wersji protokołu",
-                "uk": "(ssbingo) docs: оновлення всіх README для протоколу Modbus V2.9 — додано PSS, PID, попереднє нагрівання ESS, розширені регістри, SigenMicro; виправлено посилання на версію протоколу",
-                "zh-cn": "(ssbingo) docs: 更新所有 README 至 Modbus 协议 V2.9 — 添加 PSS、PID、ESS 预热、扩展寄存器、SigenMicro；修正协议版本引用"
+            "2.2.3": {
+                "en": "(ssbingo) fix: add 25 missing admin i18n keys for PSS, PID, ESS Preheating, Extended Registers, Smart Loads, Grid Code across all 11 languages",
+                "de": "(ssbingo) fix: 25 fehlende Admin-i18n-Schlüssel für PSS, PID, ESS-Vorheizung, Erweiterte Register, Smart Loads, Netzcode in allen 11 Sprachen ergänzt",
+                "ru": "(ssbingo) fix: добавлены 25 отсутствующих ключей i18n для PSS, PID, предварительного нагрева ESS, расширенных регистров, умных нагрузок, кода сети во всех 11 языках",
+                "pt": "(ssbingo) fix: adicionadas 25 chaves i18n em falta para PSS, PID, pré-aquecimento ESS, registos alargados, cargas inteligentes, código de rede em todos os 11 idiomas",
+                "nl": "(ssbingo) fix: 25 ontbrekende i18n-sleutels toegevoegd voor PSS, PID, ESS-voorverwarming, uitgebreide registers, slimme verbruikers, netcodes in alle 11 talen",
+                "fr": "(ssbingo) fix: ajout de 25 clés i18n manquantes pour PSS, PID, préchauffage ESS, registres étendus, charges intelligentes, code réseau dans les 11 langues",
+                "it": "(ssbingo) fix: aggiunte 25 chiavi i18n mancanti per PSS, PID, preriscaldamento ESS, registri estesi, carichi intelligenti, codice rete in tutte le 11 lingue",
+                "es": "(ssbingo) fix: añadidas 25 claves i18n faltantes para PSS, PID, precalentamiento ESS, registros extendidos, cargas inteligentes, código de red en los 11 idiomas",
+                "pl": "(ssbingo) fix: dodano 25 brakujących kluczy i18n dla PSS, PID, podgrzewania ESS, rejestrów rozszerzonych, inteligentnych obciążeń, kodu sieci we wszystkich 11 językach",
+                "uk": "(ssbingo) fix: додано 25 відсутніх ключів i18n для PSS, PID, нагрівання ESS, розширених регістрів, розумних навантажень, коду мережі у всіх 11 мовах",
+                "zh-cn": "(ssbingo) fix: 为 PSS、PID、ESS 预热、扩展寄存器、智能负载、电网规格在所有 11 种语言中添加 25 个缺失的 i18n 键"
             }
         },
         "titleLang": {

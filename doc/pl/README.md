@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: dodano 25 brakujących kluczy i18n (PSS, PID, podgrzewanie ESS, rejestry rozszerzone) we wszystkich 11 językach
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: aktualizacja wszystkich README do protokołu Modbus V2.9 — dodano PSS, PID, podgrzewanie wstępne ESS, rejestry rozszerzone, SigenMicro
 

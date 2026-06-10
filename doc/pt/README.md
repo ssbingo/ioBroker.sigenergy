@@ -160,6 +160,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: adicionadas 25 chaves i18n em falta (PSS, PID, pré-aquecimento ESS, registos alargados) em todos os 11 idiomas
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: atualização de todos os READMEs para o protocolo Modbus V2.9 — adicionados PSS, PID, pré-aquecimento ESS, registos alargados, SigenMicro
 

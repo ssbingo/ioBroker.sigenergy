@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: ajout de 25 clés i18n manquantes (PSS, PID, préchauffage ESS, registres étendus) dans les 11 langues
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: mise à jour de tous les READMEs pour le protocole Modbus V2.9 — ajout de PSS, PID, préchauffage ESS, registres étendus, SigenMicro
 

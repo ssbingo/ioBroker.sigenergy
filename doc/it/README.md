@@ -155,6 +155,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.2.3 (2026-06-10)
+- (ssbingo) fix: aggiunte 25 chiavi i18n mancanti (PSS, PID, preriscaldamento ESS, registri estesi) in tutte le 11 lingue
+
 ### 2.2.2 (2026-06-09)
 - (ssbingo) docs: aggiornamento di tutti i README al protocollo Modbus V2.9 — aggiunti PSS, PID, preriscaldamento ESS, registri estesi, SigenMicro
 
