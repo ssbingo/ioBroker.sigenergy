@@ -20,10 +20,24 @@ const {
     PLANT_WRITE_REGISTERS,
     INVERTER_WRITE_REGISTERS,
     DC_CHARGER_WRITE_REGISTERS,
+    AC_CHARGER_WRITE_REGISTERS,
+    PSS_WRITE_REGISTERS,
+    PID_WRITE_REGISTERS,
+    RUNNING_STATES,
+    EMS_WORK_MODES,
+    REMOTE_EMS_MODES,
+    DC_CHARGER_RUNNING_STATES,
 } = require('./lib/registers');
 const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
 const adapterVersion = require('./package.json').version;
+
+const ENUM_STATES_MAP = {
+    'plant.emsWorkMode': EMS_WORK_MODES,
+    'plant.runningState': RUNNING_STATES,
+    'dcCharger.runningState': DC_CHARGER_RUNNING_STATES,
+    'plant.control.remoteEmsMode': REMOTE_EMS_MODES,
+};
 
 class Sigenergy extends utils.Adapter {
     /**
@@ -842,6 +856,14 @@ class Sigenergy extends utils.Adapter {
                     }
                     await this._createStateFromRegister(reg);
                 }
+                await this._createChannel('acCharger.control', 'AC Charger Control');
+                for (const reg of AC_CHARGER_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createWriteStateFromRegister(reg);
+                }
+                this.subscribeStates('acCharger.control.*');
             }
 
             if (this.config.hasDcCharger) {
@@ -882,17 +904,32 @@ class Sigenergy extends utils.Adapter {
                     }
                     await this._createStateFromRegister(reg);
                 }
+                for (const reg of PSS_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createWriteStateFromRegister(reg);
+                }
+                this.subscribeStates('pss.control.*');
             }
 
             if (this.config.enablePid) {
                 this.log.debug('Creating PID objects');
                 await this._createChannel('pid', 'PV Insulation Detection');
+                await this._createChannel('pid.control', 'PID Control');
                 for (const reg of PID_READ_REGISTERS) {
                     if (this._stopped) {
                         return;
                     }
                     await this._createStateFromRegister(reg);
                 }
+                for (const reg of PID_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this._createWriteStateFromRegister(reg);
+                }
+                this.subscribeStates('pid.control.*');
             }
 
             if (this.config.enableEssPreheating) {
@@ -960,16 +997,22 @@ class Sigenergy extends utils.Adapter {
             type = 'number';
         }
 
+        const common = {
+            name: reg.desc,
+            type,
+            role,
+            unit: reg.unit || '',
+            read: true,
+            write: false,
+        };
+        const states = ENUM_STATES_MAP[reg.name];
+        if (states) {
+            common.states = states;
+        }
+
         await this.setObjectNotExistsAsync(reg.name, {
             type: 'state',
-            common: {
-                name: reg.desc,
-                type,
-                role,
-                unit: reg.unit || '',
-                read: true,
-                write: false,
-            },
+            common,
             native: {
                 addr: reg.addr,
                 qty: reg.qty,
@@ -981,16 +1024,21 @@ class Sigenergy extends utils.Adapter {
 
     async _createWriteStateFromRegister(reg) {
         const type = reg.type === 'STRING' ? 'string' : 'number';
+        const common = {
+            name: reg.desc,
+            type,
+            role: 'value',
+            unit: reg.unit || '',
+            read: reg.perm === 'RW',
+            write: true,
+        };
+        const states = ENUM_STATES_MAP[reg.name];
+        if (states) {
+            common.states = states;
+        }
         await this.setObjectNotExistsAsync(reg.name, {
             type: 'state',
-            common: {
-                name: reg.desc,
-                type,
-                role: 'value',
-                unit: reg.unit || '',
-                read: reg.perm === 'RW',
-                write: true,
-            },
+            common,
             native: {
                 addr: reg.addr,
                 qty: reg.qty,
@@ -1162,6 +1210,18 @@ class Sigenergy extends utils.Adapter {
             reg = DC_CHARGER_WRITE_REGISTERS.find(r => r.name === localId);
             slaveId = this.config.inverterId || 1;
             category = 'dcCharger';
+        } else if (localId.startsWith('pss.control.')) {
+            reg = PSS_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.pssSlaveId || 5;
+            category = 'pss';
+        } else if (localId.startsWith('pid.control.')) {
+            reg = PID_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.pidSlaveId || 6;
+            category = 'pid';
+        } else if (localId.startsWith('acCharger.control.')) {
+            reg = AC_CHARGER_WRITE_REGISTERS.find(r => r.name === localId);
+            slaveId = this.config.acChargerId || 2;
+            category = 'acCharger';
         }
 
         if (!reg) {

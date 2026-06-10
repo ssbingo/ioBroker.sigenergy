@@ -160,6 +160,9 @@
 
 ## Changelog
 
+### 2.3.0 (2026-06-10)
+- (ssbingo) feat: enum-карти common.states додано для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; реєстри запису PSS/PID/AC Charger (FC06/FC10) підключено з subscribe та обробниками onStateChange
+
 ### 2.2.7 (2026-06-10)
 - (ssbingo) Виправлення: відсутні native-дефолти enableSmartLoads/enableCumulativeEnergy/enableGridCode додано до io-package.json
 - (ssbingo) Виправлення: опис регістру 30003 оновлено з режимами EMS V2.7 5 (FullFeedIn) та 9 (Custom)

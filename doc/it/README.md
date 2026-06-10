@@ -155,6 +155,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.3.0 (2026-06-10)
+- (ssbingo) feat: mappe enum common.states aggiunte per emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registri di scrittura PSS/PID/AC Charger (FC06/FC10) cablati con subscribe e handler onStateChange
+
 ### 2.2.7 (2026-06-10)
 - (ssbingo) Correzione: default native enableSmartLoads/enableCumulativeEnergy/enableGridCode aggiunti a io-package.json
 - (ssbingo) Correzione: descrizione registro 30003 aggiornata con modalità EMS V2.7 5 (FullFeedIn) e 9 (Custom)

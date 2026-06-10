@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.2.7",
+        "version": "2.3.0",
         "news": {
-            "2.2.7": {
-                "en": "(ssbingo) fix: add missing native defaults enableSmartLoads/enableCumulativeEnergy/enableGridCode to io-package.json; update register 30003 desc with V2.7 EMS modes 5 (FullFeedIn) and 9 (Custom)",
-                "de": "(ssbingo) fix: fehlende native-Defaults enableSmartLoads/enableCumulativeEnergy/enableGridCode in io-package.json ergänzt; Register 30003 Beschreibung um V2.7 EMS-Modi 5 (FullFeedIn) und 9 (Custom) erweitert",
-                "ru": "(ssbingo) fix: добавлены отсутствующие native-дефолты enableSmartLoads/enableCumulativeEnergy/enableGridCode в io-package.json; обновлено описание регистра 30003 с режимами EMS V2.7: 5 (FullFeedIn) и 9 (Custom)",
-                "pt": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode adicionados ao io-package.json; descrição do registo 30003 atualizada com modos EMS V2.7 5 (FullFeedIn) e 9 (Custom)",
-                "nl": "(ssbingo) fix: ontbrekende native-standaarden enableSmartLoads/enableCumulativeEnergy/enableGridCode toegevoegd aan io-package.json; beschrijving register 30003 bijgewerkt met V2.7 EMS-modi 5 (FullFeedIn) en 9 (Custom)",
-                "fr": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode ajoutés à io-package.json ; description registre 30003 mise à jour avec modes EMS V2.7 5 (FullFeedIn) et 9 (Custom)",
-                "it": "(ssbingo) fix: default native enableSmartLoads/enableCumulativeEnergy/enableGridCode aggiunti a io-package.json; descrizione registro 30003 aggiornata con modalità EMS V2.7 5 (FullFeedIn) e 9 (Custom)",
-                "es": "(ssbingo) fix: defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode añadidos a io-package.json; descripción del registro 30003 actualizada con modos EMS V2.7 5 (FullFeedIn) y 9 (Custom)",
-                "pl": "(ssbingo) fix: brakujące domyślne native enableSmartLoads/enableCumulativeEnergy/enableGridCode dodane do io-package.json; opis rejestru 30003 zaktualizowany o tryby EMS V2.7 5 (FullFeedIn) i 9 (Custom)",
-                "uk": "(ssbingo) fix: відсутні native-дефолти enableSmartLoads/enableCumulativeEnergy/enableGridCode додано до io-package.json; опис регістру 30003 оновлено з режимами EMS V2.7 5 (FullFeedIn) та 9 (Custom)",
-                "zh-cn": "(ssbingo) fix: 在 io-package.json 中添加缺失的 native 默认值 enableSmartLoads/enableCumulativeEnergy/enableGridCode；更新寄存器 30003 描述以包含 V2.7 EMS 模式 5（完全并网）和 9（自定义）"
+            "2.3.0": {
+                "en": "(ssbingo) feat: add common.states enum maps for emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; wire PSS/PID/AC Charger write registers (FC06/FC10) with subscribe and onStateChange handlers",
+                "de": "(ssbingo) feat: common.states Enum-Maps für emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ergänzt; PSS/PID/AC-Ladegerät Schreib-Register (FC06/FC10) mit Subscribe und onStateChange-Handler verdrahtet",
+                "ru": "(ssbingo) feat: добавлены enum-карты common.states для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; подключены регистры записи PSS/PID/AC-зарядника (FC06/FC10) с обработчиками subscribe и onStateChange",
+                "pt": "(ssbingo) feat: mapas enum common.states adicionados para emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registos de escrita PSS/PID/AC Charger (FC06/FC10) com subscribe e handlers onStateChange",
+                "nl": "(ssbingo) feat: common.states enum-maps toegevoegd voor emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; PSS/PID/AC Charger schrijfregisters (FC06/FC10) gekoppeld met subscribe en onStateChange-handlers",
+                "fr": "(ssbingo) feat: cartes enum common.states ajoutées pour emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ; registres d'écriture PSS/PID/AC Charger (FC06/FC10) câblés avec subscribe et handlers onStateChange",
+                "it": "(ssbingo) feat: mappe enum common.states aggiunte per emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registri di scrittura PSS/PID/AC Charger (FC06/FC10) cablati con subscribe e handler onStateChange",
+                "es": "(ssbingo) feat: mapas enum common.states añadidos para emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registros de escritura PSS/PID/AC Charger (FC06/FC10) conectados con subscribe y handlers onStateChange",
+                "pl": "(ssbingo) feat: mapy enum common.states dodane dla emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; rejestry zapisu PSS/PID/AC Charger (FC06/FC10) podłączone z subscribe i handlerami onStateChange",
+                "uk": "(ssbingo) feat: enum-карти common.states додано для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; реєстри запису PSS/PID/AC Charger (FC06/FC10) підключено з subscribe та обробниками onStateChange",
+                "zh-cn": "(ssbingo) feat: 为 emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState 添加 common.states 枚举映射；连接 PSS/PID/交流充电桩写寄存器（FC06/FC10），含 subscribe 和 onStateChange 处理器"
             }
         },
         "titleLang": {

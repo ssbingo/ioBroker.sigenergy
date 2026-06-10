@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.3.0 (2026-06-10)
+- (ssbingo) feat: mapy enum common.states dodane dla emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; rejestry zapisu PSS/PID/AC Charger (FC06/FC10) podłączone z subscribe i handlerami onStateChange
+
 ### 2.2.7 (2026-06-10)
 - (ssbingo) Poprawka: brakujące domyślne native enableSmartLoads/enableCumulativeEnergy/enableGridCode dodane do io-package.json
 - (ssbingo) Poprawka: opis rejestru 30003 zaktualizowany o tryby EMS V2.7 5 (FullFeedIn) i 9 (Custom)

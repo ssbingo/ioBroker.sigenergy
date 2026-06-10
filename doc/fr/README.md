@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.3.0 (2026-06-10)
+- (ssbingo) feat: cartes enum common.states ajoutées pour emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ; registres d'écriture PSS/PID/AC Charger (FC06/FC10) câblés avec subscribe et handlers onStateChange
+
 ### 2.2.7 (2026-06-10)
 - (ssbingo) Correctif : defaults native enableSmartLoads/enableCumulativeEnergy/enableGridCode ajoutés à io-package.json
 - (ssbingo) Correctif : description registre 30003 mise à jour avec modes EMS V2.7 5 (FullFeedIn) et 9 (Custom)

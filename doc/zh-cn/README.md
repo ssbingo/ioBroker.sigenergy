@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.3.0 (2026-06-10)
+- (ssbingo) feat: 为 emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState 添加 common.states 枚举映射；连接 PSS/PID/交流充电桩写寄存器（FC06/FC10），含 subscribe 和 onStateChange 处理器
+
 ### 2.2.7 (2026-06-10)
 - (ssbingo) 修复：在 io-package.json 中添加缺失的 native 默认值 enableSmartLoads/enableCumulativeEnergy/enableGridCode
 - (ssbingo) 修复：更新寄存器 30003 描述，包含 V2.7 EMS 模式 5（完全并网）和 9（自定义）
