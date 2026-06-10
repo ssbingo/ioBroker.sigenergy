@@ -46,6 +46,7 @@ class Sigenergy extends utils.Adapter {
         // calling setStateAsync on a stopped adapter.
         this._stopped = false;
         this._controlRegistersRead = false;
+        this._essPreheatingUnsupported = false;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -451,11 +452,16 @@ class Sigenergy extends utils.Adapter {
     }
 
     async _readEssPreheating() {
+        if (this._essPreheatingUnsupported) {
+            this.log.debug('[essPreheating] Skipping — registers not supported by device (disable in adapter settings)');
+            return;
+        }
         const plantId = this.config.plantId || 247;
         const batchSize = 50;
         const groups = this._buildReadGroups(ESS_PREHEATING_WRITE_REGISTERS, batchSize);
         this.log.debug(`Reading ESS Preheating (slaveId=${plantId}): ${groups.length} group(s)`);
 
+        let failCount = 0;
         for (const group of groups) {
             if (this._stopped) {
                 return;
@@ -466,8 +472,16 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'essPreheating');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`ESS Preheating read error at ${group.startAddr}: ${err.message}`);
+                failCount++;
+                this.log.debug(`[essPreheating] read error at ${group.startAddr}: ${err.message}`);
             }
+        }
+        if (failCount === groups.length && groups.length > 0) {
+            this._essPreheatingUnsupported = true;
+            this.log.warn(
+                'ESS Preheating: all register groups failed (Modbus exception 2 — device does not support these registers). ' +
+                    'Polling disabled for this session. Disable "ESS Preheating" in adapter settings to suppress this message.',
+            );
         }
     }
 
