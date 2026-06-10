@@ -453,7 +453,9 @@ class Sigenergy extends utils.Adapter {
 
     async _readEssPreheating() {
         if (this._essPreheatingUnsupported) {
-            this.log.debug('[essPreheating] Skipping — registers not supported by device (disable in adapter settings)');
+            this.log.debug(
+                '[essPreheating] Skipping — registers not supported by device (disable in adapter settings)',
+            );
             return;
         }
         const plantId = this.config.plantId || 247;
@@ -493,7 +495,9 @@ class Sigenergy extends utils.Adapter {
         const plantRw = PLANT_WRITE_REGISTERS.filter(r => r.perm === 'RW' && (!r.feature || this.config[r.feature]));
         if (plantRw.length > 0) {
             for (const group of this._buildReadGroups(plantRw, 50)) {
-                if (this._stopped) return;
+                if (this._stopped) {
+                    return;
+                }
                 try {
                     const raw = await this.modbus.readHoldingRegisters(plantId, group.startAddr, group.totalQty);
                     await this._processReadGroup(group, raw, 'control');
@@ -507,7 +511,9 @@ class Sigenergy extends utils.Adapter {
         const invRw = INVERTER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
         if (invRw.length > 0) {
             for (const group of this._buildReadGroups(invRw, 50)) {
-                if (this._stopped) return;
+                if (this._stopped) {
+                    return;
+                }
                 try {
                     const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
                     await this._processReadGroup(group, raw, 'control');
@@ -522,7 +528,9 @@ class Sigenergy extends utils.Adapter {
             const dcRw = DC_CHARGER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
             if (dcRw.length > 0) {
                 for (const group of this._buildReadGroups(dcRw, 50)) {
-                    if (this._stopped) return;
+                    if (this._stopped) {
+                        return;
+                    }
                     try {
                         const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
                         await this._processReadGroup(group, raw, 'control');
@@ -1118,7 +1126,9 @@ class Sigenergy extends utils.Adapter {
         // ESS Preheating writes (FC03/FC10)
         if (localId.startsWith('plant.essPreheating.')) {
             const reg = ESS_PREHEATING_WRITE_REGISTERS.find(r => r.name === localId);
-            if (!reg) return;
+            if (!reg) {
+                return;
+            }
             const plantId = this.config.plantId || 247;
             const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
             try {
@@ -1154,7 +1164,9 @@ class Sigenergy extends utils.Adapter {
             category = 'dcCharger';
         }
 
-        if (!reg) return;
+        if (!reg) {
+            return;
+        }
 
         const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
         try {
