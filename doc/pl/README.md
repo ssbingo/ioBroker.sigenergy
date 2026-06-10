@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: wykrywanie poziomu protokołu Modbus przy uruchomieniu przez próbkowanie rejestrów 30088/30200/30228/30286; odczyt wersji firmware (30525); logowanie wyniku i zapis jako stan info.protocolLevel
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: mapy enum common.states dodane dla emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; rejestry zapisu PSS/PID/AC Charger (FC06/FC10) podłączone z subscribe i handlerami onStateChange
 

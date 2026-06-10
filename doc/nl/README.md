@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: Modbus-protocolniveau bij opstarten detecteren door registers 30088/30200/30228/30286 te sonderen; firmwareversie (30525) lezen; resultaat loggen en opslaan als info.protocolLevel-state
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: common.states enum-maps toegevoegd voor emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; PSS/PID/AC Charger schrijfregisters (FC06/FC10) gekoppeld met subscribe en onStateChange-handlers
 

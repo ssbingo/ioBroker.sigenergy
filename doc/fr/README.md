@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: détection du niveau de protocole Modbus au démarrage en sondant les registres 30088/30200/30228/30286 ; lecture de la version firmware (30525) ; journalisation du résultat et stockage dans l'état info.protocolLevel
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: cartes enum common.states ajoutées pour emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ; registres d'écriture PSS/PID/AC Charger (FC06/FC10) câblés avec subscribe et handlers onStateChange
 

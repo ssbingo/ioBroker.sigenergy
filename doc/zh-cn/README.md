@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: 启动时通过探测寄存器 30088/30200/30228/30286 检测 Modbus 协议级别；读取固件版本（30525）；记录结果并存储为 info.protocolLevel 状态
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: 为 emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState 添加 common.states 枚举映射；连接 PSS/PID/交流充电桩写寄存器（FC06/FC10），含 subscribe 和 onStateChange 处理器
 

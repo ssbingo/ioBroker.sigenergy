@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.3.0",
+        "version": "2.3.1",
         "news": {
-            "2.3.0": {
-                "en": "(ssbingo) feat: add common.states enum maps for emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; wire PSS/PID/AC Charger write registers (FC06/FC10) with subscribe and onStateChange handlers",
-                "de": "(ssbingo) feat: common.states Enum-Maps für emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ergänzt; PSS/PID/AC-Ladegerät Schreib-Register (FC06/FC10) mit Subscribe und onStateChange-Handler verdrahtet",
-                "ru": "(ssbingo) feat: добавлены enum-карты common.states для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; подключены регистры записи PSS/PID/AC-зарядника (FC06/FC10) с обработчиками subscribe и onStateChange",
-                "pt": "(ssbingo) feat: mapas enum common.states adicionados para emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registos de escrita PSS/PID/AC Charger (FC06/FC10) com subscribe e handlers onStateChange",
-                "nl": "(ssbingo) feat: common.states enum-maps toegevoegd voor emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; PSS/PID/AC Charger schrijfregisters (FC06/FC10) gekoppeld met subscribe en onStateChange-handlers",
-                "fr": "(ssbingo) feat: cartes enum common.states ajoutées pour emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ; registres d'écriture PSS/PID/AC Charger (FC06/FC10) câblés avec subscribe et handlers onStateChange",
-                "it": "(ssbingo) feat: mappe enum common.states aggiunte per emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registri di scrittura PSS/PID/AC Charger (FC06/FC10) cablati con subscribe e handler onStateChange",
-                "es": "(ssbingo) feat: mapas enum common.states añadidos para emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registros de escritura PSS/PID/AC Charger (FC06/FC10) conectados con subscribe y handlers onStateChange",
-                "pl": "(ssbingo) feat: mapy enum common.states dodane dla emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; rejestry zapisu PSS/PID/AC Charger (FC06/FC10) podłączone z subscribe i handlerami onStateChange",
-                "uk": "(ssbingo) feat: enum-карти common.states додано для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; реєстри запису PSS/PID/AC Charger (FC06/FC10) підключено з subscribe та обробниками onStateChange",
-                "zh-cn": "(ssbingo) feat: 为 emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState 添加 common.states 枚举映射；连接 PSS/PID/交流充电桩写寄存器（FC06/FC10），含 subscribe 和 onStateChange 处理器"
+            "2.3.1": {
+                "en": "(ssbingo) feat: detect Modbus protocol level on startup by probing registers 30088/30200/30228/30286; read firmware version (30525); log result and store as info.protocolLevel state",
+                "de": "(ssbingo) feat: Modbus-Protokollebene beim Start durch Probe von Registern 30088/30200/30228/30286 erkennen; Firmware-Version (30525) lesen; Ergebnis loggen und als info.protocolLevel-State speichern",
+                "ru": "(ssbingo) feat: определение уровня протокола Modbus при запуске путём опроса регистров 30088/30200/30228/30286; чтение версии прошивки (30525); журналирование результата и сохранение в состояние info.protocolLevel",
+                "pt": "(ssbingo) feat: detectar nível do protocolo Modbus no arranque sondando registos 30088/30200/30228/30286; ler versão de firmware (30525); registar resultado e guardar como estado info.protocolLevel",
+                "nl": "(ssbingo) feat: Modbus-protocolniveau bij opstarten detecteren door registers 30088/30200/30228/30286 te sonderen; firmwareversie (30525) lezen; resultaat loggen en opslaan als info.protocolLevel-state",
+                "fr": "(ssbingo) feat: détection du niveau de protocole Modbus au démarrage en sondant les registres 30088/30200/30228/30286 ; lecture de la version firmware (30525) ; journalisation du résultat et stockage dans l'état info.protocolLevel",
+                "it": "(ssbingo) feat: rilevamento del livello del protocollo Modbus all'avvio sondando i registri 30088/30200/30228/30286; lettura della versione firmware (30525); registrazione del risultato e salvataggio come stato info.protocolLevel",
+                "es": "(ssbingo) feat: detectar nivel de protocolo Modbus en el arranque sondeando registros 30088/30200/30228/30286; leer versión de firmware (30525); registrar resultado y almacenar como estado info.protocolLevel",
+                "pl": "(ssbingo) feat: wykrywanie poziomu protokołu Modbus przy uruchomieniu przez próbkowanie rejestrów 30088/30200/30228/30286; odczyt wersji firmware (30525); logowanie wyniku i zapis jako stan info.protocolLevel",
+                "uk": "(ssbingo) feat: виявлення рівня протоколу Modbus при запуску шляхом зондування регістрів 30088/30200/30228/30286; зчитування версії прошивки (30525); журналювання результату та збереження як стан info.protocolLevel",
+                "zh-cn": "(ssbingo) feat: 启动时通过探测寄存器 30088/30200/30228/30286 检测 Modbus 协议级别；读取固件版本（30525）；记录结果并存储为 info.protocolLevel 状态"
             }
         },
         "titleLang": {
@@ -176,6 +176,19 @@
                 "read": true,
                 "write": false,
                 "def": "idle"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.protocolLevel",
+            "type": "state",
+            "common": {
+                "name": "Detected Modbus protocol level",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false,
+                "def": ""
             },
             "native": {}
         }

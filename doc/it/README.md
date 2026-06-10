@@ -155,6 +155,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: rilevamento del livello del protocollo Modbus all'avvio sondando i registri 30088/30200/30228/30286; lettura della versione firmware (30525); registrazione del risultato e salvataggio come stato info.protocolLevel
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: mappe enum common.states aggiunte per emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; registri di scrittura PSS/PID/AC Charger (FC06/FC10) cablati con subscribe e handler onStateChange
 

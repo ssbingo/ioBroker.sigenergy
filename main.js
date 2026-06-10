@@ -60,6 +60,7 @@ class Sigenergy extends utils.Adapter {
         // calling setStateAsync on a stopped adapter.
         this._stopped = false;
         this._controlRegistersRead = false;
+        this._protocolDetected = false;
         this._essPreheatingUnsupported = false;
 
         this.on('ready', this.onReady.bind(this));
@@ -246,6 +247,10 @@ class Sigenergy extends utils.Adapter {
             if (!this._controlRegistersRead) {
                 await this._readControlRegisters();
                 this._controlRegistersRead = true;
+            }
+            if (!this._protocolDetected) {
+                await this._detectProtocolLevel();
+                this._protocolDetected = true;
             }
 
             const _t0 = Date.now();
@@ -499,6 +504,40 @@ class Sigenergy extends utils.Adapter {
                     'Polling disabled for this session. Disable "ESS Preheating" in adapter settings to suppress this message.',
             );
         }
+    }
+
+    async _detectProtocolLevel() {
+        const plantId = this.config.plantId || 247;
+        const inverterId = this.config.inverterId || 1;
+
+        const probes = [
+            { addr: 30088, level: 'V2.6' },
+            { addr: 30200, level: 'V2.7' },
+            { addr: 30228, level: 'V2.8' },
+            { addr: 30286, level: 'V2.9' },
+        ];
+
+        let detectedLevel = null;
+        for (const probe of probes) {
+            try {
+                await this.modbus.readInputRegisters(plantId, probe.addr, 1);
+                detectedLevel = probe.level;
+            } catch {
+                break;
+            }
+        }
+
+        let firmwareVersion = 'unknown';
+        try {
+            const raw = await this.modbus.readInputRegisters(inverterId, 30525, 15);
+            firmwareVersion = ModbusConnection.parseValue(raw, 'STRING', null) || 'unknown';
+        } catch {
+            // not critical
+        }
+
+        const levelStr = detectedLevel ? `>=${detectedLevel}` : 'unknown';
+        this.log.info(`Detected protocol level: ${levelStr} (firmware: ${firmwareVersion})`);
+        await this.setStateAsync('info.protocolLevel', { val: levelStr, ack: true });
     }
 
     async _readControlRegisters() {

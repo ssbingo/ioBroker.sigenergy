@@ -155,6 +155,9 @@
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: определение уровня протокола Modbus при запуске путём опроса регистров 30088/30200/30228/30286; чтение версии прошивки (30525); журналирование результата и сохранение в состояние info.protocolLevel
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: добавлены enum-карты common.states для emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState; подключены регистры записи PSS/PID/AC-зарядника (FC06/FC10) с обработчиками subscribe и onStateChange
 

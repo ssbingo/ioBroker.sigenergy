@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.3.1 (2026-06-10)
+- (ssbingo) feat: Modbus-Protokollebene beim Start durch Probe von Registern 30088/30200/30228/30286 erkennen; Firmware-Version (30525) lesen; Ergebnis loggen und als info.protocolLevel-State speichern
+
 ### 2.3.0 (2026-06-10)
 - (ssbingo) feat: common.states Enum-Maps für emsWorkMode/runningState/remoteEmsMode/dcCharger.runningState ergänzt; PSS/PID/AC-Ladegerät Schreib-Register (FC06/FC10) mit Subscribe und onStateChange-Handler verdrahtet
 
