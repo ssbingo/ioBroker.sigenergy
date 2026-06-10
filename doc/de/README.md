@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.2.4 (2026-06-10)
+- (ssbingo) fix: ESS-Vorheizung TOU-Abfrage (FC03, 50000–50183, 94 Register) und Rückschreiben implementiert; encodeValue in ModbusConnection ergänzt
+
 ### 2.2.3 (2026-06-10)
 - (ssbingo) fix: 25 fehlende Admin-i18n-Schlüssel in allen 11 Sprachen ergänzt (PSS, PID, ESS-Vorheizung, Erweiterte Register)
 

@@ -153,6 +153,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.2.4 (2026-06-10)
+- (ssbingo) fix: implement ESS Preheating TOU polling (FC03, 50000–50183, 94 registers) and write-back via onStateChange; add encodeValue to ModbusConnection
+
 ### 2.2.3 (2026-06-10)
 - (ssbingo) fix: add 25 missing admin i18n keys for PSS, PID, ESS Preheating, Extended Registers across all 11 languages
 

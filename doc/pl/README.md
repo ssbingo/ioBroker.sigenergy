@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.2.4 (2026-06-10)
+- (ssbingo) fix: odczyt TOU podgrzewania ESS (FC03, 50000–50183) i zapis zaimplementowane; dodano encodeValue
+
 ### 2.2.3 (2026-06-10)
 - (ssbingo) fix: dodano 25 brakujących kluczy i18n (PSS, PID, podgrzewanie ESS, rejestry rozszerzone) we wszystkich 11 językach
 

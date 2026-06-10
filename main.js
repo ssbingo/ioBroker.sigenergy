@@ -16,6 +16,7 @@ const {
     AC_CHARGER_READ_REGISTERS,
     PSS_READ_REGISTERS,
     PID_READ_REGISTERS,
+    ESS_PREHEATING_WRITE_REGISTERS,
 } = require('./lib/registers');
 const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
@@ -43,6 +44,7 @@ class Sigenergy extends utils.Adapter {
         this._stopped = false;
 
         this.on('ready', this.onReady.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
@@ -263,6 +265,12 @@ class Sigenergy extends utils.Adapter {
                     return;
                 }
             }
+            if (this.config.enableEssPreheating) {
+                await this._readEssPreheating();
+                if (this._stopped) {
+                    return;
+                }
+            }
 
             await this._updateStatistics();
             await this._updatePvStringPowers();
@@ -429,6 +437,27 @@ class Sigenergy extends utils.Adapter {
                 await this._sleep(100);
             } catch (err) {
                 this.log.warn(`PID register read error: ${err.message}`);
+            }
+        }
+    }
+
+    async _readEssPreheating() {
+        const plantId = this.config.plantId || 247;
+        const batchSize = 50;
+        const groups = this._buildReadGroups(ESS_PREHEATING_WRITE_REGISTERS, batchSize);
+        this.log.debug(`Reading ESS Preheating (slaveId=${plantId}): ${groups.length} group(s)`);
+
+        for (const group of groups) {
+            if (this._stopped) {
+                return;
+            }
+            try {
+                this.log.debug(`[essPreheating] FC03 addr=${group.startAddr} qty=${group.totalQty}`);
+                const raw = await this.modbus.readHoldingRegisters(plantId, group.startAddr, group.totalQty);
+                await this._processReadGroup(group, raw, 'essPreheating');
+                await this._sleep(100);
+            } catch (err) {
+                this.log.warn(`ESS Preheating read error at ${group.startAddr}: ${err.message}`);
             }
         }
     }
@@ -754,6 +783,21 @@ class Sigenergy extends utils.Adapter {
                 for (let n = 1; n <= 30; n++) {
                     await this._createChannel(`plant.essPreheating.tou${n}`, `TOU Window ${n}`);
                 }
+                for (const reg of ESS_PREHEATING_WRITE_REGISTERS) {
+                    await this.setObjectNotExistsAsync(reg.name, {
+                        type: 'state',
+                        common: {
+                            name: reg.desc,
+                            type: 'number',
+                            role: 'value',
+                            unit: reg.unit || '',
+                            read: true,
+                            write: true,
+                        },
+                        native: { addr: reg.addr, qty: reg.qty, dataType: reg.type, gain: reg.gain },
+                    });
+                }
+                this.subscribeStates('plant.essPreheating.*');
             }
 
             await this._createStatisticsStates();
@@ -928,7 +972,38 @@ class Sigenergy extends utils.Adapter {
     /**
      * Handle messages from admin (connection test, etc.)
      *
-     * @param {object} obj - Message object
+     * @param {ioBroker.Object} obj - Message object
+     */
+    async onStateChange(id, state) {
+        if (!state || state.ack) {
+            return;
+        }
+        // Strip namespace prefix (e.g. "sigenergy.0.")
+        const localId = id.replace(/^[^.]+\.\d+\./, '');
+        if (!localId.startsWith('plant.essPreheating.')) {
+            return;
+        }
+        const reg = ESS_PREHEATING_WRITE_REGISTERS.find(r => r.name === localId);
+        if (!reg) {
+            return;
+        }
+        const plantId = this.config.plantId || 247;
+        const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
+        try {
+            if (raw.length === 1) {
+                await this.modbus.writeSingleRegister(plantId, reg.addr, raw[0]);
+            } else {
+                await this.modbus.writeMultipleRegisters(plantId, reg.addr, raw);
+            }
+            await this.setStateAsync(id, { val: state.val, ack: true });
+            this.log.debug(`[essPreheating] wrote ${localId} = ${state.val} → addr ${reg.addr}`);
+        } catch (err) {
+            this.log.error(`ESS Preheating write error for ${localId}: ${err.message}`);
+        }
+    }
+
+    /**
+     * @param {ioBroker.Object} obj - Message object
      */
     async onMessage(obj) {
         if (!obj || !obj.command) {

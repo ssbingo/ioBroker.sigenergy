@@ -160,6 +160,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.2.4 (2026-06-10)
+- (ssbingo) fix: leitura TOU pré-aquecimento ESS (FC03, 50000–50183) e escrita implementadas; encodeValue adicionado
+
 ### 2.2.3 (2026-06-10)
 - (ssbingo) fix: adicionadas 25 chaves i18n em falta (PSS, PID, pré-aquecimento ESS, registos alargados) em todos os 11 idiomas
 

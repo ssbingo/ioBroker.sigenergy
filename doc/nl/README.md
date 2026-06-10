@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.2.4 (2026-06-10)
+- (ssbingo) fix: ESS-voorverwarming TOU polling (FC03, 50000–50183) en terugschrijven geïmplementeerd; encodeValue toegevoegd
+
 ### 2.2.3 (2026-06-10)
 - (ssbingo) fix: 25 ontbrekende i18n-sleutels toegevoegd (PSS, PID, ESS-voorverwarming, uitgebreide registers) in alle 11 talen
 
