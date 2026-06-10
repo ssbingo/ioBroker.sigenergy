@@ -503,7 +503,7 @@ class Sigenergy extends utils.Adapter {
                     await this._processReadGroup(group, raw, 'control');
                     await this._sleep(100);
                 } catch (err) {
-                    this.log.warn(`Plant control register read error at ${group.startAddr}: ${err.message}`);
+                    this.log.debug(`[controlRegs] plant addr=${group.startAddr}: ${err.message}`);
                 }
             }
         }
@@ -519,7 +519,7 @@ class Sigenergy extends utils.Adapter {
                     await this._processReadGroup(group, raw, 'control');
                     await this._sleep(100);
                 } catch (err) {
-                    this.log.warn(`Inverter control register read error at ${group.startAddr}: ${err.message}`);
+                    this.log.debug(`[controlRegs] inverter addr=${group.startAddr}: ${err.message}`);
                 }
             }
         }
@@ -536,7 +536,7 @@ class Sigenergy extends utils.Adapter {
                         await this._processReadGroup(group, raw, 'control');
                         await this._sleep(100);
                     } catch (err) {
-                        this.log.warn(`DC Charger control register read error at ${group.startAddr}: ${err.message}`);
+                        this.log.debug(`[controlRegs] dcCharger addr=${group.startAddr}: ${err.message}`);
                     }
                 }
             }
