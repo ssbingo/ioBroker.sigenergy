@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.3.1",
+        "version": "2.3.2",
         "news": {
-            "2.3.1": {
-                "en": "(ssbingo) feat: detect Modbus protocol level on startup by probing registers 30088/30200/30228/30286; read firmware version (30525); log result and store as info.protocolLevel state",
-                "de": "(ssbingo) feat: Modbus-Protokollebene beim Start durch Probe von Registern 30088/30200/30228/30286 erkennen; Firmware-Version (30525) lesen; Ergebnis loggen und als info.protocolLevel-State speichern",
-                "ru": "(ssbingo) feat: определение уровня протокола Modbus при запуске путём опроса регистров 30088/30200/30228/30286; чтение версии прошивки (30525); журналирование результата и сохранение в состояние info.protocolLevel",
-                "pt": "(ssbingo) feat: detectar nível do protocolo Modbus no arranque sondando registos 30088/30200/30228/30286; ler versão de firmware (30525); registar resultado e guardar como estado info.protocolLevel",
-                "nl": "(ssbingo) feat: Modbus-protocolniveau bij opstarten detecteren door registers 30088/30200/30228/30286 te sonderen; firmwareversie (30525) lezen; resultaat loggen en opslaan als info.protocolLevel-state",
-                "fr": "(ssbingo) feat: détection du niveau de protocole Modbus au démarrage en sondant les registres 30088/30200/30228/30286 ; lecture de la version firmware (30525) ; journalisation du résultat et stockage dans l'état info.protocolLevel",
-                "it": "(ssbingo) feat: rilevamento del livello del protocollo Modbus all'avvio sondando i registri 30088/30200/30228/30286; lettura della versione firmware (30525); registrazione del risultato e salvataggio come stato info.protocolLevel",
-                "es": "(ssbingo) feat: detectar nivel de protocolo Modbus en el arranque sondeando registros 30088/30200/30228/30286; leer versión de firmware (30525); registrar resultado y almacenar como estado info.protocolLevel",
-                "pl": "(ssbingo) feat: wykrywanie poziomu protokołu Modbus przy uruchomieniu przez próbkowanie rejestrów 30088/30200/30228/30286; odczyt wersji firmware (30525); logowanie wyniku i zapis jako stan info.protocolLevel",
-                "uk": "(ssbingo) feat: виявлення рівня протоколу Modbus при запуску шляхом зондування регістрів 30088/30200/30228/30286; зчитування версії прошивки (30525); журналювання результату та збереження як стан info.protocolLevel",
-                "zh-cn": "(ssbingo) feat: 启动时通过探测寄存器 30088/30200/30228/30286 检测 Modbus 协议级别；读取固件版本（30525）；记录结果并存储为 info.protocolLevel 状态"
+            "2.3.2": {
+                "en": "(ssbingo) fix: show 'pre-V2.6' instead of 'unknown' when device responds but has no extended plant registers; add per-probe debug log with Modbus exception message",
+                "de": "(ssbingo) fix: 'pre-V2.6' statt 'unknown' wenn Gerät antwortet aber keine erweiterten Plant-Register hat; Debug-Log pro Probe mit Modbus-Exception-Meldung ergänzt",
+                "ru": "(ssbingo) fix: отображать 'pre-V2.6' вместо 'unknown' если устройство отвечает, но не имеет расширенных регистров plant; добавлено отладочное сообщение на каждый зонд с кодом Modbus-исключения",
+                "pt": "(ssbingo) fix: mostrar 'pre-V2.6' em vez de 'unknown' quando o dispositivo responde mas não tem registos plant estendidos; log de debug por sonda com mensagem de excepção Modbus",
+                "nl": "(ssbingo) fix: 'pre-V2.6' tonen in plaats van 'unknown' als het apparaat reageert maar geen uitgebreide plant-registers heeft; debug-log per probe met Modbus-uitzonderingsmelding",
+                "fr": "(ssbingo) fix: afficher 'pre-V2.6' au lieu de 'unknown' si l'appareil répond mais n'a pas de registres plant étendus ; log de débogage par sonde avec message d'exception Modbus",
+                "it": "(ssbingo) fix: mostrare 'pre-V2.6' invece di 'unknown' quando il dispositivo risponde ma non ha registri plant estesi; log di debug per sonda con messaggio di eccezione Modbus",
+                "es": "(ssbingo) fix: mostrar 'pre-V2.6' en lugar de 'unknown' cuando el dispositivo responde pero no tiene registros plant extendidos; log de depuración por sonda con mensaje de excepción Modbus",
+                "pl": "(ssbingo) fix: pokazywać 'pre-V2.6' zamiast 'unknown' gdy urządzenie odpowiada ale nie ma rozszerzonych rejestrów plant; log debugowania na sondę z komunikatem wyjątku Modbus",
+                "uk": "(ssbingo) fix: відображати 'pre-V2.6' замість 'unknown' коли пристрій відповідає, але не має розширених регістрів plant; журнал налагодження на зонд з повідомленням про виняток Modbus",
+                "zh-cn": "(ssbingo) fix: 当设备响应但无扩展 plant 寄存器时显示 'pre-V2.6' 而非 'unknown'；为每个探针添加含 Modbus 异常信息的调试日志"
             }
         },
         "titleLang": {

@@ -155,6 +155,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: mostrare 'pre-V2.6' invece di 'unknown' quando il dispositivo risponde ma non ha registri plant estesi; log di debug per sonda con messaggio di eccezione Modbus
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: rilevamento del livello del protocollo Modbus all'avvio sondando i registri 30088/30200/30228/30286; lettura della versione firmware (30525); registrazione del risultato e salvataggio come stato info.protocolLevel
 

@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: afficher 'pre-V2.6' au lieu de 'unknown' si l'appareil répond mais n'a pas de registres plant étendus ; log de débogage par sonde avec message d'exception Modbus
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: détection du niveau de protocole Modbus au démarrage en sondant les registres 30088/30200/30228/30286 ; lecture de la version firmware (30525) ; journalisation du résultat et stockage dans l'état info.protocolLevel
 

@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: 'pre-V2.6' tonen in plaats van 'unknown' als het apparaat reageert maar geen uitgebreide plant-registers heeft; debug-log per probe met Modbus-uitzonderingsmelding
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: Modbus-protocolniveau bij opstarten detecteren door registers 30088/30200/30228/30286 te sonderen; firmwareversie (30525) lezen; resultaat loggen en opslaan als info.protocolLevel-state
 

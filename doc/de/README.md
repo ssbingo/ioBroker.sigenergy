@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: 'pre-V2.6' statt 'unknown' wenn Gerät antwortet aber keine erweiterten Plant-Register hat; Debug-Log pro Probe mit Modbus-Exception-Meldung ergänzt
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: Modbus-Protokollebene beim Start durch Probe von Registern 30088/30200/30228/30286 erkennen; Firmware-Version (30525) lesen; Ergebnis loggen und als info.protocolLevel-State speichern
 

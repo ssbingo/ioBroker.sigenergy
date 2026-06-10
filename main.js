@@ -522,7 +522,8 @@ class Sigenergy extends utils.Adapter {
             try {
                 await this.modbus.readInputRegisters(plantId, probe.addr, 1);
                 detectedLevel = probe.level;
-            } catch {
+            } catch (err) {
+                this.log.debug(`[protocolProbe] addr=${probe.addr} (${probe.level}): ${err.message}`);
                 break;
             }
         }
@@ -535,7 +536,7 @@ class Sigenergy extends utils.Adapter {
             // not critical
         }
 
-        const levelStr = detectedLevel ? `>=${detectedLevel}` : 'unknown';
+        const levelStr = detectedLevel ? `>=${detectedLevel}` : 'pre-V2.6';
         this.log.info(`Detected protocol level: ${levelStr} (firmware: ${firmwareVersion})`);
         await this.setStateAsync('info.protocolLevel', { val: levelStr, ack: true });
     }

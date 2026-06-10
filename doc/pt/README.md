@@ -160,6 +160,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: mostrar 'pre-V2.6' em vez de 'unknown' quando o dispositivo responde mas não tem registos plant estendidos; log de debug por sonda com mensagem de excepção Modbus
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: detectar nível do protocolo Modbus no arranque sondando registos 30088/30200/30228/30286; ler versão de firmware (30525); registar resultado e guardar como estado info.protocolLevel
 

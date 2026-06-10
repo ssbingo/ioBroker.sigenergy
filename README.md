@@ -153,6 +153,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.3.2 (2026-06-10)
+- (ssbingo) fix: show 'pre-V2.6' instead of 'unknown' when device responds but has no extended plant registers; add per-probe debug log with Modbus exception message
+
 ### 2.3.1 (2026-06-10)
 - (ssbingo) feat: detect Modbus protocol level on startup by probing registers 30088/30200/30228/30286; read firmware version (30525); log result and store as info.protocolLevel state
 
