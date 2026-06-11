@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: 对 plant/inverter/acCharger/dcCharger/pss/pid 寄存器读取警告在首次出现后不再重复；后续失败仅在 debug 级别记录
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: 当设备响应但无扩展 plant 寄存器时显示 'pre-V2.6' 而非 'unknown'；为每个探针添加含 Modbus 异常信息的调试日志
 

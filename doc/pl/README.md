@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: tłumienie powtarzających się ostrzeżeń o odczycie rejestrów po pierwszym wystąpieniu dla plant/inverter/acCharger/dcCharger/pss/pid; kolejne błędy rejestrowane tylko na poziomie debug
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: pokazywać 'pre-V2.6' zamiast 'unknown' gdy urządzenie odpowiada ale nie ma rozszerzonych rejestrów plant; log debugowania na sondę z komunikatem wyjątku Modbus
 

@@ -153,6 +153,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: suppress repeated register read warnings after first occurrence for plant/inverter/acCharger/dcCharger/pss/pid; subsequent failures log at debug level only
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: show 'pre-V2.6' instead of 'unknown' when device responds but has no extended plant registers; add per-probe debug log with Modbus exception message
 

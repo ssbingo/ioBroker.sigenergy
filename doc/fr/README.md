@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: supprimer les avertissements répétés de lecture de registres après la première occurrence pour plant/inverter/acCharger/dcCharger/pss/pid ; les échecs suivants sont journalisés au niveau debug uniquement
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: afficher 'pre-V2.6' au lieu de 'unknown' si l'appareil répond mais n'a pas de registres plant étendus ; log de débogage par sonde avec message d'exception Modbus
 

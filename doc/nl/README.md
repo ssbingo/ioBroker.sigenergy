@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: herhaalde register-leeswaarschuwingen na eerste voorkomen onderdrukken voor plant/inverter/acCharger/dcCharger/pss/pid; volgende fouten alleen op debug-niveau gelogd
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: 'pre-V2.6' tonen in plaats van 'unknown' als het apparaat reageert maar geen uitgebreide plant-registers heeft; debug-log per probe met Modbus-uitzonderingsmelding
 

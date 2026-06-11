@@ -62,6 +62,12 @@ class Sigenergy extends utils.Adapter {
         this._controlRegistersRead = false;
         this._protocolDetected = false;
         this._essPreheatingUnsupported = false;
+        this._plantUnsupportedGroups = new Set();
+        this._inverterUnsupportedGroups = new Set();
+        this._acChargerUnsupportedGroups = new Set();
+        this._dcChargerUnsupportedGroups = new Set();
+        this._pssUnsupportedGroups = new Set();
+        this._pidUnsupportedGroups = new Set();
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -353,7 +359,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'plant');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`Plant register read error at ${group.startAddr}: ${err.message}`);
+                if (!this._plantUnsupportedGroups.has(group.startAddr)) {
+                    this._plantUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`Plant register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[plant] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }
@@ -379,7 +390,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'inverter');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`Inverter register read error at ${group.startAddr}: ${err.message}`);
+                if (!this._inverterUnsupportedGroups.has(group.startAddr)) {
+                    this._inverterUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`Inverter register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[inverter] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }
@@ -402,7 +418,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'acCharger');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`AC Charger register read error: ${err.message}`);
+                if (!this._acChargerUnsupportedGroups.has(group.startAddr)) {
+                    this._acChargerUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`AC Charger register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[acCharger] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }
@@ -425,7 +446,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'dcCharger');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`DC Charger register read error: ${err.message}`);
+                if (!this._dcChargerUnsupportedGroups.has(group.startAddr)) {
+                    this._dcChargerUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`DC Charger register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[dcCharger] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }
@@ -445,7 +471,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'pss');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`PSS register read error: ${err.message}`);
+                if (!this._pssUnsupportedGroups.has(group.startAddr)) {
+                    this._pssUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`PSS register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[pss] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }
@@ -465,7 +496,12 @@ class Sigenergy extends utils.Adapter {
                 await this._processReadGroup(group, raw, 'pid');
                 await this._sleep(100);
             } catch (err) {
-                this.log.warn(`PID register read error: ${err.message}`);
+                if (!this._pidUnsupportedGroups.has(group.startAddr)) {
+                    this._pidUnsupportedGroups.add(group.startAddr);
+                    this.log.warn(`PID register read error at ${group.startAddr}: ${err.message}`);
+                } else {
+                    this.log.debug(`[pid] read error at ${group.startAddr}: ${err.message}`);
+                }
             }
         }
     }

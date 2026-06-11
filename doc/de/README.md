@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: wiederholte Register-Lesewarnungen nach erstem Auftreten für plant/inverter/acCharger/dcCharger/pss/pid unterdrückt; weitere Fehler nur noch auf Debug-Ebene
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: 'pre-V2.6' statt 'unknown' wenn Gerät antwortet aber keine erweiterten Plant-Register hat; Debug-Log pro Probe mit Modbus-Exception-Meldung ergänzt
 

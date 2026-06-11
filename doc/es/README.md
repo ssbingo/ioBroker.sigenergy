@@ -160,6 +160,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.3.3 (2026-06-11)
+- (ssbingo) fix: suprimir advertencias repetidas de lectura de registros tras la primera aparición para plant/inverter/acCharger/dcCharger/pss/pid; los fallos posteriores solo se registran a nivel debug
+
 ### 2.3.2 (2026-06-10)
 - (ssbingo) fix: mostrar 'pre-V2.6' en lugar de 'unknown' cuando el dispositivo responde pero no tiene registros plant extendidos; log de depuración por sonda con mensaje de excepción Modbus
 

@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.3.2",
+        "version": "2.3.3",
         "news": {
-            "2.3.2": {
-                "en": "(ssbingo) fix: show 'pre-V2.6' instead of 'unknown' when device responds but has no extended plant registers; add per-probe debug log with Modbus exception message",
-                "de": "(ssbingo) fix: 'pre-V2.6' statt 'unknown' wenn Gerät antwortet aber keine erweiterten Plant-Register hat; Debug-Log pro Probe mit Modbus-Exception-Meldung ergänzt",
-                "ru": "(ssbingo) fix: отображать 'pre-V2.6' вместо 'unknown' если устройство отвечает, но не имеет расширенных регистров plant; добавлено отладочное сообщение на каждый зонд с кодом Modbus-исключения",
-                "pt": "(ssbingo) fix: mostrar 'pre-V2.6' em vez de 'unknown' quando o dispositivo responde mas não tem registos plant estendidos; log de debug por sonda com mensagem de excepção Modbus",
-                "nl": "(ssbingo) fix: 'pre-V2.6' tonen in plaats van 'unknown' als het apparaat reageert maar geen uitgebreide plant-registers heeft; debug-log per probe met Modbus-uitzonderingsmelding",
-                "fr": "(ssbingo) fix: afficher 'pre-V2.6' au lieu de 'unknown' si l'appareil répond mais n'a pas de registres plant étendus ; log de débogage par sonde avec message d'exception Modbus",
-                "it": "(ssbingo) fix: mostrare 'pre-V2.6' invece di 'unknown' quando il dispositivo risponde ma non ha registri plant estesi; log di debug per sonda con messaggio di eccezione Modbus",
-                "es": "(ssbingo) fix: mostrar 'pre-V2.6' en lugar de 'unknown' cuando el dispositivo responde pero no tiene registros plant extendidos; log de depuración por sonda con mensaje de excepción Modbus",
-                "pl": "(ssbingo) fix: pokazywać 'pre-V2.6' zamiast 'unknown' gdy urządzenie odpowiada ale nie ma rozszerzonych rejestrów plant; log debugowania na sondę z komunikatem wyjątku Modbus",
-                "uk": "(ssbingo) fix: відображати 'pre-V2.6' замість 'unknown' коли пристрій відповідає, але не має розширених регістрів plant; журнал налагодження на зонд з повідомленням про виняток Modbus",
-                "zh-cn": "(ssbingo) fix: 当设备响应但无扩展 plant 寄存器时显示 'pre-V2.6' 而非 'unknown'；为每个探针添加含 Modbus 异常信息的调试日志"
+            "2.3.3": {
+                "en": "(ssbingo) fix: suppress repeated register read warnings after first occurrence for plant/inverter/acCharger/dcCharger/pss/pid; subsequent failures log at debug level only",
+                "de": "(ssbingo) fix: wiederholte Register-Lesewarnungen nach erstem Auftreten für plant/inverter/acCharger/dcCharger/pss/pid unterdrückt; weitere Fehler nur noch auf Debug-Ebene protokolliert",
+                "ru": "(ssbingo) fix: подавление повторяющихся предупреждений о чтении регистров после первого возникновения для plant/inverter/acCharger/dcCharger/pss/pid; последующие ошибки логируются только на уровне debug",
+                "pt": "(ssbingo) fix: suprimir avisos repetidos de leitura de registos após primeira ocorrência para plant/inverter/acCharger/dcCharger/pss/pid; falhas subsequentes registadas apenas ao nível debug",
+                "nl": "(ssbingo) fix: herhaalde register-leeswaarschuwingen na eerste voorkomen onderdrukken voor plant/inverter/acCharger/dcCharger/pss/pid; volgende fouten alleen op debug-niveau gelogd",
+                "fr": "(ssbingo) fix: supprimer les avertissements répétés de lecture de registres après la première occurrence pour plant/inverter/acCharger/dcCharger/pss/pid ; les échecs suivants sont journalisés au niveau debug uniquement",
+                "it": "(ssbingo) fix: sopprimere gli avvisi ripetuti di lettura registro dopo la prima occorrenza per plant/inverter/acCharger/dcCharger/pss/pid; i guasti successivi vengono registrati solo a livello debug",
+                "es": "(ssbingo) fix: suprimir advertencias repetidas de lectura de registros tras la primera aparición para plant/inverter/acCharger/dcCharger/pss/pid; los fallos posteriores solo se registran a nivel debug",
+                "pl": "(ssbingo) fix: tłumienie powtarzających się ostrzeżeń o odczycie rejestrów po pierwszym wystąpieniu dla plant/inverter/acCharger/dcCharger/pss/pid; kolejne błędy rejestrowane tylko na poziomie debug",
+                "uk": "(ssbingo) fix: придушення повторюваних попереджень про зчитування регістрів після першого виникнення для plant/inverter/acCharger/dcCharger/pss/pid; наступні помилки журналюються лише на рівні debug",
+                "zh-cn": "(ssbingo) fix: 对 plant/inverter/acCharger/dcCharger/pss/pid 寄存器读取警告在首次出现后不再重复；后续失败仅在 debug 级别记录"
             }
         },
         "titleLang": {
