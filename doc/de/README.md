@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: Protokollversionserkennung korrigiert — korrekte Registermengen für Probes, absteigende Reihenfolge V2.9→V2.6, Transportfehler von Geräteantworten unterschieden um fehlerhafte pre-V2.6-Meldung zu vermeiden
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: wiederholte Register-Lesewarnungen nach erstem Auftreten für plant/inverter/acCharger/dcCharger/pss/pid unterdrückt; weitere Fehler nur noch auf Debug-Ebene
 

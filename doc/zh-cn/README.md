@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: 修正协议版本检测 — 使用正确的寄存器数量探测，从 V2.9 降序到 V2.6，区分传输错误和设备异常，避免误报 pre-V2.6
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: 对 plant/inverter/acCharger/dcCharger/pss/pid 寄存器读取警告在首次出现后不再重复；后续失败仅在 debug 级别记录
 

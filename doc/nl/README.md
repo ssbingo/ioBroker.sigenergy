@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: correcte protocolniveaudetectie — juiste registerhoeveelheden voor probes, aflopende volgorde V2.9→V2.6, onderscheid transportfouten van apparaatreacties om vals pre-V2.6-rapport te voorkomen
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: herhaalde register-leeswaarschuwingen na eerste voorkomen onderdrukken voor plant/inverter/acCharger/dcCharger/pss/pid; volgende fouten alleen op debug-niveau gelogd
 

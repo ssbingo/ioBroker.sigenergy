@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.3.3",
+        "version": "2.3.4",
         "news": {
-            "2.3.3": {
-                "en": "(ssbingo) fix: suppress repeated register read warnings after first occurrence for plant/inverter/acCharger/dcCharger/pss/pid; subsequent failures log at debug level only",
-                "de": "(ssbingo) fix: wiederholte Register-Lesewarnungen nach erstem Auftreten für plant/inverter/acCharger/dcCharger/pss/pid unterdrückt; weitere Fehler nur noch auf Debug-Ebene protokolliert",
-                "ru": "(ssbingo) fix: подавление повторяющихся предупреждений о чтении регистров после первого возникновения для plant/inverter/acCharger/dcCharger/pss/pid; последующие ошибки логируются только на уровне debug",
-                "pt": "(ssbingo) fix: suprimir avisos repetidos de leitura de registos após primeira ocorrência para plant/inverter/acCharger/dcCharger/pss/pid; falhas subsequentes registadas apenas ao nível debug",
-                "nl": "(ssbingo) fix: herhaalde register-leeswaarschuwingen na eerste voorkomen onderdrukken voor plant/inverter/acCharger/dcCharger/pss/pid; volgende fouten alleen op debug-niveau gelogd",
-                "fr": "(ssbingo) fix: supprimer les avertissements répétés de lecture de registres après la première occurrence pour plant/inverter/acCharger/dcCharger/pss/pid ; les échecs suivants sont journalisés au niveau debug uniquement",
-                "it": "(ssbingo) fix: sopprimere gli avvisi ripetuti di lettura registro dopo la prima occorrenza per plant/inverter/acCharger/dcCharger/pss/pid; i guasti successivi vengono registrati solo a livello debug",
-                "es": "(ssbingo) fix: suprimir advertencias repetidas de lectura de registros tras la primera aparición para plant/inverter/acCharger/dcCharger/pss/pid; los fallos posteriores solo se registran a nivel debug",
-                "pl": "(ssbingo) fix: tłumienie powtarzających się ostrzeżeń o odczycie rejestrów po pierwszym wystąpieniu dla plant/inverter/acCharger/dcCharger/pss/pid; kolejne błędy rejestrowane tylko na poziomie debug",
-                "uk": "(ssbingo) fix: придушення повторюваних попереджень про зчитування регістрів після першого виникнення для plant/inverter/acCharger/dcCharger/pss/pid; наступні помилки журналюються лише на рівні debug",
-                "zh-cn": "(ssbingo) fix: 对 plant/inverter/acCharger/dcCharger/pss/pid 寄存器读取警告在首次出现后不再重复；后续失败仅在 debug 级别记录"
+            "2.3.4": {
+                "en": "(ssbingo) fix: correct protocol level detection — use proper register quantities for probes, descend from V2.9 to V2.6, distinguish transport errors from device exceptions to avoid false pre-V2.6 report",
+                "de": "(ssbingo) fix: Protokollversionserkennung korrigiert — korrekte Registermengen für Probes, absteigende Reihenfolge V2.9→V2.6, Transportfehler von Geräteantworten unterschieden um fehlerhafte pre-V2.6-Meldung zu vermeiden",
+                "ru": "(ssbingo) fix: исправлено определение уровня протокола — правильное количество регистров для проб, порядок убывания V2.9→V2.6, разграничение транспортных ошибок и ответов устройства для исключения ложного сообщения pre-V2.6",
+                "pt": "(ssbingo) fix: correção da deteção do nível de protocolo — quantidades corretas de registos para sondas, ordem decrescente V2.9→V2.6, distinção entre erros de transporte e exceções do dispositivo para evitar falso relatório pre-V2.6",
+                "nl": "(ssbingo) fix: correcte protocolniveaudetectie — juiste registerhoeveelheden voor probes, aflopende volgorde V2.9→V2.6, onderscheid transportfouten van apparaatreacties om vals pre-V2.6-rapport te voorkomen",
+                "fr": "(ssbingo) fix: correction de la détection du niveau de protocole — quantités de registres correctes pour les sondes, ordre décroissant V2.9→V2.6, distinction des erreurs de transport des exceptions du périphérique pour éviter un rapport pre-V2.6 erroné",
+                "it": "(ssbingo) fix: correzione del rilevamento del livello di protocollo — quantità di registri corrette per le probe, ordine decrescente V2.9→V2.6, distinzione errori di trasporto da eccezioni del dispositivo per evitare falso rapporto pre-V2.6",
+                "es": "(ssbingo) fix: corrección de la detección del nivel de protocolo — cantidades correctas de registros para sondas, orden descendente V2.9→V2.6, distinción de errores de transporte de excepciones del dispositivo para evitar informe falso pre-V2.6",
+                "pl": "(ssbingo) fix: poprawka wykrywania poziomu protokołu — właściwe ilości rejestrów dla sond, kolejność malejąca V2.9→V2.6, rozróżnienie błędów transportu od wyjątków urządzenia w celu uniknięcia fałszywego raportu pre-V2.6",
+                "uk": "(ssbingo) fix: виправлення визначення рівня протоколу — правильна кількість регістрів для проб, порядок спадання V2.9→V2.6, розрізнення транспортних помилок від винятків пристрою для уникнення хибного звіту pre-V2.6",
+                "zh-cn": "(ssbingo) fix: 修正协议版本检测 — 使用正确的寄存器数量探测，从 V2.9 降序到 V2.6，区分传输错误和设备异常，避免误报 pre-V2.6"
             }
         },
         "titleLang": {

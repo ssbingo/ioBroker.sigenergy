@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: correction de la détection du niveau de protocole — quantités de registres correctes pour les sondes, ordre décroissant V2.9→V2.6, distinction des erreurs de transport des exceptions du périphérique pour éviter un rapport pre-V2.6 erroné
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: supprimer les avertissements répétés de lecture de registres après la première occurrence pour plant/inverter/acCharger/dcCharger/pss/pid ; les échecs suivants sont journalisés au niveau debug uniquement
 

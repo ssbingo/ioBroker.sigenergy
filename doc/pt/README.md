@@ -160,6 +160,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: correção da deteção do nível de protocolo — quantidades corretas de registos para sondas, ordem decrescente V2.9→V2.6, distinção entre erros de transporte e exceções do dispositivo para evitar falso relatório pre-V2.6
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: suprimir avisos repetidos de leitura de registos após primeira ocorrência para plant/inverter/acCharger/dcCharger/pss/pid; falhas subsequentes registadas apenas ao nível debug
 

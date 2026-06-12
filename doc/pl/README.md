@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.3.4 (2026-06-12)
+- (ssbingo) fix: poprawka wykrywania poziomu protokołu — właściwe ilości rejestrów dla sond, kolejność malejąca V2.9→V2.6, rozróżnienie błędów transportu od wyjątków urządzenia w celu uniknięcia fałszywego raportu pre-V2.6
+
 ### 2.3.3 (2026-06-11)
 - (ssbingo) fix: tłumienie powtarzających się ostrzeżeń o odczycie rejestrów po pierwszym wystąpieniu dla plant/inverter/acCharger/dcCharger/pss/pid; kolejne błędy rejestrowane tylko na poziomie debug
 

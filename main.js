@@ -255,8 +255,9 @@ class Sigenergy extends utils.Adapter {
                 this._controlRegistersRead = true;
             }
             if (!this._protocolDetected) {
-                await this._detectProtocolLevel();
-                this._protocolDetected = true;
+                // Only latch the flag if detection was conclusive (no transport
+                // errors). Otherwise retry on the next poll cycle.
+                this._protocolDetected = await this._detectProtocolLevel();
             }
 
             const _t0 = Date.now();
@@ -311,13 +312,13 @@ class Sigenergy extends utils.Adapter {
             await this._updatePvStringPowers();
 
             await this.setStateAsync('info.connection', { val: true, ack: true });
-            // Successful cycle → reset dedup flags so next outage logs at ERROR level again.
+            // Successful cycle — reset dedup flags so next outage logs at ERROR level again.
             this._pollErrorKey = null;
             this._pollWarnLogged = false;
             this.log.debug(`[poll] cycle completed in ${Date.now() - _pollStart} ms`);
         } catch (err) {
-            // Deduplicate: first occurrence → ERROR (visible + Sentry-worthy).
-            // Identical subsequent errors → DEBUG, so a broken network does not flood the log.
+            // Deduplicate: first occurrence — ERROR (visible + Sentry-worthy).
+            // Identical subsequent errors — DEBUG, so a broken network does not flood the log.
             const key = `poll:${err.code || err.message}`;
             if (this._pollErrorKey !== key) {
                 this.log.error(`Poll error: ${err.message}`);
@@ -542,26 +543,61 @@ class Sigenergy extends utils.Adapter {
         }
     }
 
+    /**
+     * Detect the Modbus protocol level supported by the device.
+     *
+     * Design notes (root cause of the former "pre-V2.6" misdetection):
+     * 1. Sigenergy firmware rejects reads that do not cover a complete data
+     *    point. Probing addr 30088 (U64, qty 4) with qty=1 returns Modbus
+     *    exception 0x02 (ILLEGAL DATA ADDRESS, "combination of reference
+     *    number and transfer length is invalid"). Every probe therefore
+     *    reads the FULL quantity of its data point.
+     * 2. Probes run in DESCENDING order and stop at the first success, so a
+     *    single optional/legacy register can no longer cap the result.
+     * 3. Probe registers are valid for both "Hybrid Inv." and "PV Inv."
+     *    (per protocol doc V2.9, table 5-1) and match the official version
+     *    history: 30272 added in V2.9, 30276 in V2.8, 30194 in V2.7,
+     *    30088 in V2.6.
+     * 4. A Modbus exception (1/2) means "register not implemented" — that is
+     *    a conclusive "no". A transport error/timeout is INCONCLUSIVE: it is
+     *    retried once, and if detection stays inconclusive the whole run is
+     *    repeated on the next poll cycle instead of reporting pre-V2.6.
+     *
+     * @returns {Promise<boolean>} true if detection was conclusive
+     */
     async _detectProtocolLevel() {
         const plantId = this.config.plantId || 247;
         const inverterId = this.config.inverterId || 1;
 
         const probes = [
-            { addr: 30088, level: 'V2.6' },
-            { addr: 30200, level: 'V2.7' },
-            { addr: 30228, level: 'V2.8' },
-            { addr: 30286, level: 'V2.9' },
+            { addr: 30272, qty: 2, level: 'V2.9' }, // PV total daily generation (U32)
+            { addr: 30276, qty: 1, level: 'V2.8' }, // [Grid code] Rated frequency (U16)
+            { addr: 30194, qty: 2, level: 'V2.7' }, // Third party inverter active power (S32)
+            { addr: 30088, qty: 4, level: 'V2.6' }, // Plant PV total generation (U64)
         ];
 
         let detectedLevel = null;
+        let inconclusive = false;
         for (const probe of probes) {
-            try {
-                await this.modbus.readInputRegisters(plantId, probe.addr, 1);
+            if (this._stopped) {
+                return false;
+            }
+            const result = await this._probeRegister(plantId, probe);
+            if (result === 'supported') {
                 detectedLevel = probe.level;
-            } catch (err) {
-                this.log.debug(`[protocolProbe] addr=${probe.addr} (${probe.level}): ${err.message}`);
                 break;
             }
+            if (result === 'error') {
+                inconclusive = true;
+            }
+            await this._sleep(100);
+        }
+
+        if (!detectedLevel && inconclusive) {
+            this.log.warn(
+                'Protocol level detection inconclusive (communication errors during probing) — will retry on next poll cycle',
+            );
+            return false;
         }
 
         let firmwareVersion = 'unknown';
@@ -575,6 +611,48 @@ class Sigenergy extends utils.Adapter {
         const levelStr = detectedLevel ? `>=${detectedLevel}` : 'pre-V2.6';
         this.log.info(`Detected protocol level: ${levelStr} (firmware: ${firmwareVersion})`);
         await this.setStateAsync('info.protocolLevel', { val: levelStr, ack: true });
+        return true;
+    }
+
+    /**
+     * Probe a single register (full data point) on the device.
+     *
+     * @param {number} slaveId - Modbus slave id
+     * @param {{addr: number, qty: number, level: string}} probe - probe definition
+     * @returns {Promise<'supported'|'unsupported'|'error'>} probe result
+     */
+    async _probeRegister(slaveId, probe) {
+        for (let attempt = 1; attempt <= 2; attempt++) {
+            if (this._stopped) {
+                return 'error';
+            }
+            try {
+                await this.modbus.readInputRegisters(slaveId, probe.addr, probe.qty);
+                this.log.debug(`[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): supported`);
+                return 'supported';
+            } catch (err) {
+                // modbus-serial sets err.modbusCode on Modbus exception responses
+                // (1 = ILLEGAL FUNCTION, 2 = ILLEGAL DATA ADDRESS, ...). An
+                // exception is an answer FROM the device => register not
+                // implemented on this firmware. Anything else (timeout, socket
+                // error) is a transport problem and proves nothing.
+                if (err && err.modbusCode !== undefined) {
+                    this.log.debug(
+                        `[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): ` +
+                            `not supported (Modbus exception ${err.modbusCode})`,
+                    );
+                    return 'unsupported';
+                }
+                this.log.debug(
+                    `[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): ` +
+                        `transport error on attempt ${attempt}/2: ${err.message}`,
+                );
+                if (attempt < 2) {
+                    await this._sleep(300);
+                }
+            }
+        }
+        return 'error';
     }
 
     async _readControlRegisters() {
