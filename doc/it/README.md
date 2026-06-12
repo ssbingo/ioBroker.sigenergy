@@ -155,6 +155,22 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Sicurezza di scrittura architetturale: le scritture Modbus vengono rifiutate direttamente nel dispatcher quando il registro di destinazione non è valido per il tipo di dispositivo configurato (gating models in onStateChange, guardia plant per solo SigenMicro)
+- (ssbingo) Controllo TypeScript corretto — nuovo `lib/adapter-config.d.ts` con dichiarazione AdapterConfig completa, costruttore modbus-serial tipizzato, annotazioni ioBroker.CommonType/SettableObject; il nuovo script `npm run check` passa con 0 errori
+- (ssbingo) La configurazione ESLint consente i tag JSDoc `@type` in questo progetto JavaScript verificato (jsdoc/check-tag-names con typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Architettura dei tipi di dispositivo: selettore obbligatorio (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / inverter solo PV / solo SigenMicro) con separazione rigorosa dei registri secondo le note del protocollo V2.9
+- (ssbingo) Supporto ufficiale per Sigen Hybrid e inverter solo PV (Sigen PV / PV Max)
+- (ssbingo) Rilevamento automatico del tipo di dispositivo dall'hardware nell'admin (registri 30500 / 31024)
+- (ssbingo) Verifica del modello all'avvio — avvisa in caso di divergenza tra configurazione e hardware (nuovo stato info.modelType)
+- (ssbingo) Registri PV dinamici: PV5-PV16 tensione/corrente in base al numero di stringhe del registro 31025
+- (ssbingo) Controllo del fattore di potenza PCC (40157/40158) solo per M1-HYB; preriscaldamento ESS solo M1-HYB; caricatore DC e grid code solo SigenStor/Sigen Hybrid
+- (ssbingo) Migrazione automatica delle configurazioni precedenti alla 2.4.0 e pulizia dei canali non validi per il tipo di dispositivo selezionato
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: correzione del rilevamento del livello di protocollo — quantità di registri corrette per le probe, ordine decrescente V2.9→V2.6, distinzione errori di trasporto da eccezioni del dispositivo per evitare falso rapporto pre-V2.6
 

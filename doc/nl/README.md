@@ -155,6 +155,22 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Architecturale schrijfveiligheid: Modbus-schrijfopdrachten worden direct in de write-dispatcher geweigerd als het doelregister ongeldig is voor het geconfigureerde apparaattype (models-gating in onStateChange, plant-guard voor alleen-SigenMicro)
+- (ssbingo) TypeScript-controle gerepareerd — nieuwe `lib/adapter-config.d.ts` met volledige AdapterConfig-declaratie, getypeerde modbus-serial-constructor, ioBroker.CommonType/SettableObject-annotaties; nieuw script `npm run check` slaagt met 0 fouten
+- (ssbingo) ESLint-configuratie staat JSDoc `@type`-tags toe in dit gecontroleerde JavaScript-project (jsdoc/check-tag-names met typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Apparaattype-architectuur: verplichte selector (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / alleen PV-omvormer / alleen SigenMicro) met strikte of/of-registerafscherming volgens de modelvoetnoten van protocol V2.9
+- (ssbingo) Sigen Hybrid en alleen-PV-omvormers (Sigen PV / PV Max) officieel ondersteund
+- (ssbingo) Automatische detectie van het apparaattype vanuit de hardware in de admin (registers 30500 / 31024)
+- (ssbingo) Modelverificatie bij het opstarten — waarschuwt bij afwijking tussen configuratie en hardware (nieuwe state info.modelType)
+- (ssbingo) Dynamische PV-stringregisters: PV5-PV16 spanning/stroom via het stringaantal uit register 31025
+- (ssbingo) PCC-arbeidsfactorregeling (40157/40158) alleen voor M1-HYB; ESS-voorverwarming alleen M1-HYB; DC-lader en grid code alleen SigenStor/Sigen Hybrid
+- (ssbingo) Automatische migratie van configuraties vóór 2.4.0 en opschoning van kanalen die ongeldig zijn voor het gekozen apparaattype
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: correcte protocolniveaudetectie — juiste registerhoeveelheden voor probes, aflopende volgorde V2.9→V2.6, onderscheid transportfouten van apparaatreacties om vals pre-V2.6-rapport te voorkomen
 

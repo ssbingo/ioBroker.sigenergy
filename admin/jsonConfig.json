@@ -5,9 +5,74 @@
       "type": "panel",
       "label": "Components",
       "items": {
+        "_deviceTypeHeader": {
+          "type": "staticText",
+          "text": "Select the Sigenergy device type at this Modbus endpoint. One instance handles exactly one system type (strict either/or). All component options below depend on this choice.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "deviceType": {
+          "type": "select",
+          "label": "Device Type",
+          "help": "Defines which register sets are valid (protocol V2.9 model footnotes)",
+          "default": "sigenstor",
+          "options": [
+            {
+              "label": "SigenStor (all-in-one storage system)",
+              "value": "sigenstor"
+            },
+            {
+              "label": "Sigen Hybrid (hybrid inverter, optional battery)",
+              "value": "sigenhybrid"
+            },
+            {
+              "label": "Sigen PV M1-HYB (commercial hybrid series)",
+              "value": "m1hyb"
+            },
+            {
+              "label": "Sigen PV / PV Max (PV-only inverter)",
+              "value": "pvinverter"
+            },
+            {
+              "label": "SigenMicro only (micro-inverters, no plant)",
+              "value": "sigenmicroOnly"
+            }
+          ],
+          "sm": 12,
+          "xs": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6
+        },
+        "_detectDeviceType": {
+          "type": "sendTo",
+          "command": "detectDeviceType",
+          "label": "Auto-detect from device",
+          "help": "Reads model type (reg. 30500) and battery pack count (reg. 31024) — requires a working, saved connection",
+          "useNative": true,
+          "showProcess": true,
+          "variant": "outlined",
+          "sm": 12,
+          "xs": 12,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
+        },
+        "_dividerType": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
         "_componentsHeader": {
           "type": "staticText",
           "text": "Select which components are installed in your Sigenergy system.",
+          "hidden": "data.deviceType === 'sigenmicroOnly'",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -17,13 +82,15 @@
         "hasBattery": {
           "type": "checkbox",
           "label": "Battery / ESS",
-          "help": "Energy Storage System",
+          "help": "Energy Storage System. SigenStor: integral (always on). Hybrid/M1-HYB: optional battery packs.",
           "default": true,
           "sm": 12,
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3
+          "xl": 3,
+          "hidden": "data.deviceType === 'pvinverter' || data.deviceType === 'sigenmicroOnly'",
+          "disabled": "data.deviceType === 'sigenstor'"
         },
         "hasPv": {
           "type": "checkbox",
@@ -34,29 +101,32 @@
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3
+          "xl": 3,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "hasAcCharger": {
           "type": "checkbox",
           "label": "AC Charger (EVAC)",
-          "help": "Sigen EVAC EV charging station",
+          "help": "Sigen EVAC EV charging station (reached via the inverter as Modbus gateway)",
           "default": false,
           "sm": 12,
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3
+          "xl": 3,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "hasDcCharger": {
           "type": "checkbox",
           "label": "DC Charger",
-          "help": "DC fast charging (via inverter)",
+          "help": "DC fast charging — only SigenStor and Sigen Hybrid support a DC charger (protocol note 5.3)",
           "default": false,
           "sm": 12,
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3
+          "xl": 3,
+          "hidden": "data.deviceType !== 'sigenstor' && data.deviceType !== 'sigenhybrid'"
         },
         "hasSigenMicro": {
           "type": "checkbox",
@@ -67,7 +137,18 @@
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3
+          "xl": 3,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
+        },
+        "_microOnlyInfo": {
+          "type": "staticText",
+          "text": "SigenMicro-only mode: plant and inverter polling is disabled — only the configured micro-inverters are read. Use the SigenMicro tab to scan and select devices.",
+          "hidden": "data.deviceType !== 'sigenmicroOnly'",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_divider1": {
           "type": "divider",
@@ -497,7 +578,8 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "enableCumulativeEnergy": {
           "type": "checkbox",
@@ -508,18 +590,20 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "enableGridCode": {
           "type": "checkbox",
           "label": "Grid Code Parameters (V2.8)",
-          "help": "Read/write LVRT, HVRT and frequency response settings (registers 40049–40068)",
+          "help": "Grid code parameters (40051-40068) — only SigenStor and Sigen Hybrid (protocol note 5.2.4)",
           "default": false,
           "sm": 12,
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType !== 'sigenstor' && data.deviceType !== 'sigenhybrid'"
         },
         "_divider_ext2": {
           "type": "divider",
@@ -547,7 +631,8 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "pssSlaveId": {
           "type": "number",
@@ -556,7 +641,7 @@
           "default": 5,
           "min": 1,
           "max": 246,
-          "hidden": "!data.enablePss",
+          "hidden": "(!data.enablePss) || data.deviceType === 'sigenmicroOnly'",
           "sm": 12,
           "md": 6,
           "xs": 12,
@@ -589,7 +674,8 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType === 'sigenmicroOnly'"
         },
         "pidSlaveId": {
           "type": "number",
@@ -598,7 +684,7 @@
           "default": 6,
           "min": 1,
           "max": 246,
-          "hidden": "!data.enablePid",
+          "hidden": "(!data.enablePid) || data.deviceType === 'sigenmicroOnly'",
           "sm": 12,
           "md": 6,
           "xs": 12,
@@ -625,13 +711,14 @@
         "enableEssPreheating": {
           "type": "checkbox",
           "label": "ESS Preheating TOU Schedules (V2.9)",
-          "help": "Create ioBroker objects for ESS preheating control and 30 TOU time windows (registers 50000–50183)",
+          "help": "ESS Preheating TOU registers (50000-50183) — only Sigen PV M1-HYA/HYB (protocol note 5.2.3)",
           "default": false,
           "sm": 12,
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4
+          "xl": 4,
+          "hidden": "data.deviceType !== 'm1hyb'"
         }
       }
     },

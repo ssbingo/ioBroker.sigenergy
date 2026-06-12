@@ -121,5 +121,21 @@
     "Use the SigenMicro tab in the adapter admin page to run the scan and manage discovered devices. The device list and individual enable/disable selections are stored automatically.": "使用SigenMicro标签页运行扫描并管理发现的设备。",
     "💾 Save selection": "💾 Save selection",
     "🔍  Scan for SigenMicro devices": "🔍  扫描SigenMicro设备",
-    "🔍  Start Scan": "🔍  开始扫描"
+    "🔍  Start Scan": "🔍  开始扫描",
+    "Device Type": "设备类型",
+    "Defines which register sets are valid (protocol V2.9 model footnotes)": "决定哪些寄存器集有效（协议 V2.9 型号脚注）",
+    "Auto-detect from device": "从设备自动检测",
+    "Reads model type (reg. 30500) and battery pack count (reg. 31024) — requires a working, saved connection": "读取型号类型（寄存器 30500）和电池组数量（寄存器 31024）——需要已保存且可用的连接",
+    "SigenStor (all-in-one storage system)": "SigenStor（一体式储能系统）",
+    "Sigen Hybrid (hybrid inverter, optional battery)": "Sigen Hybrid（混合逆变器，电池可选）",
+    "Sigen PV M1-HYB (commercial hybrid series)": "Sigen PV M1-HYB（商用混合系列）",
+    "Sigen PV / PV Max (PV-only inverter)": "Sigen PV / PV Max（纯光伏逆变器）",
+    "SigenMicro only (micro-inverters, no plant)": "仅 SigenMicro（微型逆变器，无电站）",
+    "Select the Sigenergy device type at this Modbus endpoint. One instance handles exactly one system type (strict either/or). All component options below depend on this choice.": "选择此 Modbus 端点上的 Sigenergy 设备类型。一个实例只处理一种系统类型（严格二选一）。下面的所有组件选项都取决于此选择。",
+    "SigenMicro-only mode: plant and inverter polling is disabled — only the configured micro-inverters are read. Use the SigenMicro tab to scan and select devices.": "仅 SigenMicro 模式：电站和逆变器轮询已禁用——仅读取已配置的微型逆变器。请使用 SigenMicro 选项卡扫描并选择设备。",
+    "Energy Storage System. SigenStor: integral (always on). Hybrid/M1-HYB: optional battery packs.": "储能系统。SigenStor：集成（始终开启）。Hybrid/M1-HYB：可选电池组。",
+    "Sigen EVAC EV charging station (reached via the inverter as Modbus gateway)": "Sigen EVAC 充电站（通过逆变器作为 Modbus 网关访问）",
+    "DC fast charging — only SigenStor and Sigen Hybrid support a DC charger (protocol note 5.3)": "直流快充——仅 SigenStor 和 Sigen Hybrid 支持直流充电器（协议注 5.3）",
+    "Grid code parameters (40051-40068) — only SigenStor and Sigen Hybrid (protocol note 5.2.4)": "电网准则参数（40051-40068）——仅 SigenStor 和 Sigen Hybrid（协议注 5.2.4）",
+    "ESS Preheating TOU registers (50000-50183) — only Sigen PV M1-HYA/HYB (protocol note 5.2.3)": "ESS 预热 TOU 寄存器（50000-50183）——仅 Sigen PV M1-HYA/HYB（协议注 5.2.3）"
 }

@@ -160,6 +160,22 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Seguridad de escritura arquitectónica: las escrituras Modbus se rechazan directamente en el despachador cuando el registro de destino no es válido para el tipo de dispositivo configurado (gating de models en onStateChange, guardia de plant para solo SigenMicro)
+- (ssbingo) Comprobación de TypeScript corregida — nuevo `lib/adapter-config.d.ts` con declaración completa de AdapterConfig, constructor de modbus-serial tipado, anotaciones ioBroker.CommonType/SettableObject; el nuevo script `npm run check` pasa con 0 errores
+- (ssbingo) La configuración de ESLint permite etiquetas JSDoc `@type` en este proyecto JavaScript verificado (jsdoc/check-tag-names con typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Arquitectura de tipos de dispositivo: selector obligatorio (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / inversor solo PV / solo SigenMicro) con separación estricta de registros según las notas del protocolo V2.9
+- (ssbingo) Soporte oficial para Sigen Hybrid e inversores solo PV (Sigen PV / PV Max)
+- (ssbingo) Detección automática del tipo de dispositivo desde el hardware en el admin (registros 30500 / 31024)
+- (ssbingo) Verificación del modelo al inicio — advierte si la configuración y el hardware detectado no coinciden (nuevo estado info.modelType)
+- (ssbingo) Registros PV dinámicos: PV5-PV16 tensión/corriente según el número de strings del registro 31025
+- (ssbingo) Control del factor de potencia PCC (40157/40158) solo para M1-HYB; precalentamiento ESS solo M1-HYB; cargador DC y grid code solo SigenStor/Sigen Hybrid
+- (ssbingo) Migración automática de configuraciones anteriores a 2.4.0 y limpieza de canales no válidos para el tipo de dispositivo seleccionado
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: corrección de la detección del nivel de protocolo — cantidades correctas de registros para sondas, orden descendente V2.9→V2.6, distinción de errores de transporte de excepciones del dispositivo para evitar informe falso pre-V2.6
 

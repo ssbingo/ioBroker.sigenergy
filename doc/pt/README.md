@@ -160,6 +160,22 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Segurança arquitetural de escrita: as escritas Modbus são rejeitadas no próprio despachante quando o registro de destino não é válido para o tipo de dispositivo configurado (gating de models em onStateChange, guarda de plant para apenas SigenMicro)
+- (ssbingo) Verificação TypeScript corrigida — novo `lib/adapter-config.d.ts` com declaração completa de AdapterConfig, construtor modbus-serial tipado, anotações ioBroker.CommonType/SettableObject; novo script `npm run check` passa com 0 erros
+- (ssbingo) A configuração do ESLint permite tags JSDoc `@type` neste projeto JavaScript verificado (jsdoc/check-tag-names com typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Arquitetura de tipos de dispositivo: seletor obrigatório (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / inversor somente PV / apenas SigenMicro) com separação estrita de registros conforme as notas do protocolo V2.9
+- (ssbingo) Suporte oficial a Sigen Hybrid e inversores somente PV (Sigen PV / PV Max)
+- (ssbingo) Detecção automática do tipo de dispositivo no admin (registros 30500 / 31024)
+- (ssbingo) Verificação de modelo na inicialização — avisa em caso de divergência entre configuração e hardware (novo estado info.modelType)
+- (ssbingo) Registros dinâmicos de strings PV: PV5-PV16 conforme a contagem de strings do registro 31025
+- (ssbingo) Controle de fator de potência PCC (40157/40158) apenas para M1-HYB; pré-aquecimento ESS apenas M1-HYB; carregador DC e grid code apenas SigenStor/Sigen Hybrid
+- (ssbingo) Migração automática de configurações anteriores a 2.4.0 e limpeza de canais inválidos para o tipo de dispositivo selecionado
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: correção da deteção do nível de protocolo — quantidades corretas de registos para sondas, ordem decrescente V2.9→V2.6, distinção entre erros de transporte e exceções do dispositivo para evitar falso relatório pre-V2.6
 

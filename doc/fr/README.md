@@ -146,6 +146,22 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Sécurité d'écriture architecturale : les écritures Modbus sont rejetées directement dans le dispatcher lorsque le registre cible n'est pas valide pour le type d'appareil configuré (gating models dans onStateChange, garde plant pour SigenMicro uniquement)
+- (ssbingo) Vérification TypeScript corrigée — nouveau `lib/adapter-config.d.ts` avec déclaration AdapterConfig complète, constructeur modbus-serial typé, annotations ioBroker.CommonType/SettableObject ; nouveau script `npm run check` passe sans erreur
+- (ssbingo) La configuration ESLint autorise les balises JSDoc `@type` dans ce projet JavaScript vérifié (jsdoc/check-tag-names avec typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Architecture de types d'appareils : sélecteur obligatoire (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / onduleur PV uniquement / SigenMicro uniquement) avec séparation stricte des registres selon les notes du protocole V2.9
+- (ssbingo) Prise en charge officielle de Sigen Hybrid et des onduleurs PV (Sigen PV / PV Max)
+- (ssbingo) Détection automatique du type d'appareil depuis le matériel dans l'admin (registres 30500 / 31024)
+- (ssbingo) Vérification du modèle au démarrage — avertit en cas de divergence entre configuration et matériel (nouvel état info.modelType)
+- (ssbingo) Registres PV dynamiques : PV5-PV16 tension/courant selon le nombre de strings du registre 31025
+- (ssbingo) Contrôle du facteur de puissance PCC (40157/40158) réservé au M1-HYB ; préchauffage ESS réservé au M1-HYB ; chargeur DC et grid code réservés à SigenStor/Sigen Hybrid
+- (ssbingo) Migration automatique des configurations antérieures à 2.4.0 et nettoyage des canaux invalides pour le type d'appareil sélectionné
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: correction de la détection du niveau de protocole — quantités de registres correctes pour les sondes, ordre décroissant V2.9→V2.6, distinction des erreurs de transport des exceptions du périphérique pour éviter un rapport pre-V2.6 erroné
 

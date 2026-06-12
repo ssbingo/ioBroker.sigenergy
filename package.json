@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sigenergy",
-  "version": "2.3.4",
+  "version": "2.5.0",
   "description": "ioBroker adapter for Sigenergy solar energy systems via Modbus TCP/RTU",
   "author": {
     "name": "ssbingo",
@@ -58,6 +58,7 @@
     "test": "npm run test:package && npm run test:unit && npm run test:integration",
     "lint": "eslint -c eslint.config.mjs .",
     "lint:fix": "eslint -c eslint.config.mjs . --fix",
+    "check": "tsc -p tsconfig.check.json",
     "release": "release-script"
   },
   "bugs": {

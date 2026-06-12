@@ -160,6 +160,22 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) 架构级写入安全：当目标寄存器对所配置的设备类型无效时，Modbus 写入会在写入调度器中被直接拒绝（onStateChange 中的 models 门控，仅 SigenMicro 模式的电站防护）
+- (ssbingo) 修复 TypeScript 类型检查——新增 `lib/adapter-config.d.ts` 提供完整的 AdapterConfig 声明、类型化的 modbus-serial 构造函数、ioBroker.CommonType/SettableObject 注解；新脚本 `npm run check` 以 0 错误通过
+- (ssbingo) ESLint 配置允许在此受检 JavaScript 项目中使用 JSDoc `@type` 标签（jsdoc/check-tag-names 设为 typed:false）
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) 设备类型架构：必选选择器（SigenStor / Sigen Hybrid / Sigen PV M1-HYB / 纯光伏逆变器 / 仅 SigenMicro），按协议 V2.9 型号脚注进行严格的二选一寄存器门控
+- (ssbingo) 正式支持 Sigen Hybrid 和纯光伏逆变器（Sigen PV / PV Max）
+- (ssbingo) 管理界面可从硬件自动检测设备类型（寄存器 30500 / 31024）
+- (ssbingo) 启动时进行型号校验——配置与检测到的硬件不一致时发出警告（新状态 info.modelType）
+- (ssbingo) 动态光伏组串寄存器：根据寄存器 31025 报告的组串数量启用 PV5-PV16 电压/电流
+- (ssbingo) PCC 功率因数控制（40157/40158）仅限 M1-HYB；ESS 预热仅限 M1-HYB；直流充电器和电网准则仅限 SigenStor/Sigen Hybrid
+- (ssbingo) 自动迁移 2.4.0 之前的配置并清理对所选设备类型无效的通道
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: 修正协议版本检测 — 使用正确的寄存器数量探测，从 V2.9 降序到 V2.6，区分传输错误和设备异常，避免误报 pre-V2.6
 

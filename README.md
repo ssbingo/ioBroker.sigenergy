@@ -3,7 +3,7 @@
 [![NPM version](https://img.shields.io/npm/v/iobroker.sigenergy.svg)](https://www.npmjs.com/package/iobroker.sigenergy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Adapter for Sigenergy solar energy systems via Modbus TCP/RTU**
+**Adapter for [Sigenergy](https://www.sigenergy.com) solar energy systems via Modbus TCP/RTU**
 
 Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 
@@ -50,6 +50,27 @@ Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 | PID (PV Insulation Detection) | **6** (default, configurable) |
 
 ---
+
+## Device Types
+
+Since v2.4.0 every adapter instance handles exactly **one** Sigenergy system type (strict either/or).
+Select the type in the Components tab — or use **Auto-detect from device** to read it from the hardware.
+Register sets are gated per the model footnotes of the official Modbus Protocol V2.9:
+
+| Capability | SigenStor | Sigen Hybrid | Sigen PV M1-HYB | PV-only (PV Max) | SigenMicro-only |
+|---|---|---|---|---|---|
+| ESS / battery registers | always | optional | optional | — | — |
+| DC charger | ✓ | ✓ | — | — | — |
+| Grid code (40051-40068) | ✓ | ✓ | — | — | — |
+| ESS preheating (50000-50183) | — | — | ✓ | — | — |
+| PCC power factor (40157/40158) | — | — | ✓ | — | — |
+| Plant registers (slave 247) | ✓ | ✓ | ✓ | ✓ | — |
+| SigenMicro micro-inverters | optional | optional | optional | optional | ✓ |
+
+One Modbus endpoint (IP/bus) = one instance. A SigenStor with additional SigenMicro micro-inverters
+belongs in a **single** instance — the micros are an additive component, not a separate type.
+Existing pre-2.4.0 configurations are migrated automatically (derived type is logged on startup —
+please review the Components tab once).
 
 ## Configuration
 
@@ -152,6 +173,22 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Architectural write safety: Modbus writes are rejected in the write dispatcher itself when the target register is not valid for the configured device type (models gating in onStateChange, plant guard for SigenMicro-only)
+- (ssbingo) TypeScript type check fixed — new `lib/adapter-config.d.ts` with full AdapterConfig declaration, typed modbus-serial constructor, ioBroker.CommonType/SettableObject annotations; new `npm run check` script passes with 0 errors
+- (ssbingo) ESLint configuration allows JSDoc `@type` tags in this checked-JavaScript project (jsdoc/check-tag-names with typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Device type architecture: mandatory selector (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / PV-only inverter / SigenMicro-only) with strict either/or register gating per protocol V2.9 model footnotes
+- (ssbingo) Sigen Hybrid and PV-only inverters (Sigen PV / PV Max) officially supported
+- (ssbingo) Auto-detect device type from hardware in the admin UI (registers 30500 / 31024)
+- (ssbingo) Model verification on startup — warns when configuration and detected hardware mismatch (new state info.modelType)
+- (ssbingo) Dynamic PV string registers: PV5-PV16 voltage/current enabled by the string count reported in register 31025
+- (ssbingo) PCC power factor controls (40157/40158) gated to Sigen PV M1-HYB; ESS preheating gated to M1-HYB; DC charger and grid code gated to SigenStor/Sigen Hybrid
+- (ssbingo) Automatic migration of pre-2.4.0 configurations and cleanup of channels that are invalid for the selected device type
 
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: correct protocol level detection — use proper register quantities for probes, descend from V2.9 to V2.6, distinguish transport errors from device exceptions to avoid false pre-V2.6 report

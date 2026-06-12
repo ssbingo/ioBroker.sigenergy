@@ -32,6 +32,79 @@ const SigenMicroScanner = require('./lib/scanner');
 const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
 const adapterVersion = require('./package.json').version;
 
+/**
+ * Device capability map — single source of truth, derived from the footnotes
+ * of the official Sigenergy Modbus Protocol V2.9:
+ * - ESS:            SigenStor, Sigen Hybrid, Sigen PV M1-HYB (note 1, ch. 5.2)
+ * - DC Charger:     SigenStor, Sigen Hybrid (note, ch. 5.3)
+ * - Grid Code:      SigenStor, Sigen Hybrid (note 2, ch. 5.2.4)
+ * - ESS Preheating: Sigen PV M1-HYA/HYB (note 1, ch. 5.2.3)
+ * - PCC PF:         Sigen PV M1-HYB (note 2, ch. 5.2.1)
+ * 'plant' = device speaks the plant-level register set on slave 247.
+ * essForced = battery is an integral part of the device (all-in-one stack).
+ */
+const DEVICE_CAPABILITIES = {
+    sigenstor: {
+        label: 'SigenStor (all-in-one ESS)',
+        plant: true,
+        ess: true,
+        essForced: true,
+        dcCharger: true,
+        gridCode: true,
+        essPreheating: false,
+        pccPowerFactor: false,
+    },
+    sigenhybrid: {
+        label: 'Sigen Hybrid (hybrid inverter, optional battery)',
+        plant: true,
+        ess: true,
+        essForced: false,
+        dcCharger: true,
+        gridCode: true,
+        essPreheating: false,
+        pccPowerFactor: false,
+    },
+    m1hyb: {
+        label: 'Sigen PV M1-HYB (commercial hybrid series)',
+        plant: true,
+        ess: true,
+        essForced: false,
+        dcCharger: false,
+        gridCode: false,
+        essPreheating: true,
+        pccPowerFactor: true,
+    },
+    pvinverter: {
+        label: 'Sigen PV / PV Max (PV-only inverter)',
+        plant: true,
+        ess: false,
+        essForced: false,
+        dcCharger: false,
+        gridCode: false,
+        essPreheating: false,
+        pccPowerFactor: false,
+    },
+    sigenmicroOnly: {
+        label: 'SigenMicro only (no plant/inverter)',
+        plant: false,
+        ess: false,
+        essForced: false,
+        dcCharger: false,
+        gridCode: false,
+        essPreheating: false,
+        pccPowerFactor: false,
+    },
+};
+
+/** Model-string (register 30500) → deviceType mapping, most specific first */
+const MODEL_TYPE_PATTERNS = [
+    { re: /M1[\s-]?HY[AB]/i, type: 'm1hyb' },
+    { re: /SigenStor/i, type: 'sigenstor' },
+    { re: /Hybrid/i, type: 'sigenhybrid' },
+    { re: /PG\s*Controller/i, type: 'sigenhybrid' },
+    { re: /PV\s*Max|Sigen\s*PV/i, type: 'pvinverter' },
+];
+
 const ENUM_STATES_MAP = {
     'plant.emsWorkMode': EMS_WORK_MODES,
     'plant.runningState': RUNNING_STATES,
@@ -61,6 +134,9 @@ class Sigenergy extends utils.Adapter {
         this._stopped = false;
         this._controlRegistersRead = false;
         this._protocolDetected = false;
+        this._protoDetectWarnLogged = false;
+        this._modelVerified = false;
+        this._pvStringCount = 0;
         this._essPreheatingUnsupported = false;
         this._plantUnsupportedGroups = new Set();
         this._inverterUnsupportedGroups = new Set();
@@ -80,6 +156,70 @@ class Sigenergy extends utils.Adapter {
      */
     async onReady() {
         this.log.info(`Sigenergy adapter v${adapterVersion} starting...`);
+
+        // ── Device type resolution (strict either/or per instance) ──────────
+        // Migration: instances configured before v2.4.0 have no deviceType.
+        // Derive it from the legacy component flags and ask the user to review.
+        let deviceType = this.config.deviceType;
+        if (!deviceType || !DEVICE_CAPABILITIES[deviceType]) {
+            deviceType =
+                this.config.hasSigenMicro && !this.config.hasBattery && !this.config.hasPv
+                    ? 'sigenmicroOnly'
+                    : 'sigenstor';
+            this.log.info(
+                `No device type configured — derived '${deviceType}' from legacy component settings. ` +
+                    'Please review and save the adapter configuration (Components tab).',
+            );
+        }
+        this._deviceType = deviceType;
+        this._caps = DEVICE_CAPABILITIES[deviceType];
+        this.log.info(`Device type: ${deviceType} (${this._caps.label})`);
+
+        // ── Sanitize component flags against device capabilities ────────────
+        // The admin UI already enforces these rules; this is the belt-and-braces
+        // layer for hand-edited configs and migrated instances. Runtime only —
+        // the stored configuration is never modified by the adapter.
+        if (this._caps.essForced && !this.config.hasBattery) {
+            this.log.info(`'${deviceType}' has an integral battery — enabling ESS registers`);
+            this.config.hasBattery = true;
+        }
+        if (!this._caps.ess && this.config.hasBattery) {
+            this.log.warn(`'${deviceType}' does not support ESS — ignoring 'Battery / ESS' setting`);
+            this.config.hasBattery = false;
+        }
+        if (!this._caps.dcCharger && this.config.hasDcCharger) {
+            this.log.warn(`'${deviceType}' does not support a DC charger — ignoring 'DC Charger' setting`);
+            this.config.hasDcCharger = false;
+        }
+        if (!this._caps.gridCode && this.config.enableGridCode) {
+            this.log.warn(`'${deviceType}' does not support grid code registers — ignoring 'Grid Code' setting`);
+            this.config.enableGridCode = false;
+        }
+        if (!this._caps.essPreheating && this.config.enableEssPreheating) {
+            this.log.warn(`'${deviceType}' does not support ESS preheating — ignoring 'ESS Preheating' setting`);
+            this.config.enableEssPreheating = false;
+        }
+        if (!this._caps.plant) {
+            // SigenMicro-only: no plant/inverter exists at this endpoint
+            this.config.hasSigenMicro = true;
+            for (const flag of [
+                'hasBattery',
+                'hasPv',
+                'hasAcCharger',
+                'hasDcCharger',
+                'enableSmartLoads',
+                'enableCumulativeEnergy',
+                'enableGridCode',
+                'enablePss',
+                'enablePid',
+                'enableEssPreheating',
+            ]) {
+                if (this.config[flag]) {
+                    this.log.debug(`[sigenmicroOnly] disabling '${flag}' (no plant/inverter at this endpoint)`);
+                    this.config[flag] = false;
+                }
+            }
+        }
         this.log.debug(
             `[onReady] Config: connectionType=${this.config.connectionType}, ` +
                 `host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
@@ -250,25 +390,31 @@ class Sigenergy extends utils.Adapter {
         this.log.debug('[poll] cycle started');
 
         try {
-            if (!this._controlRegistersRead) {
-                await this._readControlRegisters();
-                this._controlRegistersRead = true;
-            }
-            if (!this._protocolDetected) {
-                // Only latch the flag if detection was conclusive (no transport
-                // errors). Otherwise retry on the next poll cycle.
-                this._protocolDetected = await this._detectProtocolLevel();
-            }
+            if (this._caps.plant) {
+                if (!this._controlRegistersRead) {
+                    await this._readControlRegisters();
+                    this._controlRegistersRead = true;
+                }
+                if (!this._protocolDetected) {
+                    // Only latch the flag if detection was conclusive (no transport
+                    // errors). Otherwise retry on the next poll cycle.
+                    this._protocolDetected = await this._detectProtocolLevel();
+                }
+                if (!this._modelVerified) {
+                    await this._verifyModelType();
+                }
 
-            const _t0 = Date.now();
-            await this._readPlant();
-            if (this._stopped) {
-                return;
-            }
-            this.log.debug(`[poll] plant read in ${Date.now() - _t0} ms`);
-            await this._readInverter();
-            if (this._stopped) {
-                return;
+                const _t0 = Date.now();
+                await this._readPlant();
+                if (this._stopped) {
+                    return;
+                }
+                this.log.debug(`[poll] plant read in ${Date.now() - _t0} ms`);
+                await this._readInverter();
+                if (this._stopped) {
+                    return;
+                }
+                this._applyPvStringCount();
             }
 
             if (this.config.hasAcCharger) {
@@ -308,8 +454,10 @@ class Sigenergy extends utils.Adapter {
                 }
             }
 
-            await this._updateStatistics();
-            await this._updatePvStringPowers();
+            if (this._caps.plant) {
+                await this._updateStatistics();
+                await this._updatePvStringPowers();
+            }
 
             await this.setStateAsync('info.connection', { val: true, ack: true });
             // Successful cycle — reset dedup flags so next outage logs at ERROR level again.
@@ -343,10 +491,32 @@ class Sigenergy extends utils.Adapter {
     /**
      * Read plant-level registers
      */
+    /**
+     * Check whether a register definition is active for the configured
+     * device type (models gating) and component flags (feature gating).
+     * Registers carrying pvIndex > 4 additionally require the detected
+     * PV string count (register 31025) to cover them.
+     *
+     * @param {object} reg - Register definition
+     * @returns {boolean} true if the register should be created/read
+     */
+    _regActive(reg) {
+        if (reg.models && !reg.models.includes(this._deviceType)) {
+            return false;
+        }
+        if (reg.feature && !this.config[reg.feature]) {
+            return false;
+        }
+        if (reg.pvIndex && reg.pvIndex > 4 && reg.pvIndex > (this._pvStringCount || 4)) {
+            return false;
+        }
+        return true;
+    }
+
     async _readPlant() {
         const plantId = this.config.plantId || 247;
         const batchSize = 120;
-        const activeRegs = PLANT_READ_REGISTERS.filter(r => !r.feature || this.config[r.feature]);
+        const activeRegs = PLANT_READ_REGISTERS.filter(r => this._regActive(r));
         const groups = this._buildReadGroups(activeRegs, batchSize);
         this.log.debug(`Reading plant (slaveId=${plantId}): ${groups.length} group(s), ${activeRegs.length} registers`);
 
@@ -376,10 +546,10 @@ class Sigenergy extends utils.Adapter {
     async _readInverter() {
         const inverterId = this.config.inverterId || 1;
         const batchSize = 60;
-        const groups = this._buildReadGroups(INVERTER_READ_REGISTERS, batchSize);
+        const activeRegs = INVERTER_READ_REGISTERS.filter(r => this._regActive(r));
+        const groups = this._buildReadGroups(activeRegs, batchSize);
         this.log.debug(
-            `Reading inverter (slaveId=${inverterId}): ${groups.length} group(s),` +
-                ` ${INVERTER_READ_REGISTERS.length} registers`,
+            `Reading inverter (slaveId=${inverterId}): ${groups.length} group(s),` + ` ${activeRegs.length} registers`,
         );
 
         for (const group of groups) {
@@ -544,6 +714,101 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
+     * Verify the configured device type against the real hardware by
+     * reading the model-type string (register 30500). One-time per
+     * adapter run, non-fatal — a mismatch only produces a warning so the
+     * user can correct the configuration.
+     */
+    async _verifyModelType() {
+        const inverterId = this.config.inverterId || 1;
+        let model = null;
+        try {
+            const raw = await this.modbus.readInputRegisters(inverterId, 30500, 15);
+            const parsed = ModbusConnection.parseValue(raw, 'STRING', null);
+            model = typeof parsed === 'string' ? parsed.trim() : null;
+        } catch (err) {
+            this.log.debug(`[modelVerify] could not read model type (30500): ${err.message} — retry next cycle`);
+            return;
+        }
+        this._modelVerified = true;
+        if (!model) {
+            this.log.debug('[modelVerify] empty model string — verification skipped');
+            return;
+        }
+        await this.setStateAsync('info.modelType', { val: model, ack: true });
+
+        const match = MODEL_TYPE_PATTERNS.find(p => p.re.test(model));
+        if (!match) {
+            this.log.info(`[modelVerify] unknown model '${model}' — cannot verify configured device type`);
+            return;
+        }
+        if (match.type === this._deviceType) {
+            this.log.info(
+                `[modelVerify] detected model '${model}' matches configured device type '${this._deviceType}'`,
+            );
+        } else {
+            this.log.warn(
+                `[modelVerify] detected model '${model}' suggests device type '${match.type}', ` +
+                    `but '${this._deviceType}' is configured. Some registers may be unavailable or hidden — ` +
+                    'please review the adapter configuration (Components tab).',
+            );
+        }
+    }
+
+    /**
+     * Apply the PV string count reported by the device (register 31025).
+     * On first detection (or increase) the missing pvN voltage/current
+     * states for strings 5..16 are created lazily; from the next poll
+     * cycle onward _regActive() includes their registers in the read
+     * groups. Strings 1-4 are always active for backward compatibility.
+     */
+    _applyPvStringCount() {
+        const count = this._currentData['pvStringCount'];
+        if (typeof count !== 'number' || count <= 0 || count === this._pvStringCount) {
+            return;
+        }
+        const capped = Math.min(count, 16);
+        this.log.info(`PV string count reported by device: ${count} — enabling PV1..PV${capped} registers`);
+        this._pvStringCount = capped;
+        // Lazy object creation for strings 5..16 (1..4 exist from startup)
+        this._ensurePvObjects(capped).catch(err => this.log.warn(`PV object creation failed: ${err.message}`));
+    }
+
+    /**
+     * Create pvN voltage/current/power state objects up to the given
+     * string count (idempotent — setObjectNotExists).
+     *
+     * @param {number} count - PV string count
+     */
+    async _ensurePvObjects(count) {
+        for (const reg of INVERTER_READ_REGISTERS) {
+            if (this._stopped) {
+                return;
+            }
+            if (reg.pvIndex && reg.pvIndex > 4 && reg.pvIndex <= count) {
+                await this._createStateFromRegister(reg);
+            }
+        }
+        for (let n = 4; n <= Math.min(count, 16); n++) {
+            if (this._stopped) {
+                return;
+            }
+            await this.setObjectNotExistsAsync(`plant.pv${n}Power`, {
+                type: 'state',
+                common: {
+                    name: `PV string ${n} power`,
+                    type: 'number',
+                    role: 'value.power',
+                    unit: 'kW',
+                    read: true,
+                    write: false,
+                },
+                native: {},
+            });
+        }
+    }
+
+    /**
      * Detect the Modbus protocol level supported by the device.
      *
      * Design notes (root cause of the former "pre-V2.6" misdetection):
@@ -578,32 +843,42 @@ class Sigenergy extends utils.Adapter {
 
         let detectedLevel = null;
         let inconclusive = false;
-        for (const probe of probes) {
+        for (let i = 0; i < probes.length; i++) {
             if (this._stopped) {
                 return false;
             }
-            const result = await this._probeRegister(plantId, probe);
+            const result = await this._probeRegister(plantId, probes[i]);
             if (result === 'supported') {
-                detectedLevel = probe.level;
+                detectedLevel = probes[i].level;
                 break;
             }
             if (result === 'error') {
                 inconclusive = true;
             }
-            await this._sleep(100);
+            if (i < probes.length - 1) {
+                await this._sleep(100);
+            }
         }
 
         if (!detectedLevel && inconclusive) {
-            this.log.warn(
-                'Protocol level detection inconclusive (communication errors during probing) — will retry on next poll cycle',
-            );
+            // Deduplicate: WARN once per outage, DEBUG on repeats — detection is
+            // retried on every poll cycle until it completes conclusively.
+            if (!this._protoDetectWarnLogged) {
+                this.log.warn(
+                    'Protocol level detection inconclusive (communication errors during probing) — will retry on next poll cycle',
+                );
+                this._protoDetectWarnLogged = true;
+            } else {
+                this.log.debug('Protocol level detection still inconclusive — retrying next poll cycle');
+            }
             return false;
         }
+        this._protoDetectWarnLogged = false;
 
         let firmwareVersion = 'unknown';
         try {
             const raw = await this.modbus.readInputRegisters(inverterId, 30525, 15);
-            firmwareVersion = ModbusConnection.parseValue(raw, 'STRING', null) || 'unknown';
+            firmwareVersion = String(ModbusConnection.parseValue(raw, 'STRING', null) || 'unknown');
         } catch {
             // not critical
         }
@@ -631,21 +906,22 @@ class Sigenergy extends utils.Adapter {
                 this.log.debug(`[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): supported`);
                 return 'supported';
             } catch (err) {
-                // modbus-serial sets err.modbusCode on Modbus exception responses
-                // (1 = ILLEGAL FUNCTION, 2 = ILLEGAL DATA ADDRESS, ...). An
-                // exception is an answer FROM the device => register not
-                // implemented on this firmware. Anything else (timeout, socket
-                // error) is a transport problem and proves nothing.
-                if (err && err.modbusCode !== undefined) {
+                // modbus-serial sets err.modbusCode on Modbus exception responses.
+                // Only ILLEGAL FUNCTION (1) and ILLEGAL DATA ADDRESS (2) are an
+                // answer FROM the device proving the register is not implemented.
+                // ILLEGAL DATA VALUE (3) / SLAVE DEVICE FAILURE (4) and transport
+                // errors (timeout, socket) prove nothing => retry / inconclusive.
+                if (err && (err.modbusCode === 1 || err.modbusCode === 2)) {
                     this.log.debug(
                         `[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): ` +
                             `not supported (Modbus exception ${err.modbusCode})`,
                     );
                     return 'unsupported';
                 }
+                const reason = err && err.modbusCode !== undefined ? `Modbus exception ${err.modbusCode}` : err.message;
                 this.log.debug(
                     `[protocolProbe] addr=${probe.addr} qty=${probe.qty} (${probe.level}): ` +
-                        `transport error on attempt ${attempt}/2: ${err.message}`,
+                        `inconclusive on attempt ${attempt}/2: ${reason}`,
                 );
                 if (attempt < 2) {
                     await this._sleep(300);
@@ -660,7 +936,7 @@ class Sigenergy extends utils.Adapter {
         const inverterId = this.config.inverterId || 1;
         this.log.debug('[controlRegs] Reading RW holding registers (one-time on startup)');
 
-        const plantRw = PLANT_WRITE_REGISTERS.filter(r => r.perm === 'RW' && (!r.feature || this.config[r.feature]));
+        const plantRw = PLANT_WRITE_REGISTERS.filter(r => r.perm === 'RW' && this._regActive(r));
         if (plantRw.length > 0) {
             for (const group of this._buildReadGroups(plantRw, 50)) {
                 if (this._stopped) {
@@ -676,7 +952,7 @@ class Sigenergy extends utils.Adapter {
             }
         }
 
-        const invRw = INVERTER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
+        const invRw = INVERTER_WRITE_REGISTERS.filter(r => r.perm === 'RW' && this._regActive(r));
         if (invRw.length > 0) {
             for (const group of this._buildReadGroups(invRw, 50)) {
                 if (this._stopped) {
@@ -830,7 +1106,7 @@ class Sigenergy extends utils.Adapter {
      * Store key values for statistics calculation
      *
      * @param {string} name - State name
-     * @param {number} value - State value
+     * @param {number|string} value - State value
      */
     _storeCurrentData(name, value) {
         const map = {
@@ -891,11 +1167,13 @@ class Sigenergy extends utils.Adapter {
         if (this._stopped) {
             return;
         }
-        const strings = [
-            { id: 'plant.pv1Power', v: 'pv1Voltage', i: 'pv1Current' },
-            { id: 'plant.pv2Power', v: 'pv2Voltage', i: 'pv2Current' },
-            { id: 'plant.pv3Power', v: 'pv3Voltage', i: 'pv3Current' },
-        ];
+        // PV1-3 always (legacy behaviour); beyond that follow the string
+        // count reported by the device (register 31025), capped at 16.
+        const max = Math.max(3, Math.min(this._pvStringCount || 0, 16));
+        const strings = [];
+        for (let n = 1; n <= max; n++) {
+            strings.push({ id: `plant.pv${n}Power`, v: `pv${n}Voltage`, i: `pv${n}Current` });
+        }
 
         for (const s of strings) {
             if (this._stopped) {
@@ -911,6 +1189,77 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
+     * Remove channels/states that are invalid for the current device type
+     * or were left behind after a component was disabled. Runs once on
+     * startup, before object creation. Deletion is recursive — history
+     * settings of removed states are lost, which is intentional: the
+     * states cannot ever carry data again for this device type.
+     */
+    async _cleanupObsoleteChannels() {
+        const roots = [
+            { id: 'plant', keep: this._caps.plant },
+            { id: 'inverter', keep: this._caps.plant },
+            { id: 'statistics', keep: this._caps.plant },
+            { id: 'acCharger', keep: this._caps.plant && !!this.config.hasAcCharger },
+            { id: 'dcCharger', keep: this._caps.dcCharger && !!this.config.hasDcCharger },
+            { id: 'pss', keep: this._caps.plant && !!this.config.enablePss },
+            { id: 'pid', keep: this._caps.plant && !!this.config.enablePid },
+            { id: 'sigenMicro', keep: !!this.config.hasSigenMicro },
+            { id: 'plant.essPreheating', keep: this._caps.essPreheating && !!this.config.enableEssPreheating },
+            { id: 'plant.gridCode', keep: this._caps.gridCode && !!this.config.enableGridCode },
+        ];
+        for (const root of roots) {
+            if (this._stopped) {
+                return;
+            }
+            if (root.keep) {
+                continue;
+            }
+            try {
+                const obj = await this.getObjectAsync(root.id);
+                if (obj) {
+                    this.log.info(
+                        `Removing obsolete channel '${root.id}' (not valid for device type '${this._deviceType}')`,
+                    );
+                    await this.delObjectAsync(root.id, { recursive: true });
+                }
+            } catch (err) {
+                this.log.warn(`Cleanup of '${root.id}' failed: ${err.message}`);
+            }
+        }
+
+        // Fine-grained: individual states excluded by models gating
+        // (e.g. ESS states on a PV-only inverter after a type switch).
+        if (this._caps.plant) {
+            const lists = [
+                PLANT_READ_REGISTERS,
+                PLANT_WRITE_REGISTERS,
+                INVERTER_READ_REGISTERS,
+                INVERTER_WRITE_REGISTERS,
+            ];
+            for (const list of lists) {
+                for (const reg of list) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    if (!reg.models || reg.models.includes(this._deviceType)) {
+                        continue;
+                    }
+                    try {
+                        const obj = await this.getObjectAsync(reg.name);
+                        if (obj) {
+                            this.log.debug(`Removing state '${reg.name}' (models gating: ${reg.models.join(',')})`);
+                            await this.delObjectAsync(reg.name);
+                        }
+                    } catch {
+                        /* non-critical */
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Create all ioBroker objects/states
      */
     async _createObjects() {
@@ -918,12 +1267,15 @@ class Sigenergy extends utils.Adapter {
             return;
         }
         this.log.debug('Creating ioBroker objects...');
+        await this._cleanupObsoleteChannels();
 
         try {
-            await this._createChannel('plant', 'Power Plant Data');
-            await this._createChannel('plant.statistics', 'Plant Statistics');
-            await this._createChannel('inverter', 'Hybrid Inverter');
-            await this._createChannel('statistics', 'Calculated Statistics');
+            if (this._caps.plant) {
+                await this._createChannel('plant', 'Power Plant Data');
+                await this._createChannel('plant.statistics', 'Plant Statistics');
+                await this._createChannel('inverter', 'Hybrid Inverter');
+                await this._createChannel('statistics', 'Calculated Statistics');
+            }
 
             if (this.config.enableSmartLoads) {
                 await this._createChannel('plant.smartLoad', 'Smart Loads');
@@ -932,74 +1284,88 @@ class Sigenergy extends utils.Adapter {
                 }
             }
 
-            for (const reg of PLANT_READ_REGISTERS) {
-                if (this._stopped) {
-                    return;
+            if (this._caps.plant) {
+                for (const reg of PLANT_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    if (!this._regActive(reg)) {
+                        continue;
+                    }
+                    await this._createStateFromRegister(reg);
                 }
-                if (reg.feature && !this.config[reg.feature]) {
-                    continue;
-                }
-                await this._createStateFromRegister(reg);
             }
 
             // Plant control write states
-            await this._createChannel('plant.control', 'Plant Control');
-            if (this.config.enableGridCode) {
-                await this._createChannel('plant.gridCode', 'Grid Code Parameters');
-            }
-            for (const reg of PLANT_WRITE_REGISTERS) {
-                if (this._stopped) {
-                    return;
+            if (this._caps.plant) {
+                await this._createChannel('plant.control', 'Plant Control');
+                if (this.config.enableGridCode && this._caps.gridCode) {
+                    await this._createChannel('plant.gridCode', 'Grid Code Parameters');
                 }
-                if (reg.feature && !this.config[reg.feature]) {
-                    continue;
+                for (const reg of PLANT_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    if (!this._regActive(reg)) {
+                        continue;
+                    }
+                    await this._createWriteStateFromRegister(reg);
                 }
-                await this._createWriteStateFromRegister(reg);
-            }
-            this.subscribeStates('plant.control.*');
-            if (this.config.enableGridCode) {
-                this.subscribeStates('plant.gridCode.*');
+                this.subscribeStates('plant.control.*');
+                if (this.config.enableGridCode && this._caps.gridCode) {
+                    this.subscribeStates('plant.gridCode.*');
+                }
             }
 
-            // Virtual PV string power states (calculated from voltage × current)
-            for (const pvState of [
-                { id: 'plant.pv1Power', desc: 'PV string 1 power' },
-                { id: 'plant.pv2Power', desc: 'PV string 2 power' },
-                { id: 'plant.pv3Power', desc: 'PV string 3 power' },
-            ]) {
-                if (this._stopped) {
-                    return;
+            // Virtual PV string power states (calculated from voltage × current).
+            // PV1-3 from startup; PV4..16 are created lazily once the device
+            // reports its string count (register 31025), see _applyPvStringCount().
+            if (this._caps.plant) {
+                for (const pvState of [
+                    { id: 'plant.pv1Power', desc: 'PV string 1 power' },
+                    { id: 'plant.pv2Power', desc: 'PV string 2 power' },
+                    { id: 'plant.pv3Power', desc: 'PV string 3 power' },
+                ]) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    await this.setObjectNotExistsAsync(pvState.id, {
+                        type: 'state',
+                        common: {
+                            name: pvState.desc,
+                            type: 'number',
+                            role: 'value.power',
+                            unit: 'kW',
+                            read: true,
+                            write: false,
+                        },
+                        native: {},
+                    });
                 }
-                await this.setObjectNotExistsAsync(pvState.id, {
-                    type: 'state',
-                    common: {
-                        name: pvState.desc,
-                        type: 'number',
-                        role: 'value.power',
-                        unit: 'kW',
-                        read: true,
-                        write: false,
-                    },
-                    native: {},
-                });
-            }
 
-            for (const reg of INVERTER_READ_REGISTERS) {
-                if (this._stopped) {
-                    return;
+                for (const reg of INVERTER_READ_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    if (!this._regActive(reg)) {
+                        continue;
+                    }
+                    await this._createStateFromRegister(reg);
                 }
-                await this._createStateFromRegister(reg);
-            }
 
-            // Inverter control write states
-            await this._createChannel('inverter.control', 'Inverter Control');
-            for (const reg of INVERTER_WRITE_REGISTERS) {
-                if (this._stopped) {
-                    return;
+                // Inverter control write states
+                await this._createChannel('inverter.control', 'Inverter Control');
+                for (const reg of INVERTER_WRITE_REGISTERS) {
+                    if (this._stopped) {
+                        return;
+                    }
+                    if (!this._regActive(reg)) {
+                        continue;
+                    }
+                    await this._createWriteStateFromRegister(reg);
                 }
-                await this._createWriteStateFromRegister(reg);
+                this.subscribeStates('inverter.control.*');
             }
-            this.subscribeStates('inverter.control.*');
 
             if (this.config.hasAcCharger) {
                 this.log.debug('Creating AC charger objects');
@@ -1093,6 +1459,9 @@ class Sigenergy extends utils.Adapter {
                     await this._createChannel(`plant.essPreheating.tou${n}`, `TOU Window ${n}`);
                 }
                 for (const reg of ESS_PREHEATING_WRITE_REGISTERS) {
+                    if (!this._regActive(reg)) {
+                        continue;
+                    }
                     await this.setObjectNotExistsAsync(reg.name, {
                         type: 'state',
                         common: {
@@ -1109,7 +1478,9 @@ class Sigenergy extends utils.Adapter {
                 this.subscribeStates('plant.essPreheating.*');
             }
 
-            await this._createStatisticsStates();
+            if (this._caps.plant) {
+                await this._createStatisticsStates();
+            }
             // Set the flag ONLY after every object has been created successfully.
             // If creation failed partway, the flag stays false so the next call retries.
             this._objectsCreated = true;
@@ -1141,6 +1512,7 @@ class Sigenergy extends utils.Adapter {
      * @param {object} reg - Register definition
      */
     async _createStateFromRegister(reg) {
+        /** @type {ioBroker.CommonType} */
         let type = 'number';
         let role = reg.role || 'value';
 
@@ -1164,7 +1536,8 @@ class Sigenergy extends utils.Adapter {
             common.states = states;
         }
 
-        await this.setObjectNotExistsAsync(reg.name, {
+        /** @type {ioBroker.SettableObject} */
+        const stateObj = {
             type: 'state',
             common,
             native: {
@@ -1173,10 +1546,12 @@ class Sigenergy extends utils.Adapter {
                 dataType: reg.type,
                 gain: reg.gain,
             },
-        });
+        };
+        await this.setObjectNotExistsAsync(reg.name, stateObj);
     }
 
     async _createWriteStateFromRegister(reg) {
+        /** @type {ioBroker.CommonType} */
         const type = reg.type === 'STRING' ? 'string' : 'number';
         const common = {
             name: reg.desc,
@@ -1190,7 +1565,8 @@ class Sigenergy extends utils.Adapter {
         if (states) {
             common.states = states;
         }
-        await this.setObjectNotExistsAsync(reg.name, {
+        /** @type {ioBroker.SettableObject} */
+        const stateObj = {
             type: 'state',
             common,
             native: {
@@ -1199,7 +1575,8 @@ class Sigenergy extends utils.Adapter {
                 dataType: reg.type,
                 gain: reg.gain,
             },
-        });
+        };
+        await this.setObjectNotExistsAsync(reg.name, stateObj);
     }
 
     /**
@@ -1228,6 +1605,7 @@ class Sigenergy extends utils.Adapter {
      * Create statistics state objects
      */
     async _createStatisticsStates() {
+        /** @type {Array<{id: string, name: string, type: ioBroker.CommonType, unit: string, role: string}>} */
         const statsStates = [
             {
                 id: 'statistics.batteryTimeToFull',
@@ -1295,7 +1673,8 @@ class Sigenergy extends utils.Adapter {
         ];
 
         for (const s of statsStates) {
-            await this.setObjectNotExistsAsync(s.id, {
+            /** @type {ioBroker.SettableObject} */
+            const statObj = {
                 type: 'state',
                 common: {
                     name: s.name,
@@ -1306,14 +1685,16 @@ class Sigenergy extends utils.Adapter {
                     write: false,
                 },
                 native: {},
-            });
+            };
+            await this.setObjectNotExistsAsync(s.id, statObj);
         }
     }
 
     /**
-     * Handle messages from admin (connection test, etc.)
+     * Handle state changes — process commands (ack=false) on RW registers
      *
-     * @param {ioBroker.Object} obj - Message object
+     * @param {string} id - Full state id
+     * @param {ioBroker.State | null | undefined} state - New state value
      */
     async onStateChange(id, state) {
         if (!state || state.ack) {
@@ -1331,8 +1712,14 @@ class Sigenergy extends utils.Adapter {
             if (!reg) {
                 return;
             }
+            if (!this._regActive(reg)) {
+                this.log.warn(
+                    `Rejecting write to ${localId}: ESS preheating is not supported by device type '${this._deviceType}'`,
+                );
+                return;
+            }
             const plantId = this.config.plantId || 247;
-            const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
+            const raw = ModbusConnection.encodeValue(Number(state.val), reg.type, reg.gain);
             try {
                 if (raw.length === 1) {
                     await this.modbus.writeSingleRegister(plantId, reg.addr, raw[0]);
@@ -1381,8 +1768,22 @@ class Sigenergy extends utils.Adapter {
         if (!reg) {
             return;
         }
+        // Architectural write safety: even if a state object still exists
+        // (e.g. leftover from a previous device type before cleanup ran, or
+        // written via script), never send a Modbus write that is not valid
+        // for the configured device type.
+        if (!this._caps.plant && (category === 'plant' || category === 'inverter' || category === 'dcCharger')) {
+            this.log.warn(`Rejecting write to ${localId}: device type '${this._deviceType}' has no plant/inverter`);
+            return;
+        }
+        if (!this._regActive(reg)) {
+            this.log.warn(
+                `Rejecting write to ${localId}: register ${reg.addr} is not valid for device type '${this._deviceType}'`,
+            );
+            return;
+        }
 
-        const raw = ModbusConnection.encodeValue(state.val, reg.type, reg.gain);
+        const raw = ModbusConnection.encodeValue(Number(state.val), reg.type, reg.gain);
         try {
             if (raw.length === 1) {
                 await this.modbus.writeSingleRegister(slaveId, reg.addr, raw[0]);
@@ -1397,10 +1798,73 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
-     * @param {ioBroker.Object} obj - Message object
+     * Handle messages from admin (connection test, device-type detection, scan)
+     *
+     * @param {ioBroker.Message} obj - Message object
      */
     async onMessage(obj) {
         if (!obj || !obj.command) {
+            return;
+        }
+
+        if (obj.command === 'detectDeviceType') {
+            this.log.info(`[detectDeviceType] received from=${obj.from}`);
+            if (!this.modbus || !this.modbus.connected) {
+                this.sendTo(
+                    obj.from,
+                    obj.command,
+                    { error: 'Modbus connection not established — save the connection settings first and retry.' },
+                    obj.callback,
+                );
+                return;
+            }
+            const inverterId = this.config.inverterId || 1;
+            try {
+                const rawModel = await this.modbus.readInputRegisters(inverterId, 30500, 15);
+                const parsedModel = ModbusConnection.parseValue(rawModel, 'STRING', null);
+                const model = typeof parsedModel === 'string' ? parsedModel.trim() : '';
+                let packCount = null;
+                let stringCount = null;
+                try {
+                    const rawPack = await this.modbus.readInputRegisters(inverterId, 31024, 1);
+                    packCount = Number(ModbusConnection.parseValue(rawPack, 'U16', null));
+                } catch {
+                    /* PV-only devices reject 31024 — that is itself a signal */
+                }
+                try {
+                    const rawStr = await this.modbus.readInputRegisters(inverterId, 31025, 1);
+                    stringCount = Number(ModbusConnection.parseValue(rawStr, 'U16', null));
+                } catch {
+                    /* non-critical */
+                }
+                const match = MODEL_TYPE_PATTERNS.find(pt => pt.re.test(model));
+                if (!match) {
+                    this.sendTo(
+                        obj.from,
+                        obj.command,
+                        { error: `Device reports model '${model || 'unknown'}' — no device type mapping available.` },
+                        obj.callback,
+                    );
+                    return;
+                }
+                const caps = DEVICE_CAPABILITIES[match.type];
+                const native = { deviceType: match.type };
+                if (caps.essForced) {
+                    native.hasBattery = true;
+                } else if (caps.ess && packCount !== null) {
+                    native.hasBattery = packCount > 0;
+                } else if (!caps.ess) {
+                    native.hasBattery = false;
+                }
+                this.log.info(
+                    `[detectDeviceType] model='${model}' → type='${match.type}' ` +
+                        `(packCount=${packCount}, stringCount=${stringCount})`,
+                );
+                this.sendTo(obj.from, obj.command, { native }, obj.callback);
+            } catch (err) {
+                this.log.warn(`[detectDeviceType] failed: ${err.message}`);
+                this.sendTo(obj.from, obj.command, { error: `Detection failed: ${err.message}` }, obj.callback);
+            }
             return;
         }
 
@@ -1502,6 +1966,14 @@ class Sigenergy extends utils.Adapter {
         );
         const fromJsonConfig = msg.tcpHost !== undefined || msg.connectionType !== undefined;
 
+        if (!this.modbus || !this.modbus.connected) {
+            this.log.warn('[scanSigenMicro] Cannot scan — Modbus connection not established');
+            await this.setStateAsync('info.scanStatus', { val: 'error', ack: true });
+            await this.setStateAsync('info.scanProgress', { val: 'Modbus connection not established', ack: true });
+            return;
+        }
+        const modbus = this.modbus;
+
         this.log.info(
             `[scanSigenMicro] Starting scan ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`,
         );
@@ -1544,7 +2016,7 @@ class Sigenergy extends utils.Adapter {
             await this.setStateAsync('info.scanStatus', { val: 'scanning', ack: true });
             await this.setStateAsync('info.scanProgress', { val: `Starting scan IDs ${from}–${to}…`, ack: true });
 
-            const found = await scanner.scan(from, to, this.modbus, progressCb);
+            const found = await scanner.scan(from, to, modbus, progressCb);
             if (this._stopped) {
                 return;
             }
@@ -1663,7 +2135,7 @@ class Sigenergy extends utils.Adapter {
     /**
      * Adapter shutdown
      *
-     * @param {Function} callback - Completion callback
+     * @param {() => void} callback - Completion callback
      */
     async onUnload(callback) {
         // Set the shutdown flag FIRST, before any async work, so any in-flight

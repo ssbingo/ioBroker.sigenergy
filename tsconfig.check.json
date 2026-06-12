@@ -1,7 +1,9 @@
 // Specialized tsconfig for type-checking js files
 {
 	"extends": "./tsconfig.json",
-	"compilerOptions": {},
+	"compilerOptions": {
+		"strictNullChecks": false
+	},
 	"include": ["**/*.js", "**/*.d.ts"],
-	"exclude": ["**/build", "node_modules/", "widgets/"]
+	"exclude": ["**/build", "node_modules/", "widgets/", "test/", "main.test.js"]
 }

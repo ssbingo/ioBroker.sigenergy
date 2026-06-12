@@ -121,5 +121,21 @@
     "Use the SigenMicro tab in the adapter admin page to run the scan and manage discovered devices. The device list and individual enable/disable selections are stored automatically.": "Użyj zakładki SigenMicro do uruchomienia skanu i zarządzania znalezionymi urządzeniami.",
     "💾 Save selection": "💾 Save selection",
     "🔍  Scan for SigenMicro devices": "🔍  Skanuj urządzenia SigenMicro",
-    "🔍  Start Scan": "🔍  Rozpocznij skan"
+    "🔍  Start Scan": "🔍  Rozpocznij skan",
+    "Device Type": "Typ urządzenia",
+    "Defines which register sets are valid (protocol V2.9 model footnotes)": "Określa, które zestawy rejestrów są ważne (przypisy modeli protokołu V2.9)",
+    "Auto-detect from device": "Wykryj automatycznie z urządzenia",
+    "Reads model type (reg. 30500) and battery pack count (reg. 31024) — requires a working, saved connection": "Odczytuje typ modelu (rej. 30500) i liczbę pakietów baterii (rej. 31024) — wymaga działającego, zapisanego połączenia",
+    "SigenStor (all-in-one storage system)": "SigenStor (zintegrowany system magazynowania)",
+    "Sigen Hybrid (hybrid inverter, optional battery)": "Sigen Hybrid (falownik hybrydowy, opcjonalna bateria)",
+    "Sigen PV M1-HYB (commercial hybrid series)": "Sigen PV M1-HYB (komercyjna seria hybrydowa)",
+    "Sigen PV / PV Max (PV-only inverter)": "Sigen PV / PV Max (falownik tylko PV)",
+    "SigenMicro only (micro-inverters, no plant)": "Tylko SigenMicro (mikrofalowniki, bez instalacji)",
+    "Select the Sigenergy device type at this Modbus endpoint. One instance handles exactly one system type (strict either/or). All component options below depend on this choice.": "Wybierz typ urządzenia Sigenergy w tym punkcie końcowym Modbus. Jedna instancja obsługuje dokładnie jeden typ systemu. Wszystkie poniższe opcje komponentów zależą od tego wyboru.",
+    "SigenMicro-only mode: plant and inverter polling is disabled — only the configured micro-inverters are read. Use the SigenMicro tab to scan and select devices.": "Tryb tylko SigenMicro: odpytywanie instalacji i falownika jest wyłączone — odczytywane są tylko skonfigurowane mikrofalowniki. Użyj karty SigenMicro do skanowania i wyboru.",
+    "Energy Storage System. SigenStor: integral (always on). Hybrid/M1-HYB: optional battery packs.": "System magazynowania energii. SigenStor: zintegrowany (zawsze włączony). Hybrid/M1-HYB: opcjonalne pakiety baterii.",
+    "Sigen EVAC EV charging station (reached via the inverter as Modbus gateway)": "Stacja ładowania Sigen EVAC (dostępna przez falownik jako bramę Modbus)",
+    "DC fast charging — only SigenStor and Sigen Hybrid support a DC charger (protocol note 5.3)": "Szybkie ładowanie DC — tylko SigenStor i Sigen Hybrid obsługują ładowarkę DC (uwaga 5.3)",
+    "Grid code parameters (40051-40068) — only SigenStor and Sigen Hybrid (protocol note 5.2.4)": "Parametry grid code (40051-40068) — tylko SigenStor i Sigen Hybrid (uwaga 5.2.4)",
+    "ESS Preheating TOU registers (50000-50183) — only Sigen PV M1-HYA/HYB (protocol note 5.2.3)": "Rejestry TOU podgrzewania ESS (50000-50183) — tylko Sigen PV M1-HYA/HYB (uwaga 5.2.3)"
 }

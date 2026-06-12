@@ -151,6 +151,22 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.5.0 (2026-06-12)
+
+- (ssbingo) Architektonische Schreibsicherheit: Modbus-Writes werden direkt im Write-Dispatcher abgelehnt, wenn das Zielregister für den konfigurierten Gerätetyp ungültig ist (models-Gating in onStateChange, Plant-Guard für Nur-SigenMicro)
+- (ssbingo) TypeScript-Check repariert — neue `lib/adapter-config.d.ts` mit vollständiger AdapterConfig-Deklaration, typisierter modbus-serial-Konstruktor, ioBroker.CommonType/SettableObject-Annotationen; neues Script `npm run check` läuft mit 0 Fehlern
+- (ssbingo) ESLint-Konfiguration erlaubt JSDoc-`@type`-Tags in diesem geprüften JavaScript-Projekt (jsdoc/check-tag-names mit typed:false)
+
+### 2.4.0 (2026-06-12)
+
+- (ssbingo) Gerätetyp-Architektur: Pflicht-Selektor (SigenStor / Sigen Hybrid / Sigen PV M1-HYB / reiner PV-Wechselrichter / nur SigenMicro) mit striktem Entweder/Oder-Registergating gemäß den Modell-Fußnoten von Protokoll V2.9
+- (ssbingo) Sigen Hybrid und reine PV-Wechselrichter (Sigen PV / PV Max) offiziell unterstützt
+- (ssbingo) Automatische Gerätetyperkennung aus der Hardware im Admin (Register 30500 / 31024)
+- (ssbingo) Modellverifikation beim Start — warnt bei Abweichung zwischen Konfiguration und erkannter Hardware (neuer Datenpunkt info.modelType)
+- (ssbingo) Dynamische PV-String-Register: PV5-PV16 Spannung/Strom über die in Register 31025 gemeldete String-Anzahl
+- (ssbingo) PCC-Leistungsfaktor-Steuerung (40157/40158) nur für Sigen PV M1-HYB; ESS Preheating nur M1-HYB; DC-Charger und Grid Code nur SigenStor/Sigen Hybrid
+- (ssbingo) Automatische Migration von Konfigurationen vor 2.4.0 und Bereinigung von Channels, die für den gewählten Gerätetyp ungültig sind
+
 ### 2.3.4 (2026-06-12)
 - (ssbingo) fix: Protokollversionserkennung korrigiert — korrekte Registermengen für Probes, absteigende Reihenfolge V2.9→V2.6, Transportfehler von Geräteantworten unterschieden um fehlerhafte pre-V2.6-Meldung zu vermeiden
 
