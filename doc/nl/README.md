@@ -155,6 +155,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: rol van instanceObject info.modelType gecorrigeerd van 'info.name' naar 'text' (W1133/W1135 adapter-checker-waarschuwingen)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Architecturale schrijfveiligheid: Modbus-schrijfopdrachten worden direct in de write-dispatcher geweigerd als het doelregister ongeldig is voor het geconfigureerde apparaattype (models-gating in onStateChange, plant-guard voor alleen-SigenMicro)

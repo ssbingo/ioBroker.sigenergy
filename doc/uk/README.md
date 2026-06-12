@@ -160,6 +160,9 @@
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: виправлено роль instanceObject info.modelType з 'info.name' на 'text' (попередження W1133/W1135 adapter-checker)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Архітектурна безпека запису: записи Modbus відхиляються безпосередньо в диспетчері, якщо цільовий регістр недійсний для налаштованого типу пристрою (models-гейтинг в onStateChange, plant-захист для режиму лише SigenMicro)

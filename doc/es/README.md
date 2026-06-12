@@ -160,6 +160,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: corregido el role del instanceObject info.modelType de 'info.name' a 'text' (avisos W1133/W1135 del adapter-checker)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Seguridad de escritura arquitectónica: las escrituras Modbus se rechazan directamente en el despachador cuando el registro de destino no es válido para el tipo de dispositivo configurado (gating de models en onStateChange, guardia de plant para solo SigenMicro)

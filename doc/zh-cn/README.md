@@ -160,6 +160,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: 将 instanceObject info.modelType 的 role 从 'info.name' 更正为 'text'（adapter-checker 警告 W1133/W1135）
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) 架构级写入安全：当目标寄存器对所配置的设备类型无效时，Modbus 写入会在写入调度器中被直接拒绝（onStateChange 中的 models 门控，仅 SigenMicro 模式的电站防护）

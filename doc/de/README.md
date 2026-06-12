@@ -151,6 +151,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: Rolle des instanceObjects info.modelType von 'info.name' auf 'text' korrigiert (W1133/W1135 Adapter-Checker-Warnungen)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Architektonische Schreibsicherheit: Modbus-Writes werden direkt im Write-Dispatcher abgelehnt, wenn das Zielregister für den konfigurierten Gerätetyp ungültig ist (models-Gating in onStateChange, Plant-Guard für Nur-SigenMicro)

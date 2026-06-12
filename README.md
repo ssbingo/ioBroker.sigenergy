@@ -174,6 +174,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: correct instanceObject role for info.modelType from 'info.name' to 'text' (W1133/W1135 adapter-checker warnings)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Architectural write safety: Modbus writes are rejected in the write dispatcher itself when the target register is not valid for the configured device type (models gating in onStateChange, plant guard for SigenMicro-only)

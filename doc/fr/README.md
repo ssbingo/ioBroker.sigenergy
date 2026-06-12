@@ -146,6 +146,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: correction du rôle de l'instanceObject info.modelType de 'info.name' en 'text' (avertissements W1133/W1135 de l'adapter-checker)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Sécurité d'écriture architecturale : les écritures Modbus sont rejetées directement dans le dispatcher lorsque le registre cible n'est pas valide pour le type d'appareil configuré (gating models dans onStateChange, garde plant pour SigenMicro uniquement)

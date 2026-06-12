@@ -160,6 +160,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.5.1 (2026-06-12)
+- (ssbingo) fix: poprawiono rolę instanceObject info.modelType z 'info.name' na 'text' (ostrzeżenia W1133/W1135 adapter-checker)
+
 ### 2.5.0 (2026-06-12)
 
 - (ssbingo) Architektoniczne bezpieczeństwo zapisu: zapisy Modbus są odrzucane bezpośrednio w dyspozytorze, gdy rejestr docelowy jest nieprawidłowy dla skonfigurowanego typu urządzenia (gating models w onStateChange, ochrona plant dla trybu tylko SigenMicro)
