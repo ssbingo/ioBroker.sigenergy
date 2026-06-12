@@ -180,6 +180,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: URL-encode spaces in Buy Me a Coffee button src — image was not rendering on GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: correct instanceObject role for info.modelType from 'info.name' to 'text' (W1133/W1135 adapter-checker warnings)
 

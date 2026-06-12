@@ -166,6 +166,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: spacje w URL przycisku Buy Me a Coffee zakodowane jako %20 — obraz nie był wyświetlany na GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: poprawiono rolę instanceObject info.modelType z 'info.name' na 'text' (ostrzeżenia W1133/W1135 adapter-checker)
 

@@ -161,6 +161,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: spaties in de Buy Me a Coffee-knop-URL gecodeerd als %20 — afbeelding werd niet weergegeven op GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: rol van instanceObject info.modelType gecorrigeerd van 'info.name' naar 'text' (W1133/W1135 adapter-checker-waarschuwingen)
 

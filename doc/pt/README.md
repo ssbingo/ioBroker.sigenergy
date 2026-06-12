@@ -166,6 +166,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: espaços no URL do botão Buy Me a Coffee codificados como %20 — imagem não era exibida no GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: corrigida a role do instanceObject info.modelType de 'info.name' para 'text' (avisos W1133/W1135 do adapter-checker)
 

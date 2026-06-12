@@ -166,6 +166,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: Buy Me a Coffee 按钮链接中的空格编码为 %20 — 图片在 GitHub 上无法显示
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: 将 instanceObject info.modelType 的 role 从 'info.name' 更正为 'text'（adapter-checker 警告 W1133/W1135）
 

@@ -152,6 +152,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: encodage des espaces en %20 dans l'URL du bouton Buy Me a Coffee — l'image ne s'affichait pas sur GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: correction du rôle de l'instanceObject info.modelType de 'info.name' en 'text' (avertissements W1133/W1135 de l'adapter-checker)
 

@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.5.1",
+        "version": "2.5.2",
         "news": {
-            "2.5.1": {
-                "en": "(ssbingo) fix: correct instanceObject role for info.modelType from 'info.name' to 'text' (W1133/W1135 adapter-checker warnings)",
-                "de": "(ssbingo) fix: Rolle des instanceObjects info.modelType von 'info.name' auf 'text' korrigiert (W1133/W1135 Adapter-Checker-Warnungen)",
-                "ru": "(ssbingo) fix: исправлена роль instanceObject info.modelType с 'info.name' на 'text' (предупреждения W1133/W1135 adapter-checker)",
-                "pt": "(ssbingo) fix: corrigida a role do instanceObject info.modelType de 'info.name' para 'text' (avisos W1133/W1135 do adapter-checker)",
-                "nl": "(ssbingo) fix: rol van instanceObject info.modelType gecorrigeerd van 'info.name' naar 'text' (W1133/W1135 adapter-checker-waarschuwingen)",
-                "fr": "(ssbingo) fix: correction du rôle de l'instanceObject info.modelType de 'info.name' en 'text' (avertissements W1133/W1135 de l'adapter-checker)",
-                "it": "(ssbingo) fix: corretta la role dell'instanceObject info.modelType da 'info.name' a 'text' (avvisi W1133/W1135 dell'adapter-checker)",
-                "es": "(ssbingo) fix: corregido el role del instanceObject info.modelType de 'info.name' a 'text' (avisos W1133/W1135 del adapter-checker)",
-                "pl": "(ssbingo) fix: poprawiono rolę instanceObject info.modelType z 'info.name' na 'text' (ostrzeżenia W1133/W1135 adapter-checker)",
-                "uk": "(ssbingo) fix: виправлено роль instanceObject info.modelType з 'info.name' на 'text' (попередження W1133/W1135 adapter-checker)",
-                "zh-cn": "(ssbingo) fix: 将 instanceObject info.modelType 的 role 从 'info.name' 更正为 'text'（adapter-checker 警告 W1133/W1135）"
+            "2.5.2": {
+                "en": "(ssbingo) fix: URL-encode spaces in Buy Me a Coffee button src — image was not rendering on GitHub",
+                "de": "(ssbingo) fix: Leerzeichen in der Buy-me-a-Coffee-Button-URL als %20 kodiert — Bild wurde auf GitHub nicht angezeigt",
+                "ru": "(ssbingo) fix: пробелы в URL кнопки Buy Me a Coffee закодированы как %20 — изображение не отображалось на GitHub",
+                "pt": "(ssbingo) fix: espaços no URL do botão Buy Me a Coffee codificados como %20 — imagem não era exibida no GitHub",
+                "nl": "(ssbingo) fix: spaties in de Buy Me a Coffee-knop-URL gecodeerd als %20 — afbeelding werd niet weergegeven op GitHub",
+                "fr": "(ssbingo) fix: encodage des espaces en %20 dans l'URL du bouton Buy Me a Coffee — l'image ne s'affichait pas sur GitHub",
+                "it": "(ssbingo) fix: spazi nell'URL del pulsante Buy Me a Coffee codificati come %20 — l'immagine non veniva visualizzata su GitHub",
+                "es": "(ssbingo) fix: espacios en la URL del botón Buy Me a Coffee codificados como %20 — la imagen no se mostraba en GitHub",
+                "pl": "(ssbingo) fix: spacje w URL przycisku Buy Me a Coffee zakodowane jako %20 — obraz nie był wyświetlany na GitHub",
+                "uk": "(ssbingo) fix: пробіли в URL кнопки Buy Me a Coffee закодовано як %20 — зображення не відображалося на GitHub",
+                "zh-cn": "(ssbingo) fix: Buy Me a Coffee 按钮链接中的空格编码为 %20 — 图片在 GitHub 上无法显示"
             }
         },
         "titleLang": {

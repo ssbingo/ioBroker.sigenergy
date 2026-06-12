@@ -161,6 +161,9 @@
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: пробелы в URL кнопки Buy Me a Coffee закодированы как %20 — изображение не отображалось на GitHub
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: исправлена роль instanceObject info.modelType с 'info.name' на 'text' (предупреждения W1133/W1135 adapter-checker)
 

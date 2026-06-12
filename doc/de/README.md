@@ -157,6 +157,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 2.5.2 (2026-06-12)
+- (ssbingo) fix: Leerzeichen in der Buy-me-a-Coffee-Button-URL als %20 kodiert — Bild wurde auf GitHub nicht angezeigt
+
 ### 2.5.1 (2026-06-12)
 - (ssbingo) fix: Rolle des instanceObjects info.modelType von 'info.name' auf 'text' korrigiert (W1133/W1135 Adapter-Checker-Warnungen)
 
