@@ -9,6 +9,12 @@
 
 ---
 
+<p align="center">
+  <a href="https://www.buymeacoffee.com/ssbingo"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=ssbingo&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+</p>
+
+---
+
 ## Функции
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / оптоволокно / 4G) — порт 502

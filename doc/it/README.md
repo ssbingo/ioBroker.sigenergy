@@ -9,6 +9,12 @@ Supporta il protocollo Sigenergy Modbus V2.9 (rilasciato il 2026-05-13).
 
 ---
 
+<p align="center">
+  <a href="https://www.buymeacoffee.com/ssbingo"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=ssbingo&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+</p>
+
+---
+
 ## Funzionalità
 
 - 📡 **Modbus TCP** (Ethernet / WLAN / fibra ottica / 4G) — porta 502
