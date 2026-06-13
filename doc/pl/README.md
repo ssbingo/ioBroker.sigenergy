@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Nowe: welcomeText dodany do io-package.json — wielojęzyczne ostrzeżenie o funkcji wyłączenia awaryjnego
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Nowe: wyłączenie awaryjne — automatyczne odłączanie zewnętrznych systemów fotowoltaicznych (elektrowni balkonowych, mikroinwerterów) przy zaniku sieci; konfigurowalny timer stabilizacji przy powrocie sieci; opcjonalne powiadomienia Telegram
 - (ssbingo) Docs: dokumentacja wyłączenia awaryjnego dodana we wszystkich 11 językach

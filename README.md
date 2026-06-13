@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) feat: add welcomeText to io-package.json — multilingual notice about emergency gateway switching feature
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) feat: emergency gateway switching — automatic disconnection of external PV systems (balcony power plants, micro-inverters) on grid failure; configurable stability timer on grid return; optional Telegram notifications
 - (ssbingo) docs: emergency switching documentation added in all 11 languages

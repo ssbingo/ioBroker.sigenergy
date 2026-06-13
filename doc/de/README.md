@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Neu: welcomeText in io-package.json ergänzt — mehrsprachiger Hinweis zur Notabschalt-Funktion
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Neu: Notabschaltung — automatische Trennung externer PV-Systeme (Balkonkraftwerke, Mikrowechselrichter) bei Netzausfall; konfigurierbarer Stabilisierungs-Timer nach Netzzurückkehr; optionale Telegram-Benachrichtigungen
 - (ssbingo) Docs: Dokumentation der Notabschaltung in allen 11 Sprachen ergänzt

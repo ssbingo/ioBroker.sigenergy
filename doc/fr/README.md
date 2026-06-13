@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Nouveau : welcomeText ajouté à io-package.json — avertissement multilingue sur la fonction de coupure d'urgence
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Nouveau : coupure d'urgence — déconnexion automatique des systèmes photovoltaïques externes (centrales de balcon, micro-onduleurs) lors d'une coupure réseau ; minuterie de stabilisation configurable au retour du réseau ; notifications Telegram optionnelles
 - (ssbingo) Docs : documentation de la coupure d'urgence ajoutée dans les 11 langues

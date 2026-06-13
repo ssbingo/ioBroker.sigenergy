@@ -240,6 +240,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Novo: welcomeText adicionado ao io-package.json — aviso multilingue sobre a função de desligamento de emergência
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Novo: desligamento de emergência — desconexão automática de sistemas fotovoltaicos externos (centrais de varanda, micro-inversores) em caso de falha da rede; temporizador de estabilização configurável no regresso da rede; notificações Telegram opcionais
 - (ssbingo) Docs: documentação de desligamento de emergência adicionada em todos os 11 idiomas

@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Nieuw: welcomeText toegevoegd aan io-package.json — meertalige melding over nooduitschakelfunctie
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Nieuw: nooduitschakeling — automatisch loskoppelen van externe PV-systemen (balkon-zonnecentrales, micro-omvormers) bij netuitval; instelbare stabilisatietimer bij terugkeer van het net; optionele Telegram-meldingen
 - (ssbingo) Docs: documentatie nooduitschakeling toegevoegd in alle 11 talen

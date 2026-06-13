@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "news": {
-            "3.0.0": {
+            "3.0.1": {
                 "en": "(ssbingo) feat: emergency gateway switching — automatic disconnection of external PV systems on grid failure; configurable stability timer; optional Telegram notifications",
                 "de": "(ssbingo) Neu: Notabschaltung — automatische Trennung externer PV-Systeme bei Netzausfall; konfigurierbarer Stabilisierungs-Timer; optionale Telegram-Benachrichtigungen",
                 "ru": "(ssbingo) Новое: аварийное отключение — автоматическое отключение внешних ФЭ-систем при пропадании сети; таймер стабилизации; уведомления Telegram",
@@ -16,6 +16,19 @@
                 "uk": "(ssbingo) Нове: аварійне відключення — автоматичне відключення зовнішніх ФЕ-систем при зникненні мережі; таймер стабілізації; сповіщення Telegram",
                 "zh-cn": "(ssbingo) 新功能：紧急断电 — 电网断电时自动断开外部光伏系统；稳定计时器；Telegram 通知"
             }
+        },
+        "welcomeText": {
+            "en": "Note:\nAs of v3.x.x, there is the option to switch off any additional PV systems present on the internal grid via controllable contacts when a grid-off event is detected.\nMore information can be found in the documentation (README.md).\nOnly use this function if you know what you are doing.",
+            "de": "Hinweis:\nAb v3.x.x gibt es die Möglichkeit, bei erkanntem Grid-Off eventuell vorhandene weitere im internen Stromnetz befindliche PV-Systeme durch steuerbare Kontakte abzuschalten.\nGenauere Informationen findet man in der Dokumentation (README.md).\nNutzen Sie diese Funktion ausschließlich, wenn Sie wissen, was Sie tun.",
+            "ru": "Примечание:\nНачиная с v3.x.x, при обнаружении отключения сети появилась возможность отключать дополнительные PV-системы во внутренней сети через управляемые контакты.\nПодробную информацию см. в документации (README.md).\nИспользуйте эту функцию только в том случае, если вы знаете, что делаете.",
+            "pt": "Nota:\nA partir da v3.x.x, existe a possibilidade de desligar sistemas PV adicionais na rede interna através de contactos controláveis quando é detetada uma interrupção da rede.\nInformações detalhadas encontram-se na documentação (README.md).\nUtilize esta função apenas se souber o que está a fazer.",
+            "nl": "Opmerking:\nVanaf v3.x.x is het mogelijk om bij een gedetecteerde netuitval extra PV-systemen op het interne stroomnet via bestuurbare contacten uit te schakelen.\nMeer informatie is te vinden in de documentatie (README.md).\nGebruik deze functie uitsluitend als u weet wat u doet.",
+            "fr": "Remarque :\nÀ partir de la v3.x.x, il est possible de couper des systèmes PV supplémentaires sur le réseau interne via des contacts commandables lorsqu'une coupure réseau est détectée.\nDes informations détaillées sont disponibles dans la documentation (README.md).\nN'utilisez cette fonction que si vous savez ce que vous faites.",
+            "it": "Nota:\nA partire dalla v3.x.x, è possibile disconnettere eventuali sistemi PV aggiuntivi nella rete interna tramite contatti comandabili quando viene rilevata una mancanza di rete.\nUlteriori informazioni sono disponibili nella documentazione (README.md).\nUtilizzare questa funzione solo se si sa cosa si sta facendo.",
+            "es": "Nota:\nA partir de la v3.x.x, existe la posibilidad de desconectar sistemas PV adicionales en la red interna mediante contactos controlables cuando se detecta una interrupción de la red.\nInformación detallada en la documentación (README.md).\nUtilice esta función únicamente si sabe lo que está haciendo.",
+            "pl": "Uwaga:\nOd wersji v3.x.x istnieje możliwość wyłączenia dodatkowych systemów PV w sieci wewnętrznej za pomocą sterownych styków po wykryciu zaniku sieci.\nSzczegółowe informacje znajdują się w dokumentacji (README.md).\nKorzystaj z tej funkcji wyłącznie wtedy, gdy wiesz, co robisz.",
+            "uk": "Примітка:\nПочинаючи з v3.x.x, при виявленні відключення мережі з'явилась можливість відключати додаткові PV-системи у внутрішній мережі через керовані контакти.\nДетальну інформацію можна знайти в документації (README.md).\nВикористовуйте цю функцію виключно якщо знаєте, що робите.",
+            "zh-cn": "注意：\n从 v3.x.x 起，当检测到电网断电时，可通过可控触点断开内部电网中的其他光伏系统。\n详细信息请参阅文档（README.md）。\n仅在您了解操作含义的情况下使用此功能。"
         },
         "titleLang": {
             "en": "Sigenergy Solar System",

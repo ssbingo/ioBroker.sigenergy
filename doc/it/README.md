@@ -235,6 +235,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 3.0.1 (2026-06-13)
+- (ssbingo) Nuovo: welcomeText aggiunto a io-package.json — avviso multilingue sulla funzione di disconnessione d'emergenza
+
 ### 3.0.0 (2026-06-13)
 - (ssbingo) Nuovo: disconnessione d'emergenza — scollegamento automatico dei sistemi fotovoltaici esterni (centrali da balcone, micro-inverter) in caso di mancanza di rete; timer di stabilizzazione configurabile al ripristino della rete; notifiche Telegram opzionali
 - (ssbingo) Docs: documentazione disconnessione d'emergenza aggiunta in tutte le 11 lingue
