@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Fix: ESLint/Prettier-fouten in nooduitschakelmethoden opgelost — ongebruikte variabele verwijderd, inspringing gecorrigeerd, JSDoc @param-typen toegevoegd
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Nieuw: welcomeText toegevoegd aan io-package.json — meertalige melding over nooduitschakelfunctie
 

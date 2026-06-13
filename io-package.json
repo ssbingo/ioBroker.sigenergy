@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.1",
+        "version": "3.0.2",
         "news": {
-            "3.0.1": {
+            "3.0.2": {
                 "en": "(ssbingo) feat: emergency gateway switching — automatic disconnection of external PV systems on grid failure; configurable stability timer; optional Telegram notifications",
                 "de": "(ssbingo) Neu: Notabschaltung — automatische Trennung externer PV-Systeme bei Netzausfall; konfigurierbarer Stabilisierungs-Timer; optionale Telegram-Benachrichtigungen",
                 "ru": "(ssbingo) Новое: аварийное отключение — автоматическое отключение внешних ФЭ-систем при пропадании сети; таймер стабилизации; уведомления Telegram",

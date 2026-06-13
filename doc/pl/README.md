@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Poprawka: błędy ESLint/Prettier w metodach wyłączenia awaryjnego — usunięto nieużywaną zmienną, poprawiono wcięcia, dodano typy JSDoc @param
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Nowe: welcomeText dodany do io-package.json — wielojęzyczne ostrzeżenie o funkcji wyłączenia awaryjnego
 

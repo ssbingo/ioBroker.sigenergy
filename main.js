@@ -134,7 +134,7 @@ class Sigenergy extends utils.Adapter {
         this._stopped = false;
         this._controlRegistersRead = false;
         this._protocolDetected = false;
-        this._emergencyWasOffGrid     = false;
+        this._emergencyWasOffGrid = false;
         this._emergencyStabilityTimer = null;
         this._protoDetectWarnLogged = false;
         this._modelVerified = false;
@@ -2165,13 +2165,12 @@ class Sigenergy extends utils.Adapter {
      * if on-grid: switch all devices to recovery state (unconditionally on start).
      */
     async _emergencyInit() {
-        const stateId = `${this.namespace}.plant.onOffGridStatus`;
         const current = await this.getStateAsync('plant.onOffGridStatus');
         if (!current) {
             this.log.info('[emergency] plant.onOffGridStatus not yet available — will react on first poll');
             return;
         }
-        const val   = current.val;
+        const val = current.val;
         const isOff = this._emergencyIsOffGrid(val);
         this.log.info(`[emergency] Initial onOffGridStatus: ${val} (${this._emergencyModeName(val)})`);
         if (isOff) {
@@ -2189,6 +2188,7 @@ class Sigenergy extends utils.Adapter {
 
     /**
      * React to plant.onOffGridStatus state changes (ack=true, written by poll cycle).
+     *
      * @param {number|null} val - new value of plant.onOffGridStatus
      */
     async _emergencyHandleStateChange(val) {
@@ -2196,7 +2196,9 @@ class Sigenergy extends utils.Adapter {
 
         if (isOff) {
             if (!this._emergencyWasOffGrid) {
-                this.log.warn(`[emergency] Off-grid detected: ${this._emergencyModeName(val)} — switching emergency devices`);
+                this.log.warn(
+                    `[emergency] Off-grid detected: ${this._emergencyModeName(val)} — switching emergency devices`,
+                );
             }
             this._emergencyWasOffGrid = true;
             this._emergencyCancelTimer();
@@ -2213,30 +2215,34 @@ class Sigenergy extends utils.Adapter {
             }
             const delayMin = this.config.emergencyStableDelay || 10;
             this.log.info(`[emergency] Grid returned — stability timer started (${delayMin} min)`);
-            this._emergencyStabilityTimer = this.setTimeout(async () => {
-                this._emergencyStabilityTimer = null;
-                if (this._stopped) {
-                    return;
-                }
-                const current = await this.getStateAsync('plant.onOffGridStatus');
-                if (current && !this._emergencyIsOffGrid(current.val)) {
-                    this.log.info(`[emergency] ${delayMin} min stable — restoring all emergency devices`);
-                    this._emergencyWasOffGrid = false;
-                    await this._emergencySwitchAll(false);
-                    await this._emergencySendTelegram(
-                        `✅ Sigenergy — Grid stable\n\nGrid has been stable for ${delayMin} minutes.\nAll emergency devices restored.\n\n🕐 ${new Date().toLocaleString()}`,
-                    );
-                } else {
-                    this.log.warn(
-                        `[emergency] Still off-grid after ${delayMin} min (value: ${current ? current.val : '?'}) — devices remain in failure state`,
-                    );
-                }
-            }, delayMin * 60 * 1000);
+            this._emergencyStabilityTimer = this.setTimeout(
+                async () => {
+                    this._emergencyStabilityTimer = null;
+                    if (this._stopped) {
+                        return;
+                    }
+                    const current = await this.getStateAsync('plant.onOffGridStatus');
+                    if (current && !this._emergencyIsOffGrid(current.val)) {
+                        this.log.info(`[emergency] ${delayMin} min stable — restoring all emergency devices`);
+                        this._emergencyWasOffGrid = false;
+                        await this._emergencySwitchAll(false);
+                        await this._emergencySendTelegram(
+                            `✅ Sigenergy — Grid stable\n\nGrid has been stable for ${delayMin} minutes.\nAll emergency devices restored.\n\n🕐 ${new Date().toLocaleString()}`,
+                        );
+                    } else {
+                        this.log.warn(
+                            `[emergency] Still off-grid after ${delayMin} min (value: ${current ? current.val : '?'}) — devices remain in failure state`,
+                        );
+                    }
+                },
+                delayMin * 60 * 1000,
+            );
         }
     }
 
     /**
      * Switch all configured emergency devices.
+     *
      * @param {boolean} isFailure - true = grid failure state, false = recovery state
      */
     async _emergencySwitchAll(isFailure) {
@@ -2246,7 +2252,7 @@ class Sigenergy extends utils.Adapter {
         }
         // Devices 2–4: direction configurable
         for (const idx of [2, 3, 4]) {
-            const id  = this.config[`emergencyDevice${idx}Id`];
+            const id = this.config[`emergencyDevice${idx}Id`];
             const dir = this.config[`emergencyDevice${idx}Dir`] || 'off';
             if (!id) {
                 continue;
@@ -2260,6 +2266,7 @@ class Sigenergy extends utils.Adapter {
 
     /**
      * Set a foreign state (ioBroker object) to a boolean value.
+     *
      * @param {string} id - Full ioBroker object ID
      * @param {boolean} value - Value to set
      * @param {number} deviceNum - Device number for logging
@@ -2275,6 +2282,7 @@ class Sigenergy extends utils.Adapter {
 
     /**
      * Send a Telegram notification if configured.
+     *
      * @param {string} text - Message text
      */
     async _emergencySendTelegram(text) {
@@ -2305,18 +2313,30 @@ class Sigenergy extends utils.Adapter {
         }
     }
 
-    /** Returns true when the onOffGridStatus value indicates off-grid operation. */
+    /**
+     * Returns true when the onOffGridStatus value indicates off-grid operation.
+     *
+     * @param {number|null|undefined} val - current onOffGridStatus value
+     */
     _emergencyIsOffGrid(val) {
         return val !== 0 && val !== null && val !== undefined;
     }
 
-    /** Human-readable description of an onOffGridStatus value. */
+    /**
+     * Human-readable description of an onOffGridStatus value.
+     *
+     * @param {number|null|undefined} val - current onOffGridStatus value
+     */
     _emergencyModeName(val) {
         switch (val) {
-            case 0:  return 'On-Grid';
-            case 1:  return 'Off-Grid (automatic — grid failure)';
-            case 2:  return 'Off-Grid (manual — island mode)';
-            default: return `Unknown (value: ${val})`;
+            case 0:
+                return 'On-Grid';
+            case 1:
+                return 'Off-Grid (automatic — grid failure)';
+            case 2:
+                return 'Off-Grid (manual — island mode)';
+            default:
+                return `Unknown (value: ${val})`;
         }
     }
 

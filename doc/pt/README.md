@@ -240,6 +240,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Correção: erros ESLint/Prettier nos métodos de desligamento de emergência — variável não utilizada removida, indentação corrigida, tipos JSDoc @param adicionados
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Novo: welcomeText adicionado ao io-package.json — aviso multilingue sobre a função de desligamento de emergência
 

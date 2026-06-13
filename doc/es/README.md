@@ -240,6 +240,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Corrección: errores ESLint/Prettier en métodos de desconexión de emergencia — variable no utilizada eliminada, sangría corregida, tipos JSDoc @param añadidos
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Nuevo: welcomeText añadido a io-package.json — aviso multilingüe sobre la función de desconexión de emergencia
 

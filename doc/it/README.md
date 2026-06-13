@@ -235,6 +235,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Correzione: errori ESLint/Prettier nei metodi di disconnessione d'emergenza — variabile inutilizzata rimossa, indentazione corretta, tipi JSDoc @param aggiunti
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Nuovo: welcomeText aggiunto a io-package.json — avviso multilingue sulla funzione di disconnessione d'emergenza
 

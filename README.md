@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) fix: ESLint/Prettier errors in emergency switching methods — remove unused variable, fix indentation, add JSDoc @param types
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) feat: add welcomeText to io-package.json — multilingual notice about emergency gateway switching feature
 

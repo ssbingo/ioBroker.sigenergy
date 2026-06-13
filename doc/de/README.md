@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.2 (2026-06-13)
+- (ssbingo) Fix: ESLint/Prettier-Fehler in den Notabschalt-Methoden behoben — ungenutzte Variable entfernt, Einrückung korrigiert, JSDoc @param-Typen ergänzt
+
 ### 3.0.1 (2026-06-13)
 - (ssbingo) Neu: welcomeText in io-package.json ergänzt — mehrsprachiger Hinweis zur Notabschalt-Funktion
 
