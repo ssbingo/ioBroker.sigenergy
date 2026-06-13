@@ -150,6 +150,17 @@
           "lg": 12,
           "xl": 12
         },
+        "hasEmergencyGateway": {
+          "type": "checkbox",
+          "label": "Emergency Gateway (off-grid switching)",
+          "help": "Enable automatic device switching when Sigenergy enters off-grid / island mode. Configure the devices and notifications in the Emergency Switching tab.",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
         "_divider1": {
           "type": "divider",
           "sm": 12,
@@ -839,6 +850,225 @@
           "md": 12,
           "lg": 12,
           "xl": 12
+        }
+      }
+    },
+    "emergency": {
+      "type": "panel",
+      "label": "Emergency Switching",
+      "hidden": "!data.hasEmergencyGateway",
+      "items": {
+        "_emergencyHeader": {
+          "type": "staticText",
+          "text": "Configure devices to switch automatically when Sigenergy enters off-grid (island) mode. Device 1 is always switched OFF on grid failure and ON after stable grid recovery. Devices 2–4 are optional — choose the switching direction for each.",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyStableDelay": {
+          "type": "number",
+          "label": "Stable delay after grid return (minutes)",
+          "help": "Wait this many minutes of stable on-grid operation before switching devices back on.",
+          "min": 1,
+          "max": 60,
+          "step": 1,
+          "default": 10,
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_emerg1": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_device1Header": {
+          "type": "staticText",
+          "text": "Device 1 — switched OFF on grid failure, ON after stable recovery (required if emergency switching is used)",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyDevice1Id": {
+          "type": "objectId",
+          "label": "Device 1 — Object ID",
+          "sm": 12,
+          "md": 8,
+          "xs": 12,
+          "lg": 6,
+          "xl": 6
+        },
+        "_divider_emerg2": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_device2Header": {
+          "type": "staticText",
+          "text": "Device 2 (optional)",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyDevice2Id": {
+          "type": "objectId",
+          "label": "Device 2 — Object ID",
+          "sm": 12,
+          "md": 8,
+          "xs": 12,
+          "lg": 6,
+          "xl": 6
+        },
+        "emergencyDevice2Dir": {
+          "type": "select",
+          "label": "Device 2 — Direction",
+          "options": [
+            { "label": "OFF on failure, ON after recovery", "value": "off" },
+            { "label": "ON on failure, OFF after recovery", "value": "on" }
+          ],
+          "default": "off",
+          "hidden": "!data.emergencyDevice2Id",
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_emerg3": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_device3Header": {
+          "type": "staticText",
+          "text": "Device 3 (optional)",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyDevice3Id": {
+          "type": "objectId",
+          "label": "Device 3 — Object ID",
+          "sm": 12,
+          "md": 8,
+          "xs": 12,
+          "lg": 6,
+          "xl": 6
+        },
+        "emergencyDevice3Dir": {
+          "type": "select",
+          "label": "Device 3 — Direction",
+          "options": [
+            { "label": "OFF on failure, ON after recovery", "value": "off" },
+            { "label": "ON on failure, OFF after recovery", "value": "on" }
+          ],
+          "default": "off",
+          "hidden": "!data.emergencyDevice3Id",
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_emerg4": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_device4Header": {
+          "type": "staticText",
+          "text": "Device 4 (optional)",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyDevice4Id": {
+          "type": "objectId",
+          "label": "Device 4 — Object ID",
+          "sm": 12,
+          "md": 8,
+          "xs": 12,
+          "lg": 6,
+          "xl": 6
+        },
+        "emergencyDevice4Dir": {
+          "type": "select",
+          "label": "Device 4 — Direction",
+          "options": [
+            { "label": "OFF on failure, ON after recovery", "value": "off" },
+            { "label": "ON on failure, OFF after recovery", "value": "on" }
+          ],
+          "default": "off",
+          "hidden": "!data.emergencyDevice4Id",
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "_divider_telegram": {
+          "type": "divider",
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "emergencyTelegram": {
+          "type": "checkbox",
+          "label": "Enable Telegram notification",
+          "help": "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.",
+          "default": false,
+          "sm": 12,
+          "md": 6,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "emergencyTelegramInst": {
+          "type": "instance",
+          "adapter": "telegram",
+          "label": "Telegram instance",
+          "hidden": "!data.emergencyTelegram",
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
+        },
+        "emergencyTelegramChat": {
+          "type": "text",
+          "label": "Chat ID (empty = broadcast to all configured chats)",
+          "hidden": "!data.emergencyTelegram",
+          "sm": 12,
+          "md": 4,
+          "xs": 12,
+          "lg": 4,
+          "xl": 4
         }
       }
     }

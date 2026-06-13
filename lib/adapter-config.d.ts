@@ -52,6 +52,18 @@ declare global {
             enablePid: boolean;
             pidSlaveId: number;
             enableEssPreheating: boolean;
+            hasEmergencyGateway: boolean;
+            emergencyDevice1Id: string;
+            emergencyDevice2Id: string;
+            emergencyDevice2Dir: 'off' | 'on';
+            emergencyDevice3Id: string;
+            emergencyDevice3Dir: 'off' | 'on';
+            emergencyDevice4Id: string;
+            emergencyDevice4Dir: 'off' | 'on';
+            emergencyStableDelay: number;
+            emergencyTelegram: boolean;
+            emergencyTelegramInst: string;
+            emergencyTelegramChat: string;
         }
     }
 }

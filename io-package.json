@@ -129,7 +129,19 @@
         "pssSlaveId": 5,
         "enablePid": false,
         "pidSlaveId": 6,
-        "enableEssPreheating": false
+        "enableEssPreheating": false,
+        "hasEmergencyGateway": false,
+        "emergencyDevice1Id": "",
+        "emergencyDevice2Id": "",
+        "emergencyDevice2Dir": "off",
+        "emergencyDevice3Id": "",
+        "emergencyDevice3Dir": "off",
+        "emergencyDevice4Id": "",
+        "emergencyDevice4Dir": "off",
+        "emergencyStableDelay": 10,
+        "emergencyTelegram": false,
+        "emergencyTelegramInst": "",
+        "emergencyTelegramChat": ""
     },
     "objects": [],
     "instanceObjects": [
