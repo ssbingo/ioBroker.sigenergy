@@ -119,6 +119,80 @@ Auswahl der zu berechnenden Statistikwerte:
 
 ---
 
+## Notabschaltung — Schutz externer PV-Systeme
+
+### Hintergrund
+
+Sigenergy-Hybridwechselrichter verfügen über ein optionales **Notstromgateway**,
+das bei einem Netzausfall automatisch in den Off-Grid- / Inselbetrieb wechselt.
+In diesem Modus erzeugt das Sigenergy-System ein eigenes lokales AC-Netz,
+das aus der Batterie gespeist wird.
+
+Wenn ein **zweites PV-System** — etwa ein Balkonkraftwerk, ein Mikrowechselrichter
+oder ein Fremd-Stringwechselrichter — am selben Hausstromkreis angeschlossen ist,
+speist es weiterhin in dieses isolierte Netz ein. Die meisten netzgekoppelten
+Wechselrichter sind nicht für diesen Betrieb ausgelegt und können:
+
+- das Batterie-Management des Sigenergy-Systems überlasten
+- Spannung oder Frequenz im Inselnetz destabilisieren
+- durch die ungewöhnlichen Betriebsbedingungen beschädigt werden
+
+Die einzig sichere Lösung ist die **sofortige Trennung** des externen Systems,
+sobald Sigenergy in den Off-Grid-Modus wechselt.
+
+### Funktionsweise im Adapter
+
+Der Adapter überwacht den State `plant.onOffGridStatus` in jedem Poll-Zyklus.
+
+**Bei Netzausfall** (`onOffGridStatus` = 1 oder 2):
+- Alle konfigurierten Notabschalt-Geräte werden sofort geschaltet
+- Optional wird eine Telegram-Benachrichtigung gesendet
+
+**Bei Netzzurückkehr** (`onOffGridStatus` = 0):
+- Ein konfigurierbarer Stabilisierungs-Timer startet (Standard: 10 Minuten)
+- Ist das Netz nach Ablauf des Timers noch stabil, werden die Geräte zurückgeschaltet
+- Fällt das Netz während des Timers erneut aus, wird der Timer verworfen
+  und die Geräte bleiben im Abschaltzustand
+- Bei erfolgreicher Wiedereinschaltung wird optional eine Telegram-Meldung gesendet
+
+### Funktion aktivieren
+
+**Schritt 1 — Tab Komponenten**  
+Checkbox **Notstrom-Gateway (Off-Grid-Schaltung)** aktivieren.  
+Der Tab *Notabschaltung* wird sichtbar.
+
+**Schritt 2 — Tab Notabschaltung**
+
+#### Geräte
+
+| Feld | Beschreibung |
+|---|---|
+| **Stabilisierungszeit (Minuten)** | Wie lange das Netz nach der Rückkehr stabil sein muss, bevor die Geräte wieder eingeschaltet werden. Empfehlung: 10 Minuten. |
+| **Gerät 1 — Objekt-ID** | ioBroker-State-ID des Hauptschalters des externen Systems. Bei Netzausfall wird `false` gesetzt, nach stabiler Erholung `true`. |
+| **Geräte 2–4 — Objekt-ID** | Weitere optionale Geräte. |
+| **Geräte 2–4 — Schaltrichtung** | *AUS bei Ausfall, EIN nach Erholung* oder *EIN bei Ausfall, AUS nach Erholung*. |
+
+#### Telegram-Benachrichtigung (optional)
+
+| Feld | Beschreibung |
+|---|---|
+| **Telegram-Benachrichtigung aktivieren** | Schaltet Meldungen bei Netzausfall und Netzerholung ein. |
+| **Telegram-Instanz** | Die zu verwendende `telegram.x`-Adapterinstanz. |
+| **Chat-ID** | Optional: Einschränkung auf einen bestimmten Chat. Leer lassen für Broadcast. |
+
+### Beispiel — Balkonkraftwerk
+
+Ein Shelly Plus 1 ist in die Zuleitung des Balkonkraftwerks eingeschleift.
+Seine ioBroker-State-ID lautet `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Konfiguration:
+- **Gerät 1**: `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → Relais öffnet (`false`) bei Netzausfall, schließt (`true`) nach stabiler Erholung
+
+Das Balkonkraftwerk ist damit automatisch geschützt.
+
+---
+
 ## VIS-Widgets
 
 > **Hinweis:** Alle 7 Widgets werden vom separaten Adapter [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy) bereitgestellt. Installiere diesen Adapter zusammen mit diesem Adapter, um die Widgets in VIS-2 zu verwenden.
@@ -156,6 +230,10 @@ Status und Leistungswerte des DC-Ladegeräts.
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) Neu: Notabschaltung — automatische Trennung externer PV-Systeme (Balkonkraftwerke, Mikrowechselrichter) bei Netzausfall; konfigurierbarer Stabilisierungs-Timer nach Netzzurückkehr; optionale Telegram-Benachrichtigungen
+- (ssbingo) Docs: Dokumentation der Notabschaltung in allen 11 Sprachen ergänzt
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: Leerzeichen in der Buy-me-a-Coffee-Button-URL als %20 kodiert — Bild wurde auf GitHub nicht angezeigt
@@ -226,43 +304,3 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Feat: Modbus-Protokoll V2.9 — neue Plant/Wechselrichter/DC-Laderegler-Register, veraltete Register entfernt, Enums erweitert
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) Fix: doppeltes i18n-Langformat entfernt (admin/i18n), /dev/ttyUSB0-Übersetzungsschlüssel hinzugefügt
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) Chore: devDependency @alcalzone/release-script auf ^5.2.1 aktualisiert
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) Chore: @tsconfig/node22 als devDependency hinzugefügt (ioBroker Template-Update)
-- (ssbingo) Chore: testing-action-check auf @v2 aktualisiert
-- (ssbingo) Chore: axios-Sicherheits-Update
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) Fix: CI-Pipeline-Korrekturen — Node.js 24, @types/node ^22.0.0, package-lock.json korrigiert; nur neuester Eintrag in common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) Fix: package-lock.json aktualisiert für @types/node ^22.0.0 (war auf 25.x eingefroren)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) Fix: @types/node auf ^22.0.0 in devDependencies gepinnt
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) Fix: Node.js 24 für CI check-and-lint und deploy-Jobs
-- (ssbingo) Chore: @types/node als devDependency hinzugefügt
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Abhängigkeits-Updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) CI-Aktualisierungen — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) Abhängigkeits-Updates via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) Benötigt nun Node.js >= 22
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) Fix: Deduplizierte Connection-/Poll-Fehler-Logs verhindern Log-Flooding und verbessern die Sentry-Readiness
-- (ssbingo) Fix: Shutdown-Guards und extendForeignObject verhindern Race-Conditions beim Unload und mit der Admin-UI
-- (ssbingo) Fix: Socket-Leak bei Modbus-Timeout behoben; testConnection pausiert jetzt das Polling; leere Control-Channels entfernt
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) Neu: berechnete Datenpunkte plant.pv1Power, plant.pv2Power, plant.pv3Power hinzugefügt

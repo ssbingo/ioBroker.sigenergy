@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "2.5.2",
+        "version": "3.0.0",
         "news": {
-            "2.5.2": {
-                "en": "(ssbingo) fix: URL-encode spaces in Buy Me a Coffee button src — image was not rendering on GitHub",
-                "de": "(ssbingo) fix: Leerzeichen in der Buy-me-a-Coffee-Button-URL als %20 kodiert — Bild wurde auf GitHub nicht angezeigt",
-                "ru": "(ssbingo) fix: пробелы в URL кнопки Buy Me a Coffee закодированы как %20 — изображение не отображалось на GitHub",
-                "pt": "(ssbingo) fix: espaços no URL do botão Buy Me a Coffee codificados como %20 — imagem não era exibida no GitHub",
-                "nl": "(ssbingo) fix: spaties in de Buy Me a Coffee-knop-URL gecodeerd als %20 — afbeelding werd niet weergegeven op GitHub",
-                "fr": "(ssbingo) fix: encodage des espaces en %20 dans l'URL du bouton Buy Me a Coffee — l'image ne s'affichait pas sur GitHub",
-                "it": "(ssbingo) fix: spazi nell'URL del pulsante Buy Me a Coffee codificati come %20 — l'immagine non veniva visualizzata su GitHub",
-                "es": "(ssbingo) fix: espacios en la URL del botón Buy Me a Coffee codificados como %20 — la imagen no se mostraba en GitHub",
-                "pl": "(ssbingo) fix: spacje w URL przycisku Buy Me a Coffee zakodowane jako %20 — obraz nie był wyświetlany na GitHub",
-                "uk": "(ssbingo) fix: пробіли в URL кнопки Buy Me a Coffee закодовано як %20 — зображення не відображалося на GitHub",
-                "zh-cn": "(ssbingo) fix: Buy Me a Coffee 按钮链接中的空格编码为 %20 — 图片在 GitHub 上无法显示"
+            "3.0.0": {
+                "en": "(ssbingo) feat: emergency gateway switching — automatic disconnection of external PV systems on grid failure; configurable stability timer; optional Telegram notifications",
+                "de": "(ssbingo) Neu: Notabschaltung — automatische Trennung externer PV-Systeme bei Netzausfall; konfigurierbarer Stabilisierungs-Timer; optionale Telegram-Benachrichtigungen",
+                "ru": "(ssbingo) Новое: аварийное отключение — автоматическое отключение внешних ФЭ-систем при пропадании сети; таймер стабилизации; уведомления Telegram",
+                "pt": "(ssbingo) Novo: desligamento de emergência — desconexão automática de sistemas PV externos em caso de falha da rede; temporizador de estabilização; notificações Telegram",
+                "nl": "(ssbingo) Nieuw: nooduitschakeling — automatisch loskoppelen van externe PV-systemen bij netuitval; stabilisatietimer; Telegram-meldingen",
+                "fr": "(ssbingo) Nouveau : coupure d'urgence — déconnexion automatique des systèmes PV externes lors d'une coupure réseau ; minuterie de stabilisation ; notifications Telegram",
+                "it": "(ssbingo) Nuovo: disconnessione d'emergenza — scollegamento automatico dei sistemi FV esterni in caso di mancanza di rete; timer di stabilizzazione; notifiche Telegram",
+                "es": "(ssbingo) Nuevo: desconexión de emergencia — desconexión automática de sistemas FV externos ante fallos de red; temporizador de estabilización; notificaciones Telegram",
+                "pl": "(ssbingo) Nowe: wyłączenie awaryjne — automatyczne odłączanie zewnętrznych systemów PV przy zaniku sieci; timer stabilizacji; powiadomienia Telegram",
+                "uk": "(ssbingo) Нове: аварійне відключення — автоматичне відключення зовнішніх ФЕ-систем при зникненні мережі; таймер стабілізації; сповіщення Telegram",
+                "zh-cn": "(ssbingo) 新功能：紧急断电 — 电网断电时自动断开外部光伏系统；稳定计时器；Telegram 通知"
             }
         },
         "titleLang": {

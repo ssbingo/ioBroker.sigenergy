@@ -128,6 +128,80 @@ Elegir los valores estadísticos a calcular:
 
 ---
 
+## Desconexión de emergencia — protección de sistemas fotovoltaicos externos
+
+### Antecedentes
+
+Los inversores híbridos Sigenergy disponen de una **pasarela de emergencia** opcional
+que cambia automáticamente al modo fuera de red / isla cuando falla la red eléctrica.
+En este modo, el sistema Sigenergy genera su propia red local de corriente alterna,
+alimentada por la batería.
+
+Si un **segundo sistema fotovoltaico** — como una central de balcón, un micro-inversor
+o un inversor de cadena de terceros — está conectado al mismo circuito doméstico,
+seguirá inyectando energía en esta red local aislada. La mayoría de los inversores
+conectados a la red no están diseñados para esta situación y pueden:
+
+- sobrecargar la gestión de la batería de Sigenergy
+- desestabilizar la tensión o la frecuencia en la red en isla
+- sufrir daños por las inusuales condiciones de funcionamiento
+
+La única solución segura es la **desconexión inmediata** del sistema externo
+en cuanto Sigenergy pasa al modo fuera de red.
+
+### Cómo gestiona esto el adaptador
+
+El adaptador monitoriza el estado `plant.onOffGridStatus` en cada ciclo de sondeo.
+
+**En caso de fallo de red** (`onOffGridStatus` = 1 o 2):
+- Todos los dispositivos de emergencia configurados se conmutan instantáneamente
+- Se envía una notificación de Telegram (opcional)
+
+**Al retorno de la red** (`onOffGridStatus` = 0):
+- Se inicia un temporizador de estabilización configurable (predeterminado: 10 minutos)
+- Si la red permanece estable durante toda la duración, los dispositivos se restauran
+- Si la red vuelve a fallar durante el temporizador, el temporizador se cancela
+  y los dispositivos permanecen apagados
+- Al restaurarse con éxito se envía una notificación de Telegram (opcional)
+
+### Activar la función
+
+**Paso 1 — pestaña Componentes**  
+Activar la casilla **Pasarela de emergencia (conmutación fuera de red)**.  
+La pestaña *Desconexión de emergencia* se vuelve visible.
+
+**Paso 2 — pestaña Desconexión de emergencia**
+
+#### Dispositivos
+
+| Campo | Descripción |
+|---|---|
+| **Retardo de estabilización (minutos)** | Tiempo que la red debe permanecer estable antes de volver a encender los dispositivos. Recomendación: 10 minutos. |
+| **Dispositivo 1 — ID de objeto** | El ID de estado ioBroker del interruptor principal del sistema externo. Se establece en `false` en caso de fallo de red; `true` tras una recuperación estable. |
+| **Dispositivos 2–4 — ID de objeto** | Dispositivos opcionales adicionales. |
+| **Dispositivos 2–4 — Dirección** | *APAGADO en fallo, ENCENDIDO tras recuperación* o *ENCENDIDO en fallo, APAGADO tras recuperación*. |
+
+#### Notificaciones de Telegram (opcional)
+
+| Campo | Descripción |
+|---|---|
+| **Activar notificación de Telegram** | Activa las notificaciones en caso de fallo y recuperación de la red. |
+| **Instancia de Telegram** | Seleccionar la instancia del adaptador `telegram.x` a utilizar. |
+| **ID de chat** | Opcional: restringir a un chat específico. Dejar vacío para difusión a todos. |
+
+### Ejemplo — central de balcón
+
+Un relé Shelly Plus 1 está cableado en serie con el cable de alimentación de la central de balcón.
+Su ID de estado ioBroker es `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Configuración:
+- **Dispositivo 1**: `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → El relé se abre (`false`) en caso de fallo de red, se cierra (`true`) tras una recuperación estable
+
+La central de balcón está ahora automáticamente protegida.
+
+---
+
 ## Widgets VIS
 
 > **Nota:** Los 7 widgets son proporcionados por el adaptador separado [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy). Instálelo junto con este adaptador para usar los widgets en VIS-2.
@@ -165,6 +239,10 @@ Estado y mediciones de potencia del cargador DC.
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) Nuevo: desconexión de emergencia — desconexión automática de sistemas fotovoltaicos externos (centrales de balcón, micro-inversores) ante fallos de red; temporizador de estabilización configurable al retorno de la red; notificaciones Telegram opcionales
+- (ssbingo) Docs: documentación de desconexión de emergencia añadida en los 11 idiomas
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: espacios en la URL del botón Buy Me a Coffee codificados como %20 — la imagen no se mostraba en GitHub
@@ -235,43 +313,3 @@ Estado y mediciones de potencia del cargador DC.
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Función: Protocolo Modbus V2.9 — nuevos registros de planta/inversor/cargador DC, registros obsoletos eliminados, enumeraciones ampliadas
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) Corrección: eliminado formato largo i18n duplicado (admin/i18n), añadida clave de traducción /dev/ttyUSB0
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) Chore: devDependency @alcalzone/release-script actualizada a ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) Chore: añadido @tsconfig/node22 como devDependency (actualización de plantilla ioBroker)
-- (ssbingo) Chore: testing-action-check actualizado a @v2
-- (ssbingo) Chore: actualización de seguridad de axios
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) Corrección: ajustes en el pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corregido; solo la entrada más reciente en common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) Corrección: package-lock.json actualizado para @types/node ^22.0.0 (estaba bloqueado en 25.x)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) Corrección: @types/node fijado en ^22.0.0 en devDependencies
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) Corrección: Node.js 24 para jobs CI check-and-lint y deploy
-- (ssbingo) Chore: añadido @types/node como devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Actualizaciones de dependencias via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) Actualizaciones de CI — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) Actualizaciones de dependencias via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) Ahora requiere Node.js >= 22
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) Corrección: registros de error de conexión/polling deduplicados evitan inundación de logs y mejoran la compatibilidad con Sentry
-- (ssbingo) Corrección: protecciones de cierre y extendForeignObject previenen condiciones de carrera al descargar y con la UI de admin
-- (ssbingo) Corrección: fuga de socket en timeout de Modbus solucionada; testConnection ahora pausa el polling; canales de control vacíos eliminados
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) Nuevo: añadidos estados calculados plant.pv1Power, plant.pv2Power, plant.pv3Power

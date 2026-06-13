@@ -142,6 +142,71 @@ Choose which statistical values to calculate:
 
 ---
 
+## Emergency Switching — Protecting External PV Systems
+
+### Background
+
+Sigenergy hybrid inverters include an optional **emergency power gateway** that automatically switches to off-grid / island mode when the utility grid fails. In this mode, the Sigenergy system creates its own local AC grid powered by the battery.
+
+If a **second PV system** — such as a balcony power plant, a micro-inverter, or a third-party string inverter — is connected to the same household circuit, it will continue feeding power into this isolated local grid. Most grid-tied inverters are not designed for this situation and may:
+
+- overload the Sigenergy battery management
+- cause voltage or frequency instability on the island grid
+- be damaged by the unusual operating conditions
+
+The only safe solution is to **immediately disconnect** the external system when Sigenergy enters off-grid mode.
+
+### How the adapter handles this
+
+The adapter monitors the `plant.onOffGridStatus` state every poll cycle.
+
+**On grid failure** (`onOffGridStatus` = 1 or 2):
+- All configured emergency devices are switched instantly
+- A Telegram notification is sent (optional)
+
+**On grid return** (`onOffGridStatus` = 0):
+- A configurable stability timer starts (default: 10 minutes)
+- If the grid remains stable for the full duration, devices are restored
+- If the grid fails again during the timer, the timer is discarded and devices remain off
+- A Telegram notification is sent on successful restoration (optional)
+
+### Enabling the feature
+
+**Step 1 — Components tab**  
+Check **Emergency Gateway (off-grid switching)**.  
+The *Emergency Switching* tab becomes visible.
+
+**Step 2 — Emergency Switching tab**
+
+#### Devices
+
+| Field | Description |
+|---|---|
+| **Stable delay (minutes)** | How long the grid must remain stable before switching devices back on. 10 minutes is recommended. |
+| **Device 1 — Object ID** | The ioBroker state ID of the main switch for the external system. Set to `false` on grid failure; `true` after stable recovery. |
+| **Devices 2–4 — Object ID** | Additional optional devices. |
+| **Devices 2–4 — Direction** | *OFF on failure, ON after recovery* or *ON on failure, OFF after recovery*. |
+
+#### Telegram notifications (optional)
+
+| Field | Description |
+|---|---|
+| **Enable Telegram notification** | Activates notifications on grid failure and recovery. |
+| **Telegram instance** | Select the `telegram.x` adapter instance to use. |
+| **Chat ID** | Optional: restrict to a specific chat. Leave empty to send to all configured chats. |
+
+### Example — Balcony power plant
+
+A Shelly Plus 1 relay is wired in series with the balcony power plant's supply cable. Its ioBroker state ID is `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Configuration:
+- **Device 1**: `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → Relay opens (`false`) on grid failure, closes (`true`) after stable recovery
+
+The balcony power plant is now automatically protected.
+
+---
+
 ## VIS Widgets
 
 > **Note:** All 7 widgets are provided by the separate [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy) adapter. Install it alongside this adapter to use the widgets in VIS-2.
@@ -179,6 +244,10 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) feat: emergency gateway switching — automatic disconnection of external PV systems (balcony power plants, micro-inverters) on grid failure; configurable stability timer on grid return; optional Telegram notifications
+- (ssbingo) docs: emergency switching documentation added in all 11 languages
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: URL-encode spaces in Buy Me a Coffee button src — image was not rendering on GitHub
@@ -249,46 +318,6 @@ Status and power readings for the DC charger.
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) feat: Modbus Protocol V2.9 — new plant/inverter/DC charger registers, remove deprecated registers, extend enums
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) fix: remove duplicate i18n long format (admin/i18n), add /dev/ttyUSB0 translation key
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) chore: add @tsconfig/node22 devDependency (ioBroker template update)
-- (ssbingo) chore: update testing-action-check to @v2
-- (ssbingo) chore: bump axios (security fix)
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) fix: CI pipeline fixes — Node.js 24, @types/node ^22.0.0, corrected package-lock.json; only latest entry in common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs
-- (ssbingo) chore: add @types/node devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) chore: Dependabot bumps — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) chore: CI updates — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) chore: dependency bumps via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) chore: requires Node.js >= 22 now
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) fix: deduplicated connection/poll error logs to prevent log flooding and improve Sentry-readiness
-- (ssbingo) fix: shutdown guards and extendForeignObject prevent race conditions on unload and with admin UI
-- (ssbingo) fix: closed socket leak on Modbus timeout; testConnection pauses polling; removed empty control channels
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
 
 
 ---

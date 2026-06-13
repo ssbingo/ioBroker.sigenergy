@@ -114,6 +114,80 @@ Choisir les valeurs statistiques à calculer :
 
 ---
 
+## Coupure d'urgence — protection des systèmes photovoltaïques externes
+
+### Contexte
+
+Les onduleurs hybrides Sigenergy disposent d'une **passerelle de secours** optionnelle
+qui bascule automatiquement en mode hors réseau / îlotage lors d'une coupure de courant.
+Dans ce mode, le système Sigenergy génère son propre réseau local en courant alternatif,
+alimenté par la batterie.
+
+Si un **deuxième système photovoltaïque** — comme une centrale de balcon, un micro-onduleur
+ou un onduleur de chaîne tiers — est connecté au même circuit domestique, il continue
+d'injecter de l'énergie dans ce réseau local isolé. La plupart des onduleurs raccordés au
+réseau ne sont pas conçus pour ce fonctionnement et peuvent :
+
+- surcharger la gestion de la batterie Sigenergy
+- déstabiliser la tension ou la fréquence du réseau en îlotage
+- être endommagés par les conditions de fonctionnement inhabituelles
+
+La seule solution sûre est la **déconnexion immédiate** du système externe
+dès que Sigenergy passe en mode hors réseau.
+
+### Fonctionnement dans l'adaptateur
+
+L'adaptateur surveille l'état `plant.onOffGridStatus` à chaque cycle de polling.
+
+**En cas de coupure réseau** (`onOffGridStatus` = 1 ou 2) :
+- Tous les appareils d'urgence configurés sont commutés instantanément
+- Une notification Telegram est envoyée (optionnel)
+
+**En cas de retour réseau** (`onOffGridStatus` = 0) :
+- Une minuterie de stabilisation configurable démarre (défaut : 10 minutes)
+- Si le réseau reste stable pendant toute la durée, les appareils sont restaurés
+- Si le réseau tombe à nouveau pendant la minuterie, celle-ci est annulée
+  et les appareils restent coupés
+- Une notification Telegram est envoyée lors de la restauration réussie (optionnel)
+
+### Activation de la fonction
+
+**Étape 1 — onglet Composants**  
+Cocher **Passerelle de secours (commutation hors réseau)**.  
+L'onglet *Coupure d'urgence* devient visible.
+
+**Étape 2 — onglet Coupure d'urgence**
+
+#### Appareils
+
+| Champ | Description |
+|---|---|
+| **Délai de stabilisation (minutes)** | Durée pendant laquelle le réseau doit rester stable avant de remettre les appareils en marche. Recommandation : 10 minutes. |
+| **Appareil 1 — ID d'objet** | L'ID d'état ioBroker du commutateur principal du système externe. Mis à `false` lors d'une coupure réseau ; `true` après une récupération stable. |
+| **Appareils 2–4 — ID d'objet** | Appareils optionnels supplémentaires. |
+| **Appareils 2–4 — Direction** | *ÉTEINT en cas de coupure, ALLUMÉ après récupération* ou *ALLUMÉ en cas de coupure, ÉTEINT après récupération*. |
+
+#### Notifications Telegram (optionnel)
+
+| Champ | Description |
+|---|---|
+| **Activer la notification Telegram** | Active les notifications lors des coupures et récupérations réseau. |
+| **Instance Telegram** | Sélectionner l'instance de l'adaptateur `telegram.x` à utiliser. |
+| **ID de chat** | Optionnel : restreindre à un chat spécifique. Laisser vide pour diffuser à tous. |
+
+### Exemple — centrale de balcon
+
+Un relais Shelly Plus 1 est câblé en série avec le câble d'alimentation de la centrale de balcon.
+Son ID d'état ioBroker est `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Configuration :
+- **Appareil 1** : `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → Le relais s'ouvre (`false`) lors d'une coupure réseau, se ferme (`true`) après une récupération stable
+
+La centrale de balcon est désormais automatiquement protégée.
+
+---
+
 ## Widgets VIS
 
 > **Remarque :** Les 7 widgets sont fournis par l'adaptateur séparé [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy). Installez-le avec cet adaptateur pour utiliser les widgets dans VIS-2.
@@ -151,6 +225,10 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) Nouveau : coupure d'urgence — déconnexion automatique des systèmes photovoltaïques externes (centrales de balcon, micro-onduleurs) lors d'une coupure réseau ; minuterie de stabilisation configurable au retour du réseau ; notifications Telegram optionnelles
+- (ssbingo) Docs : documentation de la coupure d'urgence ajoutée dans les 11 langues
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: encodage des espaces en %20 dans l'URL du bouton Buy Me a Coffee — l'image ne s'affichait pas sur GitHub
@@ -221,43 +299,3 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Fonctionnalité : protocole Modbus V2.9 — nouveaux registres installation/onduleur/chargeur DC, registres obsolètes supprimés, énumérations étendues
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) Correctif : suppression du format long i18n dupliqué (admin/i18n), ajout de la clé de traduction /dev/ttyUSB0
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) Chore : devDependency @alcalzone/release-script mise à jour vers ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) Chore : ajout de @tsconfig/node22 en devDependency (mise à jour du template ioBroker)
-- (ssbingo) Chore : testing-action-check mis à jour vers @v2
-- (ssbingo) Chore : mise à jour de sécurité axios
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) Correctif : corrections pipeline CI — Node.js 24, @types/node ^22.0.0, package-lock.json corrigé ; seule la dernière entrée dans common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) Correctif : package-lock.json mis à jour pour @types/node ^22.0.0 (était verrouillé sur 25.x)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) Correctif : @types/node épinglé à ^22.0.0 dans les devDependencies
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) Correctif : Node.js 24 pour les jobs CI check-and-lint et deploy
-- (ssbingo) Chore : ajout de @types/node en devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Mises à jour des dépendances via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) Mises à jour CI — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) Mises à jour des dépendances via Dependabot : protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) Node.js >= 22 requis désormais
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) Correctif : journaux d'erreurs de connexion/polling dédupliqués pour éviter l'inondation des logs et améliorer la compatibilité Sentry
-- (ssbingo) Correctif : protections à l'arrêt et extendForeignObject évitent les conditions de concurrence au déchargement et avec l'UI admin
-- (ssbingo) Correctif : fuite de socket corrigée sur timeout Modbus ; testConnection met maintenant le polling en pause ; canaux de contrôle vides supprimés
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) Nouveau : ajout des états calculés plant.pv1Power, plant.pv2Power, plant.pv3Power

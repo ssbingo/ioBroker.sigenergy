@@ -128,6 +128,80 @@ Wybierz wartości statystyczne do obliczenia:
 
 ---
 
+## Wyłączenie awaryjne — ochrona zewnętrznych systemów fotowoltaicznych
+
+### Kontekst
+
+Hybrydowe falowniki Sigenergy posiadają opcjonalną **bramę zasilania awaryjnego**,
+która automatycznie przełącza się w tryb off-grid / wyspy przy zaniku zasilania sieciowego.
+W tym trybie system Sigenergy generuje własną lokalną sieć prądu przemiennego,
+zasilaną z akumulatora.
+
+Jeśli do tego samego obwodu domowego podłączony jest **drugi system fotowoltaiczny** —
+np. elektrownia balkonowa, mikroinwerter lub falownik łańcuchowy innej firmy —
+będzie on nadal zasilał tę izolowaną lokalną sieć. Większość falowników sieciowych
+nie jest zaprojektowana do takiej pracy i może:
+
+- przeciążyć system zarządzania akumulatorem Sigenergy
+- zdestabilizować napięcie lub częstotliwość w sieci wyspowej
+- ulec uszkodzeniu z powodu niestandardowych warunków pracy
+
+Jedynym bezpiecznym rozwiązaniem jest **natychmiastowe odłączenie** zewnętrznego systemu
+gdy tylko Sigenergy przejdzie w tryb off-grid.
+
+### Sposób działania w adapterze
+
+Adapter monitoruje stan `plant.onOffGridStatus` w każdym cyklu odpytywania.
+
+**Przy zaniku sieci** (`onOffGridStatus` = 1 lub 2):
+- Wszystkie skonfigurowane urządzenia awaryjne są natychmiast przełączane
+- Opcjonalnie wysyłane jest powiadomienie Telegram
+
+**Przy powrocie sieci** (`onOffGridStatus` = 0):
+- Uruchamiany jest konfigurowalny timer stabilizacji (domyślnie: 10 minut)
+- Jeśli sieć pozostaje stabilna przez cały czas, urządzenia są przywracane
+- Jeśli sieć zaniknie ponownie podczas timera, timer jest anulowany
+  i urządzenia pozostają wyłączone
+- Po pomyślnym przywróceniu opcjonalnie wysyłane jest powiadomienie Telegram
+
+### Aktywacja funkcji
+
+**Krok 1 — zakładka Komponenty**  
+Zaznaczyć pole **Brama awaryjna (przełączanie off-grid)**.  
+Zakładka *Wyłączenie awaryjne* staje się widoczna.
+
+**Krok 2 — zakładka Wyłączenie awaryjne**
+
+#### Urządzenia
+
+| Pole | Opis |
+|---|---|
+| **Czas stabilizacji (minuty)** | Jak długo sieć musi pozostawać stabilna przed ponownym włączeniem urządzeń. Zalecenie: 10 minut. |
+| **Urządzenie 1 — ID obiektu** | ID stanu ioBroker głównego przełącznika systemu zewnętrznego. Przy zaniku sieci ustawiany na `false`; po stabilnym powrocie na `true`. |
+| **Urządzenia 2–4 — ID obiektu** | Dodatkowe opcjonalne urządzenia. |
+| **Urządzenia 2–4 — Kierunek** | *WYŁ przy zaniku, WŁ po powrocie* lub *WŁ przy zaniku, WYŁ po powrocie*. |
+
+#### Powiadomienia Telegram (opcjonalnie)
+
+| Pole | Opis |
+|---|---|
+| **Włącz powiadomienie Telegram** | Aktywuje powiadomienia przy zaniku i powrocie sieci. |
+| **Instancja Telegram** | Wybrać instancję adaptera `telegram.x` do użycia. |
+| **ID czatu** | Opcjonalnie: ograniczyć do konkretnego czatu. Pozostawić puste dla rozsyłania do wszystkich. |
+
+### Przykład — elektrownia balkonowa
+
+Przekaźnik Shelly Plus 1 jest włączony szeregowo w przewód zasilający elektrowni balkonowej.
+Jego ID stanu ioBroker to `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Konfiguracja:
+- **Urządzenie 1**: `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → Przekaźnik otwiera się (`false`) przy zaniku sieci, zamyka się (`true`) po stabilnym powrocie
+
+Elektrownia balkonowa jest teraz automatycznie chroniona.
+
+---
+
 ## Widżety VIS
 
 > **Uwaga:** Wszystkie 7 widżetów jest dostarczanych przez oddzielny adapter [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy). Zainstaluj go razem z tym adapterem, aby korzystać z widżetów w VIS-2.
@@ -165,6 +239,10 @@ Stan i pomiary mocy ładowarki DC.
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) Nowe: wyłączenie awaryjne — automatyczne odłączanie zewnętrznych systemów fotowoltaicznych (elektrowni balkonowych, mikroinwerterów) przy zaniku sieci; konfigurowalny timer stabilizacji przy powrocie sieci; opcjonalne powiadomienia Telegram
+- (ssbingo) Docs: dokumentacja wyłączenia awaryjnego dodana we wszystkich 11 językach
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: spacje w URL przycisku Buy Me a Coffee zakodowane jako %20 — obraz nie był wyświetlany na GitHub
@@ -235,43 +313,3 @@ Stan i pomiary mocy ładowarki DC.
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Funkcja: Protokół Modbus V2.9 — nowe rejestry instalacji/falownika/ładowarki DC, usunięto przestarzałe rejestry, rozszerzono wyliczenia
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) Poprawka: usunięty zduplikowany długi format i18n (admin/i18n), dodany klucz tłumaczenia /dev/ttyUSB0
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) Chore: devDependency @alcalzone/release-script zaktualizowana do ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) Chore: dodano @tsconfig/node22 jako devDependency (aktualizacja szablonu ioBroker)
-- (ssbingo) Chore: testing-action-check zaktualizowany do @v2
-- (ssbingo) Chore: aktualizacja bezpieczeństwa axios
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) Poprawka: korekty potoku CI — Node.js 24, @types/node ^22.0.0, poprawiony package-lock.json; tylko najnowszy wpis w common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) Poprawka: package-lock.json zaktualizowany dla @types/node ^22.0.0 (był zablokowany na 25.x)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) Poprawka: @types/node przypięty do ^22.0.0 w devDependencies
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) Poprawka: Node.js 24 dla zadań CI check-and-lint i deploy
-- (ssbingo) Chore: dodano @types/node jako devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Aktualizacje zależności via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) Aktualizacje CI — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) Aktualizacje zależności via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) Wymagany teraz Node.js >= 22
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) Poprawka: deduplikowane logi błędów połączenia/odpytywania zapobiegają zalewaniu logów i poprawiają gotowość do Sentry
-- (ssbingo) Poprawka: zabezpieczenia zamykania i extendForeignObject zapobiegają wyścigom przy wyładowaniu i z interfejsem admina
-- (ssbingo) Poprawka: naprawiony wyciek gniazda przy przekroczeniu limitu czasu Modbus; testConnection wstrzymuje teraz odpytywanie; usunięto puste kanały control
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) Nowość: dodano obliczone stany plant.pv1Power, plant.pv2Power, plant.pv3Power

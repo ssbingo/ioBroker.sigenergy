@@ -128,6 +128,78 @@
 
 ---
 
+## 紧急断电 — 保护外部光伏系统
+
+### 背景
+
+Sigenergy 混合逆变器配备可选的**紧急电源网关**，
+在电网断电时自动切换至离网/孤岛模式。
+在此模式下，Sigenergy 系统由电池供电，
+生成自己的本地交流电网。
+
+如果同一家庭电路上还连接了**第二套光伏系统** ——
+例如阳台光伏电站、微型逆变器或第三方串式逆变器——
+它将继续向这个孤立的本地电网中馈入电能。
+大多数并网逆变器并非为此情况设计，可能会：
+
+- 使 Sigenergy 电池管理系统过载
+- 导致孤岛电网的电压或频率不稳定
+- 因异常运行条件而受损
+
+唯一安全的解决方案是：一旦 Sigenergy 切换至离网模式，**立即断开**外部系统。
+
+### 适配器的处理方式
+
+适配器在每个轮询周期中监测 `plant.onOffGridStatus` 状态。
+
+**断网时**（`onOffGridStatus` = 1 或 2）：
+- 所有已配置的紧急设备立即切换
+- 可选发送 Telegram 通知
+
+**电网恢复时**（`onOffGridStatus` = 0）：
+- 启动可配置的稳定计时器（默认：10 分钟）
+- 若电网在整个计时期间保持稳定，则恢复设备
+- 若计时期间电网再次断电，计时器被取消，设备保持断电状态
+- 成功恢复后可选发送 Telegram 通知
+
+### 启用此功能
+
+**第 1 步 — 组件选项卡**  
+勾选 **紧急网关（离网切换）**。  
+*紧急断电* 选项卡变为可见。
+
+**第 2 步 — 紧急断电选项卡**
+
+#### 设备
+
+| 字段 | 说明 |
+|---|---|
+| **稳定延迟（分钟）** | 电网恢复后需保持稳定的时间，才会重新接通设备。建议：10 分钟。 |
+| **设备 1 — 对象 ID** | 外部系统主开关的 ioBroker 状态 ID。断网时设为 `false`；稳定恢复后设为 `true`。 |
+| **设备 2–4 — 对象 ID** | 其他可选设备。 |
+| **设备 2–4 — 切换方向** | *断网时关闭，恢复后开启* 或 *断网时开启，恢复后关闭*。 |
+
+#### Telegram 通知（可选）
+
+| 字段 | 说明 |
+|---|---|
+| **启用 Telegram 通知** | 在断网和恢复时激活通知。 |
+| **Telegram 实例** | 选择要使用的 `telegram.x` 适配器实例。 |
+| **聊天 ID** | 可选：限制发送到特定聊天。留空则向所有已配置聊天广播。 |
+
+### 示例 — 阳台光伏电站
+
+Shelly Plus 1 继电器串联接入阳台光伏电站的供电电缆。
+其 ioBroker 状态 ID 为 `shelly.0.SHPLUS1-ABC123.Relay0.Switch`。
+
+配置：
+- **设备 1**：`shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → 断网时继电器断开（`false`），稳定恢复后闭合（`true`）
+
+阳台光伏电站现已得到自动保护。
+
+---
+
 ## VIS 组件
 
 > **注意：** 全部 7 个组件由独立适配器 [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy) 提供。请与本适配器一起安装，以便在 VIS-2 中使用这些组件。
@@ -165,6 +237,10 @@ Sigen EVAC 充电站的状态和功率读数。
 ---
 
 ## 更新日志
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) 新功能：紧急断电 — 电网断电时自动断开外部光伏系统（阳台光伏电站、微型逆变器）；电网恢复时可配置稳定计时器；可选 Telegram 通知
+- (ssbingo) 文档：所有 11 种语言均已添加紧急断电说明文档
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: Buy Me a Coffee 按钮链接中的空格编码为 %20 — 图片在 GitHub 上无法显示
@@ -235,43 +311,3 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) 功能：Modbus 协议 V2.9 — 新增电站/逆变器/直流充电桩寄存器，删除已废弃寄存器，扩展枚举
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) 修复：删除重复的 i18n 长格式 (admin/i18n)，添加 /dev/ttyUSB0 翻译键
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) 维护：devDependency @alcalzone/release-script 更新至 ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) 维护：添加 @tsconfig/node22 devDependency（ioBroker 模板更新）
-- (ssbingo) 维护：testing-action-check 更新至 @v2
-- (ssbingo) 维护：axios 安全更新
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) 修复：CI 流水线修复 — Node.js 24、@types/node ^22.0.0、修正 package-lock.json；common.news 仅保留最新条目
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) 修复：更新 package-lock.json 以解析 @types/node ^22.0.0（之前锁定在 25.x）
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) 修复：在 devDependencies 中将 @types/node 固定为 ^22.0.0
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) 修复：CI 的 check-and-lint 和 deploy 任务改用 Node.js 24
-- (ssbingo) Chore：添加 @types/node devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Dependabot 依赖更新 — @alcalzone/release-script* 5.2.0、@iobroker/eslint-config 2.3.4
-- (ssbingo) CI 更新 — actions/setup-node@v6、testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) 依赖更新 via Dependabot：protobufjs、@protobufjs/utf8、fast-uri
-- (ssbingo) 现在需要 Node.js >= 22
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) 修复：去重连接/轮询错误日志以防止日志泛滥并改进 Sentry 兼容性
-- (ssbingo) 修复：关闭保护和 extendForeignObject 可防止卸载时以及与管理界面的竞争条件
-- (ssbingo) 修复：修复 Modbus 超时时的套接字泄漏；testConnection 现在会暂停轮询；移除空的 control 通道
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) 新功能：新增计算状态 plant.pv1Power、plant.pv2Power、plant.pv3Power

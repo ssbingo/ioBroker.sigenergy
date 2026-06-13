@@ -1,5 +1,45 @@
 # Older Changelog
 
+### 1.9.17 (2026-06-08)
+- (ssbingo) fix: remove duplicate i18n long format (admin/i18n), add /dev/ttyUSB0 translation key
+
+### 1.9.16 (2026-06-08)
+- (ssbingo) chore: update devDependency @alcalzone/release-script to ^5.2.1
+
+### 1.9.15 (2026-06-08)
+- (ssbingo) chore: add @tsconfig/node22 devDependency (ioBroker template update)
+- (ssbingo) chore: update testing-action-check to @v2
+- (ssbingo) chore: bump axios (security fix)
+
+### 1.9.14 (2026-05-27)
+- (ssbingo) fix: CI pipeline fixes — Node.js 24, @types/node ^22.0.0, corrected package-lock.json; only latest entry in common.news
+
+### 1.9.13 (2026-05-27)
+- (ssbingo) fix: update package-lock.json to resolve @types/node ^22.0.0 (was locked to 25.x)
+
+### 1.9.12 (2026-05-27)
+- (ssbingo) fix: pin @types/node to ^22.0.0 in devDependencies
+
+### 1.9.11 (2026-05-27)
+- (ssbingo) fix: use Node.js 24 for CI check-and-lint and deploy jobs
+- (ssbingo) chore: add @types/node devDependency
+
+### 1.9.10 (2026-05-27)
+- (ssbingo) chore: Dependabot bumps — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
+- (ssbingo) chore: CI updates — actions/setup-node@v6, testing-action-deploy@v1
+
+### 1.9.9 (2026-05-14)
+- (ssbingo) chore: dependency bumps via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
+- (ssbingo) chore: requires Node.js >= 22 now
+
+### 1.9.8 (2026-04-22)
+- (ssbingo) fix: deduplicated connection/poll error logs to prevent log flooding and improve Sentry-readiness
+- (ssbingo) fix: shutdown guards and extendForeignObject prevent race conditions on unload and with admin UI
+- (ssbingo) fix: closed socket leak on Modbus timeout; testConnection pauses polling; removed empty control channels
+
+### 1.9.7 (2026-04-16)
+- (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
+
 ### 1.9.6 (2026-04-16)
 - (ssbingo) feat: added calculated states plant.pv1Power, plant.pv2Power, plant.pv3Power
 

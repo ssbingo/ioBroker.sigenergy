@@ -123,6 +123,79 @@ Kies welke statistische waarden berekend moeten worden:
 
 ---
 
+## Nooduitschakeling — bescherming van externe PV-systemen
+
+### Achtergrond
+
+Sigenergy hybride omvormers beschikken over een optionele **noodstroom-gateway**
+die bij een netuitval automatisch overschakelt naar off-grid / eilandbedrijf.
+In deze modus genereert het Sigenergy-systeem een eigen lokaal wisselstroomnet
+dat gevoed wordt door de batterij.
+
+Als er een **tweede PV-systeem** — zoals een balkon-zonnecentrale, een micro-omvormer
+of een externe string-omvormer — op hetzelfde huishoudelijke circuit is aangesloten,
+blijft het energie leveren aan dit geïsoleerde lokale net. De meeste netgekoppelde
+omvormers zijn niet ontworpen voor deze situatie en kunnen:
+
+- het batterijbeheersysteem van Sigenergy overbelasten
+- spanning of frequentie in het eilandnet destabiliseren
+- beschadigd raken door de ongewone bedrijfsomstandigheden
+
+De enige veilige oplossing is het **onmiddellijk loskoppelen** van het externe systeem
+zodra Sigenergy naar off-grid modus schakelt.
+
+### Hoe de adapter dit afhandelt
+
+De adapter bewaakt de toestand `plant.onOffGridStatus` bij elke poll-cyclus.
+
+**Bij netuitval** (`onOffGridStatus` = 1 of 2):
+- Alle geconfigureerde noodapparaten worden direct geschakeld
+- Optioneel wordt een Telegram-melding verstuurd
+
+**Bij terugkeer van het net** (`onOffGridStatus` = 0):
+- Een instelbare stabilisatietimer start (standaard: 10 minuten)
+- Als het net gedurende de volledige periode stabiel blijft, worden de apparaten hersteld
+- Als het net tijdens de timer opnieuw uitvalt, wordt de timer verworpen en blijven de apparaten uitgeschakeld
+- Bij succesvolle herstart wordt optioneel een Telegram-melding verstuurd
+
+### Functie activeren
+
+**Stap 1 — tabblad Componenten**  
+Vink **Noodstroom-gateway (off-grid schakeling)** aan.  
+Het tabblad *Nooduitschakeling* wordt zichtbaar.
+
+**Stap 2 — tabblad Nooduitschakeling**
+
+#### Apparaten
+
+| Veld | Beschrijving |
+|---|---|
+| **Stabilisatietijd (minuten)** | Hoe lang het net stabiel moet blijven voordat apparaten teruggeschakeld worden. Aanbeveling: 10 minuten. |
+| **Apparaat 1 — Object-ID** | De ioBroker-toestand-ID van de hoofdschakelaar van het externe systeem. Bij netuitval ingesteld op `false`; na stabiel herstel op `true`. |
+| **Apparaten 2–4 — Object-ID** | Extra optionele apparaten. |
+| **Apparaten 2–4 — Schakelrichting** | *UIT bij uitval, AAN na herstel* of *AAN bij uitval, UIT na herstel*. |
+
+#### Telegram-meldingen (optioneel)
+
+| Veld | Beschrijving |
+|---|---|
+| **Telegram-melding inschakelen** | Activeert meldingen bij netuitval en herstel. |
+| **Telegram-instantie** | Selecteer de te gebruiken `telegram.x`-adapterinstantie. |
+| **Chat-ID** | Optioneel: beperk tot een specifieke chat. Leeg laten voor broadcast. |
+
+### Voorbeeld — balkon-zonnecentrale
+
+Een Shelly Plus 1 relais is in serie geschakeld met de voedingskabel van de balkon-zonnecentrale.
+De ioBroker-toestand-ID is `shelly.0.SHPLUS1-ABC123.Relay0.Switch`.
+
+Configuratie:
+- **Apparaat 1**: `shelly.0.SHPLUS1-ABC123.Relay0.Switch`  
+  → Relais opent (`false`) bij netuitval, sluit (`true`) na stabiel herstel
+
+De balkon-zonnecentrale is nu automatisch beschermd.
+
+---
+
 ## VIS-widgets
 
 > **Let op:** Alle 7 widgets worden geleverd door de afzonderlijke adapter [ioBroker.vis-2-widgets-sigenergy](https://github.com/ssbingo/ioBroker.vis-2-widgets-sigenergy). Installeer deze adapter naast deze adapter om de widgets in VIS-2 te gebruiken.
@@ -160,6 +233,10 @@ Status en vermogensmetingen van de DC-oplader.
 ---
 
 ## Changelog
+
+### 3.0.0 (2026-06-13)
+- (ssbingo) Nieuw: nooduitschakeling — automatisch loskoppelen van externe PV-systemen (balkon-zonnecentrales, micro-omvormers) bij netuitval; instelbare stabilisatietimer bij terugkeer van het net; optionele Telegram-meldingen
+- (ssbingo) Docs: documentatie nooduitschakeling toegevoegd in alle 11 talen
 
 ### 2.5.2 (2026-06-12)
 - (ssbingo) fix: spaties in de Buy Me a Coffee-knop-URL gecodeerd als %20 — afbeelding werd niet weergegeven op GitHub
@@ -230,43 +307,3 @@ Status en vermogensmetingen van de DC-oplader.
 
 ### 2.0.0 (2026-06-09)
 - (ssbingo) Functie: Modbus-protocol V2.9 — nieuwe registers voor installatie/omvormer/DC-lader, verouderde registers verwijderd, enumeraties uitgebreid
-
-### 1.9.17 (2026-06-08)
-- (ssbingo) Fix: dubbel i18n-lang formaat verwijderd (admin/i18n), vertaalsleutel /dev/ttyUSB0 toegevoegd
-
-### 1.9.16 (2026-06-08)
-- (ssbingo) Chore: devDependency @alcalzone/release-script bijgewerkt naar ^5.2.1
-
-### 1.9.15 (2026-06-08)
-- (ssbingo) Chore: @tsconfig/node22 toegevoegd als devDependency (ioBroker template-update)
-- (ssbingo) Chore: testing-action-check bijgewerkt naar @v2
-- (ssbingo) Chore: axios beveiligingsupdate
-
-### 1.9.14 (2026-05-27)
-- (ssbingo) Fix: CI-pipeline-correcties — Node.js 24, @types/node ^22.0.0, package-lock.json gecorrigeerd; alleen nieuwste vermelding in common.news
-
-### 1.9.13 (2026-05-27)
-- (ssbingo) Fix: package-lock.json bijgewerkt voor @types/node ^22.0.0 (was vergrendeld op 25.x)
-
-### 1.9.12 (2026-05-27)
-- (ssbingo) Fix: @types/node vastgezet op ^22.0.0 in devDependencies
-
-### 1.9.11 (2026-05-27)
-- (ssbingo) Fix: Node.js 24 voor CI-jobs check-and-lint en deploy
-- (ssbingo) Chore: @types/node toegevoegd als devDependency
-
-### 1.9.10 (2026-05-27)
-- (ssbingo) Dependency-updates via Dependabot — @alcalzone/release-script* 5.2.0, @iobroker/eslint-config 2.3.4
-- (ssbingo) CI-updates — actions/setup-node@v6, testing-action-deploy@v1
-
-### 1.9.9 (2026-05-14)
-- (ssbingo) Dependency-updates via Dependabot: protobufjs, @protobufjs/utf8, fast-uri
-- (ssbingo) Vereist nu Node.js >= 22
-
-### 1.9.8 (2026-04-22)
-- (ssbingo) Fix: gedupliceerde connectie-/poll-foutlogs voorkomen log-flooding en verbeteren Sentry-gereedheid
-- (ssbingo) Fix: shutdown-guards en extendForeignObject voorkomen race-condities bij unload en met de admin UI
-- (ssbingo) Fix: socket-lek bij Modbus-timeout verholpen; testConnection pauzeert nu het polling; lege control-channels verwijderd
-
-### 1.9.7 (2026-04-16)
-- (ssbingo) Nieuw: berekende states plant.pv1Power, plant.pv2Power, plant.pv3Power toegevoegd
