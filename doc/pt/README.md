@@ -240,6 +240,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Correção: welcomeText não funcional removido de io-package.json; aviso staticText visível adicionado no separador Desligamento de emergência (caixa amarela, i18n em todos os 11 idiomas)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Correção: erros ESLint/Prettier nos métodos de desligamento de emergência — variável não utilizada removida, indentação corrigida, tipos JSDoc @param adicionados
 

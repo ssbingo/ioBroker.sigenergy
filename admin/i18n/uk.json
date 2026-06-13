@@ -160,5 +160,6 @@
   "Enable Telegram notification": "Увімкнути сповіщення Telegram",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Надіслати повідомлення Telegram при переході системи в режим off-grid та при відновленні стабільної роботи від мережі.",
   "Telegram instance": "Екземпляр Telegram",
-  "Chat ID (empty = broadcast to all configured chats)": "ID чату (порожньо = розсилка всім налаштованим чатам)"
+  "Chat ID (empty = broadcast to all configured chats)": "ID чату (порожньо = розсилка всім налаштованим чатам)",
+  "emergencyWarningText": "⚠️ УВАГА: Використовуйте цю функцію виключно якщо знаєте, що робите. Вона автоматично перемикає зовнішні пристрої (напр. балконні електростанції) при зникненні мережі. Неправильне налаштування може пошкодити підключені пристрої. Див. README.md."
 }

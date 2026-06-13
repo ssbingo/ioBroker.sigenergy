@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Fix: niet-functionele welcomeText verwijderd uit io-package.json; zichtbare waarschuwing als staticText toegevoegd in tabblad Nooduitschakeling (gele box, i18n in alle 11 talen)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Fix: ESLint/Prettier-fouten in nooduitschakelmethoden opgelost — ongebruikte variabele verwijderd, inspringing gecorrigeerd, JSDoc @param-typen toegevoegd
 

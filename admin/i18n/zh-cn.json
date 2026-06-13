@@ -160,5 +160,6 @@
   "Enable Telegram notification": "启用 Telegram 通知",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "当系统切换到离网模式以及电网稳定运行恢复时发送 Telegram 消息。",
   "Telegram instance": "Telegram 实例",
-  "Chat ID (empty = broadcast to all configured chats)": "聊天 ID（空 = 广播至所有已配置聊天）"
+  "Chat ID (empty = broadcast to all configured chats)": "聊天 ID（空 = 广播至所有已配置聊天）",
+  "emergencyWarningText": "⚠️ 警告：仅在您了解操作含义的情况下使用此功能。它会在电网断电时自动切换外部设备（如阳台光伏电站）。配置错误可能损坏已连接的设备。详见 README.md。"
 }

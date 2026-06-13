@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Fix: nicht-funktionalen welcomeText aus io-package.json entfernt; sichtbarer Warnhinweis als staticText im Tab Notabschaltung ergänzt (gelbe Box, i18n in allen 11 Sprachen)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Fix: ESLint/Prettier-Fehler in den Notabschalt-Methoden behoben — ungenutzte Variable entfernt, Einrückung korrigiert, JSDoc @param-Typen ergänzt
 

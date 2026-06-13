@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Correctif : welcomeText non fonctionnel supprimé de io-package.json ; avertissement staticText visible ajouté dans l'onglet Coupure d'urgence (encadré jaune, i18n dans les 11 langues)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Correctif : erreurs ESLint/Prettier corrigées dans les méthodes de coupure d'urgence — variable inutilisée supprimée, indentation corrigée, types JSDoc @param ajoutés
 

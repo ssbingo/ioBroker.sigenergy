@@ -160,5 +160,6 @@
   "Enable Telegram notification": "Enable Telegram notification",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.",
   "Telegram instance": "Telegram instance",
-  "Chat ID (empty = broadcast to all configured chats)": "Chat ID (empty = broadcast to all configured chats)"
+  "Chat ID (empty = broadcast to all configured chats)": "Chat ID (empty = broadcast to all configured chats)",
+  "emergencyWarningText": "⚠️ WARNING: Only use this function if you know what you are doing. It switches external devices (e.g. balcony power plants) automatically during grid failures. Incorrect configuration can damage connected devices. See README.md for details."
 }

@@ -160,5 +160,6 @@
   "Enable Telegram notification": "Telegram-Benachrichtigung aktivieren",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Telegram-Nachricht senden, wenn das System in den Off-Grid-Modus wechselt und wenn stabiler Netzbetrieb wiederhergestellt wird.",
   "Telegram instance": "Telegram-Instanz",
-  "Chat ID (empty = broadcast to all configured chats)": "Chat-ID (leer = Broadcast an alle konfigurierten Chats)"
+  "Chat ID (empty = broadcast to all configured chats)": "Chat-ID (leer = Broadcast an alle konfigurierten Chats)",
+  "emergencyWarningText": "⚠️ ACHTUNG: Nutzen Sie diese Funktion ausschließlich, wenn Sie wissen, was Sie tun. Sie schaltet externe Geräte (z. B. Balkonkraftwerke) bei Netzausfall automatisch. Falsche Konfiguration kann angeschlossene Geräte beschädigen. Siehe README.md."
 }

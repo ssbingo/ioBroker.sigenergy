@@ -160,5 +160,6 @@
   "Enable Telegram notification": "Telegram-melding inschakelen",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Stuur een Telegram-bericht wanneer het systeem naar off-grid modus schakelt en wanneer de stabiele netaansluiting is hersteld.",
   "Telegram instance": "Telegram-instantie",
-  "Chat ID (empty = broadcast to all configured chats)": "Chat-ID (leeg = broadcast naar alle geconfigureerde chats)"
+  "Chat ID (empty = broadcast to all configured chats)": "Chat-ID (leeg = broadcast naar alle geconfigureerde chats)",
+  "emergencyWarningText": "⚠️ WAARSCHUWING: Gebruik deze functie uitsluitend als u weet wat u doet. Ze schakelt externe apparaten (bijv. balkon-zonnecentrales) automatisch bij netuitval. Onjuiste configuratie kan aangesloten apparaten beschadigen. Zie README.md."
 }

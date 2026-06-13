@@ -235,6 +235,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Correzione: welcomeText non funzionale rimosso da io-package.json; avviso staticText visibile aggiunto nella scheda Disconnessione d'emergenza (riquadro giallo, i18n in tutte le 11 lingue)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Correzione: errori ESLint/Prettier nei metodi di disconnessione d'emergenza — variabile inutilizzata rimossa, indentazione corretta, tipi JSDoc @param aggiunti
 

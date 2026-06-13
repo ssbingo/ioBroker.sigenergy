@@ -238,6 +238,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) 修复：从 io-package.json 中删除无效的 welcomeText；在紧急断电配置选项卡中添加可见警告 staticText（黄色提示框，支持全部 11 种语言 i18n）
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) 修复：修正紧急断电方法中的 ESLint/Prettier 错误 — 删除未使用变量，修正缩进，添加 JSDoc @param 类型
 

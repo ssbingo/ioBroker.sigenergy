@@ -160,5 +160,6 @@
   "Enable Telegram notification": "Activer la notification Telegram",
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Envoyer un message Telegram lorsque le système passe en mode hors réseau et lorsque le fonctionnement réseau stable est rétabli.",
   "Telegram instance": "Instance Telegram",
-  "Chat ID (empty = broadcast to all configured chats)": "ID de chat (vide = diffusion à tous les chats configurés)"
+  "Chat ID (empty = broadcast to all configured chats)": "ID de chat (vide = diffusion à tous les chats configurés)",
+  "emergencyWarningText": "⚠️ AVERTISSEMENT : N'utilisez cette fonction que si vous savez ce que vous faites. Elle commute automatiquement des appareils externes (p. ex. centrales de balcon) lors de coupures réseau. Une mauvaise configuration peut endommager les appareils connectés. Voir README.md."
 }

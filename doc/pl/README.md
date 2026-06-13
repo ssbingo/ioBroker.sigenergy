@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.3 (2026-06-13)
+- (ssbingo) Poprawka: usunięto niedziałający welcomeText z io-package.json; dodano widoczne ostrzeżenie staticText w zakładce Wyłączenie awaryjne (żółte pole, i18n we wszystkich 11 językach)
+
 ### 3.0.2 (2026-06-13)
 - (ssbingo) Poprawka: błędy ESLint/Prettier w metodach wyłączenia awaryjnego — usunięto nieużywaną zmienną, poprawiono wcięcia, dodano typy JSDoc @param
 

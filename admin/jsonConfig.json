@@ -858,6 +858,23 @@
       "label": "Emergency Switching",
       "hidden": "!data.hasEmergencyGateway",
       "items": {
+        "_emergencyWarning": {
+          "type": "staticText",
+          "text": "emergencyWarningText",
+          "style": {
+            "backgroundColor": "#fff3cd",
+            "border": "1px solid #ffc107",
+            "borderRadius": "4px",
+            "padding": "10px 14px",
+            "fontWeight": "bold",
+            "color": "#856404"
+          },
+          "sm": 12,
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
         "_emergencyHeader": {
           "type": "staticText",
           "text": "Configure devices to switch automatically when Sigenergy enters off-grid (island) mode. Device 1 is always switched OFF on grid failure and ON after stable grid recovery. Devices 2–4 are optional — choose the switching direction for each.",
