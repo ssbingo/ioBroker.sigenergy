@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Poprawka: powiadomienie Telegram przy zaniku sieci jest teraz wysyłane tylko raz (nie przy każdym odpytywaniu); przełączanie urządzeń ograniczone do 3 prób (inicjalne + 2 powtórzenia) w trybie off-grid
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Poprawka: usunięto niedziałający welcomeText z io-package.json; dodano widoczne ostrzeżenie staticText w zakładce Wyłączenie awaryjne (żółte pole, i18n we wszystkich 11 językach)
 

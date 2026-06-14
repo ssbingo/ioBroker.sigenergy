@@ -240,6 +240,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Correção: a notificação Telegram em caso de falha de rede é agora enviada apenas uma vez (não a cada sondagem); a comutação de dispositivos está limitada a 3 tentativas no máximo (inicial + 2 repetições) em modo off-grid
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Correção: welcomeText não funcional removido de io-package.json; aviso staticText visível adicionado no separador Desligamento de emergência (caixa amarela, i18n em todos os 11 idiomas)
 

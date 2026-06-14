@@ -240,6 +240,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Corrección: la notificación Telegram ante un corte de red ahora se envía una sola vez (no en cada poll); la conmutación de dispositivos se limita a 3 intentos máximos (inicial + 2 reintentos) en modo fuera de red
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Corrección: eliminado welcomeText no funcional de io-package.json; añadido aviso staticText visible en pestaña Desconexión de emergencia (caja amarilla, i18n en los 11 idiomas)
 

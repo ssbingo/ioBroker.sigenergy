@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) fix: emergency Telegram notification now sent only once per grid-failure event (not repeated every poll); device switching limited to 3 attempts max (initial + 2 retries) while off-grid
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) fix: remove non-functional welcomeText from io-package.json; add visible warning staticText in Emergency Switching config tab (yellow box, i18n in all 11 languages)
 

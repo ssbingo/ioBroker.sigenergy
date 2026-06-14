@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Fix: Telegram-Benachrichtigung bei Netzausfall wird nur noch einmal gesendet (nicht bei jedem Poll); Schaltvorgang auf maximal 3 Versuche begrenzt (initial + 2 Wiederholungen) solange Off-Grid
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Fix: nicht-funktionalen welcomeText aus io-package.json entfernt; sichtbarer Warnhinweis als staticText im Tab Notabschaltung ergänzt (gelbe Box, i18n in allen 11 Sprachen)
 

@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Correctif : la notification Telegram lors d'une coupure réseau n'est désormais envoyée qu'une seule fois (pas à chaque poll) ; la commutation des appareils est limitée à 3 tentatives maximum (initiale + 2 nouvelles) en mode hors réseau
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Correctif : welcomeText non fonctionnel supprimé de io-package.json ; avertissement staticText visible ajouté dans l'onglet Coupure d'urgence (encadré jaune, i18n dans les 11 langues)
 

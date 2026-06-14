@@ -136,6 +136,7 @@ class Sigenergy extends utils.Adapter {
         this._protocolDetected = false;
         this._emergencyWasOffGrid = false;
         this._emergencyStabilityTimer = null;
+        this._emergencySwitchCount = 0;
         this._protoDetectWarnLogged = false;
         this._modelVerified = false;
         this._pvStringCount = 0;
@@ -2175,12 +2176,14 @@ class Sigenergy extends utils.Adapter {
         this.log.info(`[emergency] Initial onOffGridStatus: ${val} (${this._emergencyModeName(val)})`);
         if (isOff) {
             this._emergencyWasOffGrid = true;
+            this._emergencySwitchCount = 1;
             this.log.warn(`[emergency] System already off-grid at start — switching emergency devices`);
             await this._emergencySwitchAll(true);
             await this._emergencySendTelegram(
                 `⚠️ Sigenergy — Grid failure\n\nMode: ${this._emergencyModeName(val)}\nEmergency devices switched.\n\n🕐 ${new Date().toLocaleString()}`,
             );
         } else {
+            this._emergencySwitchCount = 0;
             this.log.info('[emergency] System on-grid at start — restoring emergency devices');
             await this._emergencySwitchAll(false);
         }
@@ -2195,17 +2198,29 @@ class Sigenergy extends utils.Adapter {
         const isOff = this._emergencyIsOffGrid(val);
 
         if (isOff) {
-            if (!this._emergencyWasOffGrid) {
+            const wasAlreadyOff = this._emergencyWasOffGrid;
+            this._emergencyWasOffGrid = true;
+            this._emergencyCancelTimer();
+            if (!wasAlreadyOff) {
+                // First transition on→off-grid: switch immediately, send Telegram once
                 this.log.warn(
                     `[emergency] Off-grid detected: ${this._emergencyModeName(val)} — switching emergency devices`,
                 );
+                this._emergencySwitchCount = 1;
+                await this._emergencySwitchAll(true);
+                await this._emergencySendTelegram(
+                    `⚠️ Sigenergy — Grid failure\n\nMode: ${this._emergencyModeName(val)}\nEmergency devices switched.\n\n🕐 ${new Date().toLocaleString()}`,
+                );
+            } else if (this._emergencySwitchCount < 3) {
+                // Still off-grid on subsequent polls: retry switch, max 2 retries (3 total)
+                this._emergencySwitchCount++;
+                this.log.info(
+                    `[emergency] Still off-grid — retry device switch (attempt ${this._emergencySwitchCount}/3)`,
+                );
+                await this._emergencySwitchAll(true);
+            } else {
+                this.log.debug('[emergency] Still off-grid — max switch attempts reached, skipping');
             }
-            this._emergencyWasOffGrid = true;
-            this._emergencyCancelTimer();
-            await this._emergencySwitchAll(true);
-            await this._emergencySendTelegram(
-                `⚠️ Sigenergy — Grid failure\n\nMode: ${this._emergencyModeName(val)}\nEmergency devices switched.\n\n🕐 ${new Date().toLocaleString()}`,
-            );
         } else {
             if (!this._emergencyWasOffGrid) {
                 return;
@@ -2225,6 +2240,7 @@ class Sigenergy extends utils.Adapter {
                     if (current && !this._emergencyIsOffGrid(current.val)) {
                         this.log.info(`[emergency] ${delayMin} min stable — restoring all emergency devices`);
                         this._emergencyWasOffGrid = false;
+                        this._emergencySwitchCount = 0;
                         await this._emergencySwitchAll(false);
                         await this._emergencySendTelegram(
                             `✅ Sigenergy — Grid stable\n\nGrid has been stable for ${delayMin} minutes.\nAll emergency devices restored.\n\n🕐 ${new Date().toLocaleString()}`,

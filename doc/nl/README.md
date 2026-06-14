@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.4 (2026-06-14)
+- (ssbingo) Fix: Telegram-melding bij netuitval wordt nu slechts eenmaal verstuurd (niet bij elke poll); schakelhandeling beperkt tot maximaal 3 pogingen (initieel + 2 herhalingen) bij netuitval
+
 ### 3.0.3 (2026-06-13)
 - (ssbingo) Fix: niet-functionele welcomeText verwijderd uit io-package.json; zichtbare waarschuwing als staticText toegevoegd in tabblad Nooduitschakeling (gele box, i18n in alle 11 talen)
 
