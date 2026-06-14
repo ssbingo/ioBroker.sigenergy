@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: doppeltes common.license-Feld entfernt — licenseInformation bereits vorhanden
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: fehlendes license-Feld im common-Block der io-package.json ergänzt
 

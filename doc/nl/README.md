@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: dubbel common.license-veld verwijderd — licenseInformation al aanwezig
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: ontbrekend license-veld toegevoegd aan common-blok van io-package.json
 

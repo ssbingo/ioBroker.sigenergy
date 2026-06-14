@@ -238,6 +238,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: 删除重复的 common.license 字段 — licenseInformation 已存在
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: 在 io-package.json common 块中添加缺失的 license 字段
 

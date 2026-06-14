@@ -234,6 +234,9 @@
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: удалено дублирующее поле common.license — licenseInformation уже присутствует
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: добавлено отсутствующее поле license в блок common io-package.json
 

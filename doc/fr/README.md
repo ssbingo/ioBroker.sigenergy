@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: champ common.license en double supprimé — licenseInformation déjà présent
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: champ license manquant ajouté au bloc common de io-package.json
 

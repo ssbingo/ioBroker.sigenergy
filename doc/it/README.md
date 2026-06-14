@@ -235,6 +235,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: rimosso il campo common.license duplicato — licenseInformation già presente
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: aggiunto il campo license mancante nel blocco common di io-package.json
 

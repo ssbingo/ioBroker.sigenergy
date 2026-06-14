@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: usunięto zduplikowane pole common.license — licenseInformation już obecne
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: dodano brakujące pole license w bloku common io-package.json
 

@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.5",
+        "version": "3.0.6",
         "news": {
-            "3.0.5": {
-                "en": "(ssbingo) fix: add missing license field to io-package.json common block",
-                "de": "(ssbingo) fix: fehlendes license-Feld im common-Block der io-package.json ergänzt",
-                "ru": "(ssbingo) fix: добавлено отсутствующее поле license в блок common io-package.json",
-                "pt": "(ssbingo) fix: campo license ausente adicionado ao bloco common do io-package.json",
-                "nl": "(ssbingo) fix: ontbrekend license-veld toegevoegd aan common-blok van io-package.json",
-                "fr": "(ssbingo) fix: champ license manquant ajouté au bloc common de io-package.json",
-                "it": "(ssbingo) fix: aggiunto il campo license mancante nel blocco common di io-package.json",
-                "es": "(ssbingo) fix: campo license faltante añadido al bloque common de io-package.json",
-                "pl": "(ssbingo) fix: dodano brakujące pole license w bloku common io-package.json",
-                "uk": "(ssbingo) fix: додано відсутнє поле license у блок common io-package.json",
-                "zh-cn": "(ssbingo) fix: 在 io-package.json common 块中添加缺失的 license 字段"
+            "3.0.6": {
+                "en": "(ssbingo) fix: remove duplicate common.license field — licenseInformation already present",
+                "de": "(ssbingo) fix: doppeltes common.license-Feld entfernt — licenseInformation bereits vorhanden",
+                "ru": "(ssbingo) fix: удалено дублирующее поле common.license — licenseInformation уже присутствует",
+                "pt": "(ssbingo) fix: campo common.license duplicado removido — licenseInformation já presente",
+                "nl": "(ssbingo) fix: dubbel common.license-veld verwijderd — licenseInformation al aanwezig",
+                "fr": "(ssbingo) fix: champ common.license en double supprimé — licenseInformation déjà présent",
+                "it": "(ssbingo) fix: rimosso il campo common.license duplicato — licenseInformation già presente",
+                "es": "(ssbingo) fix: campo common.license duplicado eliminado — licenseInformation ya presente",
+                "pl": "(ssbingo) fix: usunięto zduplikowane pole common.license — licenseInformation już obecne",
+                "uk": "(ssbingo) fix: видалено дубльоване поле common.license — licenseInformation вже присутнє",
+                "zh-cn": "(ssbingo) fix: 删除重复的 common.license 字段 — licenseInformation 已存在"
             }
         },
         "titleLang": {
@@ -56,7 +56,6 @@
             "pv"
         ],
         "platform": "Javascript/Node.js",
-        "license": "MIT",
         "icon": "sigenergy.png",
         "extIcon": "https://raw.githubusercontent.com/ssbingo/ioBroker.sigenergy/main/admin/sigenergy.png",
         "enabled": true,

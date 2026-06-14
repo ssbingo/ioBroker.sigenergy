@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.6 (2026-06-14)
+- (ssbingo) fix: remove duplicate common.license field — licenseInformation already present
+
 ### 3.0.5 (2026-06-14)
 - (ssbingo) fix: add missing license field to io-package.json common block
 
