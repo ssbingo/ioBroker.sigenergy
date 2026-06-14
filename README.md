@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.5 (2026-06-14)
+- (ssbingo) fix: add missing license field to io-package.json common block
+
 ### 3.0.4 (2026-06-14)
 - (ssbingo) fix: emergency Telegram notification now sent only once per grid-failure event (not repeated every poll); device switching limited to 3 attempts max (initial + 2 retries) while off-grid
 

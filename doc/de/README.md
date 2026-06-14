@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.5 (2026-06-14)
+- (ssbingo) fix: fehlendes license-Feld im common-Block der io-package.json ergänzt
+
 ### 3.0.4 (2026-06-14)
 - (ssbingo) Fix: Telegram-Benachrichtigung bei Netzausfall wird nur noch einmal gesendet (nicht bei jedem Poll); Schaltvorgang auf maximal 3 Versuche begrenzt (initial + 2 Wiederholungen) solange Off-Grid
 

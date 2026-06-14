@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.5 (2026-06-14)
+- (ssbingo) fix: champ license manquant ajouté au bloc common de io-package.json
+
 ### 3.0.4 (2026-06-14)
 - (ssbingo) Correctif : la notification Telegram lors d'une coupure réseau n'est désormais envoyée qu'une seule fois (pas à chaque poll) ; la commutation des appareils est limitée à 3 tentatives maximum (initiale + 2 nouvelles) en mode hors réseau
 

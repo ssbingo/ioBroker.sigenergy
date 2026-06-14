@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.5 (2026-06-14)
+- (ssbingo) fix: ontbrekend license-veld toegevoegd aan common-blok van io-package.json
+
 ### 3.0.4 (2026-06-14)
 - (ssbingo) Fix: Telegram-melding bij netuitval wordt nu slechts eenmaal verstuurd (niet bij elke poll); schakelhandeling beperkt tot maximaal 3 pogingen (initieel + 2 herhalingen) bij netuitval
 
