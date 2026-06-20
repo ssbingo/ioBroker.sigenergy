@@ -57,7 +57,7 @@ jobs:
           curl -fsSL "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz" \
             | tar xz --strip-components=1 -C "$NPM_GLOBAL"
           echo "npm version: $(npm --version)"
-      - uses: ioBroker/testing-action-adapter@v1
+      - uses: ioBroker/testing-action-adapter@v1.1.1
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
