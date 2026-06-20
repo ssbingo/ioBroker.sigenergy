@@ -23,7 +23,7 @@
     "url": "https://github.com/ssbingo/ioBroker.sigenergy.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.3.2",
+    "@iobroker/adapter-core": "^3.4.1",
     "modbus-serial": "^8.0.25",
     "serialport": "^13.0.0"
   },
