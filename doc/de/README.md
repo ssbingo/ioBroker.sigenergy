@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.7 (2026-06-28)
+- (ssbingo) chore: Abhängigkeiten aktualisiert (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
+
 ### 3.0.6 (2026-06-14)
 - (ssbingo) fix: doppeltes common.license-Feld entfernt — licenseInformation bereits vorhanden
 

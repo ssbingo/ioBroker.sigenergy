@@ -238,6 +238,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 3.0.7 (2026-06-28)
+- (ssbingo) chore: 更新依赖项 (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
+
 ### 3.0.6 (2026-06-14)
 - (ssbingo) fix: 删除重复的 common.license 字段 — licenseInformation 已存在
 

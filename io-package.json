@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.6",
+        "version": "3.0.7",
         "news": {
-            "3.0.6": {
-                "en": "(ssbingo) fix: remove duplicate common.license field — licenseInformation already present",
-                "de": "(ssbingo) fix: doppeltes common.license-Feld entfernt — licenseInformation bereits vorhanden",
-                "ru": "(ssbingo) fix: удалено дублирующее поле common.license — licenseInformation уже присутствует",
-                "pt": "(ssbingo) fix: campo common.license duplicado removido — licenseInformation já presente",
-                "nl": "(ssbingo) fix: dubbel common.license-veld verwijderd — licenseInformation al aanwezig",
-                "fr": "(ssbingo) fix: champ common.license en double supprimé — licenseInformation déjà présent",
-                "it": "(ssbingo) fix: rimosso il campo common.license duplicato — licenseInformation già presente",
-                "es": "(ssbingo) fix: campo common.license duplicado eliminado — licenseInformation ya presente",
-                "pl": "(ssbingo) fix: usunięto zduplikowane pole common.license — licenseInformation już obecne",
-                "uk": "(ssbingo) fix: видалено дубльоване поле common.license — licenseInformation вже присутнє",
-                "zh-cn": "(ssbingo) fix: 删除重复的 common.license 字段 — licenseInformation 已存在"
+            "3.0.7": {
+                "en": "(ssbingo) chore: update dependencies (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "de": "(ssbingo) chore: Abhängigkeiten aktualisiert (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "ru": "(ssbingo) chore: обновлены зависимости (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "pt": "(ssbingo) chore: dependências atualizadas (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "nl": "(ssbingo) chore: afhankelijkheden bijgewerkt (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "fr": "(ssbingo) chore: dépendances mises à jour (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "it": "(ssbingo) chore: dipendenze aggiornate (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "es": "(ssbingo) chore: dependencias actualizadas (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "pl": "(ssbingo) chore: zaktualizowano zależności (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "uk": "(ssbingo) chore: оновлено залежності (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)",
+                "zh-cn": "(ssbingo) chore: 更新依赖项 (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)"
             }
         },
         "titleLang": {
