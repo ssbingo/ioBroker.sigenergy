@@ -80,7 +80,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-      - uses: ioBroker/testing-action-deploy@v1
+      - uses: ioBroker/testing-action-deploy@v1.5.0
         with:
           node-version: '24.x'
           github-token: ${{ secrets.GITHUB_TOKEN }}
