@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.8 (2026-06-29)
+- (ssbingo) fix: dodano brakujące tłumaczenia i18n dla ciągów interfejsu skanowania SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)
+
 ### 3.0.7 (2026-06-28)
 - (ssbingo) chore: zaktualizowano zależności (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
 

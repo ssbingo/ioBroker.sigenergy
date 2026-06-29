@@ -240,6 +240,9 @@ Estado e medições de potência do carregador DC.
 
 ## Changelog
 
+### 3.0.8 (2026-06-29)
+- (ssbingo) fix: traduções i18n ausentes adicionadas para strings da UI de varredura SigenMicro em es, fr, it, nl, pl, pt, uk, zh-cn
+
 ### 3.0.7 (2026-06-28)
 - (ssbingo) chore: dependências atualizadas (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
 

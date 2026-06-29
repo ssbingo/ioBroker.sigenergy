@@ -240,6 +240,9 @@
 
 ## Changelog
 
+### 3.0.8 (2026-06-29)
+- (ssbingo) fix: додано відсутні переклади i18n для рядків інтерфейсу сканування SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)
+
 ### 3.0.7 (2026-06-28)
 - (ssbingo) chore: оновлено залежності (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
 

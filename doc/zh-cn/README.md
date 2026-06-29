@@ -238,6 +238,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 3.0.8 (2026-06-29)
+- (ssbingo) fix: 为 SigenMicro 扫描界面字符串添加缺失的 i18n 翻译（es、fr、it、nl、pl、pt、uk、zh-cn）
+
 ### 3.0.7 (2026-06-28)
 - (ssbingo) chore: 更新依赖项 (@iobroker/adapter-core 3.4.1, @types/node 22.20.0, testing-action-adapter 1.1.1, testing-action-deploy 1.5.0, http-proxy-middleware 3.0.7)
 
