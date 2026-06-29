@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: js-yaml von 4.1.1 auf 4.3.0 aktualisiert
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: CI-Actions auf Major-Version (@v1) statt Patch-Version fixiert
 

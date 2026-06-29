@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: bump js-yaml from 4.1.1 to 4.3.0
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: pin CI actions to major version (@v1) instead of patch version
 

@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.9",
+        "version": "3.0.10",
         "news": {
-            "3.0.9": {
-                "en": "(ssbingo) chore: pin CI actions to major version (@v1) instead of patch version",
-                "de": "(ssbingo) chore: CI-Actions auf Major-Version (@v1) statt Patch-Version fixiert",
-                "ru": "(ssbingo) chore: закреплены CI-actions на мажорной версии (@v1) вместо патч-версии",
-                "pt": "(ssbingo) chore: ações de CI fixadas na versão principal (@v1) em vez da versão de patch",
-                "nl": "(ssbingo) chore: CI-actions vastgezet op hoofdversie (@v1) in plaats van patchversie",
-                "fr": "(ssbingo) chore: actions CI fixées à la version majeure (@v1) plutôt qu'à la version de patch",
-                "it": "(ssbingo) chore: azioni CI fissate alla versione principale (@v1) anziché alla versione patch",
-                "es": "(ssbingo) chore: acciones de CI fijadas a la versión principal (@v1) en lugar de la versión de parche",
-                "pl": "(ssbingo) chore: akcje CI przypięte do wersji głównej (@v1) zamiast wersji poprawkowej",
-                "uk": "(ssbingo) chore: CI-actions закріплені на мажорній версії (@v1) замість патч-версії",
-                "zh-cn": "(ssbingo) chore: CI actions 固定到主版本 (@v1) 而非补丁版本"
+            "3.0.10": {
+                "en": "(ssbingo) chore: bump js-yaml from 4.1.1 to 4.3.0",
+                "de": "(ssbingo) chore: js-yaml von 4.1.1 auf 4.3.0 aktualisiert",
+                "ru": "(ssbingo) chore: обновление js-yaml с 4.1.1 до 4.3.0",
+                "pt": "(ssbingo) chore: atualização do js-yaml de 4.1.1 para 4.3.0",
+                "nl": "(ssbingo) chore: js-yaml bijgewerkt van 4.1.1 naar 4.3.0",
+                "fr": "(ssbingo) chore: mise à jour de js-yaml de 4.1.1 vers 4.3.0",
+                "it": "(ssbingo) chore: aggiornamento di js-yaml da 4.1.1 a 4.3.0",
+                "es": "(ssbingo) chore: actualización de js-yaml de 4.1.1 a 4.3.0",
+                "pl": "(ssbingo) chore: aktualizacja js-yaml z 4.1.1 do 4.3.0",
+                "uk": "(ssbingo) chore: оновлення js-yaml з 4.1.1 до 4.3.0",
+                "zh-cn": "(ssbingo) chore: js-yaml 从 4.1.1 升级到 4.3.0"
             }
         },
         "titleLang": {

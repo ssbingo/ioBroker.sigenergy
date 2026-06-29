@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: js-yaml bijgewerkt van 4.1.1 naar 4.3.0
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: CI-actions vastgezet op hoofdversie (@v1) in plaats van patchversie
 

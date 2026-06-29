@@ -240,6 +240,9 @@ Stan i pomiary mocy ładowarki DC.
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: aktualizacja js-yaml z 4.1.1 do 4.3.0
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: akcje CI przypięte do wersji głównej (@v1) zamiast wersji poprawkowej
 

@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: mise à jour de js-yaml de 4.1.1 vers 4.3.0
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: actions CI fixées à la version majeure (@v1) plutôt qu'à la version de patch
 

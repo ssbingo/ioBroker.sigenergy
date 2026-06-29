@@ -235,6 +235,9 @@ Stato e misure di potenza del caricatore DC.
 
 ## Changelog
 
+### 3.0.10 (2026-06-29)
+- (ssbingo) chore: aggiornamento di js-yaml da 4.1.1 a 4.3.0
+
 ### 3.0.9 (2026-06-29)
 - (ssbingo) chore: azioni CI fissate alla versione principale (@v1) anziché alla versione patch
 
