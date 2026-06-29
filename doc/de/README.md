@@ -231,6 +231,9 @@ Status und Leistungswerte des DC-Ladegeräts.
 
 ## Changelog
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: CI-Actions auf Major-Version (@v1) statt Patch-Version fixiert
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: fehlende i18n-Übersetzungen für SigenMicro-Scan-Texte in es, fr, it, nl, pl, pt, uk, zh-cn ergänzt
 

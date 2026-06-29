@@ -240,6 +240,9 @@ Estado y mediciones de potencia del cargador DC.
 
 ## Changelog
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: acciones de CI fijadas a la versión principal (@v1) en lugar de la versión de parche
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: traducciones i18n faltantes añadidas para cadenas de la interfaz de escaneo SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)
 

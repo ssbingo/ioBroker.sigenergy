@@ -238,6 +238,9 @@ Sigen EVAC 充电站的状态和功率读数。
 
 ## 更新日志
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: CI actions 固定到主版本 (@v1) 而非补丁版本
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: 为 SigenMicro 扫描界面字符串添加缺失的 i18n 翻译（es、fr、it、nl、pl、pt、uk、zh-cn）
 

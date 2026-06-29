@@ -245,6 +245,9 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: pin CI actions to major version (@v1) instead of patch version
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: add missing i18n translations for SigenMicro scan UI strings (es, fr, it, nl, pl, pt, uk, zh-cn)
 

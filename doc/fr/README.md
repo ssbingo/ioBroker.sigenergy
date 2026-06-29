@@ -226,6 +226,9 @@ Données d'onduleur en temps réel : puissance PV, fréquence réseau, tensions 
 
 ## Changelog
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: actions CI fixées à la version majeure (@v1) plutôt qu'à la version de patch
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: traductions i18n manquantes ajoutées pour les chaînes d'interface de scan SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)
 

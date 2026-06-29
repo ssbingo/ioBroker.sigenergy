@@ -234,6 +234,9 @@ Status en vermogensmetingen van de DC-oplader.
 
 ## Changelog
 
+### 3.0.9 (2026-06-29)
+- (ssbingo) chore: CI-actions vastgezet op hoofdversie (@v1) in plaats van patchversie
+
 ### 3.0.8 (2026-06-29)
 - (ssbingo) fix: ontbrekende i18n-vertalingen toegevoegd voor SigenMicro-scan UI-teksten in es, fr, it, nl, pl, pt, uk, zh-cn
 

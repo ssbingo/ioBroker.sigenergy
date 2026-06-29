@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.0.8",
+        "version": "3.0.9",
         "news": {
-            "3.0.8": {
-                "en": "(ssbingo) fix: add missing i18n translations for SigenMicro scan UI strings in es, fr, it, nl, pl, pt, uk, zh-cn",
-                "de": "(ssbingo) fix: fehlende i18n-Übersetzungen für SigenMicro-Scan-Texte in es, fr, it, nl, pl, pt, uk, zh-cn ergänzt",
-                "ru": "(ssbingo) fix: добавлены отсутствующие переводы i18n для строк интерфейса сканирования SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)",
-                "pt": "(ssbingo) fix: traduções i18n ausentes adicionadas para strings da UI de varredura SigenMicro em es, fr, it, nl, pl, pt, uk, zh-cn",
-                "nl": "(ssbingo) fix: ontbrekende i18n-vertalingen toegevoegd voor SigenMicro-scan UI-teksten in es, fr, it, nl, pl, pt, uk, zh-cn",
-                "fr": "(ssbingo) fix: traductions i18n manquantes ajoutées pour les chaînes d'interface de scan SigenMicro en es, fr, it, nl, pl, pt, uk, zh-cn",
-                "it": "(ssbingo) fix: aggiunte le traduzioni i18n mancanti per le stringhe dell'interfaccia di scansione SigenMicro in es, fr, it, nl, pl, pt, uk, zh-cn",
-                "es": "(ssbingo) fix: traducciones i18n faltantes añadidas para cadenas de la interfaz de escaneo SigenMicro en es, fr, it, nl, pl, pt, uk, zh-cn",
-                "pl": "(ssbingo) fix: dodano brakujące tłumaczenia i18n dla ciągów interfejsu skanowania SigenMicro w es, fr, it, nl, pl, pt, uk, zh-cn",
-                "uk": "(ssbingo) fix: додано відсутні переклади i18n для рядків інтерфейсу сканування SigenMicro (es, fr, it, nl, pl, pt, uk, zh-cn)",
-                "zh-cn": "(ssbingo) fix: 为 SigenMicro 扫描界面字符串添加缺失的 i18n 翻译（es、fr、it、nl、pl、pt、uk、zh-cn）"
+            "3.0.9": {
+                "en": "(ssbingo) chore: pin CI actions to major version (@v1) instead of patch version",
+                "de": "(ssbingo) chore: CI-Actions auf Major-Version (@v1) statt Patch-Version fixiert",
+                "ru": "(ssbingo) chore: закреплены CI-actions на мажорной версии (@v1) вместо патч-версии",
+                "pt": "(ssbingo) chore: ações de CI fixadas na versão principal (@v1) em vez da versão de patch",
+                "nl": "(ssbingo) chore: CI-actions vastgezet op hoofdversie (@v1) in plaats van patchversie",
+                "fr": "(ssbingo) chore: actions CI fixées à la version majeure (@v1) plutôt qu'à la version de patch",
+                "it": "(ssbingo) chore: azioni CI fissate alla versione principale (@v1) anziché alla versione patch",
+                "es": "(ssbingo) chore: acciones de CI fijadas a la versión principal (@v1) en lugar de la versión de parche",
+                "pl": "(ssbingo) chore: akcje CI przypięte do wersji głównej (@v1) zamiast wersji poprawkowej",
+                "uk": "(ssbingo) chore: CI-actions закріплені на мажорній версії (@v1) замість патч-версії",
+                "zh-cn": "(ssbingo) chore: CI actions 固定到主版本 (@v1) 而非补丁版本"
             }
         },
         "titleLang": {
