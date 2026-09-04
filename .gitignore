@@ -3,6 +3,7 @@ node_modules/
 *.log
 npm-debug.log*
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
 *.tgz
 .commitinfo

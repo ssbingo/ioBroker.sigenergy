@@ -49,7 +49,7 @@ Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 | Component | Minimum version |
 |-----------|-----------------|
 | **js-controller** | >= 6.0.11 |
-| **admin** | >= 8.0.0 |
+| **admin** | >= 7.8.23 |
 | **Node.js** | >= 22 |
 
 ---
@@ -254,6 +254,15 @@ Status and power readings for the DC charger.
 ---
 
 ## Changelog
+
+### 3.2.0 (2026-09-04)
+- (MMeinhardt1) feat: new state `statistics.emsWorkMode` exposing the EMS work mode as plain text, so consumers do not need the `common.states` lookup table
+- (MMeinhardt1) feat: added EMS work mode 6 (Virtual Power Plant) to the register description and the mode map
+- (MMeinhardt1) change: the `*HM` duration states now hold a bare `H:MM` value with unit `h`, instead of embedding an `h` suffix in the value itself
+- (MMeinhardt1) fix: statistics objects are created with `extendObjectAsync`, so corrected units and roles reach installations where the object already exists
+- (ssbingo) chore: admin minimum requirement lowered back to >= 7.8.23 to keep serving admin 7.x installations
+- (ssbingo) fix: restored the JSDoc parameter descriptions on `_formatMinutesAsHM` to keep `npm run lint` warning-free
+- (ssbingo) chore: repository checker findings — track `.vscode/settings.json` deliberately, bump `@alcalzone/release-script-plugin-license` to 5.2.2, pin `testing-action-deploy` to the major version again
 
 ### 3.1.2 (2026-08-06)
 - (ssbingo) chore: resolved all 28 npm audit findings (3 critical, 11 high) — development tooling only, the published adapter is unchanged

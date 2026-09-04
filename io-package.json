@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.1.2",
+        "version": "3.2.0",
         "news": {
+            "3.2.0": {
+                "en": "(MMeinhardt1) feat: EMS work mode as plain text, Virtual Power Plant mode, h:mm values now carry unit 'h' instead of a suffix; statistics objects are updated on every start. (ssbingo) chore: admin requirement lowered back to >=7.8.23",
+                "de": "(MMeinhardt1) feat: EMS-Betriebsmodus als Klartext, Modus Virtual Power Plant, h:mm-Werte tragen jetzt die Einheit 'h' statt eines Suffix; Statistik-Objekte werden bei jedem Start aktualisiert. (ssbingo) chore: admin-Anforderung zurück auf >=7.8.23",
+                "ru": "(MMeinhardt1) feat: режим работы EMS в виде текста, режим Virtual Power Plant, значения h:mm теперь имеют единицу 'h' вместо суффикса; объекты статистики обновляются при каждом запуске. (ssbingo) chore: требование к admin снижено до >=7.8.23",
+                "pt": "(MMeinhardt1) feat: modo de trabalho EMS como texto, modo Virtual Power Plant, valores h:mm passam a ter a unidade 'h' em vez de sufixo; os objetos de estatística são atualizados em cada arranque. (ssbingo) chore: requisito do admin reduzido para >=7.8.23",
+                "nl": "(MMeinhardt1) feat: EMS-werkmodus als tekst, modus Virtual Power Plant, h:mm-waarden krijgen nu eenheid 'h' in plaats van een achtervoegsel; statistiekobjecten worden bij elke start bijgewerkt. (ssbingo) chore: admin-vereiste terug naar >=7.8.23",
+                "fr": "(MMeinhardt1) feat : mode de fonctionnement EMS en texte clair, mode Virtual Power Plant, les valeurs h:mm portent désormais l'unité « h » au lieu d'un suffixe ; les objets de statistiques sont mis à jour à chaque démarrage. (ssbingo) chore : exigence admin ramenée à >=7.8.23",
+                "it": "(MMeinhardt1) feat: modalità di lavoro EMS come testo, modalità Virtual Power Plant, i valori h:mm ora hanno l'unità 'h' invece di un suffisso; gli oggetti statistici vengono aggiornati a ogni avvio. (ssbingo) chore: requisito admin riportato a >=7.8.23",
+                "es": "(MMeinhardt1) feat: modo de trabajo EMS como texto, modo Virtual Power Plant, los valores h:mm llevan ahora la unidad 'h' en lugar de un sufijo; los objetos de estadísticas se actualizan en cada arranque. (ssbingo) chore: requisito de admin reducido a >=7.8.23",
+                "pl": "(MMeinhardt1) feat: tryb pracy EMS jako tekst, tryb Virtual Power Plant, wartości h:mm mają teraz jednostkę 'h' zamiast sufiksu; obiekty statystyk są aktualizowane przy każdym starcie. (ssbingo) chore: wymaganie admin obniżone do >=7.8.23",
+                "uk": "(MMeinhardt1) feat: режим роботи EMS як текст, режим Virtual Power Plant, значення h:mm тепер мають одиницю 'h' замість суфікса; об'єкти статистики оновлюються при кожному запуску. (ssbingo) chore: вимогу до admin знижено до >=7.8.23",
+                "zh-cn": "(MMeinhardt1) feat: EMS 工作模式以纯文本提供、新增 Virtual Power Plant 模式、h:mm 值改用单位 'h' 而非后缀；统计对象在每次启动时更新。(ssbingo) chore: admin 要求下调回 >=7.8.23"
+            },
             "3.1.2": {
                 "en": "(ssbingo) chore: all npm audit findings resolved (28 -> 0); removed @iobroker/dev-server, which pulled in unpatchable deprecated packages. Development tooling only — the adapter itself is unchanged.",
                 "de": "(ssbingo) chore: alle npm-audit-Findings behoben (28 -> 0); @iobroker/dev-server entfernt, das nicht patchbare veraltete Pakete mitzog. Betrifft nur das Entwicklungs-Tooling — der Adapter selbst ist unverändert.",
@@ -121,7 +134,7 @@
         ],
         "globalDependencies": [
             {
-                "admin": ">=8.0.0"
+                "admin": ">=7.8.23"
             }
         ],
         "licenseInformation": {

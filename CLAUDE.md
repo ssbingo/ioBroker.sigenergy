@@ -10,19 +10,21 @@ Code, Dependencies und CI dürfen sich darauf verlassen.
 | Komponente | Minimum | Wo gepflegt |
 |------------|---------|-------------|
 | js-controller | `>=6.0.11` | `io-package.json` → `common.dependencies` |
-| admin | `>=8.0.0` | `io-package.json` → `common.globalDependencies` |
+| admin | `>=7.8.23` | `io-package.json` → `common.globalDependencies` |
 | Node.js | `>=22` | `package.json` → `engines.node`, `@tsconfig/node22`, CI-Matrix |
 
 Bei jeder Änderung an diesen Werten alle drei Stellen plus die Requirements-Tabelle im
 [README.md](README.md) gemeinsam aktualisieren — sie müssen konsistent bleiben.
 
-Weil admin >= 8 vorausgesetzt wird, sind ältere Admin-Kompatibilitäts-Workarounds nicht mehr nötig
-und dürfen entfernt werden.
+Die admin-Untergrenze lag zwischenzeitlich bei `>=8.0.0` und wurde am 2026-09-04 bewusst auf
+`>=7.8.23` zurückgenommen, um Installationen auf admin 7.x weiter zu bedienen. Admin-7-Kompatibilität
+darf deshalb **nicht** wegoptimiert werden.
 
 ## Admin-UI: React 19 + MUI 9
 
-Ab `iobroker.admin` > 8.0.0 rendert der Admin mit **React 19 und MUI 9**. Alles, was der Adapter zur
-Admin-UI beiträgt, muss dazu passen — bei Bedarf wird angepasst, nicht umgangen.
+Ab `iobroker.admin` > 8.0.0 rendert der Admin mit **React 19 und MUI 9**, ältere 7.x-Installationen
+dagegen noch nicht. Weil beide unterstützt werden, muss alles, was der Adapter zur Admin-UI beiträgt,
+unter **beiden** Stacks funktionieren — bei Bedarf wird angepasst, nicht umgangen.
 
 Aktueller Stand: Der Adapter hat **keinen eigenen React-/MUI-Code**. Die Konfiguration läuft
 vollständig über `adminUI.config: "json"` mit [admin/jsonConfig.json](admin/jsonConfig.json), das der
@@ -33,8 +35,9 @@ Daraus folgt:
 - Konfiguration bevorzugt weiterhin über `jsonConfig` lösen, nicht über eigene React-Komponenten.
 - Nur dokumentierte `jsonConfig`-Typen und -Attribute verwenden. MUI-durchgereichte Props
   (`variant`, `color`, `style`) müssen unter MUI 9 gültig sein.
-- Sollte doch eigener Admin-Code entstehen, gilt zwingend React 19 + MUI 9 (kein `@mui/styles`,
-  keine Legacy-Lifecycle-Methoden, keine `defaultProps` an Funktionskomponenten).
+- Sollte doch eigener Admin-Code entstehen, muss er unter React 19 + MUI 9 laufen (kein
+  `@mui/styles`, keine Legacy-Lifecycle-Methoden, keine `defaultProps` an Funktionskomponenten) und
+  zugleich auf admin 7.x lauffähig bleiben.
 
 ## Admin-Übersetzungen
 

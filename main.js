@@ -1150,8 +1150,8 @@ class Sigenergy extends utils.Adapter {
      *  - null / NaN (statistic enabled but currently N/A)     -> null (clears stale value)
      *  - number                                                -> formatted "H:MM" string
      *
-     * @param {number|null|undefined} totalMinutes
-     * @returns {string|null|undefined}
+     * @param {number|null|undefined} totalMinutes - Duration in minutes, or null/undefined per the cases above
+     * @returns {string|null|undefined} Formatted "H:MM" string, or null/undefined mirroring the input case
      */
     _formatMinutesAsHM(totalMinutes) {
         if (totalMinutes === undefined) {
