@@ -1128,6 +1128,7 @@ class Sigenergy extends utils.Adapter {
             'plant.essSoc': 'soc',
             'plant.essRatedEnergyCapacity': 'ratedCapacity',
             'plant.essDischargeSOC': 'cutoffSoc',
+            'plant.emsWorkMode': 'emsWorkMode',
             'inverter.pv1Voltage': 'pv1Voltage',
             'inverter.pv1Current': 'pv1Current',
             'inverter.pv2Voltage': 'pv2Voltage',
@@ -1141,15 +1142,16 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
-     * Format a minute value as an "H:MMh" string (e.g. 83 -> "1:23h").
-     * Hours are not capped at 24. Distinguishes three cases so the caller's
-     * null-vs-undefined write semantics (see _updateStatistics) are preserved:
+     * Format a minute value as an "H:MM" string (e.g. 83 -> "1:23").
+     * Hours are not capped at 24.
+     * Distinguishes three cases so the caller's null-vs-undefined write
+     * semantics (see _updateStatistics) are preserved:
      *  - undefined  (statistic disabled via config)          -> undefined (skip write)
      *  - null / NaN (statistic enabled but currently N/A)     -> null (clears stale value)
-     *  - number                                                -> formatted "H:MMh" string
+     *  - number                                                -> formatted "H:MM" string
      *
-     * @param {number|null|undefined} totalMinutes - Duration in minutes, or null/undefined per the cases above
-     * @returns {string|null|undefined} Formatted "H:MMh" string, or null/undefined mirroring the input case
+     * @param {number|null|undefined} totalMinutes
+     * @returns {string|null|undefined}
      */
     _formatMinutesAsHM(totalMinutes) {
         if (totalMinutes === undefined) {
@@ -1162,7 +1164,26 @@ class Sigenergy extends utils.Adapter {
         const abs = Math.round(Math.abs(totalMinutes));
         const hours = Math.floor(abs / 60);
         const minutes = abs % 60;
-        return `${sign}${hours}:${String(minutes).padStart(2, '0')}h`;
+        return `${sign}${hours}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    /**
+     * Look up the plain-text label for the numeric EMS work mode (register
+     * 30003 / plant.emsWorkMode), using the same EMS_WORK_MODES map already
+     * used for the `common.states` metadata on plant.emsWorkMode. Unlike that
+     * metadata (only understood by UIs/tools that render `common.states`),
+     * this writes the human-readable text directly as the state value, so any
+     * consumer (VIS, Node-RED, external scripts) can use it without needing
+     * the lookup table.
+     *
+     * @param {number|undefined} mode - Raw value of plant.emsWorkMode
+     * @returns {string|undefined} Plain-text label, or undefined if mode hasn't been read yet
+     */
+    _formatEmsWorkMode(mode) {
+        if (mode === undefined) {
+            return undefined;
+        }
+        return EMS_WORK_MODES[mode] || `Unknown (${mode})`;
     }
 
     /**
@@ -1193,6 +1214,7 @@ class Sigenergy extends utils.Adapter {
             'statistics.housePower': statsValues.housePower,
             'statistics.currentSoc': statsValues.currentSoc,
             'statistics.currentPvPower': statsValues.currentPvPower,
+            'statistics.emsWorkMode': this._formatEmsWorkMode(this._currentData.emsWorkMode),
             'statistics.dayMaxSoc': statsValues.dayMaxSoc,
             'statistics.dayMinSoc': statsValues.dayMinSoc,
         };
@@ -1674,7 +1696,7 @@ class Sigenergy extends utils.Adapter {
                 id: 'statistics.batteryTimeToFullHM',
                 name: 'Time until battery is fully charged (h:mm)',
                 type: 'string',
-                unit: '',
+                unit: 'h',
                 role: 'text',
             },
             {
@@ -1688,7 +1710,7 @@ class Sigenergy extends utils.Adapter {
                 id: 'statistics.batteryTimeRemainingHM',
                 name: 'Battery time remaining at current load (h:mm)',
                 type: 'string',
-                unit: '',
+                unit: 'h',
                 role: 'text',
             },
             {
@@ -1702,7 +1724,7 @@ class Sigenergy extends utils.Adapter {
                 id: 'statistics.batteryDailyChargeTimeHM',
                 name: 'Today: cumulative time spent charging (h:mm)',
                 type: 'string',
-                unit: '',
+                unit: 'h',
                 role: 'text',
             },
             {
@@ -1716,7 +1738,7 @@ class Sigenergy extends utils.Adapter {
                 id: 'statistics.batteryCoverageTodayHM',
                 name: 'Today: time battery covered consumption (h:mm)',
                 type: 'string',
-                unit: '',
+                unit: 'h',
                 role: 'text',
             },
             {
@@ -1783,6 +1805,13 @@ class Sigenergy extends utils.Adapter {
                 role: 'value.power',
             },
             {
+                id: 'statistics.emsWorkMode',
+                name: 'EMS work mode (plain text)',
+                type: 'string',
+                unit: '',
+                role: 'text',
+            },
+            {
                 id: 'statistics.dayMaxSoc',
                 name: 'Today maximum SOC',
                 type: 'number',
@@ -1812,7 +1841,12 @@ class Sigenergy extends utils.Adapter {
                 },
                 native: {},
             };
-            await this.setObjectNotExistsAsync(s.id, statObj);
+            // extendObjectAsync (not setObjectNotExistsAsync) so that changes to
+            // an existing definition (e.g. a corrected unit or role) are applied
+            // on every adapter start, instead of being silently ignored forever
+            // once the object has been created once. The state's current value
+            // is untouched by this — only the object's common metadata is merged.
+            await this.extendObjectAsync(s.id, statObj);
         }
     }
 
