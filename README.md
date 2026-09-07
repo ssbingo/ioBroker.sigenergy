@@ -260,6 +260,8 @@ Status and power readings for the DC charger.
 - (ssbingo) feat: new state `info.protocolVersion` (number, e.g. `2.9`) next to the textual `info.protocolLevel`, so widgets and scripts can adapt to the detected protocol version without parsing strings
 - (ssbingo) feat: DC charger registers carry the protocol version that introduced them (`since`, from the V2.9 revision history: 31509–31511 V2.6, 31513 V2.8, 31514–31525 V2.9); registers newer than the detected protocol level are not requested, so a V2.8 device no longer gets its DC charger group rejected because of the V2.9 discharging registers
 - (ssbingo) chore: grouped register reading moved to `lib/readGroups.js` and covered by unit tests
+- (ssbingo) feat: all registers dated by the V2.9 revision history now carry `since` via a central `PROTOCOL_SINCE` table in `lib/registers.js` (plant 30088–30192 V2.6, 30194–30268 V2.7, 30276–30285 V2.8, 30272/30274/30286 V2.9, 40046–40048 V2.6, 40049–40068 V2.8, 40157–40159 V2.9, ESS preheating 50000–50183 V2.9; inverter 30613–30619 V2.6, 31066–31105 V2.8; DC charger 41002/41004 V2.9; all PSS and PID registers V2.9) and are skipped on devices with an older protocol level
+- (ssbingo) fix: the one-time control register read (FC03) and the SigenMicro reader use the same per-register fallback as the input register readers; the control registers are read after the protocol detection so the version gating applies to them as well; ESS preheating polling is skipped below protocol V2.9
 
 ### 3.2.0 (2026-09-04)
 - (MMeinhardt1) feat: new state `statistics.emsWorkMode` exposing the EMS work mode as plain text, so consumers do not need the `common.states` lookup table
