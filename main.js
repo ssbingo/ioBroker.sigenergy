@@ -991,9 +991,16 @@ class Sigenergy extends utils.Adapter {
             'inverter.pv3Voltage': 'pv3Voltage',
             'inverter.pv3Current': 'pv3Current',
         };
-        if (map[name] !== undefined) {
-            this._currentData[map[name]] = value;
+        if (map[name] === undefined) {
+            return;
         }
+        // A null value means the device marked the register as not valid
+        // (see ModbusConnection.INVALID_RAW). Keep the last known good value
+        // instead, so the statistics are not poisoned by a single bad poll.
+        if (value === null) {
+            return;
+        }
+        this._currentData[map[name]] = value;
     }
 
     /**

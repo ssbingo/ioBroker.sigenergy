@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.3.0",
+        "version": "3.3.1",
         "news": {
+            "3.3.1": {
+                "en": "(ssbingo) fix: registers the device marks as not valid (0xFFFF / 0xFFFFFFFF) are no longer scaled into plausible looking measurements. A SigenStor without a DC charger reported \"6553.5 A\" discharging current, \"42949672.95 kWh\" and an unknown running state 65535; such registers now report no value",
+                "de": "(ssbingo) fix: Register, die das Gerät als ungültig kennzeichnet (0xFFFF / 0xFFFFFFFF), werden nicht mehr über den Gain in plausibel aussehende Messwerte umgerechnet. Ein SigenStor ohne DC-Charger meldete \"6553,5 A\" Entladestrom, \"42949672,95 kWh\" und den unbekannten Betriebszustand 65535; solche Register liefern jetzt keinen Wert",
+                "ru": "(ssbingo) fix: регистры, помеченные устройством как недействительные (0xFFFF / 0xFFFFFFFF), больше не пересчитываются в правдоподобные значения. SigenStor без DC-зарядки сообщал \"6553,5 A\", \"42949672,95 кВтч\" и неизвестное состояние 65535; теперь такие регистры не возвращают значения",
+                "pt": "(ssbingo) fix: os registos que o dispositivo marca como inválidos (0xFFFF / 0xFFFFFFFF) deixam de ser convertidos em medições aparentemente plausíveis. Um SigenStor sem carregador DC indicava \"6553,5 A\", \"42949672,95 kWh\" e o estado desconhecido 65535; esses registos passam a não devolver valor",
+                "nl": "(ssbingo) fix: registers die het apparaat als ongeldig markeert (0xFFFF / 0xFFFFFFFF) worden niet langer omgerekend naar plausibel ogende metingen. Een SigenStor zonder DC-lader meldde \"6553,5 A\", \"42949672,95 kWh\" en de onbekende status 65535; zulke registers geven nu geen waarde meer",
+                "fr": "(ssbingo) fix : les registres que l'appareil marque comme non valides (0xFFFF / 0xFFFFFFFF) ne sont plus convertis en mesures d'apparence plausible. Un SigenStor sans chargeur DC annonçait « 6553,5 A », « 42949672,95 kWh » et l'état inconnu 65535 ; ces registres ne renvoient plus de valeur",
+                "it": "(ssbingo) fix: i registri che il dispositivo segnala come non validi (0xFFFF / 0xFFFFFFFF) non vengono più convertiti in misure apparentemente plausibili. Un SigenStor senza caricatore DC riportava \"6553,5 A\", \"42949672,95 kWh\" e lo stato sconosciuto 65535; tali registri ora non restituiscono alcun valore",
+                "es": "(ssbingo) fix: los registros que el dispositivo marca como no válidos (0xFFFF / 0xFFFFFFFF) ya no se convierten en mediciones de apariencia plausible. Un SigenStor sin cargador DC informaba \"6553,5 A\", \"42949672,95 kWh\" y el estado desconocido 65535; esos registros ya no devuelven valor",
+                "pl": "(ssbingo) fix: rejestry oznaczone przez urządzenie jako nieprawidłowe (0xFFFF / 0xFFFFFFFF) nie są już przeliczane na wiarygodnie wyglądające pomiary. SigenStor bez ładowarki DC raportował \"6553,5 A\", \"42949672,95 kWh\" i nieznany stan 65535; takie rejestry nie zwracają teraz wartości",
+                "uk": "(ssbingo) fix: регістри, позначені пристроєм як недійсні (0xFFFF / 0xFFFFFFFF), більше не перетворюються на правдоподібні вимірювання. SigenStor без DC-зарядки повідомляв \"6553,5 A\", \"42949672,95 кВт·год\" і невідомий стан 65535; тепер такі регістри не повертають значення",
+                "zh-cn": "(ssbingo) fix: 设备标记为无效的寄存器（0xFFFF / 0xFFFFFFFF）不再经增益换算成看似合理的测量值。无直流充电桩的 SigenStor 曾报告“6553.5 A”放电电流、“42949672.95 kWh”以及未知运行状态 65535；此类寄存器现在不再返回数值"
+            },
             "3.3.0": {
                 "en": "(ssbingo) feat: registers are gated by the detected Modbus protocol version, so a device is no longer asked for registers its firmware does not know; rejected register groups are now retried register by register, so one unsupported register no longer silences its whole group; new state info.protocolVersion",
                 "de": "(ssbingo) feat: Register werden anhand der erkannten Modbus-Protokollversion gefiltert, damit ein Gerät nicht mehr nach Registern gefragt wird, die seine Firmware nicht kennt; abgelehnte Registergruppen werden jetzt einzeln nachgelesen, sodass ein nicht unterstütztes Register nicht mehr die ganze Gruppe stilllegt; neuer State info.protocolVersion",

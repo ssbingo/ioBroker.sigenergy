@@ -255,6 +255,10 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.3.1 (2026-09-07)
+- (ssbingo) fix: registers the device marks as not valid are no longer turned into plausible looking measurements. The protocol uses all bits set for this ("Range:[0, 0xFFFFFFFE]. With value 0xFFFFFFFF, register is not valid.") and devices answer that way for registers they do not implement. The raw sentinel was scaled by the register gain, so a SigenStor without a DC charger reported `dcCharger.dischargingCurrent` = 6553.5 A, `dcCharger.currentDischargingCapacity` = 42949672.95 kWh and `dcCharger.runningState` = 65535. The same happened outside the DC charger, e.g. `plant.currentCtrlCmdValue` = 655.35 % and `inverter.essMaxBatteryCellVoltage` = 65.535 V. Such registers now report no value instead
+- (ssbingo) fix: a register that reports no value no longer feeds the statistics calculation, which keeps the last known good reading instead
+
 ### 3.3.0 (2026-09-07)
 - (ssbingo) fix: when the device rejects a grouped register read with a Modbus exception, the registers of that group are now read one by one and only the register(s) the device does not implement are excluded from further polling. Previously a single unsupported register silently disabled its whole group for the rest of the adapter runtime, e.g. `dcCharger.runningState` (31513) never received a value when the discharging registers 31514–31518 of the same group were rejected
 - (ssbingo) feat: new state `info.protocolVersion` (number, e.g. `2.9`) next to the textual `info.protocolLevel`, so widgets and scripts can adapt to the detected protocol version without parsing strings

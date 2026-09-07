@@ -17,6 +17,7 @@ const {
     PID_READ_REGISTERS,
     applySince,
 } = require('../lib/registers');
+const ModbusConnection = require('../lib/modbus');
 
 /**
  * Create a Modbus exception like modbus-serial does (err.modbusCode set).
@@ -228,6 +229,45 @@ tests.unit(path.join(__dirname, '..'), {
                 await readRegisterGroups(opts);
                 assert.deepStrictEqual(calls.processed, ['a']);
                 assert.deepStrictEqual([...opts.unsupported], [200]);
+            });
+        });
+
+        describe('lib/modbus parseValue — "register not valid" sentinels', () => {
+            const parse = (raw, type, gain) => ModbusConnection.parseValue(raw, type, gain);
+
+            it('returns null for an unsigned register the device marked as not valid', () => {
+                // 0xFFFF / 0xFFFFFFFF: documented in the V2.9 protocol as
+                // "register is not valid" and used by devices for registers
+                // they do not implement, e.g. 31513 without a DC charger.
+                assert.strictEqual(parse([0xffff], 'U16', null), null);
+                assert.strictEqual(parse([0xffff], 'U16', 10), null);
+                assert.strictEqual(parse([0xffff, 0xffff], 'U32', 100), null);
+                assert.strictEqual(parse([0xffff, 0xffff, 0xffff, 0xffff], 'U64', 100), null);
+            });
+
+            it('does not scale the sentinel into a plausible looking measurement', () => {
+                // Before the fix these produced 6553.5 A, 4294967.295 kW and
+                // 42949672.95 kWh in the DC charger states.
+                assert.notStrictEqual(parse([0xffff], 'U16', 10), 6553.5);
+                assert.notStrictEqual(parse([0xffff, 0xffff], 'U32', 1000), 4294967.295);
+                assert.notStrictEqual(parse([0xffff, 0xffff], 'U32', 100), 42949672.95);
+            });
+
+            it('keeps the largest still valid value of each unsigned type', () => {
+                assert.strictEqual(parse([0xfffe], 'U16', 10), 6553.4);
+                assert.strictEqual(parse([0xffff, 0xfffe], 'U32', 100), 42949672.94);
+            });
+
+            it('leaves signed types untouched, since the protocol defines no sentinel for them', () => {
+                assert.strictEqual(parse([0x7fff], 'S16', 10), 3276.7);
+                assert.strictEqual(parse([0x8000], 'S16', 10), -3276.8);
+                assert.strictEqual(parse([0x7fff, 0xffff], 'S32', 1000), 2147483.647);
+            });
+
+            it('leaves ordinary values alone', () => {
+                assert.strictEqual(parse([230], 'U16', null), 230);
+                assert.strictEqual(parse([0], 'U16', 10), 0);
+                assert.strictEqual(parse([2300], 'U16', 10), 230);
             });
         });
     },
