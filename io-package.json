@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.2.0",
+        "version": "3.3.0",
         "news": {
+            "3.3.0": {
+                "en": "(ssbingo) feat: registers are gated by the detected Modbus protocol version, so a device is no longer asked for registers its firmware does not know; rejected register groups are now retried register by register, so one unsupported register no longer silences its whole group; new state info.protocolVersion",
+                "de": "(ssbingo) feat: Register werden anhand der erkannten Modbus-Protokollversion gefiltert, damit ein Gerät nicht mehr nach Registern gefragt wird, die seine Firmware nicht kennt; abgelehnte Registergruppen werden jetzt einzeln nachgelesen, sodass ein nicht unterstütztes Register nicht mehr die ganze Gruppe stilllegt; neuer State info.protocolVersion",
+                "ru": "(ssbingo) feat: регистры фильтруются по обнаруженной версии протокола Modbus, поэтому устройство больше не запрашивается о регистрах, неизвестных его прошивке; отклонённые группы регистров перечитываются по одному, поэтому один неподдерживаемый регистр больше не блокирует всю группу; новое состояние info.protocolVersion",
+                "pt": "(ssbingo) feat: os registos são filtrados pela versão do protocolo Modbus detetada, pelo que o dispositivo deixa de ser questionado sobre registos que o seu firmware desconhece; os grupos rejeitados passam a ser lidos registo a registo, pelo que um registo não suportado deixa de silenciar todo o grupo; novo estado info.protocolVersion",
+                "nl": "(ssbingo) feat: registers worden gefilterd op de gedetecteerde Modbus-protocolversie, zodat een apparaat niet langer wordt bevraagd over registers die zijn firmware niet kent; geweigerde registergroepen worden nu register voor register gelezen, zodat één niet-ondersteund register niet meer de hele groep stillegt; nieuwe state info.protocolVersion",
+                "fr": "(ssbingo) feat : les registres sont filtrés selon la version du protocole Modbus détectée, de sorte qu'un appareil n'est plus interrogé sur des registres que son micrologiciel ignore ; les groupes rejetés sont désormais relus registre par registre, de sorte qu'un registre non pris en charge ne neutralise plus tout son groupe ; nouvel état info.protocolVersion",
+                "it": "(ssbingo) feat: i registri vengono filtrati in base alla versione del protocollo Modbus rilevata, così il dispositivo non viene più interrogato su registri che il suo firmware non conosce; i gruppi rifiutati vengono ora letti registro per registro, così un registro non supportato non azzera più l'intero gruppo; nuovo stato info.protocolVersion",
+                "es": "(ssbingo) feat: los registros se filtran según la versión del protocolo Modbus detectada, de modo que ya no se consulta al dispositivo por registros que su firmware desconoce; los grupos rechazados se leen ahora registro a registro, de modo que un registro no soportado ya no silencia todo su grupo; nuevo estado info.protocolVersion",
+                "pl": "(ssbingo) feat: rejestry są filtrowane według wykrytej wersji protokołu Modbus, więc urządzenie nie jest już pytane o rejestry nieznane jego oprogramowaniu; odrzucone grupy rejestrów są teraz odczytywane pojedynczo, więc jeden nieobsługiwany rejestr nie wyłącza już całej grupy; nowy stan info.protocolVersion",
+                "uk": "(ssbingo) feat: регістри фільтруються за виявленою версією протоколу Modbus, тому пристрій більше не запитують про регістри, невідомі його прошивці; відхилені групи регістрів тепер перечитуються по одному, тож один непідтримуваний регістр більше не блокує всю групу; новий стан info.protocolVersion",
+                "zh-cn": "(ssbingo) feat: 按检测到的 Modbus 协议版本过滤寄存器，不再向设备请求其固件不支持的寄存器；被拒绝的寄存器组改为逐个读取，单个不支持的寄存器不再导致整组失效；新增状态 info.protocolVersion"
+            },
             "3.2.0": {
                 "en": "(MMeinhardt1) feat: EMS work mode as plain text, Virtual Power Plant mode, h:mm values now carry unit 'h' instead of a suffix; statistics objects are updated on every start. (ssbingo) chore: admin requirement lowered back to >=7.8.23",
                 "de": "(MMeinhardt1) feat: EMS-Betriebsmodus als Klartext, Modus Virtual Power Plant, h:mm-Werte tragen jetzt die Einheit 'h' statt eines Suffix; Statistik-Objekte werden bei jedem Start aktualisiert. (ssbingo) chore: admin-Anforderung zurück auf >=7.8.23",
