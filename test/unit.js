@@ -5,7 +5,18 @@ const { tests } = require('@iobroker/testing');
 
 const assert = require('node:assert');
 const { buildReadGroups, readRegisterGroups, isRegisterRejected, filterByProtocolVersion } = require('../lib/readGroups');
-const { DC_CHARGER_READ_REGISTERS } = require('../lib/registers');
+const {
+    DC_CHARGER_READ_REGISTERS,
+    PLANT_READ_REGISTERS,
+    PLANT_WRITE_REGISTERS,
+    ESS_PREHEATING_WRITE_REGISTERS,
+    INVERTER_READ_REGISTERS,
+    DC_CHARGER_WRITE_REGISTERS,
+    AC_CHARGER_READ_REGISTERS,
+    PSS_READ_REGISTERS,
+    PID_READ_REGISTERS,
+    applySince,
+} = require('../lib/registers');
 
 /**
  * Create a Modbus exception like modbus-serial does (err.modbusCode set).
@@ -156,6 +167,50 @@ tests.unit(path.join(__dirname, '..'), {
                 const unknown = filterByProtocolVersion(DC_CHARGER_READ_REGISTERS, 0);
                 assert.strictEqual(unknown.skipped.length, 0);
                 assert.strictEqual(unknown.active.length, DC_CHARGER_READ_REGISTERS.length);
+            });
+
+            it('annotates registers with the protocol version from the revision history', () => {
+                const since = (regs, addr) => (regs.find(r => r.addr === addr) || {}).since;
+                // plant
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30000), undefined);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30088), 2.6);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30194), 2.7);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30268), 2.7);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30272), 2.9);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30276), 2.8);
+                assert.strictEqual(since(PLANT_READ_REGISTERS, 30286), 2.9);
+                assert.strictEqual(since(PLANT_WRITE_REGISTERS, 40046), 2.6);
+                assert.strictEqual(since(PLANT_WRITE_REGISTERS, 40049), 2.8);
+                assert.strictEqual(since(PLANT_WRITE_REGISTERS, 40157), 2.9);
+                assert.ok(ESS_PREHEATING_WRITE_REGISTERS.every(r => r.since === 2.9));
+                // inverter / DC charger
+                assert.strictEqual(since(INVERTER_READ_REGISTERS, 30601), undefined);
+                assert.strictEqual(since(INVERTER_READ_REGISTERS, 30613), 2.6);
+                assert.strictEqual(since(DC_CHARGER_READ_REGISTERS, 31509), 2.6);
+                assert.strictEqual(since(DC_CHARGER_READ_REGISTERS, 31513), 2.8);
+                assert.strictEqual(since(DC_CHARGER_READ_REGISTERS, 31514), 2.9);
+                assert.strictEqual(since(DC_CHARGER_WRITE_REGISTERS, 41000), undefined);
+                assert.strictEqual(since(DC_CHARGER_WRITE_REGISTERS, 41002), 2.9);
+                // whole device families / untouched families
+                assert.ok(PSS_READ_REGISTERS.every(r => r.since === 2.9));
+                assert.ok(PID_READ_REGISTERS.every(r => r.since === 2.9));
+                assert.ok(AC_CHARGER_READ_REGISTERS.every(r => r.since === undefined));
+                // explicit since wins over the table
+                const regs = [{ addr: 5, qty: 1, since: 2.6 }, { addr: 6, qty: 1 }];
+                applySince(regs, [{ from: 0, to: 10, since: 2.9 }]);
+                assert.deepStrictEqual(regs.map(r => r.since), [2.6, 2.9]);
+            });
+
+            it('skips plant registers newer than the detected protocol version', () => {
+                const v26 = filterByProtocolVersion(PLANT_READ_REGISTERS, 2.6);
+                assert.ok(v26.active.some(r => r.addr === 30088));
+                assert.ok(!v26.active.some(r => r.addr === 30194));
+                assert.ok(!v26.active.some(r => r.addr === 30276));
+                const v28 = filterByProtocolVersion(PLANT_READ_REGISTERS, 2.8);
+                assert.ok(v28.active.some(r => r.addr === 30276));
+                assert.ok(!v28.active.some(r => r.addr === 30286));
+                assert.strictEqual(filterByProtocolVersion(PSS_READ_REGISTERS, 2.8).active.length, 0);
+                assert.strictEqual(filterByProtocolVersion(PSS_READ_REGISTERS, 2.9).skipped.length, 0);
             });
 
             it('excludes a single-register group directly when the device rejects it', async () => {

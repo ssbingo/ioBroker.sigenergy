@@ -404,14 +404,16 @@ class Sigenergy extends utils.Adapter {
 
         try {
             if (this._caps.plant) {
-                if (!this._controlRegistersRead) {
-                    await this._readControlRegisters();
-                    this._controlRegistersRead = true;
-                }
                 if (!this._protocolDetected) {
                     // Only latch the flag if detection was conclusive (no transport
                     // errors). Otherwise retry on the next poll cycle.
                     this._protocolDetected = await this._detectProtocolLevel();
+                }
+                // Read the control registers after the protocol detection, so
+                // registers newer than the detected protocol level are skipped.
+                if (!this._controlRegistersRead) {
+                    await this._readControlRegisters();
+                    this._controlRegistersRead = true;
                 }
                 if (!this._modelVerified) {
                     await this._verifyModelType();
@@ -532,13 +534,14 @@ class Sigenergy extends utils.Adapter {
      * whole group, its registers are read one by one and only the rejected
      * ones are excluded from further polls (see lib/readGroups.js).
      *
-     * @param {string} section - Section name (state prefix / log tag)
+     * @param {string} section - Section name (log tag, key for the unsupported-register bookkeeping)
      * @param {number} slaveId - Modbus slave id
      * @param {object[]} registers - Register definitions
      * @param {number} batchSize - Maximum registers per request
+     * @param {boolean} [holding] - Read holding registers (FC03) instead of input registers (FC04)
      * @returns {Promise<void>} resolves when the section was read
      */
-    async _readRegisterGroups(section, slaveId, registers, batchSize) {
+    async _readRegisterGroups(section, slaveId, registers, batchSize, holding = false) {
         if (!this._unsupportedRegisters[section]) {
             this._unsupportedRegisters[section] = new Set();
             this._readErrorLogged[section] = new Set();
@@ -562,7 +565,10 @@ class Sigenergy extends utils.Adapter {
             batchSize,
             unsupported: this._unsupportedRegisters[section],
             errorLogged: this._readErrorLogged[section],
-            read: (addr, qty) => this.modbus.readInputRegisters(slaveId, addr, qty),
+            read: (addr, qty) =>
+                holding
+                    ? this.modbus.readHoldingRegisters(slaveId, addr, qty)
+                    : this.modbus.readInputRegisters(slaveId, addr, qty),
             process: (group, raw) => this._processReadGroup(group, raw, section),
             sleep: ms => this._sleep(ms),
             isStopped: () => this._stopped,
@@ -620,7 +626,14 @@ class Sigenergy extends utils.Adapter {
         }
         const plantId = this.config.plantId || 247;
         const batchSize = 50;
-        const groups = this._buildReadGroups(ESS_PREHEATING_WRITE_REGISTERS, batchSize);
+        const { active, skipped } = filterByProtocolVersion(ESS_PREHEATING_WRITE_REGISTERS, this._protocolVersion);
+        if (active.length === 0 && skipped.length > 0) {
+            this.log.debug(
+                `[essPreheating] Skipping — registers require protocol V2.9, detected V${this._protocolVersion}`,
+            );
+            return;
+        }
+        const groups = this._buildReadGroups(active, batchSize);
         this.log.debug(`Reading ESS Preheating (slaveId=${plantId}): ${groups.length} group(s)`);
 
         let failCount = 0;
@@ -876,51 +889,18 @@ class Sigenergy extends utils.Adapter {
 
         const plantRw = PLANT_WRITE_REGISTERS.filter(r => r.perm === 'RW' && this._regActive(r));
         if (plantRw.length > 0) {
-            for (const group of this._buildReadGroups(plantRw, 50)) {
-                if (this._stopped) {
-                    return;
-                }
-                try {
-                    const raw = await this.modbus.readHoldingRegisters(plantId, group.startAddr, group.totalQty);
-                    await this._processReadGroup(group, raw, 'control');
-                    await this._sleep(100);
-                } catch (err) {
-                    this.log.debug(`[controlRegs] plant addr=${group.startAddr}: ${err.message}`);
-                }
-            }
+            await this._readRegisterGroups('control.plant', plantId, plantRw, 50, true);
         }
 
         const invRw = INVERTER_WRITE_REGISTERS.filter(r => r.perm === 'RW' && this._regActive(r));
         if (invRw.length > 0) {
-            for (const group of this._buildReadGroups(invRw, 50)) {
-                if (this._stopped) {
-                    return;
-                }
-                try {
-                    const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
-                    await this._processReadGroup(group, raw, 'control');
-                    await this._sleep(100);
-                } catch (err) {
-                    this.log.debug(`[controlRegs] inverter addr=${group.startAddr}: ${err.message}`);
-                }
-            }
+            await this._readRegisterGroups('control.inverter', inverterId, invRw, 50, true);
         }
 
         if (this.config.hasDcCharger) {
             const dcRw = DC_CHARGER_WRITE_REGISTERS.filter(r => r.perm === 'RW');
             if (dcRw.length > 0) {
-                for (const group of this._buildReadGroups(dcRw, 50)) {
-                    if (this._stopped) {
-                        return;
-                    }
-                    try {
-                        const raw = await this.modbus.readHoldingRegisters(inverterId, group.startAddr, group.totalQty);
-                        await this._processReadGroup(group, raw, 'control');
-                        await this._sleep(100);
-                    } catch (err) {
-                        this.log.debug(`[controlRegs] dcCharger addr=${group.startAddr}: ${err.message}`);
-                    }
-                }
+                await this._readRegisterGroups('control.dcCharger', inverterId, dcRw, 50, true);
             }
         }
     }
@@ -941,25 +921,10 @@ class Sigenergy extends utils.Adapter {
                 return;
             }
             const registers = getRegistersForDevice(device.slaveId);
-            const batchSize = 30;
-            const groups = this._buildReadGroups(registers, batchSize);
             this.log.debug(
-                `[SigenMicro] device slaveId=${device.slaveId}` +
-                    ` model='${device.model}': ${groups.length} group(s), ${registers.length} registers`,
+                `[SigenMicro] device slaveId=${device.slaveId} model='${device.model}': ${registers.length} registers`,
             );
-
-            for (const group of groups) {
-                if (this._stopped) {
-                    return;
-                }
-                try {
-                    const raw = await this.modbus.readInputRegisters(device.slaveId, group.startAddr, group.totalQty);
-                    await this._processReadGroup(group, raw, `sigenmicro.${device.slaveId}`);
-                    await this._sleep(100);
-                } catch (err) {
-                    this.log.warn(`SigenMicro ID ${device.slaveId} read error at ${group.startAddr}: ${err.message}`);
-                }
-            }
+            await this._readRegisterGroups(`sigenmicro.${device.slaveId}`, device.slaveId, registers, 30);
         }
     }
 
