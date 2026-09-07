@@ -255,6 +255,12 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+- (ssbingo) fix: when the device rejects a grouped register read with a Modbus exception, the registers of that group are now read one by one and only the register(s) the device does not implement are excluded from further polling. Previously a single unsupported register silently disabled its whole group for the rest of the adapter runtime, e.g. `dcCharger.runningState` (31513) never received a value when the discharging registers 31514–31518 of the same group were rejected
+- (ssbingo) feat: new state `info.protocolVersion` (number, e.g. `2.9`) next to the textual `info.protocolLevel`, so widgets and scripts can adapt to the detected protocol version without parsing strings
+- (ssbingo) feat: DC charger registers carry the protocol version that introduced them (`since`, from the V2.9 revision history: 31509–31511 V2.6, 31513 V2.8, 31514–31525 V2.9); registers newer than the detected protocol level are not requested, so a V2.8 device no longer gets its DC charger group rejected because of the V2.9 discharging registers
+- (ssbingo) chore: grouped register reading moved to `lib/readGroups.js` and covered by unit tests
+
 ### 3.2.0 (2026-09-04)
 - (MMeinhardt1) feat: new state `statistics.emsWorkMode` exposing the EMS work mode as plain text, so consumers do not need the `common.states` lookup table
 - (MMeinhardt1) feat: added EMS work mode 6 (Virtual Power Plant) to the register description and the mode map

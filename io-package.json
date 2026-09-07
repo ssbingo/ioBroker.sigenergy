@@ -259,6 +259,19 @@
             "native": {}
         },
         {
+            "_id": "info.protocolVersion",
+            "type": "state",
+            "common": {
+                "name": "Highest Modbus protocol version confirmed by probing (0 = below V2.6 or not detected yet)",
+                "type": "number",
+                "role": "value",
+                "read": true,
+                "write": false,
+                "def": 0
+            },
+            "native": {}
+        },
+        {
             "_id": "info.modelType",
             "type": "state",
             "common": {
