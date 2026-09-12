@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.3.1",
+        "version": "3.3.2",
         "news": {
+            "3.3.2": {
+                "en": "(ssbingo) chore: CI now also tests with Node.js 26 (matrix 22/24/26 on ubuntu, windows and macOS); @iobroker/testing updated to 6.2.1 and the dependency overrides adjusted so npm audit stays at 0. Development tooling only — the adapter itself is unchanged.",
+                "de": "(ssbingo) chore: CI testet jetzt zusätzlich mit Node.js 26 (Matrix 22/24/26 auf Ubuntu, Windows und macOS); @iobroker/testing auf 6.2.1 aktualisiert und die Dependency-Overrides nachgezogen, damit npm audit bei 0 bleibt. Betrifft nur das Entwicklungs-Tooling — der Adapter selbst ist unverändert.",
+                "ru": "(ssbingo) chore: CI теперь тестирует и с Node.js 26 (матрица 22/24/26 на ubuntu, windows и macOS); @iobroker/testing обновлён до 6.2.1, переопределения зависимостей скорректированы, чтобы npm audit оставался на 0. Затрагивает только инструменты разработки — сам адаптер не изменён.",
+                "pt": "(ssbingo) chore: a CI passa a testar também com Node.js 26 (matriz 22/24/26 em ubuntu, windows e macOS); @iobroker/testing atualizado para 6.2.1 e os overrides de dependências ajustados para o npm audit continuar a 0. Apenas ferramentas de desenvolvimento — o adaptador em si não mudou.",
+                "nl": "(ssbingo) chore: CI test nu ook met Node.js 26 (matrix 22/24/26 op ubuntu, windows en macOS); @iobroker/testing bijgewerkt naar 6.2.1 en de dependency-overrides aangepast zodat npm audit op 0 blijft. Alleen ontwikkeltooling — de adapter zelf is ongewijzigd.",
+                "fr": "(ssbingo) chore : la CI teste désormais aussi avec Node.js 26 (matrice 22/24/26 sur ubuntu, windows et macOS) ; @iobroker/testing mis à jour en 6.2.1 et les overrides de dépendances ajustés pour que npm audit reste à 0. Outillage de développement uniquement — l'adaptateur lui-même est inchangé.",
+                "it": "(ssbingo) chore: la CI ora testa anche con Node.js 26 (matrice 22/24/26 su ubuntu, windows e macOS); @iobroker/testing aggiornato a 6.2.1 e gli override delle dipendenze adeguati affinché npm audit resti a 0. Solo strumenti di sviluppo — l'adattatore stesso è invariato.",
+                "es": "(ssbingo) chore: la CI ahora también prueba con Node.js 26 (matriz 22/24/26 en ubuntu, windows y macOS); @iobroker/testing actualizado a 6.2.1 y los overrides de dependencias ajustados para que npm audit siga en 0. Solo herramientas de desarrollo — el adaptador en sí no cambia.",
+                "pl": "(ssbingo) chore: CI testuje teraz także z Node.js 26 (macierz 22/24/26 na ubuntu, windows i macOS); @iobroker/testing zaktualizowany do 6.2.1, a nadpisania zależności dostosowane, by npm audit pozostał na 0. Dotyczy tylko narzędzi deweloperskich — sam adapter bez zmian.",
+                "uk": "(ssbingo) chore: CI тепер тестує також із Node.js 26 (матриця 22/24/26 на ubuntu, windows і macOS); @iobroker/testing оновлено до 6.2.1, перевизначення залежностей скориговано, щоб npm audit залишався на 0. Стосується лише інструментів розробки — сам адаптер не змінено.",
+                "zh-cn": "(ssbingo) chore: CI 现在也在 Node.js 26 上测试（ubuntu、windows 和 macOS 的 22/24/26 矩阵）；@iobroker/testing 升级至 6.2.1，并相应调整依赖 overrides 以使 npm audit 保持为 0。仅涉及开发工具链，适配器本身未变更。"
+            },
             "3.3.1": {
                 "en": "(ssbingo) fix: registers the device marks as not valid (all bits set, 0xFFFF / 0xFFFFFFFF) are no longer scaled by the register gain into plausible looking measurements — observed as a 6553.5 A discharging current, 42949672.95 kWh and an out-of-range running state 65535 on the DC charger, and as 655.35 % or 65.535 V elsewhere. Such registers now report no value",
                 "de": "(ssbingo) fix: Register, die das Gerät als ungültig kennzeichnet (alle Bits gesetzt, 0xFFFF / 0xFFFFFFFF), werden nicht mehr über den Gain in plausibel aussehende Messwerte umgerechnet — sichtbar als 6553,5 A Entladestrom, 42949672,95 kWh und Betriebszustand 65535 beim DC-Charger sowie als 655,35 % oder 65,535 V an anderer Stelle. Solche Register liefern jetzt keinen Wert",

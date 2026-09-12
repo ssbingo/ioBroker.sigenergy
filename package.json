@@ -1,6 +1,6 @@
 {
   "name": "iobroker.sigenergy",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "ioBroker adapter for Sigenergy solar energy systems via Modbus TCP/RTU",
   "author": {
     "name": "ssbingo",
@@ -34,7 +34,7 @@
     "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
     "@iobroker/adapter-dev": "^1.5.0",
     "@iobroker/eslint-config": "^2.3.4",
-    "@iobroker/testing": "^5.3.0",
+    "@iobroker/testing": "^6.2.1",
     "@tsconfig/node22": "^22.0.6",
     "@types/node": "^22.20.1"
   },
@@ -65,9 +65,9 @@
     "node-gyp": "^10.3.1",
     "@babel/core": "^7.29.7",
     "@grpc/grpc-js": "^1.14.4",
-    "adm-zip": "^0.6.0",
+    "adm-zip": "^0.6.1",
     "body-parser": "^1.20.6",
-    "deepl-node": "^1.27.0",
+    "deepl-node": "^1.28.0",
     "diff": "^8.0.3",
     "esbuild": "^0.28.1",
     "immutable": "^4.3.9",
