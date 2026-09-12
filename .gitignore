@@ -7,3 +7,8 @@ npm-debug.log*
 !.vscode/settings.json
 *.tgz
 .commitinfo
+
+# Sigenergy protocol documents: kept locally as a reference for register work,
+# but not redistributed through this public repository (vendor copyright).
+# The translated READMEs under doc/<lang>/ stay tracked.
+doc/*.pdf
