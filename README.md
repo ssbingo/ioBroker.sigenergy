@@ -255,6 +255,10 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+### 3.3.3 (2026-09-12)
+- (ssbingo) fix: `io-package.json` names `ssbingo <s.sternitzke@online.de>` as maintainer instead of the placeholder "ioBroker Community", which carried no contact address — reported as **[E4048]** by the ioBroker repository checker. The entry now matches `author` in `package.json`
+- (ssbingo) fix: `common.news` trimmed to the seven most recent versions (**[W1032]**); the ioBroker repository builder truncates there anyway. The full history stays in this changelog
+
 ### 3.3.2 (2026-09-12)
 - (ioBroker-Bot) chore: the CI test matrix now also covers Node.js 26 (22/24/26 on ubuntu, windows and macOS) — all three run green, so the adapter is ready for the October 2026 LTS
 - (ssbingo) chore: `@iobroker/testing` updated from 5.3.0 to 6.2.1

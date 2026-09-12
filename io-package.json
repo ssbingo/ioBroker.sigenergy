@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.3.2",
+        "version": "3.3.3",
         "news": {
+            "3.3.3": {
+                "en": "(ssbingo) fix: io-package.json now names a maintainer with a contact address instead of the placeholder \"ioBroker Community\", and the release notes are trimmed to the seven entries the ioBroker repository builder keeps. Metadata only — the adapter itself is unchanged.",
+                "de": "(ssbingo) fix: io-package.json nennt jetzt einen Maintainer mit Kontaktadresse statt des Platzhalters \"ioBroker Community\", und die Release-Notes sind auf die sieben Einträge gekürzt, die der ioBroker-Repository-Builder übernimmt. Betrifft nur Metadaten — der Adapter selbst ist unverändert.",
+                "ru": "(ssbingo) fix: в io-package.json указан сопровождающий с контактным адресом вместо заглушки \"ioBroker Community\", а список изменений сокращён до семи записей, которые сохраняет сборщик репозитория ioBroker. Только метаданные — сам адаптер не изменён.",
+                "pt": "(ssbingo) fix: o io-package.json passa a indicar um maintainer com endereço de contacto em vez do marcador \"ioBroker Community\", e as notas de versão foram reduzidas às sete entradas que o construtor do repositório ioBroker mantém. Apenas metadados — o adaptador em si não mudou.",
+                "nl": "(ssbingo) fix: io-package.json noemt nu een maintainer met contactadres in plaats van de plaatsaanduiding \"ioBroker Community\", en de release notes zijn ingekort tot de zeven vermeldingen die de ioBroker repository builder behoudt. Alleen metadata — de adapter zelf is ongewijzigd.",
+                "fr": "(ssbingo) fix : io-package.json indique désormais un mainteneur avec une adresse de contact au lieu du texte générique « ioBroker Community », et les notes de version sont réduites aux sept entrées que conserve le constructeur du dépôt ioBroker. Métadonnées uniquement — l'adaptateur lui-même est inchangé.",
+                "it": "(ssbingo) fix: io-package.json indica ora un maintainer con indirizzo di contatto invece del segnaposto \"ioBroker Community\", e le note di rilascio sono ridotte alle sette voci che il builder del repository ioBroker conserva. Solo metadati — l'adattatore stesso è invariato.",
+                "es": "(ssbingo) fix: io-package.json indica ahora un maintainer con dirección de contacto en lugar del marcador \"ioBroker Community\", y las notas de versión se han recortado a las siete entradas que conserva el generador del repositorio de ioBroker. Solo metadatos — el adaptador en sí no cambia.",
+                "pl": "(ssbingo) fix: io-package.json podaje teraz opiekuna z adresem kontaktowym zamiast symbolu zastępczego \"ioBroker Community\", a notatki wydania skrócono do siedmiu wpisów zachowywanych przez builder repozytorium ioBroker. Tylko metadane — sam adapter bez zmian.",
+                "uk": "(ssbingo) fix: io-package.json тепер вказує супровідника з контактною адресою замість заповнювача \"ioBroker Community\", а нотатки випуску скорочено до семи записів, які зберігає збирач репозиторію ioBroker. Лише метадані — сам адаптер не змінено.",
+                "zh-cn": "(ssbingo) fix: io-package.json 现在填写了带联系方式的维护者，取代占位文本 \"ioBroker Community\"；发布说明精简为 ioBroker 仓库构建器保留的七条。仅涉及元数据，适配器本身未变更。"
+            },
             "3.3.2": {
                 "en": "(ssbingo) chore: CI now also tests with Node.js 26 (matrix 22/24/26 on ubuntu, windows and macOS); @iobroker/testing updated to 6.2.1 and the dependency overrides adjusted so npm audit stays at 0. Development tooling only — the adapter itself is unchanged.",
                 "de": "(ssbingo) chore: CI testet jetzt zusätzlich mit Node.js 26 (Matrix 22/24/26 auf Ubuntu, Windows und macOS); @iobroker/testing auf 6.2.1 aktualisiert und die Dependency-Overrides nachgezogen, damit npm audit bei 0 bleibt. Betrifft nur das Entwicklungs-Tooling — der Adapter selbst ist unverändert.",
@@ -80,32 +93,6 @@
                 "pl": "(ssbingo) chore: aktualizacje bezpieczeństwa zależności przechodnich (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
                 "uk": "(ssbingo) chore: оновлення безпеки для транзитивних залежностей (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
                 "zh-cn": "(ssbingo) chore: 传递依赖的安全更新（brace-expansion 1.1.18、axios 1.19.0、fast-uri 3.1.5、socket.io-parser 4.2.7）"
-            },
-            "3.1.0": {
-                "en": "(MMeinhardt1) feat: statistics improvements — battery flow power, daily grid import/export, h:mm durations, cumulative daily charging time; daily statistics now survive an adapter restart. (ssbingo) chore: minimum requirements raised to js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "de": "(MMeinhardt1) feat: Statistik-Erweiterungen — Batterie-Flussleistung, täglicher Netzbezug/-einspeisung, h:mm-Zeitdauern, kumulierte tägliche Ladezeit; Tagesstatistiken überstehen jetzt einen Adapter-Neustart. (ssbingo) chore: Mindestanforderungen angehoben auf js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "ru": "(MMeinhardt1) feat: улучшения статистики — мощность потоков батареи, суточный импорт/экспорт из сети, длительности в формате h:mm, суммарное суточное время зарядки; суточная статистика теперь сохраняется при перезапуске адаптера. (ssbingo) chore: минимальные требования повышены до js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "pt": "(MMeinhardt1) feat: melhorias nas estatísticas — potência de fluxo da bateria, importação/exportação diária da rede, durações em h:mm, tempo de carga diário acumulado; as estatísticas diárias agora sobrevivem a um reinício do adaptador. (ssbingo) chore: requisitos mínimos elevados para js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "nl": "(MMeinhardt1) feat: statistiekverbeteringen — batterijstroomvermogen, dagelijkse netimport/-export, h:mm-tijdsduren, cumulatieve dagelijkse laadtijd; dagstatistieken overleven nu een herstart van de adapter. (ssbingo) chore: minimumvereisten verhoogd naar js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "fr": "(MMeinhardt1) feat : améliorations des statistiques — puissance de flux de la batterie, import/export réseau quotidien, durées au format h:mm, temps de charge quotidien cumulé ; les statistiques journalières survivent désormais à un redémarrage de l'adaptateur. (ssbingo) chore : exigences minimales relevées à js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "it": "(MMeinhardt1) feat: miglioramenti alle statistiche — potenza di flusso della batteria, importazione/esportazione giornaliera dalla rete, durate in formato h:mm, tempo di ricarica giornaliero cumulativo; le statistiche giornaliere sopravvivono ora a un riavvio dell'adattatore. (ssbingo) chore: requisiti minimi elevati a js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "es": "(MMeinhardt1) feat: mejoras en las estadísticas — potencia de flujo de la batería, importación/exportación diaria de la red, duraciones en h:mm, tiempo de carga diario acumulado; las estadísticas diarias ahora sobreviven a un reinicio del adaptador. (ssbingo) chore: requisitos mínimos elevados a js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "pl": "(MMeinhardt1) feat: ulepszenia statystyk — moc przepływu baterii, dzienny import/eksport z sieci, czasy w formacie h:mm, skumulowany dzienny czas ładowania; statystyki dzienne przetrwają teraz restart adaptera. (ssbingo) chore: minimalne wymagania podniesione do js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "uk": "(MMeinhardt1) feat: покращення статистики — потужність потоків батареї, добовий імпорт/експорт із мережі, тривалості у форматі h:mm, сумарний добовий час заряджання; добова статистика тепер зберігається під час перезапуску адаптера. (ssbingo) chore: мінімальні вимоги підвищено до js-controller 6.0.11 / admin 8.0.0 / Node.js 22",
-                "zh-cn": "(MMeinhardt1) feat: 统计功能改进 — 电池流量功率、每日电网进口/出口、h:mm 时长格式、每日累计充电时长；每日统计现在可在适配器重启后保留。(ssbingo) chore: 最低要求提升至 js-controller 6.0.11 / admin 8.0.0 / Node.js 22"
-            },
-            "3.0.10": {
-                "en": "(ssbingo) chore: bump js-yaml from 4.1.1 to 4.3.0",
-                "de": "(ssbingo) chore: js-yaml von 4.1.1 auf 4.3.0 aktualisiert",
-                "ru": "(ssbingo) chore: обновление js-yaml с 4.1.1 до 4.3.0",
-                "pt": "(ssbingo) chore: atualização do js-yaml de 4.1.1 para 4.3.0",
-                "nl": "(ssbingo) chore: js-yaml bijgewerkt van 4.1.1 naar 4.3.0",
-                "fr": "(ssbingo) chore: mise à jour de js-yaml de 4.1.1 vers 4.3.0",
-                "it": "(ssbingo) chore: aggiornamento di js-yaml da 4.1.1 a 4.3.0",
-                "es": "(ssbingo) chore: actualización de js-yaml de 4.1.1 a 4.3.0",
-                "pl": "(ssbingo) chore: aktualizacja js-yaml z 4.1.1 do 4.3.0",
-                "uk": "(ssbingo) chore: оновлення js-yaml з 4.1.1 до 4.3.0",
-                "zh-cn": "(ssbingo) chore: js-yaml 从 4.1.1 升级到 4.3.0"
             }
         },
         "titleLang": {
@@ -135,7 +122,7 @@
             "zh-cn": "通过Modbus TCP/RTU连接Sigenergy太阳能系统（混合逆变器、电池、AC/DC充电器）的适配器"
         },
         "authors": [
-            "ioBroker Community"
+            "ssbingo <s.sternitzke@online.de>"
         ],
         "keywords": [
             "sigenergy",
