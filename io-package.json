@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.3.3",
+        "version": "3.3.4",
         "news": {
+            "3.3.4": {
+                "en": "(ssbingo) chore: development dependencies updated (@iobroker/testing 6.2.2, @types/node 22.20.4). Tooling only — the adapter itself is unchanged.",
+                "de": "(ssbingo) chore: Entwicklungs-Abhängigkeiten aktualisiert (@iobroker/testing 6.2.2, @types/node 22.20.4). Betrifft nur das Tooling — der Adapter selbst ist unverändert.",
+                "ru": "(ssbingo) chore: обновлены зависимости для разработки (@iobroker/testing 6.2.2, @types/node 22.20.4). Только инструменты — сам адаптер не изменён.",
+                "pt": "(ssbingo) chore: dependências de desenvolvimento atualizadas (@iobroker/testing 6.2.2, @types/node 22.20.4). Apenas ferramentas — o adaptador em si não mudou.",
+                "nl": "(ssbingo) chore: ontwikkelafhankelijkheden bijgewerkt (@iobroker/testing 6.2.2, @types/node 22.20.4). Alleen tooling — de adapter zelf is ongewijzigd.",
+                "fr": "(ssbingo) chore : dépendances de développement mises à jour (@iobroker/testing 6.2.2, @types/node 22.20.4). Outillage uniquement — l'adaptateur lui-même est inchangé.",
+                "it": "(ssbingo) chore: dipendenze di sviluppo aggiornate (@iobroker/testing 6.2.2, @types/node 22.20.4). Solo strumenti — l'adattatore stesso è invariato.",
+                "es": "(ssbingo) chore: dependencias de desarrollo actualizadas (@iobroker/testing 6.2.2, @types/node 22.20.4). Solo herramientas — el adaptador en sí no cambia.",
+                "pl": "(ssbingo) chore: zaktualizowano zależności deweloperskie (@iobroker/testing 6.2.2, @types/node 22.20.4). Tylko narzędzia — sam adapter bez zmian.",
+                "uk": "(ssbingo) chore: оновлено залежності для розробки (@iobroker/testing 6.2.2, @types/node 22.20.4). Лише інструменти — сам адаптер не змінено.",
+                "zh-cn": "(ssbingo) chore: 更新开发依赖（@iobroker/testing 6.2.2、@types/node 22.20.4）。仅涉及工具链，适配器本身未变更。"
+            },
             "3.3.3": {
                 "en": "(ssbingo) fix: io-package.json now names a maintainer with a contact address instead of the placeholder \"ioBroker Community\", and the release notes are trimmed to the seven entries the ioBroker repository builder keeps. Metadata only — the adapter itself is unchanged.",
                 "de": "(ssbingo) fix: io-package.json nennt jetzt einen Maintainer mit Kontaktadresse statt des Platzhalters \"ioBroker Community\", und die Release-Notes sind auf die sieben Einträge gekürzt, die der ioBroker-Repository-Builder übernimmt. Betrifft nur Metadaten — der Adapter selbst ist unverändert.",
@@ -80,19 +93,6 @@
                 "pl": "(ssbingo) chore: usunięto wszystkie zgłoszenia npm audit (28 -> 0); usunięto @iobroker/dev-server, który wciągał przestarzałe pakiety bez poprawek. Dotyczy tylko narzędzi deweloperskich — sam adapter bez zmian.",
                 "uk": "(ssbingo) chore: усунуто всі зауваження npm audit (28 -> 0); видалено @iobroker/dev-server, який тягнув застарілі пакети без виправлень. Стосується лише інструментів розробки — сам адаптер не змінено.",
                 "zh-cn": "(ssbingo) chore: 解决全部 npm audit 问题（28 -> 0）；移除了引入无法修补的废弃软件包的 @iobroker/dev-server。仅涉及开发工具链，适配器本身未变更。"
-            },
-            "3.1.1": {
-                "en": "(ssbingo) chore: security updates for transitive dependencies (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "de": "(ssbingo) chore: Sicherheitsupdates für transitive Abhängigkeiten (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "ru": "(ssbingo) chore: обновления безопасности для транзитивных зависимостей (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "pt": "(ssbingo) chore: atualizações de segurança para dependências transitivas (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "nl": "(ssbingo) chore: beveiligingsupdates voor transitieve afhankelijkheden (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "fr": "(ssbingo) chore : mises à jour de sécurité pour les dépendances transitives (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "it": "(ssbingo) chore: aggiornamenti di sicurezza per le dipendenze transitive (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "es": "(ssbingo) chore: actualizaciones de seguridad para dependencias transitivas (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "pl": "(ssbingo) chore: aktualizacje bezpieczeństwa zależności przechodnich (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "uk": "(ssbingo) chore: оновлення безпеки для транзитивних залежностей (brace-expansion 1.1.18, axios 1.19.0, fast-uri 3.1.5, socket.io-parser 4.2.7)",
-                "zh-cn": "(ssbingo) chore: 传递依赖的安全更新（brace-expansion 1.1.18、axios 1.19.0、fast-uri 3.1.5、socket.io-parser 4.2.7）"
             }
         },
         "titleLang": {
