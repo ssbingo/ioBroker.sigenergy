@@ -28,7 +28,6 @@ Obsługuje protokół Sigenergy Modbus V2.9 (wydany 2026-05-13).
 - 🔍 **PID** (wykrywanie izolacji PV) — Opcjonalny
 - 🌡️ **Podgrzewanie wstępne ESS** — Harmonogram TOU, 30 konfigurowalnych okien czasowych (M1-HYA/HYB)
 - 📈 **Rejestry rozszerzone** — Inteligentne obciążenia 1–24, liczniki energii, parametry kodu sieci
-- ☀️ **SigenMicro** — Wsparcie mikrofalowników (automatyczne wykrywanie)
 - 📊 **Wartości obliczone** — statystyki pochodne aktualizowane przy każdym cyklu odpytywania
 - 🖥️ **Widżety VIS** — przepływ energii, stan baterii, panele statystyk
 
@@ -82,7 +81,8 @@ Wybierz zainstalowane urządzenia:
 - PSS (przełącznik zasilania)
 - PID (wykrywanie izolacji PV)
 - Podgrzewanie wstępne ESS (tylko M1-HYA/HYB)
-- SigenMicro (mikrofalowniki)
+
+> **SigenMicro:** mikrofalowniki SigenMicro nie są obsługiwane. Komunikują się wyłącznie przez WLAN/chmurę i nie są częścią protokołu Modbus Sigenergy. Ich produkcja jest co najwyżej ujęta jako suma w `plant.pvPower` lub `plant.statistics.thirdPartyInverterPower`.
 
 ### Zakładka Statystyki
 Wybierz wartości statystyczne do obliczenia:

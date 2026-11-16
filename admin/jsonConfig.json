@@ -35,10 +35,6 @@
             {
               "label": "Sigen PV / PV Max (PV-only inverter)",
               "value": "pvinverter"
-            },
-            {
-              "label": "SigenMicro only (micro-inverters, no plant)",
-              "value": "sigenmicroOnly"
             }
           ],
           "sm": 12,
@@ -72,7 +68,6 @@
         "_componentsHeader": {
           "type": "staticText",
           "text": "Select which components are installed in your Sigenergy system.",
-          "hidden": "data.deviceType === 'sigenmicroOnly'",
           "sm": 12,
           "xs": 12,
           "md": 12,
@@ -89,7 +84,7 @@
           "lg": 3,
           "xs": 12,
           "xl": 3,
-          "hidden": "data.deviceType === 'pvinverter' || data.deviceType === 'sigenmicroOnly'",
+          "hidden": "data.deviceType === 'pvinverter'",
           "disabled": "data.deviceType === 'sigenstor'"
         },
         "hasPv": {
@@ -101,8 +96,7 @@
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 3
         },
         "hasAcCharger": {
           "type": "checkbox",
@@ -113,8 +107,7 @@
           "md": 6,
           "lg": 3,
           "xs": 12,
-          "xl": 3,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 3
         },
         "hasDcCharger": {
           "type": "checkbox",
@@ -127,28 +120,6 @@
           "xs": 12,
           "xl": 3,
           "hidden": "data.deviceType !== 'sigenstor' && data.deviceType !== 'sigenhybrid'"
-        },
-        "hasSigenMicro": {
-          "type": "checkbox",
-          "label": "SigenMicro Micro-Inverter",
-          "help": "Sigenergy SigenMicro module-level power electronics (MLPE). Activates the SigenMicro scan & configuration tab.",
-          "default": false,
-          "sm": 12,
-          "md": 6,
-          "lg": 3,
-          "xs": 12,
-          "xl": 3,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
-        },
-        "_microOnlyInfo": {
-          "type": "staticText",
-          "text": "SigenMicro-only mode: plant and inverter polling is disabled — only the configured micro-inverters are read. Use the SigenMicro tab to scan and select devices.",
-          "hidden": "data.deviceType !== 'sigenmicroOnly'",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
         },
         "hasEmergencyGateway": {
           "type": "checkbox",
@@ -442,123 +413,6 @@
         }
       }
     },
-    "sigenmicro": {
-      "type": "panel",
-      "label": "SigenMicro",
-      "hidden": "!data.hasSigenMicro",
-      "items": {
-        "_microHeader": {
-          "type": "staticText",
-          "text": "Configure the Modbus slave-ID range to scan for SigenMicro micro-inverters. After scanning, enable each discovered device individually. The adapter polls all enabled devices in every cycle.",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "_divider_micro1": {
-          "type": "divider",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "sigenMicroScanFrom": {
-          "type": "number",
-          "label": "Scan — first Modbus ID",
-          "help": "Lowest slave address to probe during the SigenMicro device scan (1–246)",
-          "min": 1,
-          "max": 246,
-          "default": 10,
-          "sm": 12,
-          "md": 3,
-          "xs": 12,
-          "lg": 3,
-          "xl": 3
-        },
-        "sigenMicroScanTo": {
-          "type": "number",
-          "label": "Scan — last Modbus ID",
-          "help": "Highest slave address to probe during the SigenMicro device scan (1–246)",
-          "min": 1,
-          "max": 246,
-          "default": 30,
-          "sm": 12,
-          "md": 3,
-          "xs": 12,
-          "lg": 3,
-          "xl": 3
-        },
-        "_divider_micro2": {
-          "type": "divider",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "_scanBtnHeader": {
-          "type": "staticText",
-          "text": "Click the button below to scan the Modbus bus for SigenMicro devices. The scan uses the ID range configured above. Found devices are saved automatically — use the SigenMicro admin tab to enable or disable individual devices.",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "scan_btn": {
-          "type": "sendTo",
-          "label": "🔍  Scan for SigenMicro devices",
-          "command": "scanSigenMicro",
-          "jsonData": "{\"sigenMicroScanFrom\": ${data.sigenMicroScanFrom}, \"sigenMicroScanTo\": ${data.sigenMicroScanTo}}",
-          "variant": "contained",
-          "color": "primary",
-          "sm": 12,
-          "xs": 12,
-          "md": 6,
-          "lg": 5,
-          "xl": 4
-        },
-        "_divider_progress": {
-          "type": "divider",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "_progressLabel": {
-          "type": "staticText",
-          "text": "Live scan progress (updates while scan is running):",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "_scanProgress": {
-          "type": "state",
-          "label": "Progress",
-          "oid": "info.scanProgress",
-          "sm": 12,
-          "xs": 12,
-          "md": 12,
-          "lg": 12,
-          "xl": 12
-        },
-        "_scanStatus": {
-          "type": "state",
-          "label": "Status",
-          "oid": "info.scanStatus",
-          "sm": 12,
-          "xs": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        }
-      }
-    },
     "extended": {
       "type": "panel",
       "label": "Extended Registers",
@@ -589,8 +443,7 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 4
         },
         "enableCumulativeEnergy": {
           "type": "checkbox",
@@ -601,8 +454,7 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 4
         },
         "enableGridCode": {
           "type": "checkbox",
@@ -642,8 +494,7 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 4
         },
         "pssSlaveId": {
           "type": "number",
@@ -652,7 +503,7 @@
           "default": 5,
           "min": 1,
           "max": 246,
-          "hidden": "(!data.enablePss) || data.deviceType === 'sigenmicroOnly'",
+          "hidden": "!data.enablePss",
           "sm": 12,
           "md": 6,
           "xs": 12,
@@ -685,8 +536,7 @@
           "md": 6,
           "xs": 12,
           "lg": 4,
-          "xl": 4,
-          "hidden": "data.deviceType === 'sigenmicroOnly'"
+          "xl": 4
         },
         "pidSlaveId": {
           "type": "number",
@@ -695,7 +545,7 @@
           "default": 6,
           "min": 1,
           "max": 246,
-          "hidden": "(!data.enablePid) || data.deviceType === 'sigenmicroOnly'",
+          "hidden": "!data.enablePid",
           "sm": 12,
           "md": 6,
           "xs": 12,

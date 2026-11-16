@@ -77,7 +77,8 @@ Selezionare i dispositivi installati:
 - PSS (commutatore di potenza)
 - PID (rilevamento isolamento PV)
 - Preriscaldamento ESS (solo M1-HYA/HYB)
-- SigenMicro (micro-inverter)
+
+> **SigenMicro:** i micro-inverter SigenMicro non sono supportati. Comunicano solo tramite WLAN/cloud e non fanno parte del protocollo Modbus di Sigenergy. La loro produzione è al massimo inclusa come totale in `plant.pvPower` o `plant.statistics.thirdPartyInverterPower`.
 
 ### Scheda Statistiche
 Scegliere i valori statistici da calcolare:

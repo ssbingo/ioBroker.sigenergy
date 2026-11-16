@@ -68,7 +68,8 @@ Sélectionner les appareils installés :
 - PSS (commutateur de puissance)
 - PID (détection d'isolation PV)
 - Préchauffage ESS (M1-HYA/HYB uniquement)
-- SigenMicro (micro-onduleurs)
+
+> **SigenMicro :** les micro-onduleurs SigenMicro ne sont pas pris en charge. Ils communiquent uniquement par WLAN/cloud et ne font pas partie du protocole Modbus Sigenergy. Leur production est au mieux incluse en total dans `plant.pvPower` ou `plant.statistics.thirdPartyInverterPower`.
 
 ### Onglet Statistiques
 Choisir les valeurs statistiques à calculer :

@@ -28,7 +28,6 @@ Unterstützt das Sigenergy Modbus Protokoll V2.9 (veröffentlicht 2026-05-13).
 - 🔍 **PID** (PV-Isolationsüberwachung) — Optional
 - 🌡️ **ESS-Vorheizung** — TOU-Zeitplan, 30 konfigurierbare Zeitfenster (M1-HYA/HYB)
 - 📈 **Erweiterte Register** — Smart Loads 1–24, Energiezähler, Netzcode-Parameter
-- ☀️ **SigenMicro** — Mikrowechselrichter-Unterstützung (Auto-Scan)
 - 📊 **Berechnete Werte** — Abgeleitete Statistiken werden bei jedem Abfragezyklus aktualisiert
 - 🖥️ **VIS-Widgets** — Energiefluss, Batteriestatus, Statistikpanels
 
@@ -73,7 +72,8 @@ Auswahl der installierten Geräte:
 - PSS (Power Station Switch)
 - PID (PV-Isolationsüberwachung)
 - ESS-Vorheizung (nur M1-HYA/HYB)
-- SigenMicro (Mikrowechselrichter)
+
+> **SigenMicro:** Mikrowechselrichter vom Typ SigenMicro werden nicht unterstützt. Sie kommunizieren nur per WLAN/Cloud und sind nicht Teil des Sigenergy-Modbus-Protokolls. Ihr Ertrag ist höchstens als Summe in `plant.pvPower` bzw. `plant.statistics.thirdPartyInverterPower` enthalten.
 
 ### Reiter Statistiken
 Auswahl der zu berechnenden Statistikwerte:

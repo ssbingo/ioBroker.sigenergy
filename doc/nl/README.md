@@ -77,7 +77,8 @@ Selecteer welke apparaten zijn geïnstalleerd:
 - PSS (vermogensschakelaar)
 - PID (PV-isolatiebewaking)
 - ESS-voorverwarming (alleen M1-HYA/HYB)
-- SigenMicro (micro-omvormers)
+
+> **SigenMicro:** SigenMicro-micro-omvormers worden niet ondersteund. Ze communiceren alleen via WLAN/cloud en maken geen deel uit van het Sigenergy-Modbus-protocol. Hun opbrengst zit hooguit als totaal in `plant.pvPower` of `plant.statistics.thirdPartyInverterPower`.
 
 ### Tabblad Statistieken
 Kies welke statistische waarden berekend moeten worden:

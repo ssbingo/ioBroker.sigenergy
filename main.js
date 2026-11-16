@@ -29,8 +29,6 @@ const {
     DC_CHARGER_RUNNING_STATES,
 } = require('./lib/registers');
 const { buildReadGroups, readRegisterGroups, filterByProtocolVersion } = require('./lib/readGroups');
-const SigenMicroScanner = require('./lib/scanner');
-const { getRegistersForDevice } = require('./lib/sigenMicroRegisters');
 const adapterVersion = require('./package.json').version;
 
 /**
@@ -85,16 +83,6 @@ const DEVICE_CAPABILITIES = {
         essPreheating: false,
         pccPowerFactor: false,
     },
-    sigenmicroOnly: {
-        label: 'SigenMicro only (no plant/inverter)',
-        plant: false,
-        ess: false,
-        essForced: false,
-        dcCharger: false,
-        gridCode: false,
-        essPreheating: false,
-        pccPowerFactor: false,
-    },
 };
 
 /** Model-string (register 30500) → deviceType mapping, most specific first */
@@ -128,7 +116,6 @@ class Sigenergy extends utils.Adapter {
         this._pollTimer = null;
         this._currentData = {};
         this._objectsCreated = false;
-        this._sigenMicroDevices = [];
         // Shutdown guard — set to true in onUnload so pending async operations
         // (modbus reads, scans, setTimeout-chains) can abort gracefully instead of
         // calling setStateAsync on a stopped adapter.
@@ -165,11 +152,19 @@ class Sigenergy extends utils.Adapter {
         // Migration: instances configured before v2.4.0 have no deviceType.
         // Derive it from the legacy component flags and ask the user to review.
         let deviceType = this.config.deviceType;
+        if (String(deviceType) === 'sigenmicroOnly') {
+            // Removed in v3.4.0: SigenMicro micro-inverters are not part of the Sigenergy
+            // Modbus protocol (V2.9) and cannot be read via Modbus at all.
+            this.log.error(
+                "Device type 'SigenMicro only' is no longer supported: SigenMicro micro-inverters " +
+                    'communicate via WLAN/cloud only and are not part of the Sigenergy Modbus protocol. ' +
+                    'Please delete this instance or point it to a SigenStor / Sigen Hybrid / Sigen PV system.',
+            );
+            await this.setStateAsync('info.connection', { val: false, ack: true });
+            return;
+        }
         if (!deviceType || !DEVICE_CAPABILITIES[deviceType]) {
-            deviceType =
-                this.config.hasSigenMicro && !this.config.hasBattery && !this.config.hasPv
-                    ? 'sigenmicroOnly'
-                    : 'sigenstor';
+            deviceType = 'sigenstor';
             this.log.info(
                 `No device type configured — derived '${deviceType}' from legacy component settings. ` +
                     'Please review and save the adapter configuration (Components tab).',
@@ -203,27 +198,6 @@ class Sigenergy extends utils.Adapter {
             this.log.warn(`'${deviceType}' does not support ESS preheating — ignoring 'ESS Preheating' setting`);
             this.config.enableEssPreheating = false;
         }
-        if (!this._caps.plant) {
-            // SigenMicro-only: no plant/inverter exists at this endpoint
-            this.config.hasSigenMicro = true;
-            for (const flag of [
-                'hasBattery',
-                'hasPv',
-                'hasAcCharger',
-                'hasDcCharger',
-                'enableSmartLoads',
-                'enableCumulativeEnergy',
-                'enableGridCode',
-                'enablePss',
-                'enablePid',
-                'enableEssPreheating',
-            ]) {
-                if (this.config[flag]) {
-                    this.log.debug(`[sigenmicroOnly] disabling '${flag}' (no plant/inverter at this endpoint)`);
-                    this.config[flag] = false;
-                }
-            }
-        }
         this.log.debug(
             `[onReady] Config: connectionType=${this.config.connectionType}, ` +
                 `host=${this.config.tcpHost}:${this.config.tcpPort}, ` +
@@ -232,8 +206,7 @@ class Sigenergy extends utils.Adapter {
         );
         this.log.debug(
             `Components: battery=${this.config.hasBattery}, pv=${this.config.hasPv}, ` +
-                `acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}, ` +
-                `sigenMicro=${this.config.hasSigenMicro}`,
+                `acCharger=${this.config.hasAcCharger}, dcCharger=${this.config.hasDcCharger}`,
         );
         this.log.debug(
             `V2.x features: smartLoads=${this.config.enableSmartLoads}, ` +
@@ -243,20 +216,6 @@ class Sigenergy extends utils.Adapter {
                 `essPreheating=${this.config.enableEssPreheating}`,
         );
         await this.setStateAsync('info.connection', { val: false, ack: true });
-
-        // Load persisted SigenMicro device list from config
-        try {
-            const raw = this.config.sigenMicroDevices;
-            this._sigenMicroDevices = raw && typeof raw === 'string' ? JSON.parse(raw) : Array.isArray(raw) ? raw : [];
-        } catch {
-            this._sigenMicroDevices = [];
-        }
-        const activeCount = this._sigenMicroDevices.filter(d => d.active).length;
-        if (this.config.hasSigenMicro) {
-            this.log.info(
-                `SigenMicro enabled: ${this._sigenMicroDevices.length} device(s) configured, ${activeCount} active`,
-            );
-        }
 
         // Migration: remove visWidgets from adapter object if present from older versions.
         // Uses extendForeignObjectAsync (merge) instead of setForeignObjectAsync (overwrite)
@@ -440,12 +399,6 @@ class Sigenergy extends utils.Adapter {
             }
             if (this.config.hasDcCharger) {
                 await this._readDcCharger();
-                if (this._stopped) {
-                    return;
-                }
-            }
-            if (this.config.hasSigenMicro) {
-                await this._readSigenMicroDevices();
                 if (this._stopped) {
                     return;
                 }
@@ -906,29 +859,6 @@ class Sigenergy extends utils.Adapter {
     }
 
     /**
-     * Read all active SigenMicro devices
-     */
-    async _readSigenMicroDevices() {
-        const activeDevices = this._sigenMicroDevices.filter(d => d.active);
-        if (activeDevices.length === 0) {
-            return;
-        }
-        const _deviceIds = activeDevices.map(d => d.slaveId).join(', ');
-        this.log.debug(`[SigenMicro] Reading ${activeDevices.length} active device(s): IDs ${_deviceIds}`);
-
-        for (const device of activeDevices) {
-            if (this._stopped) {
-                return;
-            }
-            const registers = getRegistersForDevice(device.slaveId);
-            this.log.debug(
-                `[SigenMicro] device slaveId=${device.slaveId} model='${device.model}': ${registers.length} registers`,
-            );
-            await this._readRegisterGroups(`sigenmicro.${device.slaveId}`, device.slaveId, registers, 30);
-        }
-    }
-
-    /**
      * Build optimized sequential read groups (see lib/readGroups.js)
      *
      * @param {object[]} registers - Register definitions
@@ -1141,7 +1071,10 @@ class Sigenergy extends utils.Adapter {
             { id: 'dcCharger', keep: this._caps.dcCharger && !!this.config.hasDcCharger },
             { id: 'pss', keep: this._caps.plant && !!this.config.enablePss },
             { id: 'pid', keep: this._caps.plant && !!this.config.enablePid },
-            { id: 'sigenMicro', keep: !!this.config.hasSigenMicro },
+            // SigenMicro support was removed in v3.4.0 (not part of the Modbus protocol)
+            { id: 'sigenmicro', keep: false },
+            { id: 'info.scanProgress', keep: false },
+            { id: 'info.scanStatus', keep: false },
             { id: 'plant.essPreheating', keep: this._caps.essPreheating && !!this.config.enableEssPreheating },
             { id: 'plant.gridCode', keep: this._caps.gridCode && !!this.config.enableGridCode },
         ];
@@ -1345,10 +1278,6 @@ class Sigenergy extends utils.Adapter {
                 this.subscribeStates('dcCharger.control.*');
             }
 
-            if (this.config.hasSigenMicro) {
-                await this._createSigenMicroObjects();
-            }
-
             if (this.config.enablePss) {
                 this.log.debug('Creating PSS objects');
                 await this._createChannel('pss', 'Power Station Switch');
@@ -1517,28 +1446,6 @@ class Sigenergy extends utils.Adapter {
             },
         };
         await this.setObjectNotExistsAsync(reg.name, stateObj);
-    }
-
-    /**
-     * Create ioBroker objects for all active SigenMicro devices
-     */
-    async _createSigenMicroObjects() {
-        const activeDevices = this._sigenMicroDevices.filter(d => d.active);
-        if (activeDevices.length === 0) {
-            return;
-        }
-
-        this.log.debug(`Creating objects for ${activeDevices.length} active SigenMicro device(s)`);
-        await this._createChannel('sigenmicro', 'SigenMicro Micro-Inverters');
-
-        for (const device of activeDevices) {
-            const channelId = `sigenmicro.${device.slaveId}`;
-            await this._createChannel(channelId, device.model || `SigenMicro ID ${device.slaveId}`);
-            const registers = getRegistersForDevice(device.slaveId);
-            for (const reg of registers) {
-                await this._createStateFromRegister(reg);
-            }
-        }
     }
 
     /**
@@ -1950,7 +1857,7 @@ class Sigenergy extends utils.Adapter {
             // Sigenergy devices typically accept only ONE simultaneous TCP connection
             // on port 502. Opening a second connection while polling is active causes
             // the existing connection to be dropped. We therefore pause the poll timer
-            // for the duration of the test, the same way _handleScanSigenMicro does it.
+            // for the duration of the test.
             const wasPolling = !!this._pollTimer;
             if (wasPolling) {
                 this.log.debug('[testConnection] Pausing poll timer for test duration');
@@ -2002,186 +1909,6 @@ class Sigenergy extends utils.Adapter {
             const ports = await this._getSerialPorts();
             if (obj.callback) {
                 this.sendTo(obj.from, obj.command, ports, obj.callback);
-            }
-        }
-
-        if (obj.command === 'scanSigenMicro') {
-            await this._handleScanSigenMicro(obj);
-        }
-
-        if (obj.command === 'saveSigenMicroDevices') {
-            await this._handleSaveSigenMicroDevices(obj);
-        }
-    }
-
-    /**
-     * Handle scanSigenMicro message from Admin tab
-     * Runs a Modbus scan and returns the found device list.
-     *
-     * @param {object} obj - ioBroker message object
-     */
-    async _handleScanSigenMicro(obj) {
-        if (!this.config.hasSigenMicro) {
-            this.sendTo(
-                obj.from,
-                obj.command,
-                { success: false, message: 'SigenMicro is not enabled in adapter configuration.' },
-                obj.callback,
-            );
-            return;
-        }
-
-        const msg = obj.message || {};
-        const from = Math.max(
-            1,
-            parseInt(msg.scanFrom ?? msg.sigenMicroScanFrom, 10) || this.config.sigenMicroScanFrom || 10,
-        );
-        const to = Math.min(
-            246,
-            parseInt(msg.scanTo ?? msg.sigenMicroScanTo, 10) || this.config.sigenMicroScanTo || 30,
-        );
-        const fromJsonConfig = msg.tcpHost !== undefined || msg.connectionType !== undefined;
-
-        if (!this.modbus || !this.modbus.connected) {
-            this.log.warn('[scanSigenMicro] Cannot scan — Modbus connection not established');
-            await this.setStateAsync('info.scanStatus', { val: 'error', ack: true });
-            await this.setStateAsync('info.scanProgress', { val: 'Modbus connection not established', ack: true });
-            return;
-        }
-        const modbus = this.modbus;
-
-        this.log.info(
-            `[scanSigenMicro] Starting scan ${from}–${to} (source: ${fromJsonConfig ? 'jsonConfig' : 'adminTab'})`,
-        );
-
-        // ── Pause polling so the scan can reuse the existing Modbus connection ──
-        // Most Sigenergy devices accept only ONE simultaneous TCP connection on port 502.
-        // Opening a second connection while polling is active causes the scan to fail silently.
-        const wasPolling = !!this._pollTimer;
-        if (wasPolling) {
-            this.log.info('[scanSigenMicro] Pausing poll timer for scan duration');
-            this.clearTimeout(this._pollTimer);
-            this._pollTimer = null;
-        }
-
-        // Pass a getter so the scanner can check the adapter shutdown state on every ID.
-        // This allows a long-running scan to abort immediately when onUnload is triggered,
-        // instead of continuing for several minutes and calling setStateAsync on a dead adapter.
-        const scanner = new SigenMicroScanner(this.config, {
-            debug: m => this.log.debug(m),
-            info: m => this.log.info(m),
-            warn: m => this.log.warn(m),
-            error: m => this.log.error(m),
-            setTimeout: (fn, ms) => this.setTimeout(fn, ms),
-            isStopped: () => this._stopped,
-        });
-
-        try {
-            // Progress callback: writes to info.scanProgress state so admin UI can subscribe
-            const progressCb = async text => {
-                if (this._stopped) {
-                    return;
-                }
-                try {
-                    await this.setStateAsync('info.scanProgress', { val: text, ack: true });
-                } catch {
-                    /* non-critical */
-                }
-            };
-
-            await this.setStateAsync('info.scanStatus', { val: 'scanning', ack: true });
-            await this.setStateAsync('info.scanProgress', { val: `Starting scan IDs ${from}–${to}…`, ack: true });
-
-            const found = await scanner.scan(from, to, modbus, progressCb);
-            if (this._stopped) {
-                return;
-            }
-            const existing = Array.isArray(this._sigenMicroDevices) ? this._sigenMicroDevices : [];
-            const merged = found.map(dev => {
-                const prev = existing.find(e => e.slaveId === dev.slaveId);
-                return { ...dev, active: prev ? !!prev.active : false };
-            });
-
-            await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true });
-            this.log.info(`[scanSigenMicro] Done: ${merged.length} device(s) found`);
-
-            if (fromJsonConfig) {
-                this._sigenMicroDevices = merged;
-                try {
-                    // Use extendForeignObjectAsync (merge) instead of setForeignObjectAsync
-                    // (overwrite) to avoid clobbering concurrent changes from the admin UI.
-                    await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
-                        native: { sigenMicroDevices: JSON.stringify(merged) },
-                    });
-                } catch (saveErr) {
-                    this.log.warn(`[scanSigenMicro] Could not auto-save: ${saveErr.message}`);
-                }
-                const deviceList = merged.map(d => `${d.model} (ID ${d.slaveId})`).join(', ');
-                const message =
-                    merged.length === 0
-                        ? `No SigenMicro devices found in range ${from}–${to}. Check connection and ID range.`
-                        : `Found ${merged.length} device(s): ${deviceList}.` +
-                          ` Use the SigenMicro admin tab to enable/disable devices.`;
-                if (obj.callback) {
-                    this.sendTo(obj.from, obj.command, { success: true, message }, obj.callback);
-                }
-            } else {
-                if (obj.callback) {
-                    this.sendTo(obj.from, obj.command, { success: true, devices: merged }, obj.callback);
-                }
-            }
-        } catch (err) {
-            this.log.error(`[scanSigenMicro] Error: ${err.message}`);
-            try {
-                await this.setStateAsync('info.scanStatus', { val: 'idle', ack: true });
-            } catch {
-                // ignore
-            }
-            if (obj.callback) {
-                this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
-            }
-        } finally {
-            if (wasPolling && !this._stopped) {
-                this.log.info('[scanSigenMicro] Resuming poll timer after scan');
-                this._scheduleNextPoll();
-            }
-        }
-    }
-
-    /**
-     * Handle saveSigenMicroDevices message from Admin tab.
-     * Persists the updated device list (with active flags) into the adapter config.
-     *
-     * @param {object} obj - ioBroker message object
-     */
-    async _handleSaveSigenMicroDevices(obj) {
-        const devices = obj.message && Array.isArray(obj.message.devices) ? obj.message.devices : [];
-        this._sigenMicroDevices = devices;
-
-        try {
-            // Use extendForeignObjectAsync instead of get+set to avoid a read-modify-write
-            // race with concurrent changes from the admin UI.
-            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
-                native: { sigenMicroDevices: JSON.stringify(devices) },
-            });
-
-            // Re-create objects for newly activated devices. Reset flag BEFORE calling
-            // _createObjects so it actually runs through; _createObjects will set the
-            // flag at the end on success, or leave it false on partial failure.
-            this._objectsCreated = false;
-            await this._createObjects();
-
-            this.log.info(
-                `[saveSigenMicroDevices] Saved ${devices.length} device(s),` +
-                    ` ${devices.filter(d => d.active).length} active`,
-            );
-            if (obj.callback) {
-                this.sendTo(obj.from, obj.command, { success: true }, obj.callback);
-            }
-        } catch (err) {
-            this.log.error(`[saveSigenMicroDevices] Error: ${err.message}`);
-            if (obj.callback) {
-                this.sendTo(obj.from, obj.command, { success: false, message: err.message }, obj.callback);
             }
         }
     }

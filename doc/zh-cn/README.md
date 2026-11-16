@@ -28,7 +28,6 @@
 - 🔍 **PID**（光伏绝缘检测）— 可选
 - 🌡️ **ESS 预热** — TOU 时间表，30 个可配置时间窗口（M1-HYA/HYB）
 - 📈 **扩展寄存器** — 智能负载 1–24、累计能量计量、电网规格参数
-- ☀️ **SigenMicro** — 微型逆变器支持（自动扫描）
 - 📊 **计算值** — 每次轮询周期更新的派生统计数据
 - 🖥️ **VIS 组件** — 能量流、电池状态、统计面板
 
@@ -82,7 +81,8 @@
 - PSS（电力站开关）
 - PID（光伏绝缘检测）
 - ESS 预热（仅限 M1-HYA/HYB）
-- SigenMicro（微型逆变器）
+
+> **SigenMicro：** 不支持 SigenMicro 微型逆变器。它们仅通过 WLAN/云端通信，不属于 Sigenergy Modbus 协议。其发电量最多以总和形式包含在 `plant.pvPower` 或 `plant.statistics.thirdPartyInverterPower` 中。
 
 ### 统计选项卡
 选择要计算的统计值：

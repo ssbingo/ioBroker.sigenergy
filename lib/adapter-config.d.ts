@@ -27,7 +27,7 @@ declare global {
             dcChargerId: number;
             pollInterval: number;
             timeout: number;
-            deviceType: 'sigenstor' | 'sigenhybrid' | 'm1hyb' | 'pvinverter' | 'sigenmicroOnly';
+            deviceType: 'sigenstor' | 'sigenhybrid' | 'm1hyb' | 'pvinverter';
             hasAcCharger: boolean;
             hasDcCharger: boolean;
             hasBattery: boolean;
@@ -40,10 +40,6 @@ declare global {
             calcAutarkyRate: boolean;
             calcPvYield: boolean;
             calcGridFeedIn: boolean;
-            hasSigenMicro: boolean;
-            sigenMicroScanFrom: number;
-            sigenMicroScanTo: number;
-            sigenMicroDevices: string;
             enableSmartLoads: boolean;
             enableCumulativeEnergy: boolean;
             enableGridCode: boolean;

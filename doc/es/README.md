@@ -28,7 +28,6 @@ Compatible con el protocolo Sigenergy Modbus V2.9 (publicado el 2026-05-13).
 - 🔍 **PID** (detección de aislamiento PV) — Opcional
 - 🌡️ **Precalentamiento ESS** — Programación TOU, 30 ventanas de tiempo configurables (M1-HYA/HYB)
 - 📈 **Registros extendidos** — Cargas inteligentes 1–24, contadores de energía, parámetros de código de red
-- ☀️ **SigenMicro** — Soporte de micro-inversores (detección automática)
 - 📊 **Valores calculados** — estadísticas derivadas actualizadas en cada ciclo de sondeo
 - 🖥️ **Widgets VIS** — flujo de energía, estado de batería, paneles de estadísticas
 
@@ -82,7 +81,8 @@ Seleccionar los dispositivos instalados:
 - PSS (conmutador de alimentación)
 - PID (detección de aislamiento PV)
 - Precalentamiento ESS (solo M1-HYA/HYB)
-- SigenMicro (micro-inversores)
+
+> **SigenMicro:** los microinversores SigenMicro no son compatibles. Se comunican solo por WLAN/nube y no forman parte del protocolo Modbus de Sigenergy. Su producción, como mucho, se incluye como total en `plant.pvPower` o `plant.statistics.thirdPartyInverterPower`.
 
 ### Pestaña Estadísticas
 Elegir los valores estadísticos a calcular:

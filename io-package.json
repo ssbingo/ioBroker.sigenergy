@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "sigenergy",
-        "version": "3.3.4",
+        "version": "3.4.0",
         "news": {
+            "3.4.0": {
+                "en": "(ssbingo) breaking: SigenMicro support removed. SigenMicro micro-inverters communicate via WLAN/cloud only and are not part of the Sigenergy Modbus protocol, so they could never be found or read. The scan, the SigenMicro tab, the 'SigenMicro only' device type and the sigenmicro.* objects are gone; micro yield is at most included in plant.pvPower or plant.statistics.thirdPartyInverterPower. Dependencies updated, npm audit at 0.",
+                "de": "(ssbingo) breaking: SigenMicro-Unterstützung entfernt. SigenMicro-Mikrowechselrichter kommunizieren nur per WLAN/Cloud und sind nicht Teil des Sigenergy-Modbus-Protokolls, sie konnten daher nie gefunden oder gelesen werden. Scan, SigenMicro-Reiter, Gerätetyp „Nur SigenMicro“ und die sigenmicro.*-Objekte entfallen; der Micro-Ertrag ist höchstens in plant.pvPower bzw. plant.statistics.thirdPartyInverterPower enthalten. Abhängigkeiten aktualisiert, npm audit bei 0.",
+                "ru": "(ssbingo) breaking: поддержка SigenMicro удалена. Микроинверторы SigenMicro обмениваются данными только через WLAN/облако и не входят в протокол Modbus Sigenergy, поэтому их никогда не удавалось найти или прочитать. Сканирование, вкладка SigenMicro, тип устройства «Только SigenMicro» и объекты sigenmicro.* удалены; выработка микроинверторов в лучшем случае входит в plant.pvPower или plant.statistics.thirdPartyInverterPower. Зависимости обновлены, npm audit — 0.",
+                "pt": "(ssbingo) breaking: suporte SigenMicro removido. Os micro-inversores SigenMicro comunicam apenas por WLAN/nuvem e não fazem parte do protocolo Modbus da Sigenergy, pelo que nunca podiam ser encontrados ou lidos. A pesquisa, o separador SigenMicro, o tipo de dispositivo «Apenas SigenMicro» e os objetos sigenmicro.* foram removidos; a produção dos micro-inversores está, no máximo, incluída em plant.pvPower ou plant.statistics.thirdPartyInverterPower. Dependências atualizadas, npm audit a 0.",
+                "nl": "(ssbingo) breaking: SigenMicro-ondersteuning verwijderd. SigenMicro-micro-omvormers communiceren alleen via WLAN/cloud en maken geen deel uit van het Sigenergy-Modbus-protocol, dus ze konden nooit worden gevonden of uitgelezen. De scan, het SigenMicro-tabblad, het apparaattype 'Alleen SigenMicro' en de sigenmicro.*-objecten zijn verdwenen; de micro-opbrengst zit hooguit in plant.pvPower of plant.statistics.thirdPartyInverterPower. Afhankelijkheden bijgewerkt, npm audit op 0.",
+                "fr": "(ssbingo) breaking : prise en charge SigenMicro supprimée. Les micro-onduleurs SigenMicro communiquent uniquement par WLAN/cloud et ne font pas partie du protocole Modbus Sigenergy ; ils n'ont donc jamais pu être trouvés ni lus. Le scan, l'onglet SigenMicro, le type d'appareil « SigenMicro uniquement » et les objets sigenmicro.* sont supprimés ; la production des micro-onduleurs est au mieux incluse dans plant.pvPower ou plant.statistics.thirdPartyInverterPower. Dépendances mises à jour, npm audit à 0.",
+                "it": "(ssbingo) breaking: supporto SigenMicro rimosso. I micro-inverter SigenMicro comunicano solo tramite WLAN/cloud e non fanno parte del protocollo Modbus di Sigenergy, quindi non è mai stato possibile trovarli o leggerli. La scansione, la scheda SigenMicro, il tipo di dispositivo «Solo SigenMicro» e gli oggetti sigenmicro.* sono stati rimossi; la produzione dei micro-inverter è al massimo inclusa in plant.pvPower o plant.statistics.thirdPartyInverterPower. Dipendenze aggiornate, npm audit a 0.",
+                "es": "(ssbingo) breaking: se elimina la compatibilidad con SigenMicro. Los microinversores SigenMicro se comunican solo por WLAN/nube y no forman parte del protocolo Modbus de Sigenergy, por lo que nunca se podían encontrar ni leer. Se eliminan el escaneo, la pestaña SigenMicro, el tipo de dispositivo «Solo SigenMicro» y los objetos sigenmicro.*; la producción de los microinversores se incluye, como mucho, en plant.pvPower o plant.statistics.thirdPartyInverterPower. Dependencias actualizadas, npm audit en 0.",
+                "pl": "(ssbingo) breaking: usunięto obsługę SigenMicro. Mikrofalowniki SigenMicro komunikują się wyłącznie przez WLAN/chmurę i nie są częścią protokołu Modbus Sigenergy, dlatego nigdy nie dało się ich znaleźć ani odczytać. Usunięto skanowanie, kartę SigenMicro, typ urządzenia „Tylko SigenMicro” oraz obiekty sigenmicro.*; produkcja mikrofalowników jest co najwyżej ujęta w plant.pvPower lub plant.statistics.thirdPartyInverterPower. Zaktualizowano zależności, npm audit na 0.",
+                "uk": "(ssbingo) breaking: підтримку SigenMicro видалено. Мікроінвертори SigenMicro обмінюються даними лише через WLAN/хмару й не входять до протоколу Modbus Sigenergy, тож їх ніколи не вдавалося знайти чи прочитати. Сканування, вкладку SigenMicro, тип пристрою «Лише SigenMicro» та об'єкти sigenmicro.* видалено; генерація мікроінверторів щонайбільше врахована в plant.pvPower або plant.statistics.thirdPartyInverterPower. Залежності оновлено, npm audit — 0.",
+                "zh-cn": "(ssbingo) breaking：移除 SigenMicro 支持。SigenMicro 微型逆变器仅通过 WLAN/云端通信，不属于 Sigenergy Modbus 协议，因此始终无法被找到或读取。扫描功能、SigenMicro 选项卡、“仅 SigenMicro”设备类型以及 sigenmicro.* 对象均已移除；微型逆变器的发电量最多包含在 plant.pvPower 或 plant.statistics.thirdPartyInverterPower 中。依赖项已更新，npm audit 为 0。"
+            },
             "3.3.4": {
                 "en": "(ssbingo) chore: development dependencies updated (@iobroker/testing 6.2.2, @types/node 22.20.4). Tooling only — the adapter itself is unchanged.",
                 "de": "(ssbingo) chore: Entwicklungs-Abhängigkeiten aktualisiert (@iobroker/testing 6.2.2, @types/node 22.20.4). Betrifft nur das Tooling — der Adapter selbst ist unverändert.",
@@ -80,19 +93,6 @@
                 "pl": "(MMeinhardt1) feat: tryb pracy EMS jako tekst, tryb Virtual Power Plant, wartości h:mm mają teraz jednostkę 'h' zamiast sufiksu; obiekty statystyk są aktualizowane przy każdym starcie. (ssbingo) chore: wymaganie admin obniżone do >=7.8.23",
                 "uk": "(MMeinhardt1) feat: режим роботи EMS як текст, режим Virtual Power Plant, значення h:mm тепер мають одиницю 'h' замість суфікса; об'єкти статистики оновлюються при кожному запуску. (ssbingo) chore: вимогу до admin знижено до >=7.8.23",
                 "zh-cn": "(MMeinhardt1) feat: EMS 工作模式以纯文本提供、新增 Virtual Power Plant 模式、h:mm 值改用单位 'h' 而非后缀；统计对象在每次启动时更新。(ssbingo) chore: admin 要求下调回 >=7.8.23"
-            },
-            "3.1.2": {
-                "en": "(ssbingo) chore: all npm audit findings resolved (28 -> 0); removed @iobroker/dev-server, which pulled in unpatchable deprecated packages. Development tooling only — the adapter itself is unchanged.",
-                "de": "(ssbingo) chore: alle npm-audit-Findings behoben (28 -> 0); @iobroker/dev-server entfernt, das nicht patchbare veraltete Pakete mitzog. Betrifft nur das Entwicklungs-Tooling — der Adapter selbst ist unverändert.",
-                "ru": "(ssbingo) chore: устранены все замечания npm audit (28 -> 0); удалён @iobroker/dev-server, тянувший устаревшие пакеты без исправлений. Затрагивает только инструменты разработки — сам адаптер не изменён.",
-                "pt": "(ssbingo) chore: todos os alertas do npm audit resolvidos (28 -> 0); removido o @iobroker/dev-server, que trazia pacotes obsoletos sem correção. Apenas ferramentas de desenvolvimento — o adaptador em si não mudou.",
-                "nl": "(ssbingo) chore: alle npm audit-meldingen opgelost (28 -> 0); @iobroker/dev-server verwijderd, dat niet-patchbare verouderde pakketten meebracht. Alleen ontwikkeltooling — de adapter zelf is ongewijzigd.",
-                "fr": "(ssbingo) chore : tous les signalements npm audit résolus (28 -> 0) ; suppression de @iobroker/dev-server, qui entraînait des paquets obsolètes non corrigeables. Outillage de développement uniquement — l'adaptateur lui-même est inchangé.",
-                "it": "(ssbingo) chore: risolti tutti i rilievi di npm audit (28 -> 0); rimosso @iobroker/dev-server, che trascinava pacchetti obsoleti non correggibili. Solo strumenti di sviluppo — l'adattatore stesso è invariato.",
-                "es": "(ssbingo) chore: resueltos todos los hallazgos de npm audit (28 -> 0); eliminado @iobroker/dev-server, que arrastraba paquetes obsoletos sin parche. Solo herramientas de desarrollo — el adaptador en sí no cambia.",
-                "pl": "(ssbingo) chore: usunięto wszystkie zgłoszenia npm audit (28 -> 0); usunięto @iobroker/dev-server, który wciągał przestarzałe pakiety bez poprawek. Dotyczy tylko narzędzi deweloperskich — sam adapter bez zmian.",
-                "uk": "(ssbingo) chore: усунуто всі зауваження npm audit (28 -> 0); видалено @iobroker/dev-server, який тягнув застарілі пакети без виправлень. Стосується лише інструментів розробки — сам адаптер не змінено.",
-                "zh-cn": "(ssbingo) chore: 解决全部 npm audit 问题（28 -> 0）；移除了引入无法修补的废弃软件包的 @iobroker/dev-server。仅涉及开发工具链，适配器本身未变更。"
             }
         },
         "titleLang": {
@@ -197,10 +197,6 @@
         "calcAutarkyRate": true,
         "calcPvYield": true,
         "calcGridFeedIn": true,
-        "hasSigenMicro": false,
-        "sigenMicroScanFrom": 10,
-        "sigenMicroScanTo": 30,
-        "sigenMicroDevices": "[]",
         "enableSmartLoads": false,
         "enableCumulativeEnergy": false,
         "enableGridCode": false,
@@ -242,32 +238,6 @@
                 "read": true,
                 "write": false,
                 "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.scanProgress",
-            "type": "state",
-            "common": {
-                "name": "SigenMicro scan progress",
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": false,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.scanStatus",
-            "type": "state",
-            "common": {
-                "name": "SigenMicro scan status",
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": false,
-                "def": "idle"
             },
             "native": {}
         },

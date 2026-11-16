@@ -28,7 +28,6 @@ Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 - 🔍 **PID** (PV Insulation Detection) — Optional
 - 🌡️ **ESS Preheating** — TOU schedule, 30 configurable time windows (M1-HYA/HYB)
 - 📈 **Extended registers** — Smart loads 1–24, cumulative energy, grid code parameters
-- ☀️ **SigenMicro** — Micro-inverter support (auto-scan)
 - 📊 **Calculated values** — Derived statistics updated each poll cycle
 - 🖥️ **VIS Widgets** — Energy flow, battery status, statistics panels
 
@@ -73,18 +72,16 @@ Since v2.4.0 every adapter instance handles exactly **one** Sigenergy system typ
 Select the type in the Components tab — or use **Auto-detect from device** to read it from the hardware.
 Register sets are gated per the model footnotes of the official Modbus Protocol V2.9:
 
-| Capability | SigenStor | Sigen Hybrid | Sigen PV M1-HYB | PV-only (PV Max) | SigenMicro-only |
-|---|---|---|---|---|---|
-| ESS / battery registers | always | optional | optional | — | — |
-| DC charger | ✓ | ✓ | — | — | — |
-| Grid code (40051-40068) | ✓ | ✓ | — | — | — |
-| ESS preheating (50000-50183) | — | — | ✓ | — | — |
-| PCC power factor (40157/40158) | — | — | ✓ | — | — |
-| Plant registers (slave 247) | ✓ | ✓ | ✓ | ✓ | — |
-| SigenMicro micro-inverters | optional | optional | optional | optional | ✓ |
+| Capability | SigenStor | Sigen Hybrid | Sigen PV M1-HYB | PV-only (PV Max) |
+|---|---|---|---|---|
+| ESS / battery registers | always | optional | optional | — |
+| DC charger | ✓ | ✓ | — | — |
+| Grid code (40051-40068) | ✓ | ✓ | — | — |
+| ESS preheating (50000-50183) | — | — | ✓ | — |
+| PCC power factor (40157/40158) | — | — | ✓ | — |
+| Plant registers (slave 247) | ✓ | ✓ | ✓ | ✓ |
 
-One Modbus endpoint (IP/bus) = one instance. A SigenStor with additional SigenMicro micro-inverters
-belongs in a **single** instance — the micros are an additive component, not a separate type.
+One Modbus endpoint (IP/bus) = one instance.
 Existing pre-2.4.0 configurations are migrated automatically (derived type is logged on startup —
 please review the Components tab once).
 
@@ -106,7 +103,10 @@ Select which devices are installed:
 - PSS (Power Station Switch)
 - PID (PV Insulation Detection)
 - ESS Preheating (M1-HYA/HYB only)
-- SigenMicro (micro-inverters)
+
+> **SigenMicro:** SigenMicro micro-inverters are not supported. They communicate via WLAN/cloud only and are
+> not part of the Sigenergy Modbus protocol (V2.9), so there is no Modbus address or register set to read.
+> Their yield is at most included as a total in `plant.pvPower` or `plant.statistics.thirdPartyInverterPower`.
 
 ### Statistics Tab
 Choose which statistical values to calculate:
@@ -259,8 +259,8 @@ Status and power readings for the DC charger.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
-- (ssbingo) fix: SigenMicro scan now probes the identification registers with function code 0x04 (input registers) as required by the protocol; the previous 0x03 request was rejected by every device, so the scan could never find anything. Probe failures are now logged with their reason at debug level
+### 3.4.0 (2026-11-16)
+- (ssbingo) **breaking:** SigenMicro support removed. SigenMicro micro-inverters communicate via WLAN/cloud only and are not part of the Sigenergy Modbus protocol (V2.9: no device class, no slave address, no registers), so the scan could never find them and the previous register map had no source. Removed: the SigenMicro scan, the SigenMicro admin tab, the `SigenMicro only` device type, the config keys `hasSigenMicro`/`sigenMicroScanFrom`/`sigenMicroScanTo`/`sigenMicroDevices` and the states `info.scanProgress`/`info.scanStatus`. Existing `sigenmicro.*` objects are deleted on startup; an instance still set to `SigenMicro only` logs an error and stays idle. Micro yield is at most included as a total in `plant.pvPower` or `plant.statistics.thirdPartyInverterPower`
 - (ssbingo) chore: Dependabot auto-merge workflow uses `pull_request` instead of `pull_request_target` (#84, via template PR #85); dependencies updated via #81, #82, #83, #87, #89, #91
 - (ssbingo) chore: lockfile refreshed (`zod`) and scoped `overrides` for `glob`/`minimatch` added — `npm audit` back to 0
 
