@@ -255,6 +255,15 @@ Status and power readings for the DC charger.
 
 ## Changelog
 
+<!--
+    Placeholder for the next version (at the beginning of the line):
+    ### **WORK IN PROGRESS**
+-->
+### **WORK IN PROGRESS**
+- (ssbingo) fix: SigenMicro scan now probes the identification registers with function code 0x04 (input registers) as required by the protocol; the previous 0x03 request was rejected by every device, so the scan could never find anything. Probe failures are now logged with their reason at debug level
+- (ssbingo) chore: Dependabot auto-merge workflow uses `pull_request` instead of `pull_request_target` (#84, via template PR #85); dependencies updated via #81, #82, #83, #87, #89, #91
+- (ssbingo) chore: lockfile refreshed (`zod`) and scoped `overrides` for `glob`/`minimatch` added — `npm audit` back to 0
+
 ### 3.3.4 (2026-09-27)
 - (ssbingo) chore: development dependencies updated via #79 and #80 — `@iobroker/testing` 6.2.1 → 6.2.2, `@types/node` 22.20.2 → 22.20.4. Tooling only, the adapter code is unchanged
 - (ssbingo) chore: `common.news` kept at the seven entries the ioBroker repository builder retains (**[W1032]**); the full history stays in this changelog
