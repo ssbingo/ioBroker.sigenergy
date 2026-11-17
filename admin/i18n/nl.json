@@ -154,6 +154,6 @@
   "cloudTestedText": "Aanmelding met deze instellingen succesvol getest.",
   "cloudTestOkText": "Aanmelding gelukt. Sla de instellingen op om het uitlezen van de SigenMicro-gegevens te starten.",
   "cloudTestFailedText": "Aanmelding mislukt: %s",
-  "cloudTestNoDataText": "Account of wachtwoord ontbreekt. Als beide zijn ingevuld en het wachtwoord een backslash of aanhalingsteken bevat, werk dan de admin-adapter bij.",
+  "cloudTestNoDataText": "Account of wachtwoord ontbreekt.",
   "cloudTestBusyText": "Wacht een paar seconden voordat u opnieuw test."
 }

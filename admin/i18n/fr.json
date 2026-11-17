@@ -154,6 +154,6 @@
   "cloudTestedText": "Connexion testée avec succès avec ces paramètres.",
   "cloudTestOkText": "Connexion réussie. Enregistrez les paramètres pour lancer la lecture des données SigenMicro.",
   "cloudTestFailedText": "Échec de la connexion : %s",
-  "cloudTestNoDataText": "Compte ou mot de passe manquant. Si les deux sont renseignés et que le mot de passe contient une barre oblique inverse ou un guillemet, mettez à jour l'adaptateur admin.",
+  "cloudTestNoDataText": "Compte ou mot de passe manquant.",
   "cloudTestBusyText": "Veuillez patienter quelques secondes avant de tester à nouveau."
 }

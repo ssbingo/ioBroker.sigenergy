@@ -154,6 +154,6 @@
   "cloudTestedText": "Inicio de sesión probado correctamente con estos ajustes.",
   "cloudTestOkText": "Inicio de sesión correcto. Guarde los ajustes para empezar a leer los datos de SigenMicro.",
   "cloudTestFailedText": "Error al iniciar sesión: %s",
-  "cloudTestNoDataText": "Falta la cuenta o la contraseña. Si ambas están rellenadas y la contraseña contiene una barra invertida o comillas, actualice el adaptador admin.",
+  "cloudTestNoDataText": "Falta la cuenta o la contraseña.",
   "cloudTestBusyText": "Espere unos segundos antes de volver a probar."
 }

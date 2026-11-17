@@ -154,6 +154,6 @@
   "cloudTestedText": "Login mit diesen Einstellungen erfolgreich getestet.",
   "cloudTestOkText": "Login erfolgreich. Einstellungen speichern, um das Auslesen der SigenMicro-Daten zu starten.",
   "cloudTestFailedText": "Login fehlgeschlagen: %s",
-  "cloudTestNoDataText": "Konto oder Passwort fehlt. Sind beide ausgefüllt und enthält das Passwort einen Backslash oder ein Anführungszeichen, bitte den Admin-Adapter aktualisieren.",
+  "cloudTestNoDataText": "Konto oder Passwort fehlt.",
   "cloudTestBusyText": "Bitte einige Sekunden warten, bevor erneut getestet wird."
 }

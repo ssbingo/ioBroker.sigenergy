@@ -154,6 +154,6 @@
   "cloudTestedText": "Logowanie z tymi ustawieniami przetestowane pomyślnie.",
   "cloudTestOkText": "Logowanie udane. Zapisz ustawienia, aby rozpocząć odczyt danych SigenMicro.",
   "cloudTestFailedText": "Logowanie nie powiodło się: %s",
-  "cloudTestNoDataText": "Brak konta lub hasła. Jeśli oba pola są wypełnione, a hasło zawiera ukośnik odwrotny lub cudzysłów, zaktualizuj adapter admin.",
+  "cloudTestNoDataText": "Brak konta lub hasła.",
   "cloudTestBusyText": "Odczekaj kilka sekund przed ponownym testem."
 }

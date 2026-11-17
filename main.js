@@ -2258,7 +2258,6 @@ class Sigenergy extends utils.Adapter {
         const user = msg ? String(msg.user || '').trim() : '';
         const password = msg ? String(msg.password || '') : '';
         if (!user || !password) {
-            // also the case if an old admin could not encode the password (backslash or quote)
             return { error: 'cloudTestNoData' };
         }
         // Each test is one login (two attempts at most); five wrong passwords lock the account.

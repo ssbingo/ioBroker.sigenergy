@@ -154,6 +154,6 @@
   "cloudTestedText": "Accesso verificato con successo con queste impostazioni.",
   "cloudTestOkText": "Accesso riuscito. Salvare le impostazioni per avviare la lettura dei dati SigenMicro.",
   "cloudTestFailedText": "Accesso non riuscito: %s",
-  "cloudTestNoDataText": "Account o password mancanti. Se entrambi sono compilati e la password contiene una barra rovesciata o le virgolette, aggiornare l'adattatore admin.",
+  "cloudTestNoDataText": "Account o password mancanti.",
   "cloudTestBusyText": "Attendere qualche secondo prima di ripetere la verifica."
 }

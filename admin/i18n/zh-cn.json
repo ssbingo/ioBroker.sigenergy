@@ -154,6 +154,6 @@
   "cloudTestedText": "已使用这些设置成功测试登录。",
   "cloudTestOkText": "登录成功。请保存设置以开始读取 SigenMicro 数据。",
   "cloudTestFailedText": "登录失败：%s",
-  "cloudTestNoDataText": "缺少账户或密码。如果两者均已填写且密码中包含反斜杠或引号，请更新 admin 适配器。",
+  "cloudTestNoDataText": "缺少账户或密码。",
   "cloudTestBusyText": "请等待几秒后再重新测试。"
 }
