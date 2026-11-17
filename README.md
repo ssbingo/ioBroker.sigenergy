@@ -306,9 +306,10 @@ Status and power readings for the DC charger.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.5.1 (2026-11-17)
 - (ssbingo) feat: SigenMicro (Cloud) tab — changing the cloud interface sets the matching polling interval (300 s OpenAPI, 60 s app interface), so a fast app interval is not kept by mistake
 - (ssbingo) feat: SigenMicro (Cloud) tab — new button "Test login" that logs in once with the entered settings. It is required: with the cloud enabled the settings can only be saved after a successful test, and the adapter starts the cloud polling only with tested settings. **Note for 3.5.0 users:** press "Test login" once and save, otherwise the cloud polling stays off after the update
+- (ssbingo) fix: admin translations added for four help texts of the extended register tab (V2.6–V2.9 groups, PSS, PID, ESS preheating) that were shown in English in every language
 
 ### 3.5.0 (2026-11-17)
 - (ssbingo) feat: SigenMicro micro-inverters via the Sigenergy cloud (optional, new tab "SigenMicro (Cloud)"). Uses the official Sigen OpenAPI with the mySigen account (read-only, no onboard, about every 5 minutes) or, optionally, the unofficial mySigen app interface (faster). The micro-inverters of the account are found automatically; new states `sigenmicro.<serial>.*` (power, PV inputs, grid values, temperature, yield), `sigenmicro.totalPower` and `info.cloudConnection`. The password is stored encrypted (`encryptedNative`/`protectedNative`)

@@ -155,5 +155,9 @@
   "cloudTestOkText": "登录成功。请保存设置以开始读取 SigenMicro 数据。",
   "cloudTestFailedText": "登录失败：%s",
   "cloudTestNoDataText": "缺少账户或密码。",
-  "cloudTestBusyText": "请等待几秒后再重新测试。"
+  "cloudTestBusyText": "请等待几秒后再重新测试。",
+  "Optional register groups for V2.6–V2.9 features. Enable only if your Sigenergy firmware version supports the corresponding registers. Enabling unsupported registers may cause harmless Modbus warnings.": "V2.6–V2.9 功能的可选寄存器组。仅当您的 Sigenergy 系统固件版本支持相应寄存器时才启用。启用不受支持的寄存器可能会产生无害的 Modbus 警告。",
+  "PSS (Power Station Switch, V2.9) — external MV/LV switchgear unit with its own Modbus slave ID.": "PSS（Power Station Switch，V2.9）— 外部中压/低压开关设备，具有独立的 Modbus 从站 ID。",
+  "PID (PV Insulation Detection, V2.9) — standalone insulation monitoring device with its own Modbus slave ID.": "PID（PV Insulation Detection，V2.9）— 独立的绝缘监测设备，具有独立的 Modbus 从站 ID。",
+  "ESS Preheating (V2.9, M1-HYA/HYB only) — TOU schedule for battery preheating (holding registers 50000–50183, plant slave 247).": "ESS 预热（V2.9，仅限 M1-HYA/HYB）— 电池预热的分时（TOU）计划（保持寄存器 50000–50183，电站从站 247）。"
 }

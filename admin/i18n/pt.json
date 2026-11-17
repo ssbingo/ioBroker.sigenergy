@@ -155,5 +155,9 @@
   "cloudTestOkText": "Início de sessão bem-sucedido. Guarde as definições para começar a ler os dados SigenMicro.",
   "cloudTestFailedText": "Falha no início de sessão: %s",
   "cloudTestNoDataText": "Falta a conta ou a palavra-passe.",
-  "cloudTestBusyText": "Aguarde alguns segundos antes de testar novamente."
+  "cloudTestBusyText": "Aguarde alguns segundos antes de testar novamente.",
+  "Optional register groups for V2.6–V2.9 features. Enable only if your Sigenergy firmware version supports the corresponding registers. Enabling unsupported registers may cause harmless Modbus warnings.": "Grupos de registos opcionais para funções V2.6–V2.9. Ative apenas se a versão de firmware do seu sistema Sigenergy suportar os registos correspondentes. Registos não suportados podem causar avisos Modbus inofensivos.",
+  "PSS (Power Station Switch, V2.9) — external MV/LV switchgear unit with its own Modbus slave ID.": "PSS (Power Station Switch, V2.9) — quadro de distribuição externo MT/BT com ID Modbus slave próprio.",
+  "PID (PV Insulation Detection, V2.9) — standalone insulation monitoring device with its own Modbus slave ID.": "PID (PV Insulation Detection, V2.9) — dispositivo autónomo de monitorização do isolamento com ID Modbus slave próprio.",
+  "ESS Preheating (V2.9, M1-HYA/HYB only) — TOU schedule for battery preheating (holding registers 50000–50183, plant slave 247).": "Pré-aquecimento ESS (V2.9, apenas M1-HYA/HYB) — programação TOU para o pré-aquecimento da bateria (registos holding 50000–50183, slave da instalação 247)."
 }

@@ -155,5 +155,9 @@
   "cloudTestOkText": "Вход выполнен. Сохраните настройки, чтобы начать чтение данных SigenMicro.",
   "cloudTestFailedText": "Ошибка входа: %s",
   "cloudTestNoDataText": "Не указаны учётная запись или пароль.",
-  "cloudTestBusyText": "Подождите несколько секунд перед повторной проверкой."
+  "cloudTestBusyText": "Подождите несколько секунд перед повторной проверкой.",
+  "Optional register groups for V2.6–V2.9 features. Enable only if your Sigenergy firmware version supports the corresponding registers. Enabling unsupported registers may cause harmless Modbus warnings.": "Дополнительные группы регистров для функций V2.6–V2.9. Включайте их, только если прошивка вашей системы Sigenergy поддерживает соответствующие регистры. Неподдерживаемые регистры могут вызывать безобидные предупреждения Modbus.",
+  "PSS (Power Station Switch, V2.9) — external MV/LV switchgear unit with its own Modbus slave ID.": "PSS (Power Station Switch, V2.9) — внешнее распределительное устройство СН/НН с собственным Modbus Slave ID.",
+  "PID (PV Insulation Detection, V2.9) — standalone insulation monitoring device with its own Modbus slave ID.": "PID (PV Insulation Detection, V2.9) — отдельное устройство контроля изоляции с собственным Modbus Slave ID.",
+  "ESS Preheating (V2.9, M1-HYA/HYB only) — TOU schedule for battery preheating (holding registers 50000–50183, plant slave 247).": "Предварительный подогрев ESS (V2.9, только M1-HYA/HYB) — расписание TOU для подогрева батареи (регистры хранения 50000–50183, slave установки 247)."
 }
