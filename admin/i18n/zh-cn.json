@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "mySigen 账户（电子邮件）",
   "mySigen password": "mySigen 密码",
   "Cloud polling interval (seconds)": "云端轮询间隔（秒）",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "OpenAPI 最小 300 秒（Sigenergy 频率限制），应用接口最小 30 秒。"
+  "cloudIntervalHelpText": "切换接口时会自动设为 300 秒（OpenAPI）或 60 秒（应用接口）。OpenAPI 最少 300 秒（Sigenergy 频率限制），应用接口最少 30 秒。",
+  "Test login": "测试登录",
+  "cloudNotTestedText": "保存前请先点击一次“测试登录”（实例必须正在运行）。更改账户、密码、接口或区域后，必须重新测试登录。",
+  "cloudTestedText": "已使用这些设置成功测试登录。",
+  "cloudTestOkText": "登录成功。请保存设置以开始读取 SigenMicro 数据。",
+  "cloudTestFailedText": "登录失败：%s",
+  "cloudTestNoDataText": "缺少账户或密码。如果两者均已填写且密码中包含反斜杠或引号，请更新 admin 适配器。",
+  "cloudTestBusyText": "请等待几秒后再重新测试。"
 }

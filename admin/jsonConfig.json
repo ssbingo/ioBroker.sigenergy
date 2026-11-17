@@ -970,7 +970,10 @@
           "sm": 12,
           "md": 12,
           "lg": 12,
-          "xl": 12
+          "xl": 12,
+          "validator": "!data.cloudEnabled || !!data.cloudVerified",
+          "validatorErrorText": "cloudNotTestedText",
+          "validatorNoSaveOnError": true
         },
         "cloudApi": {
           "type": "select",
@@ -1067,7 +1070,7 @@
         "cloudInterval": {
           "type": "number",
           "label": "Cloud polling interval (seconds)",
-          "help": "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.",
+          "help": "cloudIntervalHelpText",
           "min": 30,
           "max": 3600,
           "step": 10,
@@ -1077,7 +1080,91 @@
           "sm": 12,
           "md": 6,
           "lg": 6,
-          "xl": 6
+          "xl": 6,
+          "onChange": {
+            "alsoDependsOn": [
+              "cloudApi"
+            ],
+            "calculateFunc": "data.cloudApi === 'app' ? 60 : 300",
+            "ignoreOwnChanges": true
+          }
+        },
+        "_cloudTest": {
+          "type": "sendTo",
+          "label": "Test login",
+          "command": "cloudTest",
+          "jsonData": "{\"api\": \"${data.cloudApi}\", \"region\": \"${data.cloudRegion}\", \"user\": \"${data.cloudUser}\", \"password\": \"${data.cloudPassword}\"}",
+          "useNative": true,
+          "showProcess": true,
+          "variant": "contained",
+          "result": {
+            "cloudTestOk": "cloudTestOkText"
+          },
+          "error": {
+            "cloudTestFailed": "cloudTestFailedText",
+            "cloudTestNoData": "cloudTestNoDataText",
+            "cloudTestBusy": "cloudTestBusyText"
+          },
+          "hidden": "!data.cloudEnabled",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
+        },
+        "_cloudNotTested": {
+          "type": "staticText",
+          "text": "cloudNotTestedText",
+          "hidden": "!data.cloudEnabled || !!data.cloudVerified",
+          "style": {
+            "backgroundColor": "#fff3cd",
+            "border": "1px solid #ffc107",
+            "borderRadius": "4px",
+            "padding": "10px 14px",
+            "color": "#856404"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 8,
+          "xl": 8
+        },
+        "_cloudTested": {
+          "type": "staticText",
+          "text": "cloudTestedText",
+          "hidden": "!data.cloudEnabled || !data.cloudVerified",
+          "style": {
+            "backgroundColor": "#d4edda",
+            "border": "1px solid #28a745",
+            "borderRadius": "4px",
+            "padding": "10px 14px",
+            "color": "#155724"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 8,
+          "xl": 8
+        },
+        "cloudVerified": {
+          "type": "text",
+          "hidden": "true",
+          "onChange": {
+            "alsoDependsOn": [
+              "cloudUser",
+              "cloudPassword",
+              "cloudApi",
+              "cloudRegion"
+            ],
+            "calculateFunc": "''",
+            "ignoreOwnChanges": true
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     }

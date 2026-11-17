@@ -9,7 +9,7 @@
 const utils = require('@iobroker/adapter-core');
 const ModbusConnection = require('./lib/modbus');
 const StatisticsCalculator = require('./lib/statistics');
-const { SigenCloudClient } = require('./lib/sigenCloud');
+const { SigenCloudClient, settingsFingerprint } = require('./lib/sigenCloud');
 const {
     PLANT_READ_REGISTERS,
     INVERTER_READ_REGISTERS,
@@ -146,6 +146,8 @@ class Sigenergy extends utils.Adapter {
         this._cloudLastError = '';
         this._cloudIntervalSec = 300;
         this._cloudObjectsCreated = new Set();
+        /** timestamp (ms) of the last login test from the admin page */
+        this._cloudLastTest = 0;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -1923,6 +1925,14 @@ class Sigenergy extends utils.Adapter {
             return;
         }
 
+        if (obj.command === 'cloudTest') {
+            const result = await this._cloudTestLogin(obj.message);
+            if (obj.callback) {
+                this.sendTo(obj.from, obj.command, result, obj.callback);
+            }
+            return;
+        }
+
         if (obj.command === 'getSerialPorts') {
             const ports = await this._getSerialPorts();
             if (obj.callback) {
@@ -2173,6 +2183,14 @@ class Sigenergy extends utils.Adapter {
             this.log.warn('SigenMicro cloud: no mySigen account or password configured — cloud polling disabled');
             return;
         }
+        const region = this.config.cloudRegion || 'eu';
+        if (this.config.cloudVerified !== settingsFingerprint(this.namespace, mode, region, user, password)) {
+            this.log.warn(
+                'SigenMicro cloud: the login has not been tested with the current settings — open the ' +
+                    "'SigenMicro (Cloud)' tab, press 'Test login' and save. Cloud polling disabled",
+            );
+            return;
+        }
         // Sigenergy limits OpenAPI device realtime data to about once per 5 minutes.
         const minInterval = mode === 'openapi' ? 300 : 30;
         const configured = Number(this.config.cloudInterval) || (mode === 'openapi' ? 300 : 60);
@@ -2214,7 +2232,7 @@ class Sigenergy extends utils.Adapter {
 
         this.cloud = new SigenCloudClient({
             mode,
-            region: this.config.cloudRegion || 'eu',
+            region,
             user,
             password,
             debug: msg => this.log.debug(msg),
@@ -2222,9 +2240,53 @@ class Sigenergy extends utils.Adapter {
         });
         this.log.info(
             `SigenMicro cloud: using the ${mode === 'openapi' ? 'official Sigen OpenAPI' : 'mySigen app interface'} ` +
-                `(region ${this.config.cloudRegion || 'eu'}, every ${this._cloudIntervalSec} s)`,
+                `(region ${region}, every ${this._cloudIntervalSec} s)`,
         );
         this._cloudSchedule(2);
+    }
+
+    /**
+     * Login test from the admin page ('Test login' button). Logs in once with the entered
+     * settings — no device data is read. On success the fingerprint is returned as `native`,
+     * so the admin page stores it in `cloudVerified`.
+     *
+     * @param {unknown} message - { api, region, user, password } from the admin page
+     * @returns {Promise<object>} sendTo response for the admin page
+     */
+    async _cloudTestLogin(message) {
+        const msg = message && typeof message === 'object' ? /** @type {Record<string, unknown>} */ (message) : null;
+        const user = msg ? String(msg.user || '').trim() : '';
+        const password = msg ? String(msg.password || '') : '';
+        if (!user || !password) {
+            // also the case if an old admin could not encode the password (backslash or quote)
+            return { error: 'cloudTestNoData' };
+        }
+        // Each test is one login (two attempts at most); five wrong passwords lock the account.
+        if (Date.now() - this._cloudLastTest < 10000) {
+            return { error: 'cloudTestBusy' };
+        }
+        this._cloudLastTest = Date.now();
+        const mode = msg && msg.api === 'app' ? 'app' : 'openapi';
+        const region = msg && typeof msg.region === 'string' && msg.region ? msg.region : 'eu';
+        const client = new SigenCloudClient({
+            mode,
+            region,
+            user,
+            password,
+            debug: m => this.log.debug(m),
+            sleep: ms => this._sleep(ms),
+        });
+        try {
+            await client.login();
+        } catch (err) {
+            this.log.warn(`SigenMicro cloud: login test failed: ${err.message}`);
+            return { error: 'cloudTestFailed', args: [err.message] };
+        }
+        this.log.info(`SigenMicro cloud: login test successful (${mode}, region ${region})`);
+        return {
+            result: 'cloudTestOk',
+            native: { cloudVerified: settingsFingerprint(this.namespace, mode, region, user, password) },
+        };
     }
 
     /**

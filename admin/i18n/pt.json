@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "Conta mySigen (e-mail)",
   "mySigen password": "Palavra-passe mySigen",
   "Cloud polling interval (seconds)": "Intervalo de consulta da nuvem (segundos)",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Mínimo de 300 s para a OpenAPI (limite de pedidos da Sigenergy), 30 s para a interface da app."
+  "cloudIntervalHelpText": "Ao mudar a interface, são definidos 300 s (OpenAPI) ou 60 s (interface da app). Mínimo de 300 s para a OpenAPI (limite da Sigenergy), 30 s para a interface da app.",
+  "Test login": "Testar início de sessão",
+  "cloudNotTestedText": "Prima «Testar início de sessão» uma vez antes de guardar (a instância tem de estar em execução). Depois de alterar a conta, a palavra-passe, a interface ou a região, o início de sessão tem de ser testado novamente.",
+  "cloudTestedText": "Início de sessão testado com sucesso com estas definições.",
+  "cloudTestOkText": "Início de sessão bem-sucedido. Guarde as definições para começar a ler os dados SigenMicro.",
+  "cloudTestFailedText": "Falha no início de sessão: %s",
+  "cloudTestNoDataText": "Falta a conta ou a palavra-passe. Se ambas estiverem preenchidas e a palavra-passe contiver uma barra invertida ou aspas, atualize o adaptador admin.",
+  "cloudTestBusyText": "Aguarde alguns segundos antes de testar novamente."
 }

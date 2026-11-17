@@ -129,11 +129,14 @@ of the Modbus connection.
 | Cloud interface | **Official Sigen OpenAPI** (default) — documented by Sigenergy, read-only. Sigenergy limits device live data to about once per 5 minutes.<br>**mySigen app interface** — the interface of the mySigen app, allows faster updates, but it is **not officially documented**: Sigenergy may change or block it at any time without notice. |
 | Cloud region | Server of your mySigen account (Europe = `api-eu.sigencloud.com`) |
 | mySigen account / password | Your mySigen login. It is sent only to the Sigenergy cloud; the password is stored encrypted. |
-| Cloud polling interval | Minimum 300 s for the OpenAPI, 30 s for the app interface (default 300 s) |
+| Cloud polling interval | Minimum 300 s for the OpenAPI, 30 s for the app interface. Changing the cloud interface sets the matching default (300 s for the OpenAPI, 60 s for the app interface). |
+| Test login | Logs in to the Sigenergy cloud once with the entered settings (no device data is read). **Required:** while the cloud is enabled, the settings can only be saved after a successful test, and the test must be repeated after changing the account, password, interface or region. The instance must be running for the test. |
 
 Notes:
 - The adapter only reads. No developer account and no "onboard" of the system is needed (the OpenAPI
   account login only grants read access to the systems of your own account).
+- The adapter only polls the cloud with settings whose login was tested. If the settings were changed without
+  a test (e.g. directly in the instance object), it logs a warning and the cloud polling stays off.
 - Wrong credentials stop the cloud polling until the settings are saved again. Sigenergy locks a mySigen
   account for 3 minutes after 5 failed logins within 60 minutes, so the adapter never retries a rejected
   password on its own.
@@ -303,6 +306,10 @@ Status and power readings for the DC charger.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (ssbingo) feat: SigenMicro (Cloud) tab — changing the cloud interface sets the matching polling interval (300 s OpenAPI, 60 s app interface), so a fast app interval is not kept by mistake
+- (ssbingo) feat: SigenMicro (Cloud) tab — new button "Test login" that logs in once with the entered settings. It is required: with the cloud enabled the settings can only be saved after a successful test, and the adapter starts the cloud polling only with tested settings. **Note for 3.5.0 users:** press "Test login" once and save, otherwise the cloud polling stays off after the update
+
 ### 3.5.0 (2026-11-17)
 - (ssbingo) feat: SigenMicro micro-inverters via the Sigenergy cloud (optional, new tab "SigenMicro (Cloud)"). Uses the official Sigen OpenAPI with the mySigen account (read-only, no onboard, about every 5 minutes) or, optionally, the unofficial mySigen app interface (faster). The micro-inverters of the account are found automatically; new states `sigenmicro.<serial>.*` (power, PV inputs, grid values, temperature, yield), `sigenmicro.totalPower` and `info.cloudConnection`. The password is stored encrypted (`encryptedNative`/`protectedNative`)
 - (ssbingo) fix: admin translations completed — 11 section headers (pt, nl, fr, it, es, pl, uk, zh-cn) and the "9600 (default)" baud-rate label were still in English

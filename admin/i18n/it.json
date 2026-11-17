@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "Account mySigen (e-mail)",
   "mySigen password": "Password mySigen",
   "Cloud polling interval (seconds)": "Intervallo di interrogazione del cloud (secondi)",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimo 300 s per la OpenAPI (limite di richieste di Sigenergy), 30 s per l'interfaccia dell'app."
+  "cloudIntervalHelpText": "Cambiando interfaccia vengono impostati 300 s (OpenAPI) o 60 s (interfaccia dell'app). Minimo 300 s per l'OpenAPI (limite Sigenergy), 30 s per l'interfaccia dell'app.",
+  "Test login": "Verifica accesso",
+  "cloudNotTestedText": "Premere una volta «Verifica accesso» prima di salvare (l'istanza deve essere in esecuzione). Dopo aver modificato account, password, interfaccia o regione, l'accesso deve essere verificato di nuovo.",
+  "cloudTestedText": "Accesso verificato con successo con queste impostazioni.",
+  "cloudTestOkText": "Accesso riuscito. Salvare le impostazioni per avviare la lettura dei dati SigenMicro.",
+  "cloudTestFailedText": "Accesso non riuscito: %s",
+  "cloudTestNoDataText": "Account o password mancanti. Se entrambi sono compilati e la password contiene una barra rovesciata o le virgolette, aggiornare l'adattatore admin.",
+  "cloudTestBusyText": "Attendere qualche secondo prima di ripetere la verifica."
 }

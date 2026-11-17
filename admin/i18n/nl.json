@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "mySigen-account (e-mail)",
   "mySigen password": "mySigen-wachtwoord",
   "Cloud polling interval (seconds)": "Cloud-pollinginterval (seconden)",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimaal 300 s voor de OpenAPI (snelheidslimiet van Sigenergy), 30 s voor de app-interface."
+  "cloudIntervalHelpText": "Bij het wisselen van interface wordt 300 s (OpenAPI) of 60 s (app-interface) ingesteld. Minimaal 300 s voor de OpenAPI (limiet van Sigenergy), 30 s voor de app-interface.",
+  "Test login": "Aanmelding testen",
+  "cloudNotTestedText": "Druk vóór het opslaan één keer op 'Aanmelding testen' (de instantie moet draaien). Na een wijziging van account, wachtwoord, interface of regio moet de aanmelding opnieuw worden getest.",
+  "cloudTestedText": "Aanmelding met deze instellingen succesvol getest.",
+  "cloudTestOkText": "Aanmelding gelukt. Sla de instellingen op om het uitlezen van de SigenMicro-gegevens te starten.",
+  "cloudTestFailedText": "Aanmelding mislukt: %s",
+  "cloudTestNoDataText": "Account of wachtwoord ontbreekt. Als beide zijn ingevuld en het wachtwoord een backslash of aanhalingsteken bevat, werk dan de admin-adapter bij.",
+  "cloudTestBusyText": "Wacht een paar seconden voordat u opnieuw test."
 }

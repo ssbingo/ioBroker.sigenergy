@@ -235,14 +235,16 @@
         "cloudRegion": "eu",
         "cloudUser": "",
         "cloudPassword": "",
-        "cloudInterval": 300
+        "cloudInterval": 300,
+        "cloudVerified": ""
     },
     "encryptedNative": [
         "cloudPassword"
     ],
     "protectedNative": [
         "cloudUser",
-        "cloudPassword"
+        "cloudPassword",
+        "cloudVerified"
     ],
     "objects": [],
     "instanceObjects": [

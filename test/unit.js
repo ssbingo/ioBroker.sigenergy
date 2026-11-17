@@ -18,7 +18,14 @@ const {
     applySince,
 } = require('../lib/registers');
 const ModbusConnection = require('../lib/modbus');
-const { SigenCloudClient, toNumber, normalizeOpenApi, normalizeApp, isOpenApiMicro } = require('../lib/sigenCloud');
+const {
+    SigenCloudClient,
+    settingsFingerprint,
+    toNumber,
+    normalizeOpenApi,
+    normalizeApp,
+    isOpenApiMicro,
+} = require('../lib/sigenCloud');
 
 /**
  * Fake fetch for the cloud client: routes by path, records the requests.
@@ -509,6 +516,19 @@ tests.unit(path.join(__dirname, '..'), {
                 assert.strictEqual(rtReq.url.searchParams.get('snCode'), '110M2');
                 assert.strictEqual(rtReq.url.searchParams.get('stationId'), '42');
                 assert.strictEqual(rtReq.url.searchParams.get('deviceType'), '3');
+            });
+
+            it('settingsFingerprint changes with every tested setting and hides the password', () => {
+                const base = ['sigenergy.0', 'openapi', 'eu', 'user@example.com', 'secret'];
+                const fp = settingsFingerprint(...base);
+                assert.match(fp, /^[0-9a-f]{64}$/);
+                assert.ok(!fp.includes('secret'));
+                assert.strictEqual(settingsFingerprint(...base), fp);
+                for (let i = 0; i < base.length; i++) {
+                    const changed = [...base];
+                    changed[i] = `${changed[i]}x`;
+                    assert.notStrictEqual(settingsFingerprint(...changed), fp, `field ${i}`);
+                }
             });
         });
     },

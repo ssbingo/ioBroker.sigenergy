@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "mySigen account (e-mail)",
   "mySigen password": "mySigen password",
   "Cloud polling interval (seconds)": "Cloud polling interval (seconds)",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface."
+  "cloudIntervalHelpText": "Changing the interface sets 300 s (OpenAPI) or 60 s (app interface). Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.",
+  "Test login": "Test login",
+  "cloudNotTestedText": "Press 'Test login' once before saving (the instance must be running). After changing the account, password, interface or region, the login must be tested again.",
+  "cloudTestedText": "Login tested successfully with these settings.",
+  "cloudTestOkText": "Login successful. Save the settings to start reading the SigenMicro data.",
+  "cloudTestFailedText": "Login failed: %s",
+  "cloudTestNoDataText": "Account or password missing. If both are filled in and the password contains a backslash or quotation mark, please update the admin adapter.",
+  "cloudTestBusyText": "Please wait a few seconds before testing again."
 }

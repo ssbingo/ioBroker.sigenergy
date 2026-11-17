@@ -66,6 +66,7 @@ declare global {
             cloudUser: string;
             cloudPassword: string;
             cloudInterval: number;
+            cloudVerified: string;
         }
     }
 }

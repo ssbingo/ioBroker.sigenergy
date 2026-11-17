@@ -148,5 +148,12 @@
   "mySigen account (e-mail)": "mySigen-Konto (E-Mail)",
   "mySigen password": "mySigen-Passwort",
   "Cloud polling interval (seconds)": "Cloud-Abfrageintervall (Sekunden)",
-  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Mindestens 300 s für die OpenAPI (Ratenlimit von Sigenergy), 30 s für die App-Schnittstelle."
+  "cloudIntervalHelpText": "Beim Wechsel der Schnittstelle werden 300 s (OpenAPI) bzw. 60 s (App-Schnittstelle) eingestellt. Minimum 300 s für die OpenAPI (Sigenergy-Ratenlimit), 30 s für die App-Schnittstelle.",
+  "Test login": "Login testen",
+  "cloudNotTestedText": "Vor dem Speichern einmal „Login testen“ drücken (die Instanz muss laufen). Nach einer Änderung von Konto, Passwort, Schnittstelle oder Region muss der Login erneut getestet werden.",
+  "cloudTestedText": "Login mit diesen Einstellungen erfolgreich getestet.",
+  "cloudTestOkText": "Login erfolgreich. Einstellungen speichern, um das Auslesen der SigenMicro-Daten zu starten.",
+  "cloudTestFailedText": "Login fehlgeschlagen: %s",
+  "cloudTestNoDataText": "Konto oder Passwort fehlt. Sind beide ausgefüllt und enthält das Passwort einen Backslash oder ein Anführungszeichen, bitte den Admin-Adapter aktualisieren.",
+  "cloudTestBusyText": "Bitte einige Sekunden warten, bevor erneut getestet wird."
 }
