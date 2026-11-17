@@ -82,7 +82,13 @@ Selecionar os dispositivos instalados:
 - PID (deteção de isolamento PV)
 - Pré-aquecimento ESS (apenas M1-HYA/HYB)
 
-> **SigenMicro:** os micro-inversores SigenMicro não são suportados. Comunicam apenas por WLAN/nuvem e não fazem parte do protocolo Modbus da Sigenergy. A sua produção está, no máximo, incluída como total em `plant.pvPower` ou `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro:** os microinversores SigenMicro não fazem parte do protocolo Modbus da Sigenergy (V2.9) — comunicam com a nuvem Sigenergy apenas via WLAN. Os seus valores em tempo real podem, opcionalmente, ser lidos da nuvem:
+>
+> - Separador **SigenMicro (nuvem)**: conta mySigen, palavra-passe (guardada encriptada), região, interface e intervalo de consulta.
+> - **Sigen OpenAPI oficial** (predefinida): apenas leitura, sem conta de programador nem onboarding; a Sigenergy fornece os valores do dispositivo no máximo a cada 5 minutos, aproximadamente.
+> - **Interface da app mySigen**: mais rápida (a partir de 30 s), mas não documentada oficialmente — a Sigenergy pode alterá-la ou bloqueá-la a qualquer momento sem aviso.
+> - Estados: `sigenmicro.<número de série>.*` (potência, entradas FV, valores da rede, temperatura, produção), `sigenmicro.totalPower` e `info.cloudConnection`.
+> - As credenciais são enviadas apenas para a nuvem Sigenergy. Após 5 tentativas falhadas em 60 minutos, a Sigenergy bloqueia a conta durante 3 minutos; por isso, o adaptador nunca repete sozinho uma palavra-passe rejeitada.
 
 ### Separador Estatísticas
 Escolher os valores estatísticos a calcular:

@@ -82,7 +82,13 @@
 - PID（光伏绝缘检测）
 - ESS 预热（仅限 M1-HYA/HYB）
 
-> **SigenMicro：** 不支持 SigenMicro 微型逆变器。它们仅通过 WLAN/云端通信，不属于 Sigenergy Modbus 协议。其发电量最多以总和形式包含在 `plant.pvPower` 或 `plant.statistics.thirdPartyInverterPower` 中。
+> **SigenMicro：** SigenMicro 微型逆变器不属于 Sigenergy Modbus 协议（V2.9）——它们仅通过 WLAN 与 Sigenergy 云端通信。可以选择从云端读取其实时数据：
+>
+> - 选项卡 **SigenMicro（云端）**：mySigen 账户、密码（加密保存）、区域、接口和轮询间隔。
+> - **官方 Sigen OpenAPI**（默认）：只读，无需开发者账户，也无需 onboarding；Sigenergy 最多约每 5 分钟提供一次设备数据。
+> - **mySigen 应用接口**：更快（最短 30 秒），但没有官方文档——Sigenergy 可能随时更改或封锁该接口，恕不另行通知。
+> - 状态：`sigenmicro.<序列号>.*`（功率、光伏输入、电网数值、温度、发电量）、`sigenmicro.totalPower` 和 `info.cloudConnection`。
+> - 登录凭据仅发送到 Sigenergy 云端。60 分钟内登录失败 5 次后，Sigenergy 会将账户锁定 3 分钟；因此适配器不会自行重试被拒绝的密码。
 
 ### 统计选项卡
 选择要计算的统计值：

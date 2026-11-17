@@ -60,6 +60,12 @@ declare global {
             emergencyTelegram: boolean;
             emergencyTelegramInst: string;
             emergencyTelegramChat: string;
+            cloudEnabled: boolean;
+            cloudApi: 'openapi' | 'app';
+            cloudRegion: 'eu' | 'apac' | 'aus' | 'us' | 'cn';
+            cloudUser: string;
+            cloudPassword: string;
+            cloudInterval: number;
         }
     }
 }

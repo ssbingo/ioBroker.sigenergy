@@ -78,7 +78,13 @@ Selecteer welke apparaten zijn geïnstalleerd:
 - PID (PV-isolatiebewaking)
 - ESS-voorverwarming (alleen M1-HYA/HYB)
 
-> **SigenMicro:** SigenMicro-micro-omvormers worden niet ondersteund. Ze communiceren alleen via WLAN/cloud en maken geen deel uit van het Sigenergy-Modbus-protocol. Hun opbrengst zit hooguit als totaal in `plant.pvPower` of `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro:** SigenMicro-micro-omvormers maken geen deel uit van het Sigenergy-Modbus-protocol (V2.9) — ze communiceren uitsluitend via WLAN met de Sigenergy-cloud. Hun live-waarden kunnen optioneel uit de cloud worden gelezen:
+>
+> - Tabblad **SigenMicro (via cloud)**: mySigen-account, wachtwoord (versleuteld opgeslagen), regio, interface en pollinginterval.
+> - **Officiële Sigen OpenAPI** (standaard): alleen-lezen, zonder ontwikkelaarsaccount en zonder onboarding; Sigenergy levert apparaatwaarden hooguit ongeveer elke 5 minuten.
+> - **mySigen-app-interface**: sneller (vanaf 30 s), maar niet officieel gedocumenteerd — Sigenergy kan deze op elk moment zonder aankondiging wijzigen of blokkeren.
+> - Datapunten: `sigenmicro.<serienummer>.*` (vermogen, PV-ingangen, netwaarden, temperatuur, opbrengst), `sigenmicro.totalPower` en `info.cloudConnection`.
+> - De inloggegevens worden alleen naar de Sigenergy-cloud verzonden. Na 5 mislukte pogingen binnen 60 minuten blokkeert Sigenergy het account 3 minuten; een geweigerd wachtwoord probeert de adapter daarom nooit zelf opnieuw.
 
 ### Tabblad Statistieken
 Kies welke statistische waarden berekend moeten worden:

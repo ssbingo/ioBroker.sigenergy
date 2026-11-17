@@ -69,7 +69,13 @@ Sélectionner les appareils installés :
 - PID (détection d'isolation PV)
 - Préchauffage ESS (M1-HYA/HYB uniquement)
 
-> **SigenMicro :** les micro-onduleurs SigenMicro ne sont pas pris en charge. Ils communiquent uniquement par WLAN/cloud et ne font pas partie du protocole Modbus Sigenergy. Leur production est au mieux incluse en total dans `plant.pvPower` ou `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro :** les micro-onduleurs SigenMicro ne font pas partie du protocole Modbus Sigenergy (V2.9) : ils communiquent avec le cloud Sigenergy uniquement par WLAN. Leurs valeurs en temps réel peuvent être lues en option depuis le cloud :
+>
+> - Onglet **SigenMicro (via le cloud)** : compte mySigen, mot de passe (stocké chiffré), région, interface et intervalle d'interrogation.
+> - **Sigen OpenAPI officielle** (par défaut) : lecture seule, sans compte développeur ni onboarding ; Sigenergy fournit les valeurs de l'appareil au plus toutes les 5 minutes environ.
+> - **Interface de l'application mySigen** : plus rapide (dès 30 s), mais non documentée officiellement ; Sigenergy peut la modifier ou la bloquer à tout moment sans préavis.
+> - États : `sigenmicro.<numéro de série>.*` (puissance, entrées PV, valeurs réseau, température, production), `sigenmicro.totalPower` et `info.cloudConnection`.
+> - Les identifiants ne sont envoyés qu'au cloud Sigenergy. Après 5 échecs en 60 minutes, Sigenergy bloque le compte pendant 3 minutes ; l'adaptateur ne réessaie donc jamais de lui-même un mot de passe refusé.
 
 ### Onglet Statistiques
 Choisir les valeurs statistiques à calculer :

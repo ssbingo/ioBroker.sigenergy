@@ -949,6 +949,137 @@
           "xl": 4
         }
       }
+    },
+    "cloud": {
+      "type": "panel",
+      "label": "SigenMicro (Cloud)",
+      "items": {
+        "_cloudInfo": {
+          "type": "staticText",
+          "text": "cloudInfoText",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "cloudEnabled": {
+          "type": "checkbox",
+          "label": "Read SigenMicro micro-inverters via the Sigenergy cloud",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "cloudApi": {
+          "type": "select",
+          "label": "Cloud interface",
+          "options": [
+            {
+              "label": "Official Sigen OpenAPI (recommended, at most every 5 minutes)",
+              "value": "openapi"
+            },
+            {
+              "label": "mySigen app interface (unofficial, faster)",
+              "value": "app"
+            }
+          ],
+          "default": "openapi",
+          "hidden": "!data.cloudEnabled",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "cloudRegion": {
+          "type": "select",
+          "label": "Cloud region",
+          "options": [
+            {
+              "label": "Europe (EU server)",
+              "value": "eu"
+            },
+            {
+              "label": "Asia-Pacific (APAC server)",
+              "value": "apac"
+            },
+            {
+              "label": "Australia (AUS server)",
+              "value": "aus"
+            },
+            {
+              "label": "Americas (US server)",
+              "value": "us"
+            },
+            {
+              "label": "China (CN server)",
+              "value": "cn"
+            }
+          ],
+          "default": "eu",
+          "hidden": "!data.cloudEnabled",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "_cloudAppWarning": {
+          "type": "staticText",
+          "text": "cloudAppWarningText",
+          "hidden": "!data.cloudEnabled || data.cloudApi !== 'app'",
+          "style": {
+            "backgroundColor": "#fff3cd",
+            "border": "1px solid #ffc107",
+            "borderRadius": "4px",
+            "padding": "10px 14px",
+            "color": "#856404"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "cloudUser": {
+          "type": "text",
+          "label": "mySigen account (e-mail)",
+          "hidden": "!data.cloudEnabled",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "cloudPassword": {
+          "type": "password",
+          "label": "mySigen password",
+          "hidden": "!data.cloudEnabled",
+          "visible": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "cloudInterval": {
+          "type": "number",
+          "label": "Cloud polling interval (seconds)",
+          "help": "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.",
+          "min": 30,
+          "max": 3600,
+          "step": 10,
+          "default": 300,
+          "hidden": "!data.cloudEnabled",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        }
+      }
     }
   },
   "i18n": true

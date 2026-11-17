@@ -82,7 +82,13 @@ Wybierz zainstalowane urządzenia:
 - PID (wykrywanie izolacji PV)
 - Podgrzewanie wstępne ESS (tylko M1-HYA/HYB)
 
-> **SigenMicro:** mikrofalowniki SigenMicro nie są obsługiwane. Komunikują się wyłącznie przez WLAN/chmurę i nie są częścią protokołu Modbus Sigenergy. Ich produkcja jest co najwyżej ujęta jako suma w `plant.pvPower` lub `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro:** mikroinwertery SigenMicro nie są częścią protokołu Modbus Sigenergy (V2.9) — komunikują się z chmurą Sigenergy wyłącznie przez WLAN. Ich bieżące wartości można opcjonalnie odczytywać z chmury:
+>
+> - Zakładka **SigenMicro (chmura)**: konto mySigen, hasło (przechowywane w postaci zaszyfrowanej), region, interfejs i interwał odpytywania.
+> - **Oficjalne Sigen OpenAPI** (domyślnie): tylko odczyt, bez konta deweloperskiego i bez onboardingu; Sigenergy udostępnia wartości urządzenia najwyżej mniej więcej co 5 minut.
+> - **Interfejs aplikacji mySigen**: szybszy (od 30 s), ale nieoficjalnie udokumentowany — Sigenergy może go w każdej chwili bez uprzedzenia zmienić lub zablokować.
+> - Stany: `sigenmicro.<numer seryjny>.*` (moc, wejścia PV, wartości sieci, temperatura, uzysk), `sigenmicro.totalPower` i `info.cloudConnection`.
+> - Dane logowania są wysyłane wyłącznie do chmury Sigenergy. Po 5 nieudanych próbach w ciągu 60 minut Sigenergy blokuje konto na 3 minuty, dlatego adapter nigdy sam nie ponawia odrzuconego hasła.
 
 ### Zakładka Statystyki
 Wybierz wartości statystyczne do obliczenia:

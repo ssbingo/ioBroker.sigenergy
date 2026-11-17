@@ -9,6 +9,7 @@
 const utils = require('@iobroker/adapter-core');
 const ModbusConnection = require('./lib/modbus');
 const StatisticsCalculator = require('./lib/statistics');
+const { SigenCloudClient } = require('./lib/sigenCloud');
 const {
     PLANT_READ_REGISTERS,
     INVERTER_READ_REGISTERS,
@@ -135,6 +136,16 @@ class Sigenergy extends utils.Adapter {
         this._unsupportedRegisters = {};
         this._readErrorLogged = {};
         this._sinceSkipLogged = {};
+        // SigenMicro via the Sigenergy cloud (optional)
+        this.cloud = null;
+        this._cloudTimer = null;
+        /** @type {import('./lib/sigenCloud').MicroDevice[]|null} */
+        this._cloudDevices = null;
+        this._cloudDiscoveredAt = 0;
+        this._cloudBackoff = 0;
+        this._cloudLastError = '';
+        this._cloudIntervalSec = 300;
+        this._cloudObjectsCreated = new Set();
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -262,6 +273,11 @@ class Sigenergy extends utils.Adapter {
         // Emergency switching — initial state check (like the JS script behaviour)
         if (this.config.hasEmergencyGateway && this._caps && this._caps.plant) {
             await this._emergencyInit();
+        }
+
+        // SigenMicro micro-inverters via the Sigenergy cloud (independent of Modbus)
+        if (this.config.cloudEnabled) {
+            await this._cloudStart();
         }
     }
 
@@ -1071,8 +1087,10 @@ class Sigenergy extends utils.Adapter {
             { id: 'dcCharger', keep: this._caps.dcCharger && !!this.config.hasDcCharger },
             { id: 'pss', keep: this._caps.plant && !!this.config.enablePss },
             { id: 'pid', keep: this._caps.plant && !!this.config.enablePid },
-            // SigenMicro support was removed in v3.4.0 (not part of the Modbus protocol)
-            { id: 'sigenmicro', keep: false },
+            // SigenMicro via Modbus was removed in v3.4.0 (not part of the Modbus protocol);
+            // since v3.5.0 the folder holds the optional cloud data.
+            { id: 'sigenmicro', keep: !!this.config.cloudEnabled },
+            { id: 'info.cloudConnection', keep: !!this.config.cloudEnabled },
             { id: 'info.scanProgress', keep: false },
             { id: 'info.scanStatus', keep: false },
             { id: 'plant.essPreheating', keep: this._caps.essPreheating && !!this.config.enableEssPreheating },
@@ -2141,6 +2159,330 @@ class Sigenergy extends utils.Adapter {
     }
 
     // =========================================================================
+    // SigenMicro via the Sigenergy cloud
+    // =========================================================================
+
+    /**
+     * Validate the cloud settings, create the base objects and schedule the first cycle.
+     */
+    async _cloudStart() {
+        const mode = this.config.cloudApi === 'app' ? 'app' : 'openapi';
+        const user = String(this.config.cloudUser || '').trim();
+        const password = String(this.config.cloudPassword || '');
+        if (!user || !password) {
+            this.log.warn('SigenMicro cloud: no mySigen account or password configured — cloud polling disabled');
+            return;
+        }
+        // Sigenergy limits OpenAPI device realtime data to about once per 5 minutes.
+        const minInterval = mode === 'openapi' ? 300 : 30;
+        const configured = Number(this.config.cloudInterval) || (mode === 'openapi' ? 300 : 60);
+        this._cloudIntervalSec = Math.min(3600, Math.max(minInterval, configured));
+        if (configured < minInterval) {
+            this.log.info(`SigenMicro cloud: interval raised to the minimum of ${minInterval} s for '${mode}'`);
+        }
+
+        await this.setObjectNotExistsAsync('info.cloudConnection', {
+            type: 'state',
+            common: {
+                name: 'Connected to the Sigenergy cloud',
+                type: 'boolean',
+                role: 'indicator.connected',
+                read: true,
+                write: false,
+                def: false,
+            },
+            native: {},
+        });
+        await this.setObjectNotExistsAsync('sigenmicro', {
+            type: 'folder',
+            common: { name: 'SigenMicro micro-inverters (cloud)' },
+            native: {},
+        });
+        await this.setObjectNotExistsAsync('sigenmicro.totalPower', {
+            type: 'state',
+            common: {
+                name: 'Total AC power of all SigenMicro',
+                type: 'number',
+                role: 'value.power.produced',
+                unit: 'kW',
+                read: true,
+                write: false,
+            },
+            native: {},
+        });
+        await this.setStateAsync('info.cloudConnection', { val: false, ack: true });
+
+        this.cloud = new SigenCloudClient({
+            mode,
+            region: this.config.cloudRegion || 'eu',
+            user,
+            password,
+            debug: msg => this.log.debug(msg),
+            sleep: ms => this._sleep(ms),
+        });
+        this.log.info(
+            `SigenMicro cloud: using the ${mode === 'openapi' ? 'official Sigen OpenAPI' : 'mySigen app interface'} ` +
+                `(region ${this.config.cloudRegion || 'eu'}, every ${this._cloudIntervalSec} s)`,
+        );
+        this._cloudSchedule(2);
+    }
+
+    /**
+     * Schedule the next cloud cycle.
+     *
+     * @param {number} seconds - delay in seconds
+     */
+    _cloudSchedule(seconds) {
+        if (this._stopped) {
+            return;
+        }
+        if (this._cloudTimer) {
+            this.clearTimeout(this._cloudTimer);
+        }
+        this._cloudTimer = this.setTimeout(() => {
+            this._cloudTimer = null;
+            this._cloudCycle().catch(err => this.log.error(`SigenMicro cloud: unexpected error: ${err.message}`));
+        }, seconds * 1000);
+    }
+
+    /**
+     * Log a cloud problem once as warning; repeats of the same message go to debug.
+     *
+     * @param {string} msg - message
+     */
+    _cloudWarn(msg) {
+        if (msg !== this._cloudLastError) {
+            this._cloudLastError = msg;
+            this.log.warn(`SigenMicro cloud: ${msg}`);
+        } else {
+            this.log.debug(`SigenMicro cloud: ${msg}`);
+        }
+    }
+
+    /**
+     * One cloud cycle: (re-)discover the micro-inverters if needed, then read their live values.
+     */
+    async _cloudCycle() {
+        if (this._stopped || !this.cloud) {
+            return;
+        }
+        let next = this._cloudIntervalSec;
+        try {
+            const rediscover = !this._cloudDevices || Date.now() - this._cloudDiscoveredAt > 6 * 3600 * 1000;
+            if (rediscover) {
+                const devices = await this.cloud.discover();
+                if (this._stopped) {
+                    return;
+                }
+                this._cloudDevices = devices;
+                this._cloudDiscoveredAt = Date.now();
+                if (devices.length) {
+                    this.log.info(
+                        `SigenMicro cloud: found ${devices.length} micro-inverter(s): ${devices.map(d => d.sn).join(', ')}`,
+                    );
+                } else {
+                    this._cloudWarn('no SigenMicro micro-inverter found in this mySigen account');
+                }
+                for (const dev of devices) {
+                    await this._cloudCreateDeviceObjects(dev);
+                }
+            }
+
+            let total = 0;
+            let anyOnline = false;
+            const devices = this._cloudDevices || [];
+            for (const [i, dev] of devices.entries()) {
+                if (i > 0) {
+                    // spread the requests (OpenAPI: max. 10 requests per minute)
+                    await this._sleep(this.cloud.mode === 'openapi' ? 7000 : 1000);
+                }
+                if (this._stopped) {
+                    return;
+                }
+                try {
+                    const rt = await this.cloud.readRealtime(dev);
+                    await this._cloudWriteRealtime(dev, rt);
+                    if (rt.online) {
+                        anyOnline = true;
+                        total += rt.activePower || 0;
+                    }
+                } catch (err) {
+                    if (err.rateLimited || err.auth || err.fatal) {
+                        throw err;
+                    }
+                    await this._cloudSetDeviceOffline(dev);
+                    this._cloudWarn(`reading ${dev.sn} failed: ${err.message}`);
+                }
+            }
+            if (devices.length) {
+                await this.setStateAsync('sigenmicro.totalPower', {
+                    val: anyOnline ? Math.round(total * 1000) / 1000 : 0,
+                    ack: true,
+                });
+            }
+            await this.setStateAsync('info.cloudConnection', { val: true, ack: true });
+            if (this._cloudLastError) {
+                this.log.info('SigenMicro cloud: connection OK again');
+                this._cloudLastError = '';
+            }
+            this._cloudBackoff = 0;
+        } catch (err) {
+            if (this._stopped) {
+                return;
+            }
+            await this.setStateAsync('info.cloudConnection', { val: false, ack: true });
+            if (err.fatal) {
+                this.log.error(
+                    `SigenMicro cloud: ${err.message} — cloud polling stopped. ` +
+                        'Please check the account in the adapter settings (tab "SigenMicro (Cloud)").',
+                );
+                return;
+            }
+            if (err.rateLimited) {
+                // Sigenergy rejected the request due to its rate limit — just wait one interval.
+                this._cloudWarn(`${err.message} — retrying in ${next} s`);
+            } else {
+                this._cloudBackoff = Math.min(3600, this._cloudBackoff ? this._cloudBackoff * 2 : next);
+                next = Math.max(next, this._cloudBackoff);
+                this._cloudWarn(`${err.message} — retrying in ${next} s`);
+            }
+        }
+        this._cloudSchedule(next);
+    }
+
+    /**
+     * Object id part for a serial number.
+     *
+     * @param {string} sn - serial number
+     * @returns {string} sanitized id
+     */
+    _cloudDeviceId(sn) {
+        return `sigenmicro.${String(sn).replace(this.FORBIDDEN_CHARS, '_').replace(/[.\s]/g, '_')}`;
+    }
+
+    /**
+     * Create the device, channel and state objects of one micro-inverter.
+     *
+     * @param {import('./lib/sigenCloud').MicroDevice} dev - micro-inverter
+     */
+    async _cloudCreateDeviceObjects(dev) {
+        const base = this._cloudDeviceId(dev.sn);
+        if (this._cloudObjectsCreated.has(base)) {
+            return;
+        }
+        await this.extendObjectAsync(base, {
+            type: 'device',
+            common: { name: dev.name ? `SigenMicro ${dev.name}` : `SigenMicro ${dev.sn}` },
+            native: { sn: dev.sn },
+        });
+        /** @type {Array<[string, string, ioBroker.CommonType, string, string]>} */
+        const states = [
+            ['online', 'Online (reports live values)', 'boolean', 'indicator.reachable', ''],
+            ['serialNumber', 'Serial number', 'string', 'info.serial', ''],
+            ['firmware', 'Firmware version', 'string', 'info.firmware', ''],
+            ['ratedPower', 'Rated active power', 'number', 'value.power', 'kW'],
+            ['activePower', 'Active power (AC)', 'number', 'value.power.active', 'kW'],
+            ['reactivePower', 'Reactive power', 'number', 'value.power.reactive', 'kvar'],
+            ['pvPower', 'PV power (DC)', 'number', 'value.power.produced', 'kW'],
+            ['gridVoltage', 'Grid voltage', 'number', 'value.voltage', 'V'],
+            ['gridCurrent', 'Grid current', 'number', 'value.current', 'A'],
+            ['gridFrequency', 'Grid frequency', 'number', 'value.frequency', 'Hz'],
+            ['powerFactor', 'Power factor', 'number', 'value', ''],
+            ['temperature', 'Internal temperature', 'number', 'value.temperature', '°C'],
+            ['insulationResistance', 'Insulation resistance to ground', 'number', 'value', 'MΩ'],
+            ['dailyYield', 'PV yield today', 'number', 'value.energy.produced', 'kWh'],
+            ['totalYield', 'PV yield total', 'number', 'value.energy.produced', 'kWh'],
+            ['lastUpdate', 'Last update from the cloud', 'number', 'value.time', ''],
+        ];
+        for (const [id, name, type, role, unit] of states) {
+            /** @type {ioBroker.StateCommon} */
+            const common = { name, type, role, read: true, write: false };
+            if (unit) {
+                common.unit = unit;
+            }
+            await this.setObjectNotExistsAsync(`${base}.${id}`, { type: 'state', common, native: {} });
+        }
+        await this.setStateAsync(`${base}.serialNumber`, { val: dev.sn, ack: true });
+        await this.setStateAsync(`${base}.firmware`, { val: dev.firmware || null, ack: true });
+        await this.setStateAsync(`${base}.ratedPower`, { val: dev.ratedPower, ack: true });
+        this._cloudObjectsCreated.add(base);
+    }
+
+    /**
+     * Create the channel and states of one PV input.
+     *
+     * @param {string} base - device object id
+     * @param {number} n - PV input number (1-based)
+     */
+    async _cloudEnsurePvInput(base, n) {
+        const ch = `${base}.pv${n}`;
+        if (this._cloudObjectsCreated.has(ch)) {
+            return;
+        }
+        await this.setObjectNotExistsAsync(ch, { type: 'channel', common: { name: `PV input ${n}` }, native: {} });
+        for (const [id, name, role, unit] of [
+            ['voltage', `PV${n} voltage`, 'value.voltage', 'V'],
+            ['current', `PV${n} current`, 'value.current', 'A'],
+            ['power', `PV${n} power`, 'value.power.produced', 'kW'],
+        ]) {
+            await this.setObjectNotExistsAsync(`${ch}.${id}`, {
+                type: 'state',
+                common: { name, type: 'number', role, unit, read: true, write: false },
+                native: {},
+            });
+        }
+        this._cloudObjectsCreated.add(ch);
+    }
+
+    /**
+     * Write the live values of one micro-inverter.
+     *
+     * @param {import('./lib/sigenCloud').MicroDevice} dev - micro-inverter
+     * @param {import('./lib/sigenCloud').MicroRealtime} rt - live values
+     */
+    async _cloudWriteRealtime(dev, rt) {
+        const base = this._cloudDeviceId(dev.sn);
+        await this._cloudCreateDeviceObjects(dev);
+        /** @type {Array<[string, number|boolean|null]>} */
+        const values = [
+            ['online', rt.online],
+            ['activePower', rt.activePower],
+            ['reactivePower', rt.reactivePower],
+            ['pvPower', rt.pvPower],
+            ['gridVoltage', rt.gridVoltage],
+            ['gridCurrent', rt.gridCurrent],
+            ['gridFrequency', rt.gridFrequency],
+            ['powerFactor', rt.powerFactor],
+            ['temperature', rt.temperature],
+            ['insulationResistance', rt.insulationResistance],
+            ['dailyYield', rt.dailyYield],
+            ['totalYield', rt.totalYield],
+            ['lastUpdate', Date.now()],
+        ];
+        for (const [id, val] of values) {
+            await this.setStateAsync(`${base}.${id}`, { val, ack: true });
+        }
+        for (const [i, pv] of rt.pv.entries()) {
+            await this._cloudEnsurePvInput(base, i + 1);
+            await this.setStateAsync(`${base}.pv${i + 1}.voltage`, { val: pv.voltage, ack: true });
+            await this.setStateAsync(`${base}.pv${i + 1}.current`, { val: pv.current, ack: true });
+            await this.setStateAsync(`${base}.pv${i + 1}.power`, { val: pv.power, ack: true });
+        }
+    }
+
+    /**
+     * Mark one micro-inverter as offline after a failed read.
+     *
+     * @param {import('./lib/sigenCloud').MicroDevice} dev - micro-inverter
+     */
+    async _cloudSetDeviceOffline(dev) {
+        const base = this._cloudDeviceId(dev.sn);
+        if (this._cloudObjectsCreated.has(base)) {
+            await this.setStateAsync(`${base}.online`, { val: false, ack: true });
+        }
+    }
+
+    // =========================================================================
 
     async onUnload(callback) {
         // Set the shutdown flag FIRST, before any async work, so any in-flight
@@ -2155,12 +2497,19 @@ class Sigenergy extends utils.Adapter {
                 this._pollTimer = null;
                 this.log.debug('Poll timer cleared');
             }
+            if (this._cloudTimer) {
+                this.clearTimeout(this._cloudTimer);
+                this._cloudTimer = null;
+            }
             if (this.modbus) {
                 await this.modbus.disconnect();
                 this.log.debug('Modbus disconnected');
             }
             try {
                 await this.setStateAsync('info.connection', { val: false, ack: true });
+                if (this.config.cloudEnabled) {
+                    await this.setStateAsync('info.cloudConnection', { val: false, ack: true });
+                }
             } catch {
                 // Adapter may already be disconnected from the DB at this point — ignore.
             }

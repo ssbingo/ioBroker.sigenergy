@@ -131,5 +131,22 @@
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "当系统切换到离网模式以及电网稳定运行恢复时发送 Telegram 消息。",
   "Telegram instance": "Telegram 实例",
   "Chat ID (empty = broadcast to all configured chats)": "聊天 ID（空 = 广播至所有已配置聊天）",
-  "emergencyWarningText": "⚠️ 警告：仅在您了解操作含义的情况下使用此功能。它会在电网断电时自动切换外部设备（如阳台光伏电站）。配置错误可能损坏已连接的设备。详见 README.md。"
+  "emergencyWarningText": "⚠️ 警告：仅在您了解操作含义的情况下使用此功能。它会在电网断电时自动切换外部设备（如阳台光伏电站）。配置错误可能损坏已连接的设备。详见 README.md。",
+  "SigenMicro (Cloud)": "SigenMicro（云端）",
+  "cloudInfoText": "SigenMicro 微型逆变器仅通过 WLAN 与 Sigenergy 云端通信，不属于 Modbus 协议。启用此选项后，适配器将使用您的 mySigen 账户从 Sigenergy 云端读取其实时数据。登录凭据仅发送到 Sigenergy 云端；密码以加密方式保存。",
+  "Read SigenMicro micro-inverters via the Sigenergy cloud": "通过 Sigenergy 云端读取 SigenMicro 微型逆变器",
+  "Cloud interface": "云端接口",
+  "Official Sigen OpenAPI (recommended, at most every 5 minutes)": "官方 Sigen OpenAPI（推荐，最多每 5 分钟一次）",
+  "mySigen app interface (unofficial, faster)": "mySigen 应用接口（非官方，更快）",
+  "Cloud region": "云端区域",
+  "Europe (EU server)": "欧洲（EU 服务器）",
+  "Asia-Pacific (APAC server)": "亚太（APAC 服务器）",
+  "Australia (AUS server)": "澳大利亚（AUS 服务器）",
+  "Americas (US server)": "美洲（US 服务器）",
+  "China (CN server)": "中国（CN 服务器）",
+  "cloudAppWarningText": "⚠️ mySigen 应用接口没有官方文档。Sigenergy 可能随时更改或封锁该接口，恕不另行通知。如果不需要更快的更新，请使用官方 OpenAPI。",
+  "mySigen account (e-mail)": "mySigen 账户（电子邮件）",
+  "mySigen password": "mySigen 密码",
+  "Cloud polling interval (seconds)": "云端轮询间隔（秒）",
+  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "OpenAPI 最小 300 秒（Sigenergy 频率限制），应用接口最小 30 秒。"
 }

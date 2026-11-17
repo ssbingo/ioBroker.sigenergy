@@ -216,8 +216,21 @@
         "emergencyStableDelay": 10,
         "emergencyTelegram": false,
         "emergencyTelegramInst": "",
-        "emergencyTelegramChat": ""
+        "emergencyTelegramChat": "",
+        "cloudEnabled": false,
+        "cloudApi": "openapi",
+        "cloudRegion": "eu",
+        "cloudUser": "",
+        "cloudPassword": "",
+        "cloudInterval": 300
     },
+    "encryptedNative": [
+        "cloudPassword"
+    ],
+    "protectedNative": [
+        "cloudUser",
+        "cloudPassword"
+    ],
     "objects": [],
     "instanceObjects": [
         {

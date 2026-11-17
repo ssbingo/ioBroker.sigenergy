@@ -18,6 +18,25 @@ const {
     applySince,
 } = require('../lib/registers');
 const ModbusConnection = require('../lib/modbus');
+const { SigenCloudClient, toNumber, normalizeOpenApi, normalizeApp, isOpenApiMicro } = require('../lib/sigenCloud');
+
+/**
+ * Fake fetch for the cloud client: routes by path, records the requests.
+ *
+ * @param {Record<string, (url: URL, init: any) => {status?: number, body: any}>} routes - path → handler
+ * @returns {{fetchImpl: any, requests: Array<{path: string, url: URL, init: any}>}} fake fetch and log
+ */
+function fakeCloud(routes) {
+    const requests = [];
+    const fetchImpl = async (url, init) => {
+        const u = new URL(String(url));
+        requests.push({ path: u.pathname, url: u, init });
+        const handler = routes[u.pathname];
+        const res = handler ? handler(u, init) : { status: 404, body: null };
+        return { status: res.status || 200, json: async () => res.body };
+    };
+    return { fetchImpl, requests };
+}
 
 /**
  * Create a Modbus exception like modbus-serial does (err.modbusCode set).
@@ -268,6 +287,228 @@ tests.unit(path.join(__dirname, '..'), {
                 assert.strictEqual(parse([230], 'U16', null), 230);
                 assert.strictEqual(parse([0], 'U16', 10), 0);
                 assert.strictEqual(parse([2300], 'U16', 10), 230);
+            });
+        });
+
+        describe('lib/sigenCloud', () => {
+            const noSleep = async () => {};
+            // Shapes as returned by the Sigenergy cloud (serials and ids anonymized)
+            const openApiDevices = [
+                JSON.stringify({
+                    systemId: 'SYS1',
+                    serialNumber: '110A000000001',
+                    deviceType: 'Inverter',
+                    firmwareVersion: 'V1',
+                    attrMap: JSON.stringify({ ratedActivePower: 10, maxAbsorbedPower: 11 }),
+                }),
+                JSON.stringify({
+                    systemId: 'SYS1',
+                    serialNumber: '110M000000002',
+                    deviceType: 'Inverter',
+                    firmwareVersion: 'V100R001C00SPC117B021C',
+                    attrMap: JSON.stringify({ ratedActivePower: 1, maxAbsorbedPower: 0, pvStringNumber: 2 }),
+                }),
+                JSON.stringify({ systemId: 'SYS1', serialNumber: '130B000000003', deviceType: 'Battery' }),
+            ];
+            const openApiRealtime = {
+                activePower: '0.01',
+                reactivePower: '0.00',
+                aPhaseVoltage: '227.25',
+                bPhaseVoltage: 655.35,
+                aPhaseCurrent: '0.13',
+                bPhaseCurrent: -0.01,
+                powerFactor: 0.013,
+                gridFrequency: '49.99',
+                pVPower: 0.002,
+                internalTemperature: 13.5,
+                insulationResistance: 0.38,
+                pV1Voltage: '30.10',
+                pV1Current: '0.26',
+                pV2Voltage: '30.10',
+                pV2Current: '0.27',
+                pvEnergyDaily: '0.01',
+                pvEnergyTotal: '0.02',
+                esChargingDay: 42949672.95,
+                pvTotalPower: '0.01',
+                batSoc: 6553.5,
+            };
+
+            it('treats Sigenergy "not available" placeholders as missing', () => {
+                for (const v of [655.35, 6553.5, 65535, 42949672.95, 429496729.5, 4294967295, null, undefined, '', 'x']) {
+                    assert.strictEqual(toNumber(v), null, String(v));
+                }
+                assert.strictEqual(toNumber('227.25'), 227.25);
+                assert.strictEqual(toNumber(0), 0);
+                assert.strictEqual(toNumber(-0.6), -0.6);
+            });
+
+            it('normalizes an OpenAPI realtimeInfo record', () => {
+                const rt = normalizeOpenApi(openApiRealtime);
+                assert.strictEqual(rt.online, true);
+                assert.strictEqual(rt.activePower, 0.01);
+                assert.strictEqual(rt.pvPower, 0.01);
+                assert.strictEqual(rt.gridVoltage, 227.25);
+                assert.strictEqual(rt.gridCurrent, 0.13);
+                assert.strictEqual(rt.gridFrequency, 49.99);
+                assert.strictEqual(rt.dailyYield, 0.01);
+                assert.strictEqual(rt.totalYield, 0.02);
+                assert.deepStrictEqual(rt.pv, [
+                    { voltage: 30.1, current: 0.26, power: 0.008 },
+                    { voltage: 30.1, current: 0.27, power: 0.008 },
+                ]);
+            });
+
+            it('normalizes a mySigen app pcs/realtime record', () => {
+                const rt = normalizeApp({
+                    activePower: 0.022,
+                    reactivePower: 0,
+                    phaseVoltageA: 227.29,
+                    phaseVoltageB: 655.35,
+                    phaseCurrentA: 0.14,
+                    powerFactor: 0.997,
+                    gridFrequency: 50.02,
+                    internalTemperature: 13.8,
+                    insulationImpedanceToGround: 0.38,
+                    todayPv: 0.01,
+                    pvTotalPower: 0.032,
+                    coolingFan1SpeedFeedback: 65535,
+                    pvInfoList: [
+                        { name: 'pv1', voltage: 34.9, current: 0.45 },
+                        { name: 'pv2', voltage: 34.9, current: 0.46 },
+                    ],
+                });
+                assert.strictEqual(rt.online, true);
+                assert.strictEqual(rt.pvPower, 0.032);
+                assert.strictEqual(rt.gridVoltage, 227.29);
+                assert.strictEqual(rt.dailyYield, 0.01);
+                assert.strictEqual(rt.totalYield, null);
+                assert.deepStrictEqual(
+                    rt.pv.map(p => p.power),
+                    [0.016, 0.016],
+                );
+            });
+
+            it('reports a micro-inverter without values as offline', () => {
+                assert.strictEqual(normalizeOpenApi({ aPhaseVoltage: 655.35 }).online, false);
+                assert.strictEqual(normalizeApp({}).online, false);
+            });
+
+            it('recognizes SigenMicro entries in the OpenAPI device list', () => {
+                const devs = openApiDevices.map(d => JSON.parse(d));
+                assert.deepStrictEqual(
+                    devs.map(isOpenApiMicro),
+                    [false, true, false],
+                );
+                // fallback without the "M" serial pattern: small inverter that cannot absorb power
+                assert.strictEqual(
+                    isOpenApiMicro({ deviceType: 'Inverter', serialNumber: 'X1', attrMap: { ratedActivePower: 1, maxAbsorbedPower: 0 } }),
+                    true,
+                );
+            });
+
+            it('OpenAPI: logs in, finds the micro-inverter and reads its live values', async () => {
+                const { fetchImpl, requests } = fakeCloud({
+                    '/openapi/auth/login/password': () => ({
+                        body: { code: 0, data: JSON.stringify({ accessToken: 'T1', expiresIn: 43199 }) },
+                    }),
+                    '/openapi/system': () => ({ body: { code: 0, data: [JSON.stringify({ systemId: 'SYS1' })] } }),
+                    '/openapi/system/SYS1/devices': () => ({ body: { code: 0, data: openApiDevices } }),
+                    '/openapi/systems/SYS1/devices/110M000000002/realtimeInfo': () => ({
+                        body: { code: 0, data: { serialNumber: '110M000000002', realTimeInfo: openApiRealtime } },
+                    }),
+                });
+                const c = new SigenCloudClient({ mode: 'openapi', region: 'eu', user: 'u', password: 'p', fetchImpl, sleep: noSleep });
+                const devices = await c.discover();
+                assert.deepStrictEqual(devices, [
+                    { sn: '110M000000002', name: '', ratedPower: 1, firmware: 'V100R001C00SPC117B021C', systemId: 'SYS1' },
+                ]);
+                const rt = await c.readRealtime(devices[0]);
+                assert.strictEqual(rt.activePower, 0.01);
+                assert.strictEqual(requests.filter(r => r.path.endsWith('/login/password')).length, 1);
+                const rtReq = requests.find(r => r.path.endsWith('/realtimeInfo'));
+                assert.strictEqual(rtReq && rtReq.init.headers.Authorization, 'Bearer T1');
+                assert.strictEqual(rtReq.url.host, 'api-eu.sigencloud.com');
+            });
+
+            it('OpenAPI: falls back to the plain password once and stops on wrong credentials', async () => {
+                const passwords = [];
+                const { fetchImpl } = fakeCloud({
+                    '/openapi/auth/login/password': (_u, init) => {
+                        passwords.push(JSON.parse(init.body).password);
+                        return { body: { code: 11003, msg: 'authentication failed' } };
+                    },
+                });
+                const c = new SigenCloudClient({ mode: 'openapi', region: 'eu', user: 'u', password: 'secret', fetchImpl, sleep: noSleep });
+                await assert.rejects(() => c.login(), err => err.fatal === true);
+                assert.deepStrictEqual(passwords, [SigenCloudClient.encryptPassword('secret'), 'secret']);
+            });
+
+            it('OpenAPI: reports the Sigenergy rate limit separately', async () => {
+                const { fetchImpl } = fakeCloud({
+                    '/openapi/auth/login/password': () => ({ body: { code: 0, data: JSON.stringify({ accessToken: 'T' }) } }),
+                    '/openapi/systems/SYS1/devices/110M1/realtimeInfo': () => ({ body: { code: 1201, msg: 'Access restriction' } }),
+                });
+                const c = new SigenCloudClient({ mode: 'openapi', region: 'eu', user: 'u', password: 'p', fetchImpl, sleep: noSleep });
+                await assert.rejects(
+                    () => c.readRealtime({ sn: '110M1', name: '', ratedPower: 1, firmware: '', systemId: 'SYS1' }),
+                    err => err.rateLimited === true && !err.fatal,
+                );
+            });
+
+            it('logs in again once when the access token is rejected', async () => {
+                let logins = 0;
+                let calls = 0;
+                const { fetchImpl } = fakeCloud({
+                    '/openapi/auth/login/password': () => {
+                        logins++;
+                        return { body: { code: 0, data: JSON.stringify({ accessToken: `T${logins}` }) } };
+                    },
+                    '/openapi/system': () => {
+                        calls++;
+                        return calls === 1 ? { status: 401, body: { code: 401 } } : { body: { code: 0, data: [] } };
+                    },
+                });
+                const c = new SigenCloudClient({ mode: 'openapi', region: 'eu', user: 'u', password: 'p', fetchImpl, sleep: noSleep });
+                assert.deepStrictEqual(await c.discover(), []);
+                assert.strictEqual(logins, 2);
+            });
+
+            it('app: finds the micro-inverter in the topology and reads pcs/realtime', async () => {
+                const { fetchImpl, requests } = fakeCloud({
+                    '/auth/oauth/token': () => ({ body: { code: 0, data: { access_token: 'A1', expires_in: 3600 } } }),
+                    '/device/owner/station/home': () => ({ body: { code: 0, data: { stationId: 42 } } }),
+                    '/device/devicetreepanel/topology': () => ({
+                        body: {
+                            code: 0,
+                            data: {
+                                nodeList: [
+                                    { snCode: 'CMU110A1', deviceType: 2, sceneMode: 5, nodeList: [{ snCode: '110A1', deviceType: 3 }] },
+                                    {
+                                        snCode: 'CMU110M2',
+                                        deviceType: 2,
+                                        sceneMode: 55,
+                                        deviceCategoryId: 'D-MIC-002',
+                                        deviceName: 'Garage',
+                                        nodeList: [{ snCode: '110M2', deviceType: 3, microInverterShowType: 2, ratedActivePower: 1 }],
+                                    },
+                                ],
+                            },
+                        },
+                    }),
+                    '/device/web/manage/device/pcs/realtime': () => ({
+                        body: { code: 0, data: { activePower: 0.5, phaseVoltageA: 230, pvTotalPower: 0.52, pvInfoList: [] } },
+                    }),
+                });
+                const c = new SigenCloudClient({ mode: 'app', region: 'eu', user: 'u', password: 'p', fetchImpl, sleep: noSleep });
+                const devices = await c.discover();
+                assert.deepStrictEqual(devices, [{ sn: '110M2', name: 'Garage', ratedPower: 1, firmware: '', systemId: 42 }]);
+                const rt = await c.readRealtime(devices[0]);
+                assert.strictEqual(rt.activePower, 0.5);
+                const rtReq = requests.find(r => r.path === '/device/web/manage/device/pcs/realtime');
+                assert.ok(rtReq);
+                assert.strictEqual(rtReq.url.searchParams.get('snCode'), '110M2');
+                assert.strictEqual(rtReq.url.searchParams.get('stationId'), '42');
+                assert.strictEqual(rtReq.url.searchParams.get('deviceType'), '3');
             });
         });
     },

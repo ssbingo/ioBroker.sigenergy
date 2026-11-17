@@ -73,7 +73,13 @@ Auswahl der installierten Geräte:
 - PID (PV-Isolationsüberwachung)
 - ESS-Vorheizung (nur M1-HYA/HYB)
 
-> **SigenMicro:** Mikrowechselrichter vom Typ SigenMicro werden nicht unterstützt. Sie kommunizieren nur per WLAN/Cloud und sind nicht Teil des Sigenergy-Modbus-Protokolls. Ihr Ertrag ist höchstens als Summe in `plant.pvPower` bzw. `plant.statistics.thirdPartyInverterPower` enthalten.
+> **SigenMicro:** Mikrowechselrichter vom Typ SigenMicro sind nicht Teil des Sigenergy-Modbus-Protokolls (V2.9) — sie kommunizieren nur per WLAN mit der Sigenergy-Cloud. Ihre Livewerte lassen sich optional aus der Cloud lesen:
+>
+> - Reiter **SigenMicro (über Cloud)**: mySigen-Konto, Passwort (verschlüsselt gespeichert), Region, Schnittstelle und Abfrageintervall.
+> - **Offizielle Sigen OpenAPI** (Standard): nur lesend, ohne Entwickler-Zugang und ohne Onboarding; Sigenergy liefert Gerätewerte höchstens etwa alle 5 Minuten.
+> - **mySigen-App-Schnittstelle**: schneller (ab 30 s), aber nicht offiziell dokumentiert — Sigenergy kann sie jederzeit ohne Ankündigung ändern oder sperren.
+> - Datenpunkte: `sigenmicro.<Seriennummer>.*` (Leistung, PV-Eingänge, Netzwerte, Temperatur, Ertrag), `sigenmicro.totalPower` und `info.cloudConnection`.
+> - Die Zugangsdaten werden nur an die Sigenergy-Cloud gesendet. Nach 5 Fehlversuchen in 60 Minuten sperrt Sigenergy das Konto für 3 Minuten; ein abgelehntes Passwort wiederholt der Adapter deshalb nicht selbst.
 
 ### Reiter Statistiken
 Auswahl der zu berechnenden Statistikwerte:

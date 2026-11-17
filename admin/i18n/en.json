@@ -131,5 +131,22 @@
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.",
   "Telegram instance": "Telegram instance",
   "Chat ID (empty = broadcast to all configured chats)": "Chat ID (empty = broadcast to all configured chats)",
-  "emergencyWarningText": "⚠️ WARNING: Only use this function if you know what you are doing. It switches external devices (e.g. balcony power plants) automatically during grid failures. Incorrect configuration can damage connected devices. See README.md for details."
+  "emergencyWarningText": "⚠️ WARNING: Only use this function if you know what you are doing. It switches external devices (e.g. balcony power plants) automatically during grid failures. Incorrect configuration can damage connected devices. See README.md for details.",
+  "SigenMicro (Cloud)": "SigenMicro (Cloud)",
+  "cloudInfoText": "SigenMicro micro-inverters communicate with the Sigenergy cloud via WLAN only and are not part of the Modbus protocol. With this option the adapter reads their live values from the Sigenergy cloud using your mySigen account. Your credentials are sent only to the Sigenergy cloud; the password is stored encrypted.",
+  "Read SigenMicro micro-inverters via the Sigenergy cloud": "Read SigenMicro micro-inverters via the Sigenergy cloud",
+  "Cloud interface": "Cloud interface",
+  "Official Sigen OpenAPI (recommended, at most every 5 minutes)": "Official Sigen OpenAPI (recommended, at most every 5 minutes)",
+  "mySigen app interface (unofficial, faster)": "mySigen app interface (unofficial, faster)",
+  "Cloud region": "Cloud region",
+  "Europe (EU server)": "Europe (EU server)",
+  "Asia-Pacific (APAC server)": "Asia-Pacific (APAC server)",
+  "Australia (AUS server)": "Australia (AUS server)",
+  "Americas (US server)": "Americas (US server)",
+  "China (CN server)": "China (CN server)",
+  "cloudAppWarningText": "⚠️ The mySigen app interface is not officially documented. Sigenergy may change or block it at any time without notice. Use the official OpenAPI if you do not need faster updates.",
+  "mySigen account (e-mail)": "mySigen account (e-mail)",
+  "mySigen password": "mySigen password",
+  "Cloud polling interval (seconds)": "Cloud polling interval (seconds)",
+  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface."
 }

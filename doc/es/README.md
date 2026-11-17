@@ -82,7 +82,13 @@ Seleccionar los dispositivos instalados:
 - PID (detección de aislamiento PV)
 - Precalentamiento ESS (solo M1-HYA/HYB)
 
-> **SigenMicro:** los microinversores SigenMicro no son compatibles. Se comunican solo por WLAN/nube y no forman parte del protocolo Modbus de Sigenergy. Su producción, como mucho, se incluye como total en `plant.pvPower` o `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro:** los microinversores SigenMicro no forman parte del protocolo Modbus de Sigenergy (V2.9): se comunican con la nube de Sigenergy solo por WLAN. Sus valores en tiempo real pueden leerse opcionalmente desde la nube:
+>
+> - Pestaña **SigenMicro (nube)**: cuenta mySigen, contraseña (guardada cifrada), región, interfaz e intervalo de consulta.
+> - **Sigen OpenAPI oficial** (predeterminada): solo lectura, sin cuenta de desarrollador ni onboarding; Sigenergy entrega los valores del dispositivo como máximo cada 5 minutos aproximadamente.
+> - **Interfaz de la app mySigen**: más rápida (desde 30 s), pero no documentada oficialmente; Sigenergy puede cambiarla o bloquearla en cualquier momento sin previo aviso.
+> - Estados: `sigenmicro.<número de serie>.*` (potencia, entradas FV, valores de red, temperatura, producción), `sigenmicro.totalPower` e `info.cloudConnection`.
+> - Las credenciales solo se envían a la nube de Sigenergy. Tras 5 intentos fallidos en 60 minutos, Sigenergy bloquea la cuenta durante 3 minutos; por eso el adaptador no reintenta por sí mismo una contraseña rechazada.
 
 ### Pestaña Estadísticas
 Elegir los valores estadísticos a calcular:

@@ -29,6 +29,7 @@ Supports the Sigenergy Modbus Protocol V2.9 (released 2026-05-13).
 - 🌡️ **ESS Preheating** — TOU schedule, 30 configurable time windows (M1-HYA/HYB)
 - 📈 **Extended registers** — Smart loads 1–24, cumulative energy, grid code parameters
 - 📊 **Calculated values** — Derived statistics updated each poll cycle
+- ☁️ **SigenMicro via cloud** — Optional: live values of SigenMicro micro-inverters from the Sigenergy cloud
 - 🖥️ **VIS Widgets** — Energy flow, battery status, statistics panels
 
 ---
@@ -104,9 +105,9 @@ Select which devices are installed:
 - PID (PV Insulation Detection)
 - ESS Preheating (M1-HYA/HYB only)
 
-> **SigenMicro:** SigenMicro micro-inverters are not supported. They communicate via WLAN/cloud only and are
-> not part of the Sigenergy Modbus protocol (V2.9), so there is no Modbus address or register set to read.
-> Their yield is at most included as a total in `plant.pvPower` or `plant.statistics.thirdPartyInverterPower`.
+> **SigenMicro:** SigenMicro micro-inverters are not part of the Sigenergy Modbus protocol (V2.9) — they talk
+> to the Sigenergy cloud via WLAN only, so there is no Modbus address or register set to read. Their live values
+> can optionally be read from the Sigenergy cloud, see the [SigenMicro (Cloud) tab](#sigenmicro-cloud-tab).
 
 ### Statistics Tab
 Choose which statistical values to calculate:
@@ -116,6 +117,27 @@ Choose which statistical values to calculate:
 - Battery coverage time
 - Self-consumption rate
 - Autarky rate
+
+### SigenMicro (Cloud) Tab
+Optional. Reads the live values of SigenMicro micro-inverters from the Sigenergy cloud with your mySigen
+account. All micro-inverters of the account are found automatically. The cloud polling runs independently
+of the Modbus connection.
+
+| Setting | Description |
+|---------|-------------|
+| Read SigenMicro micro-inverters via the Sigenergy cloud | Enables the cloud polling |
+| Cloud interface | **Official Sigen OpenAPI** (default) — documented by Sigenergy, read-only. Sigenergy limits device live data to about once per 5 minutes.<br>**mySigen app interface** — the interface of the mySigen app, allows faster updates, but it is **not officially documented**: Sigenergy may change or block it at any time without notice. |
+| Cloud region | Server of your mySigen account (Europe = `api-eu.sigencloud.com`) |
+| mySigen account / password | Your mySigen login. It is sent only to the Sigenergy cloud; the password is stored encrypted. |
+| Cloud polling interval | Minimum 300 s for the OpenAPI, 30 s for the app interface (default 300 s) |
+
+Notes:
+- The adapter only reads. No developer account and no "onboard" of the system is needed (the OpenAPI
+  account login only grants read access to the systems of your own account).
+- Wrong credentials stop the cloud polling until the settings are saved again. Sigenergy locks a mySigen
+  account for 3 minutes after 5 failed logins within 60 minutes, so the adapter never retries a rejected
+  password on its own.
+- At night the micro-inverters are switched off; `online` is then `false` and the values are empty.
 
 ---
 
@@ -149,6 +171,28 @@ Choose which statistical values to calculate:
 | `statistics.selfConsumptionRate` | Self-consumption rate | % |
 | `statistics.autarkyRate` | Autarky rate | % |
 | `statistics.housePower` | Calculated house consumption | kW |
+
+### SigenMicro (`sigenmicro.*`)
+Only with the [SigenMicro (Cloud) tab](#sigenmicro-cloud-tab) enabled. One device per micro-inverter,
+named after its serial number:
+
+| State | Unit | Description |
+|-------|------|-------------|
+| `sigenmicro.totalPower` | kW | AC power of all SigenMicro together |
+| `sigenmicro.<serial>.online` | — | Micro-inverter reports live values |
+| `sigenmicro.<serial>.activePower` | kW | AC active power |
+| `sigenmicro.<serial>.reactivePower` | kvar | Reactive power |
+| `sigenmicro.<serial>.pvPower` | kW | PV (DC) power |
+| `sigenmicro.<serial>.pv1.*` / `pv2.*` | V / A / kW | Voltage, current and power of each PV input |
+| `sigenmicro.<serial>.gridVoltage` / `gridCurrent` / `gridFrequency` | V / A / Hz | Grid side |
+| `sigenmicro.<serial>.powerFactor` | — | Power factor |
+| `sigenmicro.<serial>.temperature` | °C | Internal temperature |
+| `sigenmicro.<serial>.insulationResistance` | MΩ | Insulation resistance to ground |
+| `sigenmicro.<serial>.dailyYield` / `totalYield` | kWh | PV yield today / total (total: OpenAPI only) |
+| `sigenmicro.<serial>.ratedPower`, `serialNumber`, `firmware` | | Device data |
+| `sigenmicro.<serial>.lastUpdate` | | Time of the last cloud update |
+
+`info.cloudConnection` shows whether the last cloud cycle succeeded.
 
 ---
 
@@ -259,6 +303,9 @@ Status and power readings for the DC charger.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (ssbingo) feat: SigenMicro micro-inverters via the Sigenergy cloud (optional, new tab "SigenMicro (Cloud)"). Uses the official Sigen OpenAPI with the mySigen account (read-only, no onboard, about every 5 minutes) or, optionally, the unofficial mySigen app interface (faster). The micro-inverters of the account are found automatically; new states `sigenmicro.<serial>.*` (power, PV inputs, grid values, temperature, yield), `sigenmicro.totalPower` and `info.cloudConnection`. The password is stored encrypted (`encryptedNative`/`protectedNative`)
+
 ### 3.4.0 (2026-11-16)
 - (ssbingo) **breaking:** SigenMicro support removed. SigenMicro micro-inverters communicate via WLAN/cloud only and are not part of the Sigenergy Modbus protocol (V2.9: no device class, no slave address, no registers), so the scan could never find them and the previous register map had no source. Removed: the SigenMicro scan, the SigenMicro admin tab, the `SigenMicro only` device type, the config keys `hasSigenMicro`/`sigenMicroScanFrom`/`sigenMicroScanTo`/`sigenMicroDevices` and the states `info.scanProgress`/`info.scanStatus`. Existing `sigenmicro.*` objects are deleted on startup; an instance still set to `SigenMicro only` logs an error and stays idle. Micro yield is at most included as a total in `plant.pvPower` or `plant.statistics.thirdPartyInverterPower`
 - (ssbingo) chore: Dependabot auto-merge workflow uses `pull_request` instead of `pull_request_target` (#84, via template PR #85); dependencies updated via #81, #82, #83, #87, #89, #91

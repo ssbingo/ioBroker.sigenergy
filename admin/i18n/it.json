@@ -131,5 +131,22 @@
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Invia un messaggio Telegram quando il sistema passa alla modalità off-grid e quando il funzionamento stabile in rete viene ripristinato.",
   "Telegram instance": "Istanza Telegram",
   "Chat ID (empty = broadcast to all configured chats)": "ID chat (vuoto = broadcast a tutte le chat configurate)",
-  "emergencyWarningText": "⚠️ ATTENZIONE: Utilizzare questa funzione solo se si sa cosa si sta facendo. Essa commuta automaticamente dispositivi esterni (ad es. centrali da balcone) durante le mancanze di rete. Una configurazione errata può danneggiare i dispositivi collegati. Vedere README.md."
+  "emergencyWarningText": "⚠️ ATTENZIONE: Utilizzare questa funzione solo se si sa cosa si sta facendo. Essa commuta automaticamente dispositivi esterni (ad es. centrali da balcone) durante le mancanze di rete. Una configurazione errata può danneggiare i dispositivi collegati. Vedere README.md.",
+  "SigenMicro (Cloud)": "SigenMicro (tramite cloud)",
+  "cloudInfoText": "I microinverter SigenMicro comunicano con il cloud Sigenergy solo tramite WLAN e non fanno parte del protocollo Modbus. Con questa opzione l'adattatore legge i loro valori in tempo reale dal cloud Sigenergy usando il tuo account mySigen. Le credenziali vengono inviate solo al cloud Sigenergy; la password viene salvata crittografata.",
+  "Read SigenMicro micro-inverters via the Sigenergy cloud": "Leggi i microinverter SigenMicro tramite il cloud Sigenergy",
+  "Cloud interface": "Interfaccia cloud",
+  "Official Sigen OpenAPI (recommended, at most every 5 minutes)": "Sigen OpenAPI ufficiale (consigliata, al massimo ogni 5 minuti)",
+  "mySigen app interface (unofficial, faster)": "Interfaccia dell'app mySigen (non ufficiale, più veloce)",
+  "Cloud region": "Regione cloud",
+  "Europe (EU server)": "Europa (server EU)",
+  "Asia-Pacific (APAC server)": "Asia-Pacifico (server APAC)",
+  "Australia (AUS server)": "Australia (server AUS)",
+  "Americas (US server)": "Americhe (server US)",
+  "China (CN server)": "Cina (server CN)",
+  "cloudAppWarningText": "⚠️ L'interfaccia dell'app mySigen non è documentata ufficialmente. Sigenergy può modificarla o bloccarla in qualsiasi momento senza preavviso. Usa la OpenAPI ufficiale se non ti servono aggiornamenti più rapidi.",
+  "mySigen account (e-mail)": "Account mySigen (e-mail)",
+  "mySigen password": "Password mySigen",
+  "Cloud polling interval (seconds)": "Intervallo di interrogazione del cloud (secondi)",
+  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimo 300 s per la OpenAPI (limite di richieste di Sigenergy), 30 s per l'interfaccia dell'app."
 }

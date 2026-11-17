@@ -131,5 +131,22 @@
   "Send a Telegram message when the system switches to off-grid mode and when stable grid operation is restored.": "Stuur een Telegram-bericht wanneer het systeem naar off-grid modus schakelt en wanneer de stabiele netaansluiting is hersteld.",
   "Telegram instance": "Telegram-instantie",
   "Chat ID (empty = broadcast to all configured chats)": "Chat-ID (leeg = broadcast naar alle geconfigureerde chats)",
-  "emergencyWarningText": "⚠️ WAARSCHUWING: Gebruik deze functie uitsluitend als u weet wat u doet. Ze schakelt externe apparaten (bijv. balkon-zonnecentrales) automatisch bij netuitval. Onjuiste configuratie kan aangesloten apparaten beschadigen. Zie README.md."
+  "emergencyWarningText": "⚠️ WAARSCHUWING: Gebruik deze functie uitsluitend als u weet wat u doet. Ze schakelt externe apparaten (bijv. balkon-zonnecentrales) automatisch bij netuitval. Onjuiste configuratie kan aangesloten apparaten beschadigen. Zie README.md.",
+  "SigenMicro (Cloud)": "SigenMicro (via cloud)",
+  "cloudInfoText": "SigenMicro-micro-omvormers communiceren uitsluitend via WLAN met de Sigenergy-cloud en maken geen deel uit van het Modbus-protocol. Met deze optie leest de adapter hun live-waarden uit de Sigenergy-cloud met uw mySigen-account. De inloggegevens worden alleen naar de Sigenergy-cloud verzonden; het wachtwoord wordt versleuteld opgeslagen.",
+  "Read SigenMicro micro-inverters via the Sigenergy cloud": "SigenMicro-micro-omvormers uitlezen via de Sigenergy-cloud",
+  "Cloud interface": "Cloud-interface",
+  "Official Sigen OpenAPI (recommended, at most every 5 minutes)": "Officiële Sigen OpenAPI (aanbevolen, hooguit elke 5 minuten)",
+  "mySigen app interface (unofficial, faster)": "mySigen-app-interface (onofficieel, sneller)",
+  "Cloud region": "Cloudregio",
+  "Europe (EU server)": "Europa (EU-server)",
+  "Asia-Pacific (APAC server)": "Azië-Pacific (APAC-server)",
+  "Australia (AUS server)": "Australië (AUS-server)",
+  "Americas (US server)": "Amerika (US-server)",
+  "China (CN server)": "China (CN-server)",
+  "cloudAppWarningText": "⚠️ De mySigen-app-interface is niet officieel gedocumenteerd. Sigenergy kan deze op elk moment zonder aankondiging wijzigen of blokkeren. Gebruik de officiële OpenAPI als u geen snellere updates nodig hebt.",
+  "mySigen account (e-mail)": "mySigen-account (e-mail)",
+  "mySigen password": "mySigen-wachtwoord",
+  "Cloud polling interval (seconds)": "Cloud-pollinginterval (seconden)",
+  "Minimum 300 s for the OpenAPI (Sigenergy rate limit), 30 s for the app interface.": "Minimaal 300 s voor de OpenAPI (snelheidslimiet van Sigenergy), 30 s voor de app-interface."
 }
